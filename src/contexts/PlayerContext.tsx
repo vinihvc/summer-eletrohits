@@ -8,7 +8,7 @@ import {
 
 type PlayerContextData = {
   song?: AlbumType
-  setSong?: (song?: AlbumType) => void
+  setSong: (song?: AlbumType) => void
   isPlaying: boolean
   togglePlay: () => void
 }

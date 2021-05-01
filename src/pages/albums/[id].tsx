@@ -37,7 +37,7 @@ function Albums({ album }: AlbumsProps) {
             )}
           </Text>
 
-          <Text mt="5px">Total songs: {album.songs.length}</Text>
+          <Text mt="5px">Total songs: {album.songs?.length}</Text>
 
           <Button mt="30px" onClick={() => setSong(album)}>
             Play songs
