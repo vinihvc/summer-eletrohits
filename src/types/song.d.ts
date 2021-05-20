@@ -3,6 +3,5 @@ type SongType = {
   albumId: number
   name: string
   singer: string
-  videoUrl: string
-  order: number
+  youtubeId: string
 }

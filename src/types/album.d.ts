@@ -1,8 +1,7 @@
 type AlbumType = {
-  id: string
+  id: number
   name: string
   thumb: string
   releaseDate: string
-  videoUrl: string
-  songs: []
+  songs?: SongType[]
 }
