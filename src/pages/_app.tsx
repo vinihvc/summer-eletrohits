@@ -16,7 +16,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
-        <title>Summer Eltrohits</title>
+        <title>Summer Eletrohits</title>
         <link rel="shortcut icon" href="/img/logo.jpg" />
         <link rel="apple-touch-icon" href="/img/logo.jpg" />
         <link rel="manifest" href="/manifest.json" />
