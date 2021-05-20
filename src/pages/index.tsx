@@ -16,7 +16,7 @@ export type HomeProps = {
 }
 
 const Home = ({ albums }: HomeProps) => {
-  const { setSong } = usePlayer()
+  const { playPlayList } = usePlayer()
 
   return (
     <BaseTemplate>
@@ -32,7 +32,7 @@ const Home = ({ albums }: HomeProps) => {
         <Grid templateColumns="repeat(auto-fit, minmax(150px, 1fr))" gap="10">
           {albums?.map((item: AlbumType) => (
             <GridItem overflow="hidden" key={item.id}>
-              <Thumbnail {...item} onClick={() => setSong(item)} />
+              <Thumbnail {...item} onClick={() => playPlayList(item.songs!)} />
             </GridItem>
           ))}
         </Grid>
