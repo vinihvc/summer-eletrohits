@@ -2,15 +2,9 @@ import { AppProps } from 'next/app'
 
 import Head from 'next/head'
 
-import { ChakraProvider, CSSReset } from '@chakra-ui/react'
-
-import { globalStyles } from 'styles/global'
-
-import theme from 'styles/theme'
-
 import { PlayerProvider } from 'contexts/PlayerContext'
 
-import Player from 'components/Player'
+import BaseTemplate from 'templates/Base'
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
@@ -23,18 +17,16 @@ const App = ({ Component, pageProps }: AppProps) => {
         <meta name="theme-color" content="#1A202C" />
         <meta name="description" content="Summer Eletrohits" />
       </Head>
-      <ChakraProvider theme={theme}>
-        <CSSReset />
-        <PlayerProvider>
+
+      <PlayerProvider>
+        <BaseTemplate cookies={pageProps.cookies}>
           <Component {...pageProps} />
-
-          <Player />
-        </PlayerProvider>
-
-        {globalStyles}
-      </ChakraProvider>
+        </BaseTemplate>
+      </PlayerProvider>
     </>
   )
 }
+
+export { getServerSideProps } from 'templates/Base'
 
 export default App

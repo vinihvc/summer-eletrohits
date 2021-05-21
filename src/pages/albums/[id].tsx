@@ -2,8 +2,6 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 
 import { Box } from '@chakra-ui/react'
 
-import Base from 'templates/Base'
-
 import SongList from 'components/SongList'
 import AlbumInfo from 'components/AlbumInfo'
 
@@ -15,13 +13,13 @@ export type AlbumsProps = {
 
 function Albums({ album }: AlbumsProps) {
   return (
-    <Base>
+    <>
       <AlbumInfo album={album} />
 
       <Box mt="50px">
         <SongList songs={album.songs} />
       </Box>
-    </Base>
+    </>
   )
 }
 

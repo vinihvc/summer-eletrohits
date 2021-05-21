@@ -1,25 +1,54 @@
-import { Container, Flex } from '@chakra-ui/react'
+import { GetServerSidePropsContext } from 'next'
 
-import Link from 'next/link'
+import {
+  ChakraProvider,
+  CSSReset,
+  cookieStorageManager,
+  localStorageManager
+} from '@chakra-ui/react'
 
-import Logo from 'components/Logo'
+import { Container } from '@chakra-ui/react'
+
+import Player from 'components/Player'
+import Navbar from 'components/Navbar'
+import Footer from 'components/Footer'
+
+import theme from 'styles/theme'
 
 export type BaseTemplateProps = {
+  cookies: string
   children: React.ReactNode
 }
 
-const BaseTemplate = ({ children }: BaseTemplateProps) => (
-  <Container maxW="container.lg">
-    <Flex justify="center" marginTop="20px" marginBottom="40px">
-      <Link href="/">
-        <a>
-          <Logo />
-        </a>
-      </Link>
-    </Flex>
+export function getServerSideProps({ req }: GetServerSidePropsContext) {
+  return {
+    props: {
+      cookies: req.headers.cookie ?? ''
+    }
+  }
+}
 
-    {children}
-  </Container>
-)
+const BaseTemplate = ({ cookies, children }: BaseTemplateProps) => {
+  const colorModeManager =
+    typeof cookies === 'string'
+      ? cookieStorageManager(cookies)
+      : localStorageManager
+
+  return (
+    <ChakraProvider theme={theme} colorModeManager={colorModeManager}>
+      <CSSReset />
+
+      <Navbar />
+
+      <Container as="main" maxW="container.xl">
+        {children}
+      </Container>
+
+      <Footer />
+
+      <Player />
+    </ChakraProvider>
+  )
+}
 
 export default BaseTemplate
