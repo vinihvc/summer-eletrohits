@@ -22,6 +22,7 @@ import {
 import { usePlayer } from 'contexts/PlayerContext'
 
 import Slider from 'components/Slider'
+import { useColorModeValue } from '@chakra-ui/color-mode'
 
 const Player = () => {
   const $ref = useRef() as RefObject<ReactPlayer>
@@ -79,13 +80,14 @@ const Player = () => {
   }
 
   return (
-    <Box
-      pos="sticky"
-      w="100%"
-      paddingY="14px"
-      bottom="0"
-      backgroundColor="gray.900"
+    <Flex
+      bg={useColorModeValue('gray.50', 'gray.900')}
       hidden={!currentSong}
+      pos="sticky"
+      align="center"
+      w="100%"
+      h="70px"
+      bottom="0"
     >
       <Container maxW="container.lg">
         <Flex align="center">
@@ -94,11 +96,11 @@ const Player = () => {
               ref={$ref}
               playing={isPlaying}
               url={`http://youtu.be/${currentSong?.youtubeId}`}
+              volume={volume}
               onProgress={handleProgress}
               onEnded={handleEpisodeEnded}
               width="50px"
               height="50px"
-              volume={volume}
             />
 
             <Box bottom="0" left="0" position="absolute" right="0" top="0" />
@@ -155,7 +157,7 @@ const Player = () => {
           </Flex>
         </Flex>
       </Container>
-    </Box>
+    </Flex>
   )
 }
 
