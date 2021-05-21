@@ -18,6 +18,7 @@ const Slider = ({ value, onChange }: SliderProps) => {
       value={value}
       onChange={onChange}
       step={0.001}
+      focusThumbOnChange={false}
     >
       <SliderTrack>
         <SliderFilledTrack />
