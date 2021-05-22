@@ -9,7 +9,7 @@ export type AlbumItem = {
 const AlbumItem = ({ album }: AlbumItem) => {
   const { playPlayList } = usePlayer()
 
-  return <Thumbnail {...album} onClick={() => playPlayList(album.songs!)} />
+  return <Thumbnail album={album} onClick={() => playPlayList(album.songs!)} />
 }
 
 export default AlbumItem
