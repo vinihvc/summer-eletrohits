@@ -1,17 +1,20 @@
 import NextLink from 'next/link'
 
-import { Box, Flex, Link, Text } from '@chakra-ui/layout'
-import { Image } from '@chakra-ui/image'
+import Image from 'next/image'
 
 import { MdPlayArrow } from 'react-icons/md'
+
 import { useColorModeValue } from '@chakra-ui/color-mode'
 
+import { Box, Flex, Link, Text } from '@chakra-ui/layout'
+
 export type ThumbnailProps = {
+  album: AlbumType
   imageOnly?: boolean
   onClick?: () => void
-} & AlbumType
+}
 
-const Thumbnail = ({ id, thumb, name, onClick }: ThumbnailProps) => {
+const Thumbnail = ({ album, onClick }: ThumbnailProps) => {
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()
 
@@ -19,7 +22,7 @@ const Thumbnail = ({ id, thumb, name, onClick }: ThumbnailProps) => {
   }
 
   return (
-    <Link as={NextLink} href={`/albums/${id}`}>
+    <Link as={NextLink} href={`/albums/${album.id}`}>
       <Box
         bg={useColorModeValue('gray.100', 'gray.900')}
         p="15px"
@@ -31,18 +34,22 @@ const Thumbnail = ({ id, thumb, name, onClick }: ThumbnailProps) => {
         }}
       >
         <Box position="relative">
-          <Image
-            src={thumb}
-            alt={name}
-            objectFit="cover"
-            width="100%"
-            height="200px"
+          <Box
             borderRadius="lg"
             transition="0.2s"
+            overflow="auto"
             _hover={{
               '&+div': { opacity: 0.8 }
             }}
-          />
+          >
+            <Image
+              src={album.thumb}
+              alt={album.name}
+              width={200}
+              height={200}
+              layout="responsive"
+            />
+          </Box>
 
           <Flex
             onClick={handleClick}
@@ -65,7 +72,7 @@ const Thumbnail = ({ id, thumb, name, onClick }: ThumbnailProps) => {
         </Box>
 
         <Text fontWeight="medium" marginTop="10px">
-          {name}
+          {album.name}
         </Text>
       </Box>
     </Link>

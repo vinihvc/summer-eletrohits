@@ -1,5 +1,8 @@
+import Image from 'next/image'
+
+import { chakra } from '@chakra-ui/system'
+
 import { Button } from '@chakra-ui/button'
-import { Image } from '@chakra-ui/image'
 import { Box, Flex, Heading, Text } from '@chakra-ui/layout'
 
 import { usePlayer } from 'contexts/PlayerContext'
@@ -13,9 +16,17 @@ const AlbumInfo = ({ album }: AlbumInfoProps) => {
 
   return (
     <Flex>
-      <Image src={album.thumb} borderRadius="5px" maxHeight="250px" />
+      <Flex borderRadius="lg" overflow="auto" mr="20px">
+        <Image
+          src={album.thumb}
+          alt={album.name}
+          width={250}
+          height={250}
+          layout="fixed"
+        />
+      </Flex>
 
-      <Box marginLeft="20px">
+      <Box>
         <Heading as="h2" size="md">
           {album.name}
         </Heading>
@@ -35,4 +46,4 @@ const AlbumInfo = ({ album }: AlbumInfoProps) => {
   )
 }
 
-export default AlbumInfo
+export default chakra(AlbumInfo)
