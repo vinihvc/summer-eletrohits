@@ -1,165 +1,49 @@
-import { RefObject, useRef, useState } from 'react'
+import { chakra } from '@chakra-ui/system'
 
-import { useRouter } from 'next/dist/client/router'
+import { Container, Flex } from '@chakra-ui/layout'
 
-import ReactPlayer from 'react-player/youtube'
-import { ReactPlayerProps } from 'react-player'
-
-import { Box, Container, Flex, Link } from '@chakra-ui/layout'
-
-import {
-  MdPlayArrow,
-  MdPause,
-  MdSkipPrevious,
-  MdSkipNext,
-  MdShuffle,
-  MdRepeat,
-  MdQueueMusic,
-  MdVolumeOff,
-  MdVolumeUp
-} from 'react-icons/md'
-
-import { usePlayer } from 'contexts/PlayerContext'
-
-import Slider from 'components/Slider'
 import { useColorModeValue } from '@chakra-ui/color-mode'
 
-const Player = () => {
-  const $ref = useRef() as RefObject<ReactPlayer>
+import useDevice from 'hooks/useDevice'
 
-  const router = useRouter()
+import Video from './components/video'
+import Actions from './components/actions'
+import Progress from './components/progress'
+import Queue from './components/queue'
+import Volume from './components/volume'
 
-  const {
-    isPlaying,
-    togglePlay,
-    currentSong,
-    playPrevious,
-    playNext,
-    toggleShuffle,
-    toggleLoop,
-    isLooping,
-    isShuffling,
-    hasNext
-  } = usePlayer()
-
-  const [progress, setProgress] = useState(0)
-  const [volume, setVolume] = useState(1)
-  const [saveVolume, setSaveVolume] = useState(0)
-
-  function handleProgress({ played }: ReactPlayerProps) {
-    setProgress(played)
-  }
-
-  function handleSeek(value: number) {
-    setProgress(value)
-
-    $ref.current?.seekTo(value)
-  }
-
-  function handleEpisodeEnded() {
-    if (hasNext) {
-      playNext()
-    }
-  }
-
-  function handleQueue() {
-    if (router.pathname === '/queue') {
-      router.back()
-    } else {
-      router.push('/queue')
-    }
-  }
-
-  function handleVolume() {
-    if (volume === 0) {
-      setVolume(saveVolume)
-    } else {
-      setSaveVolume(volume)
-      setVolume(0)
-    }
-  }
+const Player = ({ ...props }) => {
+  const { isMobile } = useDevice()
 
   return (
     <Flex
       bg={useColorModeValue('playerLight', 'playerDark')}
       backdropFilter="blur(10px)"
-      hidden={!currentSong}
-      pos="sticky"
       align="center"
       w="100%"
-      h="70px"
-      bottom="0"
+      h={{ base: '50px', md: '70px' }}
+      pos="fixed"
+      bottom={{ base: '50px', md: '0px' }}
+      borderBottomWidth="1px"
+      borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
+      borderBottomStyle="solid"
+      {...props}
     >
       <Container maxW="container.lg">
-        <Flex align="center">
-          <Box borderRadius="full" position="relative" overflow="auto">
-            <ReactPlayer
-              ref={$ref}
-              playing={isPlaying}
-              url={`http://youtu.be/${currentSong?.youtubeId}`}
-              volume={volume}
-              onProgress={handleProgress}
-              onEnded={handleEpisodeEnded}
-              width="50px"
-              height="50px"
-            />
+        <Flex justify="center" align="center">
+          <Video display={{ base: 'none' }} />
 
-            <Box bottom="0" left="0" position="absolute" right="0" top="0" />
-          </Box>
+          <Actions />
 
-          <Box
-            onClick={toggleShuffle}
-            color={isShuffling ? 'red.500' : 'current'}
-            ml="20px"
-            cursor="pointer"
-          >
-            <MdShuffle size="20" color="currentColor" />
-          </Box>
+          {!isMobile && <Progress />}
 
-          <Box onClick={playPrevious} cursor="pointer" ml="20px">
-            <MdSkipPrevious size="30" />
-          </Box>
+          {!isMobile && <Queue />}
 
-          <Box onClick={togglePlay} cursor="pointer">
-            {isPlaying ? <MdPause size="50" /> : <MdPlayArrow size="50" />}
-          </Box>
-
-          <Box cursor="pointer" onClick={playNext}>
-            <MdSkipNext size="30" />
-          </Box>
-
-          <Box
-            onClick={toggleLoop}
-            color={isLooping ? 'red.500' : 'current'}
-            cursor="pointer"
-            ml="20px"
-          >
-            <MdRepeat size="20" color="currentColor" />
-          </Box>
-
-          <Flex flex="6 1" ml="20px">
-            <Slider value={progress} onChange={handleSeek} />
-          </Flex>
-
-          <Link onClick={handleQueue} ml="20px" cursor="pointer">
-            <MdQueueMusic size="20" color="currentColor" />
-          </Link>
-
-          <Box onClick={handleVolume} ml="20px" cursor="pointer">
-            {volume === 0 ? (
-              <MdVolumeOff size="20" color="currentColor" />
-            ) : (
-              <MdVolumeUp size="20" color="currentColor" />
-            )}
-          </Box>
-
-          <Flex flex="1 1" ml="20px">
-            <Slider value={volume} onChange={setVolume} />
-          </Flex>
+          {!isMobile && <Volume />}
         </Flex>
       </Container>
     </Flex>
   )
 }
 
-export default Player
+export default chakra(Player)
