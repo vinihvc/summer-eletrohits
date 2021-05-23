@@ -4,6 +4,7 @@ import Head from 'next/head'
 
 import { PlayerProvider } from 'contexts/PlayerContext'
 
+import ChakraTemplate from 'templates/Chakra'
 import BaseTemplate from 'templates/Base'
 
 const App = ({ Component, pageProps }: AppProps) => {
@@ -19,14 +20,16 @@ const App = ({ Component, pageProps }: AppProps) => {
       </Head>
 
       <PlayerProvider>
-        <BaseTemplate cookies={pageProps.cookies}>
-          <Component {...pageProps} />
-        </BaseTemplate>
+        <ChakraTemplate cookies={pageProps.cookies}>
+          <BaseTemplate>
+            <Component {...pageProps} />
+          </BaseTemplate>
+        </ChakraTemplate>
       </PlayerProvider>
     </>
   )
 }
 
-export { getServerSideProps } from 'templates/Base'
+export { getServerSideProps } from 'templates/Chakra'
 
 export default App

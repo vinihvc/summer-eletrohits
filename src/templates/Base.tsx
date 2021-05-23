@@ -1,53 +1,37 @@
-import { GetServerSidePropsContext } from 'next'
-
-import {
-  ChakraProvider,
-  CSSReset,
-  cookieStorageManager,
-  localStorageManager
-} from '@chakra-ui/react'
-
 import { Container } from '@chakra-ui/react'
 
 import Player from 'components/Player'
 import Navbar from 'components/Navbar'
 import Footer from 'components/Footer'
+import BottomNavigation from 'components/BottomNavigation'
 
-import theme from 'styles/theme'
+import { usePlayer } from 'contexts/PlayerContext'
+
+import useDevice from 'hooks/useDevice'
 
 export type BaseTemplateProps = {
-  cookies: string
   children: React.ReactNode
 }
 
-export function getServerSideProps({ req }: GetServerSidePropsContext) {
-  return {
-    props: {
-      cookies: req.headers.cookie ?? ''
-    }
-  }
-}
+const BaseTemplate = ({ children }: BaseTemplateProps) => {
+  const { currentSong } = usePlayer()
 
-const BaseTemplate = ({ cookies, children }: BaseTemplateProps) => {
-  const colorModeManager =
-    typeof cookies === 'string'
-      ? cookieStorageManager(cookies)
-      : localStorageManager
+  const { isMobile } = useDevice()
 
   return (
-    <ChakraProvider theme={theme} colorModeManager={colorModeManager}>
-      <CSSReset />
-
+    <>
       <Navbar />
 
-      <Container as="main" maxW="container.xl">
+      <Container as="main" maxW="container.xl" pb={25}>
         {children}
       </Container>
 
       <Footer />
 
-      <Player />
-    </ChakraProvider>
+      <Player hidden={!currentSong} />
+
+      {isMobile && <BottomNavigation />}
+    </>
   )
 }
 
