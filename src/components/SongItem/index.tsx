@@ -12,8 +12,8 @@ const SongItem = ({ song }: SongItemProps) => {
   const { playSong, currentSong, isPlaying, togglePlay } = usePlayer()
 
   return (
-    <Flex mb="10px">
-      <Flex flex="6 1 0" mr="20px" fontWeight="bold">
+    <Flex mb={2}>
+      <Flex flex="6 1 0" mr={5} fontWeight="medium">
         {song.name}
       </Flex>
 

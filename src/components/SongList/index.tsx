@@ -10,7 +10,7 @@ const SongList = ({ songs }: SongListProps) => {
   return (
     <>
       {songs?.map((song: SongType, index: number) => (
-        <Box key={song.id} my="10px">
+        <Box key={song.id} my={2}>
           <SongItem song={song} />
 
           {index < songs!.length - 1 && <Divider />}

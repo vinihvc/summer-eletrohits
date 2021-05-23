@@ -1,3 +1,5 @@
+import { chakra } from '@chakra-ui/system'
+
 import { Box, Flex, Link, Text } from '@chakra-ui/layout'
 
 const Footer = () => {
@@ -27,4 +29,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default chakra(Footer)

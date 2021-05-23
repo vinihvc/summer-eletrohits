@@ -25,7 +25,7 @@ const Thumbnail = ({ album, onClick }: ThumbnailProps) => {
     <Link as={NextLink} href={`/albums/${album.id}`}>
       <Box
         bg={useColorModeValue('gray.100', 'gray.900')}
-        p="15px"
+        p={4}
         borderRadius="lg"
         cursor="pointer"
         transition=".3s"

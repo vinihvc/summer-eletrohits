@@ -3,46 +3,50 @@ import Image from 'next/image'
 import { chakra } from '@chakra-ui/system'
 
 import { Button } from '@chakra-ui/button'
-import { Box, Flex, Heading, Text } from '@chakra-ui/layout'
+import { Box, Flex, Heading, SimpleGrid, Text } from '@chakra-ui/layout'
 
 import { usePlayer } from 'contexts/PlayerContext'
+import useDevice from 'hooks/useDevice'
 
 export type AlbumInfoProps = {
   album: AlbumType
 }
 
-const AlbumInfo = ({ album }: AlbumInfoProps) => {
+const AlbumInfo = ({ album, ...props }: AlbumInfoProps) => {
   const { playPlayList } = usePlayer()
 
+  const { isMobile } = useDevice()
+
   return (
-    <Flex>
-      <Flex borderRadius="lg" overflow="auto" mr="20px">
-        <Image
-          src={album.thumb}
-          alt={album.name}
-          width={250}
-          height={250}
-          layout="fixed"
-        />
+    <SimpleGrid
+      columns={{ base: 1, md: 3, lg: 4 }}
+      spacing={{ base: 2, md: 0 }}
+      {...props}
+    >
+      <Flex justify={{ base: 'center', md: 'initial' }}>
+        <Flex borderRadius="lg" overflow="auto">
+          <Image
+            src={album.thumb}
+            alt={album.name}
+            width={isMobile ? 150 : 250}
+            height={isMobile ? 150 : 250}
+            layout="fixed"
+          />
+        </Flex>
       </Flex>
 
-      <Box>
-        <Heading as="h2" size="md">
+      <Box textAlign={{ base: 'center', md: 'left' }}>
+        <Heading as="h2" size="md" fontWeight="medium">
           {album.name}
         </Heading>
 
-        <Text mt="15px">
-          Release date:{' '}
-          {new Intl.DateTimeFormat('pt-BR').format(new Date(album.releaseDate))}
-        </Text>
+        <Text mt={1}>Total songs: {album.songs?.length}</Text>
 
-        <Text mt="5px">Total songs: {album.songs?.length}</Text>
-
-        <Button mt="30px" onClick={() => playPlayList(album.songs!)}>
+        <Button mt={5} onClick={() => playPlayList(album.songs!)}>
           Play songs
         </Button>
       </Box>
-    </Flex>
+    </SimpleGrid>
   )
 }
 
