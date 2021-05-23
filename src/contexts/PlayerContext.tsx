@@ -1,4 +1,13 @@
-import { createContext, useState, ReactNode, useContext } from 'react'
+import {
+  createContext,
+  useState,
+  ReactNode,
+  useContext,
+  RefObject,
+  useRef
+} from 'react'
+
+import ReactPlayer, { ReactPlayerProps } from 'react-player'
 
 type PlayerContextData = {
   songList: SongType[]
@@ -18,6 +27,13 @@ type PlayerContextData = {
   currentSong: SongType
   hasNext: boolean
   hasPrevious: boolean
+  volume: number
+  setVolume: (volume: number) => void
+  toggleVolume: () => void
+  $player: RefObject<ReactPlayer>
+  progress: number
+  onProgress: (progress: ReactPlayerProps) => void
+  handleProgress: (progress: number) => void
 }
 
 export const PlayerContext = createContext({} as PlayerContextData)
@@ -32,6 +48,10 @@ export function PlayerProvider({ children }: PlayerContextProviderProps) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [isLooping, setIsLooping] = useState(false)
   const [isShuffling, setIsShuffling] = useState(false)
+  const [volume, setVolume] = useState(1)
+  const [saveVolume, setSaveVolume] = useState(0)
+  const [progress, setProgress] = useState(0)
+  const $player = useRef() as RefObject<ReactPlayer>
 
   function playSong(song: SongType) {
     setSongList([song])
@@ -59,6 +79,25 @@ export function PlayerProvider({ children }: PlayerContextProviderProps) {
   function clearPlayerState() {
     setSongList([])
     setCurrentIndex(0)
+  }
+
+  function toggleVolume() {
+    if (volume === 0) {
+      setVolume(saveVolume)
+    } else {
+      setSaveVolume(volume)
+      setVolume(0)
+    }
+  }
+
+  function onProgress({ played }: ReactPlayerProps) {
+    setProgress(played)
+  }
+
+  function handleProgress(value: number) {
+    setProgress(value)
+
+    $player.current?.seekTo(value)
   }
 
   const currentSong = songList[currentIndex]
@@ -101,7 +140,14 @@ export function PlayerProvider({ children }: PlayerContextProviderProps) {
         toggleLoop,
         toggleShuffle,
         clearPlayerState,
-        currentSong
+        currentSong,
+        volume,
+        setVolume,
+        toggleVolume,
+        $player,
+        progress,
+        onProgress,
+        handleProgress
       }}
     >
       {children}
