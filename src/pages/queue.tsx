@@ -18,7 +18,7 @@ const Queue = () => {
         </>
       )}
 
-      <Text mt="50px">Next songs</Text>
+      <Text mt={10}>Next songs</Text>
 
       <SongList songs={songList} />
     </>
