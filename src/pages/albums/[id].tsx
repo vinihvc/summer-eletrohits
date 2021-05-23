@@ -14,9 +14,9 @@ export type AlbumsProps = {
 function Albums({ album }: AlbumsProps) {
   return (
     <>
-      <AlbumInfo album={album} mt="20px" />
+      <AlbumInfo album={album} mt={5} />
 
-      <Box mt="50px">
+      <Box mt={10}>
         <SongList songs={album.songs} />
       </Box>
     </>
