@@ -15,6 +15,10 @@ const theme = extendTheme({
         bg: mode('white', 'gray.800')(props)
       }
     })
+  },
+  colors: {
+    playerLight: 'rgba(247, 250, 252, 0.90)',
+    playerDark: 'rgba(23, 25, 35, 0.90)'
   }
 })
 

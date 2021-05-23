@@ -81,7 +81,8 @@ const Player = () => {
 
   return (
     <Flex
-      bg={useColorModeValue('gray.50', 'gray.900')}
+      bg={useColorModeValue('playerLight', 'playerDark')}
+      backdropFilter="blur(10px)"
       hidden={!currentSong}
       pos="sticky"
       align="center"
