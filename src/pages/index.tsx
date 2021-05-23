@@ -12,8 +12,8 @@ export type HomeProps = {
 
 const Home = ({ albums }: HomeProps) => {
   return (
-    <Box marginY="20px">
-      <Flex justifyContent="space-between" marginBottom="20px">
+    <Box my={5}>
+      <Flex justifyContent="space-between" mb={5}>
         <Text fontSize="2xl" fontWeight="bold">
           Albums
         </Text>
