@@ -31,7 +31,7 @@ const Player = ({ ...props }) => {
     >
       <Container maxW="container.lg">
         <Flex justify="center" align="center">
-          <Video display={{ base: 'none' }} />
+          <Video display={{ base: 'none', md: 'block' }} />
 
           <Actions />
 
