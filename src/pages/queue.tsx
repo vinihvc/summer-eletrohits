@@ -1,3 +1,5 @@
+import { NextSeo } from 'next-seo'
+
 import { usePlayer } from 'contexts/PlayerContext'
 
 import { Text } from '@chakra-ui/layout'
@@ -10,6 +12,8 @@ const Queue = () => {
 
   return (
     <>
+      <NextSeo title="Queue" />
+
       {!!currentSong && (
         <>
           <Text>Now playing</Text>

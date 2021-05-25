@@ -2,6 +2,9 @@ import { AppProps } from 'next/app'
 
 import Head from 'next/head'
 
+import { DefaultSeo } from 'next-seo'
+import SEO from '../../next-seo.config'
+
 import { PlayerProvider } from 'contexts/PlayerContext'
 
 import ChakraTemplate from 'templates/Chakra'
@@ -18,6 +21,8 @@ const App = ({ Component, pageProps }: AppProps) => {
         <meta name="theme-color" content="#1A202C" />
         <meta name="description" content="Summer Eletrohits" />
       </Head>
+
+      <DefaultSeo {...SEO} />
 
       <PlayerProvider>
         <ChakraTemplate cookies={pageProps.cookies}>

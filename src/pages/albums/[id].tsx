@@ -1,5 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 
+import { NextSeo } from 'next-seo'
+
 import { Box } from '@chakra-ui/react'
 
 import SongList from 'components/SongList'
@@ -14,6 +16,22 @@ export type AlbumsProps = {
 function Albums({ album }: AlbumsProps) {
   return (
     <>
+      <NextSeo
+        title={album.name}
+        description={`Album ${album.name}`}
+        canonical={`https://summer-eletrohits.vercel.app/albums/${album.id}`}
+        openGraph={{
+          url: `https://summer-eletrohits.vercel.app/albums/${album.id}`,
+          title: `${album.name} - Summer Eletrohits`,
+          description: `Album ${album.name}`,
+          images: [
+            {
+              url: album.thumb,
+              alt: `${album.name}`
+            }
+          ]
+        }}
+      />
       <AlbumInfo album={album} mt={5} />
 
       <Box mt={10}>
