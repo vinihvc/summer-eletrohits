@@ -15,12 +15,12 @@ import { useRouter } from 'next/dist/client/router'
 const Searchbar = () => {
   const { push, query } = useRouter()
 
-  const [search, setSearch] = useState(query.search || '')
+  const [search, setSearch] = useState(query?.search)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement> | null) => {
     if (e) e.preventDefault()
 
-    push(`/search/${search}`)
+    push(`/search/${encodeURI(search as string)}`)
   }
 
   return (

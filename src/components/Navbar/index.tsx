@@ -40,7 +40,7 @@ const Navbar = () => {
             </Flex>
           )}
 
-          <Flex flex="1 0 auto" justify="flex-end">
+          <Flex flex={{ md: '1 0 auto' }} justify="flex-end">
             <ColorMode />
           </Flex>
         </Flex>
