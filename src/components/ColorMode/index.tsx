@@ -1,16 +1,20 @@
-import { useColorMode } from '@chakra-ui/color-mode'
-
-import { IconButton } from '@chakra-ui/button'
 import { FiMoon, FiSun } from 'react-icons/fi'
 
+import { useColorMode, useColorModeValue } from '@chakra-ui/color-mode'
+
+import { IconButton } from '@chakra-ui/button'
+
 const ColorMode = () => {
-  const { colorMode, toggleColorMode } = useColorMode()
+  const { toggleColorMode } = useColorMode()
+
+  const themeIcon = useColorModeValue(<FiMoon />, <FiSun />)
+  const themeLabel = useColorModeValue('dark', 'light')
 
   return (
     <IconButton
-      icon={colorMode === 'light' ? <FiMoon /> : <FiSun />}
+      icon={themeIcon}
       onClick={toggleColorMode}
-      aria-label={`Change to ${colorMode === 'dark' ? 'light' : 'dark'} mode`}
+      aria-label={`Change to ${themeLabel} mode`}
     />
   )
 }
