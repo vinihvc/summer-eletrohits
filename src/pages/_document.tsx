@@ -10,6 +10,8 @@ import { ColorModeScript } from '@chakra-ui/color-mode'
 
 import theme from 'styles/theme'
 
+import Analytics from 'components/Analytics'
+
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx)
@@ -24,6 +26,7 @@ class MyDocument extends Document {
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Main />
           <NextScript />
+          <Analytics />
         </body>
       </Html>
     )
