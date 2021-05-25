@@ -9,8 +9,8 @@ export default {
     images: [
       {
         url: 'https://res.cloudinary.com/viniciushvc/image/upload/v1621562469/summer-eletrohits/12_icx47c.jpg',
-        width: 300,
-        height: 300,
+        width: 2560,
+        height: 1440,
         alt: 'Summer Eletrohits'
       }
     ]
