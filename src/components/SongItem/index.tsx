@@ -7,7 +7,7 @@ import { Image } from '@chakra-ui/image'
 
 export type SongItemProps = {
   song: SongType
-  index: number
+  index?: number
 }
 
 const SongItem = ({ song, index, ...props }: SongItemProps) => {
@@ -15,9 +15,11 @@ const SongItem = ({ song, index, ...props }: SongItemProps) => {
 
   return (
     <Flex align="center" {...props} p={2} bg={bg} borderRadius="md">
-      <Box fontSize="xs" mr={{ base: 3, md: 5 }}>
-        {index + 1}
-      </Box>
+      {index && (
+        <Box fontSize="xs" mr={{ base: 3, md: 5 }}>
+          {index + 1}
+        </Box>
+      )}
 
       <Image
         src={`https://img.youtube.com/vi/${song?.youtubeId}/0.jpg`}
