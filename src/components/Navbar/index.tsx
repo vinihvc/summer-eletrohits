@@ -1,52 +1,68 @@
-import Link from 'next/link'
+import NextLink from 'next/link'
 
+import { FiChevronDown, FiGithub, FiTwitter } from 'react-icons/fi'
+
+import { chakra } from '@chakra-ui/system'
 import { useColorModeValue } from '@chakra-ui/color-mode'
+import { Container, Flex, Link } from '@chakra-ui/layout'
+import { Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/menu'
+import { Button } from '@chakra-ui/button'
 
-import { Container, Flex, Link as ChakraLink } from '@chakra-ui/layout'
-
-import Searchbar from 'components/Searchbar'
 import ColorMode from 'components/ColorMode'
 
-import useDevice from 'hooks/useDevice'
-
-const Navbar = () => {
-  const { isMobile } = useDevice()
-
+const Navbar = ({ ...props }) => {
   return (
     <Flex
       as="header"
-      bg={useColorModeValue('gray.50', 'gray.900')}
-      minH="70px"
+      bg={useColorModeValue('navbarLight', 'navbarDark')}
+      minH="60px"
+      position="sticky"
+      top="0"
       align="center"
+      zIndex="sticky"
+      {...props}
     >
-      <Container as="nav" maxW="container.xl" aria-label="Main navigation">
-        <Flex justify="space-between" align="center">
-          <Flex flex="1 0 auto">
-            <Link href="/" passHref>
-              <ChakraLink
-                fontSize="xl"
-                fontWeight="medium"
-                role="heading"
-                aria-label="Summer Eletrohits"
-              >
-                Summer Eletrohits
-              </ChakraLink>
-            </Link>
-          </Flex>
+      <Container as="nav" maxW="full" aria-label="Main navigation">
+        <Flex flex={{ md: '1 0 auto' }} justify="flex-end">
+          <ColorMode mr={3} />
 
-          {!isMobile && (
-            <Flex flex="1 0 auto">
-              <Searchbar />
-            </Flex>
-          )}
+          <Menu>
+            <MenuButton as={Button} rightIcon={<FiChevronDown />}>
+              Author
+            </MenuButton>
 
-          <Flex flex={{ md: '1 0 auto' }} justify="flex-end">
-            <ColorMode />
-          </Flex>
+            <MenuList>
+              <NextLink href="https://github.com/viniciushvc" passHref>
+                <MenuItem
+                  as={Link}
+                  icon={<FiGithub />}
+                  isExternal
+                  _hover={{
+                    textDecor: 'none'
+                  }}
+                >
+                  Github
+                </MenuItem>
+              </NextLink>
+
+              <NextLink href="https://twitter.com/ViniciusHVC" passHref>
+                <MenuItem
+                  as={Link}
+                  icon={<FiTwitter />}
+                  isExternal
+                  _hover={{
+                    textDecor: 'none'
+                  }}
+                >
+                  Twitter
+                </MenuItem>
+              </NextLink>
+            </MenuList>
+          </Menu>
         </Flex>
       </Container>
     </Flex>
   )
 }
 
-export default Navbar
+export default chakra(Navbar)

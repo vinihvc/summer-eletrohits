@@ -3,10 +3,11 @@ import Image from 'next/image'
 import { chakra } from '@chakra-ui/system'
 
 import { Button } from '@chakra-ui/button'
-import { Box, Flex, Heading, SimpleGrid, Text } from '@chakra-ui/layout'
+import { Box, Flex, Heading, Text } from '@chakra-ui/layout'
 
 import { usePlayer } from 'contexts/PlayerContext'
-import useDevice from 'hooks/useDevice'
+
+import useDevice from 'hooks/use-device'
 
 export type AlbumInfoProps = {
   album: AlbumType
@@ -18,11 +19,7 @@ const AlbumInfo = ({ album, ...props }: AlbumInfoProps) => {
   const { isMobile } = useDevice()
 
   return (
-    <SimpleGrid
-      columns={{ base: 1, md: 3, lg: 4 }}
-      spacing={{ base: 2, md: 0 }}
-      {...props}
-    >
+    <Flex {...props}>
       <Flex justify={{ base: 'center', md: 'initial' }}>
         <Flex borderRadius="lg" overflow="auto">
           <Image
@@ -35,7 +32,7 @@ const AlbumInfo = ({ album, ...props }: AlbumInfoProps) => {
         </Flex>
       </Flex>
 
-      <Box textAlign={{ base: 'center', md: 'left' }}>
+      <Box textAlign={{ base: 'center', md: 'left' }} ml={5}>
         <Heading as="h2" size="md" fontWeight="medium">
           {album.name}
         </Heading>
@@ -46,7 +43,7 @@ const AlbumInfo = ({ album, ...props }: AlbumInfoProps) => {
           Play songs
         </Button>
       </Box>
-    </SimpleGrid>
+    </Flex>
   )
 }
 

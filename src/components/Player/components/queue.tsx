@@ -1,10 +1,11 @@
-import { useRouter } from 'next/dist/client/router'
+import { useRouter } from 'next/router'
 
 import { MdQueueMusic } from 'react-icons/md'
 
-import { Link } from '@chakra-ui/layout'
+import { chakra } from '@chakra-ui/system'
+import { IconButton } from '@chakra-ui/button'
 
-const Queue = () => {
+const Queue = ({ ...props }) => {
   const { push, back, pathname } = useRouter()
 
   function handleQueue() {
@@ -16,10 +17,14 @@ const Queue = () => {
   }
 
   return (
-    <Link onClick={handleQueue} ml={5} cursor="pointer">
-      <MdQueueMusic size="20" color="currentColor" />
-    </Link>
+    <IconButton
+      icon={<MdQueueMusic />}
+      borderRadius="full"
+      aria-label="Open Queue"
+      onClick={handleQueue}
+      {...props}
+    />
   )
 }
 
-export default Queue
+export default chakra(Queue)

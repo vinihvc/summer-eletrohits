@@ -1,5 +1,3 @@
-import { GetServerSidePropsContext } from 'next'
-
 import {
   ChakraProvider,
   CSSReset,
@@ -12,14 +10,6 @@ import theme from 'styles/theme'
 export type ChakraTemplateProps = {
   cookies: string
   children: React.ReactNode
-}
-
-export function getServerSideProps({ req }: GetServerSidePropsContext) {
-  return {
-    props: {
-      cookies: req.headers.cookie ?? ''
-    }
-  }
 }
 
 const ChakraTemplate = ({ cookies, children }: ChakraTemplateProps) => {

@@ -1,16 +1,18 @@
-import { Flex } from '@chakra-ui/layout'
+import { usePlayer } from 'contexts/PlayerContext'
+
+import { chakra } from '@chakra-ui/system'
+import { Box } from '@chakra-ui/layout'
 
 import Slider from 'components/Slider'
 
-import { usePlayer } from 'contexts/PlayerContext'
-
-const Progress = () => {
+const Progress = ({ ...props }) => {
   const { progress, handleProgress } = usePlayer()
 
   return (
-    <Flex flex="6 1" ml={5}>
+    <Box {...props}>
       <Slider value={progress} onChange={handleProgress} />
-    </Flex>
+    </Box>
   )
 }
-export default Progress
+
+export default chakra(Progress)

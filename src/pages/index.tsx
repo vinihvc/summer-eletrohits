@@ -1,5 +1,3 @@
-import { GetStaticProps } from 'next'
-
 import { NextSeo } from 'next-seo'
 
 import { Box, Flex, Grid, Text } from '@chakra-ui/react'
@@ -17,14 +15,20 @@ const Home = ({ albums }: HomeProps) => {
     <>
       <NextSeo title="Home" />
 
-      <Box my={5}>
+      <Box>
         <Flex justifyContent="space-between" mb={5}>
           <Text fontSize="2xl" fontWeight="bold">
             Albums
           </Text>
         </Flex>
 
-        <Grid templateColumns="repeat(auto-fit, minmax(200px, 1fr))" gap="5">
+        <Grid
+          templateColumns={{
+            base: 'repeat(1, 1fr)',
+            sm: 'repeat(auto-fit, minmax(200px, 1fr))'
+          }}
+          gap="5"
+        >
           {albums?.map((album: AlbumType) => (
             <AlbumItem key={album.id} album={album} />
           ))}
@@ -34,7 +38,7 @@ const Home = ({ albums }: HomeProps) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps = async () => {
   const { data } = await api('albums')
 
   return {

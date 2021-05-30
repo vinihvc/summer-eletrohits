@@ -4,10 +4,13 @@ import {
   ReactNode,
   useContext,
   RefObject,
-  useRef
+  useRef,
+  useEffect
 } from 'react'
 
 import ReactPlayer, { ReactPlayerProps } from 'react-player'
+
+import storage from 'services/storage'
 
 type PlayerContextData = {
   songList: SongType[]
@@ -17,6 +20,10 @@ type PlayerContextData = {
   isShuffling: boolean
   playSong: (song: SongType) => void
   playPlayList: (list: SongType[]) => void
+  handleClickSongItem: (song: SongType) => void
+  favoriteSongs: SongType[]
+  handleFavoriteSong: (song: SongType) => void
+  handleUnfavoriteSong: (song: SongType) => void
   setIsPlaying: (state: boolean) => void
   togglePlay: () => void
   toggleLoop: () => void
@@ -43,6 +50,7 @@ type PlayerContextProviderProps = {
 }
 
 export function PlayerProvider({ children }: PlayerContextProviderProps) {
+  const [favoriteSongs, setFavoriteSongs] = useState<SongType[]>([])
   const [songList, setSongList] = useState<SongType[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -53,6 +61,16 @@ export function PlayerProvider({ children }: PlayerContextProviderProps) {
   const [progress, setProgress] = useState(0)
   const $player = useRef() as RefObject<ReactPlayer>
 
+  useEffect(() => {
+    async function getFavoriteSongs() {
+      const songs = await storage.getSongs()
+
+      setFavoriteSongs(songs)
+    }
+
+    getFavoriteSongs()
+  }, [])
+
   function playSong(song: SongType) {
     setSongList([song])
     setCurrentIndex(0)
@@ -62,6 +80,34 @@ export function PlayerProvider({ children }: PlayerContextProviderProps) {
   function playPlayList(list: SongType[]) {
     setSongList(list)
     setIsPlaying(true)
+  }
+
+  function handleClickSongItem(song: SongType) {
+    if (songList.find((item) => item.id === song.id)) {
+      const songIndex = songList.findIndex((item) => item.id === song.id)
+
+      setCurrentIndex(songIndex)
+    } else {
+      setSongList([song])
+    }
+
+    setIsPlaying(true)
+  }
+
+  async function handleFavoriteSong(song: SongType) {
+    await storage.setSong(song)
+
+    const songs = await storage.getSongs()
+
+    setFavoriteSongs(songs)
+  }
+
+  async function handleUnfavoriteSong(song: SongType) {
+    await storage.removeSong(song)
+
+    const songs = await storage.getSongs()
+
+    setFavoriteSongs(songs)
   }
 
   function togglePlay() {
@@ -128,6 +174,10 @@ export function PlayerProvider({ children }: PlayerContextProviderProps) {
         currentIndex,
         playSong,
         playPlayList,
+        handleClickSongItem,
+        favoriteSongs,
+        handleFavoriteSong,
+        handleUnfavoriteSong,
         playNext,
         playPrevious,
         isPlaying,

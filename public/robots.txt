@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: http://summer-eletrohits.vercel.app/
+
+# Sitemaps
+Sitemap: http://summer-eletrohits.vercel.app/sitemap.xml

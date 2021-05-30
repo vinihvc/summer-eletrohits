@@ -1,29 +1,31 @@
+import { usePlayer } from 'contexts/PlayerContext'
+
 import { MdVolumeOff, MdVolumeUp } from 'react-icons/md'
 
-import { Box, Flex } from '@chakra-ui/layout'
+import { chakra } from '@chakra-ui/system'
+import { Flex } from '@chakra-ui/layout'
+import { IconButton } from '@chakra-ui/button'
 
 import Slider from 'components/Slider'
 
-import { usePlayer } from 'contexts/PlayerContext'
-
-const Volume = () => {
+const Volume = ({ ...props }) => {
   const { volume, setVolume, toggleVolume } = usePlayer()
 
   return (
-    <>
-      <Box onClick={toggleVolume} ml={5} cursor="pointer">
-        {volume === 0 ? (
-          <MdVolumeOff size="20" color="currentColor" />
-        ) : (
-          <MdVolumeUp size="20" color="currentColor" />
-        )}
-      </Box>
+    <Flex {...props}>
+      <IconButton
+        icon={volume ? <MdVolumeUp /> : <MdVolumeOff />}
+        borderRadius="full"
+        variant={volume ? 'ghost' : 'solid'}
+        aria-label="Toggle volume"
+        onClick={toggleVolume}
+      />
 
-      <Flex flex="1 1" ml={5}>
+      <Flex width="150px" ml={5}>
         <Slider value={volume} onChange={setVolume} />
       </Flex>
-    </>
+    </Flex>
   )
 }
 
-export default Volume
+export default chakra(Volume)
