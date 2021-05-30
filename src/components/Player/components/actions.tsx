@@ -8,6 +8,7 @@ import {
   BsSkipStartFill
 } from 'react-icons/bs'
 
+import { chakra } from '@chakra-ui/system'
 import { IconButton } from '@chakra-ui/button'
 import { Flex } from '@chakra-ui/layout'
 
@@ -48,4 +49,4 @@ const Actions = () => {
   )
 }
 
-export default Actions
+export default chakra(Actions)

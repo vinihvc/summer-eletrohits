@@ -14,19 +14,14 @@ const SongInfo = ({ ...props }) => {
         <Text
           as="span"
           fontSize="sm"
-          maxW={{ base: 150, md: '100%' }}
+          maxW={{ base: 150, md: 200 }}
           fontWeight="medium"
           isTruncated
         >
           {currentSong?.name}
         </Text>
 
-        <Text
-          as="span"
-          fontSize="xs"
-          maxW={{ base: 150, md: '100%' }}
-          isTruncated
-        >
+        <Text as="span" fontSize="xs" maxW={{ base: 150, md: 200 }} isTruncated>
           {currentSong?.singer}
         </Text>
       </Flex>

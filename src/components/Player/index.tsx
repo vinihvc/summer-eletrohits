@@ -36,15 +36,15 @@ const Player = ({ ...props }) => {
 
       <Container maxW="full" px={{ base: 5, md: 10 }} position="relative">
         <Flex justify="space-between" align="center">
-          <Flex>
+          <Flex w={{ md: '30%' }}>
             <Video display={{ base: 'none', md: 'block' }} mr={5} />
 
             <SongInfo />
           </Flex>
 
-          <Actions />
+          <Actions w={{ md: '40%' }} />
 
-          <Flex>
+          <Flex w={{ md: '30%' }}>
             {!isMobile && <Repeat mr={3} />}
 
             {!isMobile && <Shuffle mr={3} />}
