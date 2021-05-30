@@ -35,6 +35,4 @@ const App = ({ Component, pageProps }: AppProps) => {
   )
 }
 
-export { getServerSideProps } from 'templates/Chakra'
-
 export default App

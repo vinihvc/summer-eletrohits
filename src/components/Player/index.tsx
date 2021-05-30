@@ -4,13 +4,16 @@ import { Container, Flex } from '@chakra-ui/layout'
 
 import { useColorModeValue } from '@chakra-ui/color-mode'
 
-import useDevice from 'hooks/useDevice'
+import useDevice from 'hooks/use-device'
 
 import Video from './components/video'
+import SongInfo from './components/song-info'
 import Actions from './components/actions'
 import Progress from './components/progress'
 import Queue from './components/queue'
 import Volume from './components/volume'
+import Shuffle from './components/shuffle'
+import Repeat from './components/repeat'
 
 const Player = ({ ...props }) => {
   const { isMobile } = useDevice()
@@ -21,7 +24,7 @@ const Player = ({ ...props }) => {
       backdropFilter="blur(10px)"
       align="center"
       w="100%"
-      h={{ base: '50px', md: '70px' }}
+      h={{ base: '60px', md: '80px' }}
       pos="fixed"
       bottom={{ base: '50px', md: '0px' }}
       borderBottomWidth="1px"
@@ -29,17 +32,27 @@ const Player = ({ ...props }) => {
       borderBottomStyle="solid"
       {...props}
     >
-      <Container maxW="container.lg">
-        <Flex justify="center" align="center">
-          <Video display={{ base: 'none', md: 'block' }} />
+      <Progress position="absolute" top="-16px" left="0" right="0" />
+
+      <Container maxW="full" px={{ base: 5, md: 10 }} position="relative">
+        <Flex justify="space-between" align="center">
+          <Flex>
+            <Video display={{ base: 'none', md: 'block' }} mr={5} />
+
+            <SongInfo />
+          </Flex>
 
           <Actions />
 
-          {!isMobile && <Progress />}
+          <Flex>
+            {!isMobile && <Repeat mr={3} />}
 
-          {!isMobile && <Queue />}
+            {!isMobile && <Shuffle mr={3} />}
 
-          {!isMobile && <Volume />}
+            {!isMobile && <Queue mr={3} />}
+
+            {!isMobile && <Volume maxW="150px" />}
+          </Flex>
         </Flex>
       </Container>
     </Flex>

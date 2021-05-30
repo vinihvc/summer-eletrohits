@@ -1,3 +1,6 @@
+import { useState } from 'react'
+
+import { chakra } from '@chakra-ui/system'
 import {
   Slider as SliderBase,
   SliderFilledTrack,
@@ -10,7 +13,9 @@ export type SliderProps = {
   onChange?: (value: number) => void
 }
 
-const Slider = ({ value, onChange }: SliderProps) => {
+const Slider = ({ value, onChange, ...props }: SliderProps) => {
+  const [hover, setHover] = useState(false)
+
   return (
     <SliderBase
       min={0}
@@ -19,13 +24,17 @@ const Slider = ({ value, onChange }: SliderProps) => {
       onChange={onChange}
       step={0.001}
       focusThumbOnChange={false}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      colorScheme="primary"
+      {...props}
     >
       <SliderTrack>
         <SliderFilledTrack />
       </SliderTrack>
-      <SliderThumb />
+      <SliderThumb opacity={hover ? '1' : '0'} transition="opacity .2s" />
     </SliderBase>
   )
 }
 
-export default Slider
+export default chakra(Slider)

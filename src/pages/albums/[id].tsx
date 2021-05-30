@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps } from 'next'
+import { GetStaticProps } from 'next'
 
 import { NextSeo } from 'next-seo'
 
@@ -32,7 +32,7 @@ function Albums({ album }: AlbumsProps) {
           ]
         }}
       />
-      <AlbumInfo album={album} mt={5} />
+      <AlbumInfo album={album} />
 
       <Box mt={10}>
         <SongList songs={album.songs} />
@@ -41,7 +41,7 @@ function Albums({ album }: AlbumsProps) {
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths = async () => {
   const { data } = await api('albums')
 
   const paths = data.map((album: AlbumType) => {

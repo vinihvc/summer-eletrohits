@@ -1,32 +1,30 @@
-import { useRouter } from 'next/dist/client/router'
+import { useRouter } from 'next/router'
+
+import { FiHeart, FiHome, FiSearch, FiUser } from 'react-icons/fi'
 
 import { chakra, useColorModeValue } from '@chakra-ui/system'
-
 import { Flex } from '@chakra-ui/layout'
-
-import { FiHome, FiMusic, FiSearch, FiUser } from 'react-icons/fi'
+import Icon from '@chakra-ui/icon'
 
 const BottomNavigation = () => {
   const { push, pathname } = useRouter()
 
-  const color = useColorModeValue('red.500', 'blue.500')
-
   const paths = [
     {
       href: '/',
-      icon: <FiHome size="20" />
+      icon: FiHome
     },
     {
       href: '/search',
-      icon: <FiSearch size="20" />
+      icon: FiSearch
     },
     {
       href: '/queue',
-      icon: <FiMusic size="20" />
+      icon: FiHeart
     },
     {
       href: '/about',
-      icon: <FiUser size="20" />
+      icon: FiUser
     }
   ]
 
@@ -49,9 +47,13 @@ const BottomNavigation = () => {
           align="center"
           flex="1 1 0%"
           h="full"
-          sx={{ '&>svg': { ...(pathname.includes(path.href) && { color }) } }}
+          sx={{
+            '&>svg': {
+              ...(pathname.includes(path.href) && { color: 'primary' })
+            }
+          }}
         >
-          {path.icon}
+          <Icon as={path.icon} boxSize="20px" />
         </Flex>
       ))}
     </Flex>

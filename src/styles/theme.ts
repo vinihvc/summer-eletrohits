@@ -12,13 +12,22 @@ const theme = extendTheme({
     global: (props) => ({
       body: {
         color: mode('gray.600', 'whiteAlpha.900')(props),
-        bg: mode('white', 'gray.800')(props)
+        bg: mode('white', 'gray.800')(props),
+        overflow: 'hidden'
       }
     })
   },
   colors: {
+    primary: {
+      200: '#d49b08'
+    },
+    secondary: {
+      200: '#ff5201'
+    },
     playerLight: 'rgba(247, 250, 252, 0.90)',
-    playerDark: 'rgba(23, 25, 35, 0.90)'
+    playerDark: 'rgba(23, 25, 35, 0.90)',
+    navbarLight: 'rgba(247, 250, 252, 0.9030)',
+    navbarDark: 'rgba(23, 25, 35, 0.30)'
   }
 })
 

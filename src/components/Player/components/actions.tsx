@@ -1,60 +1,50 @@
-import { Box } from '@chakra-ui/layout'
+import { usePlayer } from 'contexts/PlayerContext'
+import useDevice from 'hooks/use-device'
 
 import {
-  MdPause,
-  MdPlayArrow,
-  MdRepeat,
-  MdShuffle,
-  MdSkipNext,
-  MdSkipPrevious
-} from 'react-icons/md'
+  BsFillPlayFill,
+  BsPauseFill,
+  BsSkipEndFill,
+  BsSkipStartFill
+} from 'react-icons/bs'
 
-import { usePlayer } from 'contexts/PlayerContext'
+import { IconButton } from '@chakra-ui/button'
+import { Flex } from '@chakra-ui/layout'
 
 const Actions = () => {
-  const {
-    isPlaying,
-    togglePlay,
-    playPrevious,
-    playNext,
-    toggleShuffle,
-    toggleLoop,
-    isLooping,
-    isShuffling
-  } = usePlayer()
+  const { isPlaying, togglePlay, playPrevious, playNext } = usePlayer()
+
+  const { isMobile } = useDevice()
 
   return (
-    <>
-      <Box
-        onClick={toggleShuffle}
-        color={isShuffling ? 'red.500' : 'current'}
-        ml={5}
-        cursor="pointer"
-      >
-        <MdShuffle size="20" color="currentColor" />
-      </Box>
+    <Flex align="center" w="100%" justify={{ base: 'flex-end', md: 'center' }}>
+      <IconButton
+        icon={<BsSkipStartFill />}
+        size={isMobile ? 'sm' : 'md'}
+        variant="ghost"
+        borderRadius="full"
+        aria-label="Previous song"
+        onClick={playPrevious}
+      />
 
-      <Box onClick={playPrevious} cursor="pointer" ml={5}>
-        <MdSkipPrevious size="30" />
-      </Box>
+      <IconButton
+        icon={isPlaying ? <BsPauseFill /> : <BsFillPlayFill />}
+        size={isMobile ? 'sm' : 'md'}
+        borderRadius="full"
+        aria-label="play"
+        onClick={togglePlay}
+        mx={3}
+      />
 
-      <Box onClick={togglePlay} cursor="pointer">
-        {isPlaying ? <MdPause size="50" /> : <MdPlayArrow size="50" />}
-      </Box>
-
-      <Box cursor="pointer" onClick={playNext}>
-        <MdSkipNext size="30" />
-      </Box>
-
-      <Box
-        onClick={toggleLoop}
-        color={isLooping ? 'red.500' : 'current'}
-        cursor="pointer"
-        ml={5}
-      >
-        <MdRepeat size="20" color="currentColor" />
-      </Box>
-    </>
+      <IconButton
+        icon={<BsSkipEndFill />}
+        size={isMobile ? 'sm' : 'md'}
+        variant="ghost"
+        borderRadius="full"
+        aria-label="Skip song"
+        onClick={playNext}
+      />
+    </Flex>
   )
 }
 
