@@ -49,7 +49,7 @@ type PlayerContextProviderProps = {
   children: ReactNode
 }
 
-export function PlayerProvider({ children }: PlayerContextProviderProps) {
+export const PlayerProvider = ({ children }: PlayerContextProviderProps) => {
   const [favoriteSongs, setFavoriteSongs] = useState<SongType[]>([])
   const [songList, setSongList] = useState<SongType[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -62,7 +62,7 @@ export function PlayerProvider({ children }: PlayerContextProviderProps) {
   const $player = useRef() as RefObject<ReactPlayer>
 
   useEffect(() => {
-    async function getFavoriteSongs() {
+    const getFavoriteSongs = async () => {
       const songs = await storage.getSongs()
 
       setFavoriteSongs(songs)
@@ -71,18 +71,19 @@ export function PlayerProvider({ children }: PlayerContextProviderProps) {
     getFavoriteSongs()
   }, [])
 
-  function playSong(song: SongType) {
+  const playSong = (song: SongType) => {
     setSongList([song])
     setCurrentIndex(0)
     setIsPlaying(true)
   }
 
-  function playPlayList(list: SongType[]) {
+  const playPlayList = (list: SongType[]) => {
+    setCurrentIndex(0)
     setSongList(list)
     setIsPlaying(true)
   }
 
-  function handleClickSongItem(song: SongType) {
+  const handleClickSongItem = (song: SongType) => {
     if (songList.find((item) => item.id === song.id)) {
       const songIndex = songList.findIndex((item) => item.id === song.id)
 
@@ -94,7 +95,7 @@ export function PlayerProvider({ children }: PlayerContextProviderProps) {
     setIsPlaying(true)
   }
 
-  async function handleFavoriteSong(song: SongType) {
+  const handleFavoriteSong = async (song: SongType) => {
     await storage.setSong(song)
 
     const songs = await storage.getSongs()
@@ -102,7 +103,7 @@ export function PlayerProvider({ children }: PlayerContextProviderProps) {
     setFavoriteSongs(songs)
   }
 
-  async function handleUnfavoriteSong(song: SongType) {
+  const handleUnfavoriteSong = async (song: SongType) => {
     await storage.removeSong(song)
 
     const songs = await storage.getSongs()
@@ -110,24 +111,24 @@ export function PlayerProvider({ children }: PlayerContextProviderProps) {
     setFavoriteSongs(songs)
   }
 
-  function togglePlay() {
+  const togglePlay = () => {
     setIsPlaying(!isPlaying)
   }
 
-  function toggleLoop() {
+  const toggleLoop = () => {
     setIsLooping(!isLooping)
   }
 
-  function toggleShuffle() {
+  const toggleShuffle = () => {
     setIsShuffling(!isShuffling)
   }
 
-  function clearPlayerState() {
+  const clearPlayerState = () => {
     setSongList([])
     setCurrentIndex(0)
   }
 
-  function toggleVolume() {
+  const toggleVolume = () => {
     if (volume === 0) {
       setVolume(saveVolume)
     } else {
@@ -136,11 +137,11 @@ export function PlayerProvider({ children }: PlayerContextProviderProps) {
     }
   }
 
-  function onProgress({ played }: ReactPlayerProps) {
+  const onProgress = ({ played }: ReactPlayerProps) => {
     setProgress(played)
   }
 
-  function handleProgress(value: number) {
+  const handleProgress = (value: number) => {
     setProgress(value)
 
     $player.current?.seekTo(value)
@@ -151,7 +152,7 @@ export function PlayerProvider({ children }: PlayerContextProviderProps) {
   const hasPrevious = currentIndex > 0
   const hasNext = isShuffling || currentIndex + 1 < songList.length
 
-  function playNext() {
+  const playNext = () => {
     if (isShuffling) {
       const nextRandomSongIndex = Math.floor(Math.random() * songList.length)
 
@@ -161,7 +162,7 @@ export function PlayerProvider({ children }: PlayerContextProviderProps) {
     }
   }
 
-  function playPrevious() {
+  const playPrevious = () => {
     if (hasPrevious) {
       setCurrentIndex(currentIndex - 1)
     }

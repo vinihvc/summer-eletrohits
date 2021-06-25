@@ -15,7 +15,7 @@ const SongItem = ({ song, index, ...props }: SongItemProps) => {
 
   return (
     <Flex align="center" {...props} p={2} bg={bg} borderRadius="md">
-      {index && (
+      {index !== undefined && (
         <Box fontSize="xs" mr={{ base: 3, md: 5 }}>
           {index + 1}
         </Box>

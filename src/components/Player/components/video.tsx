@@ -17,7 +17,7 @@ const Video = ({ ...props }) => {
     onProgress
   } = usePlayer()
 
-  function handleEpisodeEnded() {
+  const handleEpisodeEnded = () => {
     if (hasNext) {
       playNext()
     }

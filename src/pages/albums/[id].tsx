@@ -13,7 +13,7 @@ export type AlbumsProps = {
   album: AlbumType
 }
 
-function Albums({ album }: AlbumsProps) {
+const Albums = ({ album }: AlbumsProps) => {
   return (
     <>
       <NextSeo
@@ -52,7 +52,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false
+    fallback: true
   }
 }
 

@@ -18,7 +18,7 @@ const FavoriteButton = ({ song, ...props }: FavoriteButtonProps) => {
 
   const isFavorited = favoriteSongs?.find((item) => item.id === song.id)
 
-  function handleClick() {
+  const handleClick = () => {
     isFavorited ? handleUnfavoriteSong(song) : handleFavoriteSong(song)
   }
 

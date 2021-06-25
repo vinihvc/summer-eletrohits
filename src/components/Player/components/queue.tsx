@@ -8,7 +8,7 @@ import { IconButton } from '@chakra-ui/button'
 const Queue = ({ ...props }) => {
   const { push, back, pathname } = useRouter()
 
-  function handleQueue() {
+  const handleQueue = () => {
     if (pathname === '/queue') {
       back()
     } else {
