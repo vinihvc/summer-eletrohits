@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-import { FiHeart, FiHome, FiSearch, FiUser } from 'react-icons/fi'
+import { FiHeart, FiHome, FiUser } from 'react-icons/fi'
 
 import { chakra, useColorModeValue } from '@chakra-ui/system'
 import { Flex } from '@chakra-ui/layout'
@@ -13,10 +13,6 @@ const BottomNavigation = () => {
     {
       href: '/',
       icon: FiHome
-    },
-    {
-      href: '/search',
-      icon: FiSearch
     },
     {
       href: '/queue',

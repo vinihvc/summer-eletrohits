@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import { chakra, useColorModeValue } from '@chakra-ui/system'
 
-import { FiHeart, FiHome, FiSearch } from 'react-icons/fi'
+import { FiHeart, FiHome } from 'react-icons/fi'
 
 import { Button } from '@chakra-ui/button'
 import { Box, Flex, Link as ChakraLink } from '@chakra-ui/layout'
@@ -38,19 +38,6 @@ const Sidebar = ({ ...props }) => {
             <Icon as={FiHome} />
 
             <Box ml={4}>Home</Box>
-          </Button>
-        </Link>
-
-        <Link href="/search" passHref>
-          <Button
-            as={ChakraLink}
-            justifyContent="left"
-            isFullWidth
-            _activeLink={{ bg: 'red' }}
-          >
-            <Icon as={FiSearch} />
-
-            <Box ml={4}>Search</Box>
           </Button>
         </Link>
 

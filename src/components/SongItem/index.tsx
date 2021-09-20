@@ -10,17 +10,11 @@ export type SongItemProps = {
   index?: number
 }
 
-const SongItem = ({ song, index, ...props }: SongItemProps) => {
+const SongItem = ({ song, ...props }: SongItemProps) => {
   const bg = useColorModeValue('gray.100', 'gray.700')
 
   return (
     <Flex align="center" {...props} p={2} bg={bg} borderRadius="md">
-      {index !== undefined && (
-        <Box fontSize="xs" mr={{ base: 3, md: 5 }}>
-          {index + 1}
-        </Box>
-      )}
-
       <Image
         src={`https://img.youtube.com/vi/${song?.youtubeId}/0.jpg`}
         width="40px"
