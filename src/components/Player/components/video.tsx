@@ -1,4 +1,4 @@
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player/lazy'
 
 import { usePlayer } from 'contexts/PlayerContext'
 

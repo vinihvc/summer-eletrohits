@@ -9,7 +9,8 @@ const config: ThemeConfig = {
 const theme = extendTheme({
   config,
   styles: {
-    global: (props) => ({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    global: (props: any) => ({
       body: {
         color: mode('gray.600', 'whiteAlpha.900')(props),
         bg: mode('white', 'gray.800')(props),
