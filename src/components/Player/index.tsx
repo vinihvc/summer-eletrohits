@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 import { chakra } from '@chakra-ui/system'
 
 import { Container, Flex } from '@chakra-ui/layout'
@@ -14,12 +16,41 @@ import Queue from './components/queue'
 import Volume from './components/volume'
 import Shuffle from './components/shuffle'
 import Repeat from './components/repeat'
+import { usePlayer } from 'contexts/PlayerContext'
 
 const Player = ({ ...props }) => {
   const { isMobile } = useDevice()
 
+  const { togglePlay, playNext, playPrevious, volumeUp, volumeDown } =
+    usePlayer()
+
+  useEffect(() => {
+    const keyboardControl = (e: KeyboardEvent) => {
+      e.code === 'Space' && togglePlay()
+
+      e.code === 'ArrowRight' && playNext()
+
+      e.code === 'ArrowLeft' && playPrevious()
+
+      e.code === 'ArrowLeft' && playPrevious()
+
+      e.code === 'ArrowUp' && volumeUp()
+
+      e.code === 'ArrowDown' && volumeDown()
+
+      e.preventDefault()
+    }
+
+    document.addEventListener('keydown', keyboardControl)
+
+    return () => {
+      document.removeEventListener('keydown', keyboardControl)
+    }
+  }, [togglePlay, playNext, playPrevious, volumeUp, volumeDown])
+
   return (
     <Flex
+      id="player"
       bg={useColorModeValue('playerLight', 'playerDark')}
       backdropFilter="blur(10px)"
       align="center"

@@ -5,7 +5,8 @@ import {
   useContext,
   RefObject,
   useRef,
-  useEffect
+  useEffect,
+  useCallback
 } from 'react'
 
 import ReactPlayer, { ReactPlayerProps } from 'react-player/lazy'
@@ -35,6 +36,8 @@ type PlayerContextData = {
   hasNext: boolean
   hasPrevious: boolean
   volume: number
+  volumeUp: () => void
+  volumeDown: () => void
   setVolume: (volume: number) => void
   toggleVolume: () => void
   $player: RefObject<ReactPlayer>
@@ -71,88 +74,100 @@ export const PlayerProvider = ({ children }: PlayerContextProviderProps) => {
     getFavoriteSongs()
   }, [])
 
-  const playSong = (song: SongType) => {
+  const playSong = useCallback((song: SongType) => {
     setSongList([song])
     setCurrentIndex(0)
     setIsPlaying(true)
-  }
+  }, [])
 
-  const playPlayList = (list: SongType[]) => {
+  const playPlayList = useCallback((list: SongType[]) => {
     setCurrentIndex(0)
     setSongList(list)
     setIsPlaying(true)
-  }
+  }, [])
 
-  const handleClickSongItem = (song: SongType) => {
-    if (songList.find((item) => item.id === song.id)) {
-      const songIndex = songList.findIndex((item) => item.id === song.id)
+  const handleClickSongItem = useCallback(
+    (song: SongType) => {
+      if (songList.find((item) => item.id === song.id)) {
+        const songIndex = songList.findIndex((item) => item.id === song.id)
 
-      setCurrentIndex(songIndex)
-    } else {
-      setSongList([song])
-    }
+        setCurrentIndex(songIndex)
+      } else {
+        setSongList([song])
+      }
 
-    setIsPlaying(true)
-  }
+      setIsPlaying(true)
+    },
+    [songList]
+  )
 
-  const handleFavoriteSong = async (song: SongType) => {
+  const handleFavoriteSong = useCallback(async (song: SongType) => {
     await storage.setSong(song)
 
     const songs = await storage.getSongs()
 
     setFavoriteSongs(songs)
-  }
+  }, [])
 
-  const handleUnfavoriteSong = async (song: SongType) => {
+  const handleUnfavoriteSong = useCallback(async (song: SongType) => {
     await storage.removeSong(song)
 
     const songs = await storage.getSongs()
 
     setFavoriteSongs(songs)
-  }
+  }, [])
 
-  const togglePlay = () => {
+  const togglePlay = useCallback(() => {
     setIsPlaying(!isPlaying)
-  }
+  }, [isPlaying])
 
-  const toggleLoop = () => {
+  const toggleLoop = useCallback(() => {
     setIsLooping(!isLooping)
-  }
+  }, [isLooping])
 
-  const toggleShuffle = () => {
+  const toggleShuffle = useCallback(() => {
     setIsShuffling(!isShuffling)
-  }
+  }, [isShuffling])
 
-  const clearPlayerState = () => {
+  const clearPlayerState = useCallback(() => {
     setSongList([])
     setCurrentIndex(0)
-  }
+  }, [])
 
-  const toggleVolume = () => {
+  const toggleVolume = useCallback(() => {
     if (volume === 0) {
       setVolume(saveVolume)
     } else {
       setSaveVolume(volume)
       setVolume(0)
     }
-  }
+  }, [volume, saveVolume])
 
-  const onProgress = ({ played }: ReactPlayerProps) => {
+  const volumeUp = useCallback(() => {
+    volume < 1 && setVolume((old) => old + 0.05)
+  }, [volume])
+
+  const volumeDown = useCallback(() => {
+    volume > 0 && setVolume((old) => old - 0.05)
+  }, [volume])
+
+  const onProgress = useCallback(({ played }: ReactPlayerProps) => {
     setProgress(played)
-  }
+  }, [])
 
-  const handleProgress = (value: number) => {
+  const handleProgress = useCallback((value: number) => {
     setProgress(value)
 
     $player.current?.seekTo(value)
-  }
+  }, [])
 
   const currentSong = songList[currentIndex]
 
   const hasPrevious = currentIndex > 0
+
   const hasNext = isShuffling || currentIndex + 1 < songList.length
 
-  const playNext = () => {
+  const playNext = useCallback(() => {
     if (isShuffling) {
       const nextRandomSongIndex = Math.floor(Math.random() * songList.length)
 
@@ -160,13 +175,13 @@ export const PlayerProvider = ({ children }: PlayerContextProviderProps) => {
     } else if (hasNext) {
       setCurrentIndex(currentIndex + 1)
     }
-  }
+  }, [isShuffling, currentIndex, hasNext, songList])
 
-  const playPrevious = () => {
+  const playPrevious = useCallback(() => {
     if (hasPrevious) {
       setCurrentIndex(currentIndex - 1)
     }
-  }
+  }, [currentIndex, hasPrevious])
 
   return (
     <PlayerContext.Provider
@@ -193,6 +208,8 @@ export const PlayerProvider = ({ children }: PlayerContextProviderProps) => {
         clearPlayerState,
         currentSong,
         volume,
+        volumeUp,
+        volumeDown,
         setVolume,
         toggleVolume,
         $player,

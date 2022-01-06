@@ -33,8 +33,8 @@ const Actions = () => {
         size={isMobile ? 'sm' : 'md'}
         borderRadius="full"
         aria-label="play"
-        onClick={togglePlay}
         mx={3}
+        onClick={togglePlay}
       />
 
       <IconButton
