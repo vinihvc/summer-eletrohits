@@ -37,8 +37,6 @@ const Player = ({ ...props }) => {
       e.code === 'ArrowUp' && volumeUp()
 
       e.code === 'ArrowDown' && volumeDown()
-
-      e.preventDefault()
     }
 
     document.addEventListener('keydown', keyboardControl)
