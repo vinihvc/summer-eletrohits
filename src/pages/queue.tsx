@@ -2,7 +2,7 @@ import { NextSeo } from 'next-seo'
 
 import { usePlayer } from 'contexts/PlayerContext'
 
-import { Text } from '@chakra-ui/layout'
+import { Text } from '@chakra-ui/react'
 
 import SongItem from 'components/SongItem'
 
