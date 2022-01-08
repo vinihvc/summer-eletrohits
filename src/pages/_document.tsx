@@ -8,7 +8,7 @@ import Document, {
 
 import { ColorModeScript } from '@chakra-ui/react'
 
-import theme from 'styles/theme'
+import theme from 'theme'
 
 import Analytics from 'components/Analytics'
 
