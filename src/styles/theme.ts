@@ -1,5 +1,6 @@
-import { extendTheme, ThemeConfig } from '@chakra-ui/react'
 import { mode } from '@chakra-ui/theme-tools'
+
+import { extendTheme, ThemeConfig } from '@chakra-ui/react'
 
 const config: ThemeConfig = {
   initialColorMode: 'dark',
@@ -13,7 +14,7 @@ const theme = extendTheme({
     global: (props: any) => ({
       body: {
         color: mode('gray.600', 'whiteAlpha.900')(props),
-        bg: mode('white', 'gray.800')(props),
+        bg: mode('white', 'gray.900')(props),
         overflow: 'hidden'
       }
     })
@@ -21,9 +22,6 @@ const theme = extendTheme({
   colors: {
     primary: {
       200: '#d49b08'
-    },
-    secondary: {
-      200: '#ff5201'
     },
     playerLight: 'rgba(247, 250, 252, 0.90)',
     playerDark: 'rgba(23, 25, 35, 0.90)',

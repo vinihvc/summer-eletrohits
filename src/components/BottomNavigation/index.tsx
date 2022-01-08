@@ -2,9 +2,7 @@ import { useRouter } from 'next/router'
 
 import { FiHeart, FiHome, FiUser } from 'react-icons/fi'
 
-import { chakra, useColorModeValue } from '@chakra-ui/system'
-import { Flex } from '@chakra-ui/layout'
-import Icon from '@chakra-ui/icon'
+import { chakra, useColorModeValue, Flex, Icon } from '@chakra-ui/react'
 
 const BottomNavigation = () => {
   const { push, pathname } = useRouter()

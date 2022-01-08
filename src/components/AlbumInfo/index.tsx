@@ -1,9 +1,6 @@
 import Image from 'next/image'
 
-import { chakra } from '@chakra-ui/system'
-
-import { Button } from '@chakra-ui/button'
-import { Box, Flex, Heading, Text } from '@chakra-ui/layout'
+import { Button, chakra, Box, Flex, Heading, Text } from '@chakra-ui/react'
 
 import { usePlayer } from 'contexts/PlayerContext'
 

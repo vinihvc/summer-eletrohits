@@ -1011,9 +1011,9 @@
     "@chakra-ui/react-utils" "1.2.1"
     "@chakra-ui/utils" "1.9.1"
 
-"@chakra-ui/button@1.5.2":
+"@chakra-ui/react@1.5.2":
   version "1.5.2"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/button/-/button-1.5.2.tgz#ea70d837d50aa85970fc36060ea4d7aa9d166281"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/react/-/button-1.5.2.tgz#ea70d837d50aa85970fc36060ea4d7aa9d166281"
   integrity sha512-1LyZ7o4g+ZF0Qfwr77Fa3qHtCGhghoIPG2lcUWhhPk+8ygHNF0ZOngfsiDD7aoEj0uXsvlgZ/hdiqv0PmMTRzg==
   dependencies:
     "@chakra-ui/hooks" "1.7.2"
@@ -1263,7 +1263,7 @@
     "@chakra-ui/hooks" "1.7.2"
     "@chakra-ui/portal" "1.3.2"
     "@chakra-ui/react-env" "1.1.1"
-    "@chakra-ui/system" "1.9.0"
+    "@chakra-ui/react" "1.9.0"
     "@chakra-ui/utils" "1.9.1"
 
 "@chakra-ui/radio@1.4.4":
@@ -1300,7 +1300,7 @@
     "@chakra-ui/alert" "1.3.2"
     "@chakra-ui/avatar" "1.3.2"
     "@chakra-ui/breadcrumb" "1.3.1"
-    "@chakra-ui/button" "1.5.2"
+    "@chakra-ui/react" "1.5.2"
     "@chakra-ui/checkbox" "1.6.2"
     "@chakra-ui/close-button" "1.2.2"
     "@chakra-ui/control-box" "1.1.1"
@@ -1332,7 +1332,7 @@
     "@chakra-ui/spinner" "1.2.1"
     "@chakra-ui/stat" "1.2.2"
     "@chakra-ui/switch" "1.3.2"
-    "@chakra-ui/system" "1.9.0"
+    "@chakra-ui/react" "1.9.0"
     "@chakra-ui/table" "1.3.1"
     "@chakra-ui/tabs" "1.6.2"
     "@chakra-ui/tag" "1.2.2"
@@ -1359,7 +1359,7 @@
   dependencies:
     "@chakra-ui/hooks" "1.7.2"
     "@chakra-ui/media-query" "1.2.3"
-    "@chakra-ui/system" "1.9.0"
+    "@chakra-ui/react" "1.9.0"
     "@chakra-ui/utils" "1.9.1"
 
 "@chakra-ui/slider@1.5.3":
@@ -1404,9 +1404,9 @@
     "@chakra-ui/checkbox" "1.6.2"
     "@chakra-ui/utils" "1.9.1"
 
-"@chakra-ui/system@1.9.0":
+"@chakra-ui/react@1.9.0":
   version "1.9.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-1.9.0.tgz#22f530fd0cb16c20e50abe2bb7c1392d2995382a"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/react/-/system-1.9.0.tgz#22f530fd0cb16c20e50abe2bb7c1392d2995382a"
   integrity sha512-CnLmx3nVZo87puSKxDNNQUwJyWYCnx4ZUFXdDFNdKroQyZUpSYLVv1OniXbkjwEt1YdZMsWm93lZQb/0VRcKvg==
   dependencies:
     "@chakra-ui/color-mode" "1.3.3"

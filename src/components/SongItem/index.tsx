@@ -1,9 +1,15 @@
-import { chakra, useColorModeValue } from '@chakra-ui/system'
-import { Box, Flex, Spacer, Text } from '@chakra-ui/layout'
+import {
+  chakra,
+  Box,
+  Flex,
+  Spacer,
+  Text,
+  Image,
+  useColorModeValue
+} from '@chakra-ui/react'
 
 import LikeButton from 'components/FavoriteButton'
 import PlayButton from 'components/PlayButton'
-import { Image } from '@chakra-ui/image'
 
 export type SongItemProps = {
   song: SongType
@@ -11,7 +17,7 @@ export type SongItemProps = {
 }
 
 const SongItem = ({ song, ...props }: SongItemProps) => {
-  const bg = useColorModeValue('gray.100', 'gray.700')
+  const bg = useColorModeValue('gray.100', 'gray.800')
 
   return (
     <Flex align="center" {...props} p={2} bg={bg} borderRadius="md">

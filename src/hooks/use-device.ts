@@ -1,4 +1,4 @@
-import { useMediaQuery } from '@chakra-ui/media-query'
+import { useMediaQuery } from '@chakra-ui/react'
 
 const useDevice = () => {
   const [isMobile] = useMediaQuery(['(max-width: 48em)'])

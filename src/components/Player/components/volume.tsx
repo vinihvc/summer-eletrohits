@@ -2,9 +2,7 @@ import { usePlayer } from 'contexts/PlayerContext'
 
 import { MdVolumeOff, MdVolumeUp } from 'react-icons/md'
 
-import { chakra } from '@chakra-ui/system'
-import { Flex } from '@chakra-ui/layout'
-import { IconButton } from '@chakra-ui/button'
+import { chakra, Flex, IconButton } from '@chakra-ui/react'
 
 import Slider from 'components/Slider'
 

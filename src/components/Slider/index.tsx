@@ -1,12 +1,12 @@
 import { useState } from 'react'
 
-import { chakra } from '@chakra-ui/system'
 import {
+  chakra,
   Slider as SliderBase,
   SliderFilledTrack,
   SliderThumb,
   SliderTrack
-} from '@chakra-ui/slider'
+} from '@chakra-ui/react'
 
 export type SliderProps = {
   value?: number

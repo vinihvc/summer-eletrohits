@@ -1,10 +1,8 @@
+import { chakra, Box, Image } from '@chakra-ui/react'
+
 import ReactPlayer from 'react-player/lazy'
 
 import { usePlayer } from 'contexts/PlayerContext'
-
-import { chakra } from '@chakra-ui/system'
-import { Box } from '@chakra-ui/layout'
-import { Image } from '@chakra-ui/image'
 
 const Video = ({ ...props }) => {
   const {

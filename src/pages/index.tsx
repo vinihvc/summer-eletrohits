@@ -1,6 +1,6 @@
 import { NextSeo } from 'next-seo'
 
-import { Box, Flex, Grid, Text } from '@chakra-ui/react'
+import { Box, Flex, Grid, SlideFade, Text } from '@chakra-ui/react'
 
 import AlbumItem from 'components/AlbumItem'
 
@@ -22,17 +22,19 @@ const Home = ({ albums }: HomeProps) => {
           </Text>
         </Flex>
 
-        <Grid
-          templateColumns={{
-            base: 'repeat(1, 1fr)',
-            sm: 'repeat(auto-fit, minmax(200px, 1fr))'
-          }}
-          gap="5"
-        >
-          {albums?.map((album: AlbumType) => (
-            <AlbumItem key={album.id} album={album} />
-          ))}
-        </Grid>
+        <SlideFade in>
+          <Grid
+            templateColumns={{
+              base: 'repeat(1, 1fr)',
+              sm: 'repeat(auto-fit, minmax(200px, 1fr))'
+            }}
+            gap="5"
+          >
+            {albums?.map((album: AlbumType) => (
+              <AlbumItem key={album.id} album={album} />
+            ))}
+          </Grid>
+        </SlideFade>
       </Box>
     </>
   )

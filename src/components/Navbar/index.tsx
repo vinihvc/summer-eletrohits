@@ -2,11 +2,18 @@ import NextLink from 'next/link'
 
 import { FiChevronDown, FiGithub, FiTwitter } from 'react-icons/fi'
 
-import { chakra } from '@chakra-ui/system'
-import { useColorModeValue } from '@chakra-ui/color-mode'
-import { Container, Flex, Link } from '@chakra-ui/layout'
-import { Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/menu'
-import { Button } from '@chakra-ui/button'
+import {
+  chakra,
+  Container,
+  Flex,
+  Link,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Button,
+  useColorModeValue
+} from '@chakra-ui/react'
 
 import ColorMode from 'components/ColorMode'
 

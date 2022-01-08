@@ -4,12 +4,16 @@ import Image from 'next/image'
 
 import { MdPlayArrow } from 'react-icons/md'
 
+import {
+  Box,
+  Flex,
+  Link,
+  Text,
+  Icon,
+  useColorModeValue
+} from '@chakra-ui/react'
+
 import { usePlayer } from 'contexts/PlayerContext'
-
-import { useColorModeValue } from '@chakra-ui/color-mode'
-
-import { Box, Flex, Link, Text } from '@chakra-ui/layout'
-import Icon from '@chakra-ui/icon'
 
 export type AlbumItemProps = {
   album: AlbumType

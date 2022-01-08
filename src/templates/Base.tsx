@@ -1,8 +1,8 @@
+import { Container, Grid } from '@chakra-ui/react'
+
 import { usePlayer } from 'contexts/PlayerContext'
 
 import useDevice from 'hooks/use-device'
-
-import { Container, Grid } from '@chakra-ui/react'
 
 import Player from 'components/Player'
 import Navbar from 'components/Navbar'

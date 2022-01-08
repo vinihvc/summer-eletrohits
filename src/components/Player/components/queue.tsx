@@ -2,8 +2,7 @@ import { useRouter } from 'next/router'
 
 import { MdQueueMusic } from 'react-icons/md'
 
-import { chakra } from '@chakra-ui/system'
-import { IconButton } from '@chakra-ui/button'
+import { chakra, IconButton } from '@chakra-ui/react'
 
 const Queue = ({ ...props }) => {
   const { push, back, pathname } = useRouter()

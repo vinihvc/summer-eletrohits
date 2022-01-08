@@ -1,12 +1,16 @@
 import Link from 'next/link'
 
-import { chakra, useColorModeValue } from '@chakra-ui/system'
-
 import { FiHeart, FiHome } from 'react-icons/fi'
 
-import { Button } from '@chakra-ui/button'
-import { Box, Flex, Link as ChakraLink } from '@chakra-ui/layout'
-import Icon from '@chakra-ui/icon'
+import {
+  chakra,
+  useColorModeValue,
+  Button,
+  Box,
+  Flex,
+  Link as ChakraLink,
+  Icon
+} from '@chakra-ui/react'
 
 const Sidebar = ({ ...props }) => {
   return (
@@ -16,6 +20,8 @@ const Sidebar = ({ ...props }) => {
       width="250px"
       flexDirection="column"
       zIndex="docked"
+      borderRight="1px solid"
+      borderColor="gray.700"
       pt={5}
       {...props}
     >

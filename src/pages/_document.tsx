@@ -6,7 +6,7 @@ import Document, {
   DocumentContext
 } from 'next/document'
 
-import { ColorModeScript } from '@chakra-ui/color-mode'
+import { ColorModeScript } from '@chakra-ui/react'
 
 import theme from 'styles/theme'
 

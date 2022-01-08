@@ -1,7 +1,6 @@
-import { usePlayer } from 'contexts/PlayerContext'
+import { chakra, Box } from '@chakra-ui/react'
 
-import { chakra } from '@chakra-ui/system'
-import { Box } from '@chakra-ui/layout'
+import { usePlayer } from 'contexts/PlayerContext'
 
 import Slider from 'components/Slider'
 

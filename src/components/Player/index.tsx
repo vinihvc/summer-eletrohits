@@ -1,10 +1,8 @@
 import { useEffect } from 'react'
 
-import { chakra } from '@chakra-ui/system'
+import { chakra, Container, Flex, useColorModeValue } from '@chakra-ui/react'
 
-import { Container, Flex } from '@chakra-ui/layout'
-
-import { useColorModeValue } from '@chakra-ui/color-mode'
+import { usePlayer } from 'contexts/PlayerContext'
 
 import useDevice from 'hooks/use-device'
 
@@ -16,7 +14,6 @@ import Queue from './components/queue'
 import Volume from './components/volume'
 import Shuffle from './components/shuffle'
 import Repeat from './components/repeat'
-import { usePlayer } from 'contexts/PlayerContext'
 
 const Player = ({ ...props }) => {
   const { isMobile } = useDevice()

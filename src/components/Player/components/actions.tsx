@@ -1,6 +1,3 @@
-import { usePlayer } from 'contexts/PlayerContext'
-import useDevice from 'hooks/use-device'
-
 import {
   BsFillPlayFill,
   BsPauseFill,
@@ -8,9 +5,11 @@ import {
   BsSkipStartFill
 } from 'react-icons/bs'
 
-import { chakra } from '@chakra-ui/system'
-import { IconButton } from '@chakra-ui/button'
-import { Flex } from '@chakra-ui/layout'
+import { chakra, IconButton, Flex } from '@chakra-ui/react'
+
+import { usePlayer } from 'contexts/PlayerContext'
+
+import useDevice from 'hooks/use-device'
 
 const Actions = () => {
   const { isPlaying, togglePlay, playPrevious, playNext } = usePlayer()

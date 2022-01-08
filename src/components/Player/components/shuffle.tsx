@@ -2,8 +2,7 @@ import { usePlayer } from 'contexts/PlayerContext'
 
 import { MdShuffle } from 'react-icons/md'
 
-import { chakra } from '@chakra-ui/system'
-import { IconButton } from '@chakra-ui/button'
+import { chakra, IconButton } from '@chakra-ui/react'
 
 const Shuffle = ({ ...props }) => {
   const { isShuffling, toggleShuffle } = usePlayer()

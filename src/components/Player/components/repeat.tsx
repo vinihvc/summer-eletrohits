@@ -2,8 +2,7 @@ import { usePlayer } from 'contexts/PlayerContext'
 
 import { MdRepeat } from 'react-icons/md'
 
-import { chakra } from '@chakra-ui/system'
-import { IconButton } from '@chakra-ui/button'
+import { chakra, IconButton } from '@chakra-ui/react'
 
 const Repeat = ({ ...props }) => {
   const { isLooping, toggleLoop } = usePlayer()

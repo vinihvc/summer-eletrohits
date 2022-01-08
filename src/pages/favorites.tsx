@@ -2,10 +2,9 @@ import { NextSeo } from 'next-seo'
 
 import { usePlayer } from 'contexts/PlayerContext'
 
-import { Button } from '@chakra-ui/button'
+import { Button, Heading } from '@chakra-ui/react'
 
-import SongList from 'components/SongList'
-import { Heading } from '@chakra-ui/layout'
+import SongItem from 'components/SongItem'
 
 const Favorites = () => {
   const { favoriteSongs, playPlayList } = usePlayer()
@@ -20,7 +19,9 @@ const Favorites = () => {
         Play
       </Button>
 
-      <SongList songs={favoriteSongs} />
+      {favoriteSongs?.map((song: SongType) => (
+        <SongItem key={song.id} song={song} mb={3} />
+      ))}
     </>
   )
 }

@@ -1,7 +1,6 @@
 import { usePlayer } from 'contexts/PlayerContext'
 
-import { chakra } from '@chakra-ui/system'
-import { Flex, Text } from '@chakra-ui/layout'
+import { chakra, Flex, Text } from '@chakra-ui/react'
 
 import FavoriteButton from 'components/FavoriteButton'
 

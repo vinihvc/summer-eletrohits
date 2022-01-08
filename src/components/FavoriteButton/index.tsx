@@ -1,10 +1,10 @@
-import { usePlayer } from 'contexts/PlayerContext'
-import useDevice from 'hooks/use-device'
-
 import { FiHeart } from 'react-icons/fi'
 
-import { chakra } from '@chakra-ui/system'
-import { IconButton } from '@chakra-ui/button'
+import { chakra, IconButton } from '@chakra-ui/react'
+
+import { usePlayer } from 'contexts/PlayerContext'
+
+import useDevice from 'hooks/use-device'
 
 type FavoriteButtonProps = {
   song: SongType
