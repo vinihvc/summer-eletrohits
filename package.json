@@ -24,7 +24,7 @@
     "axios": "^0.24.0",
     "framer-motion": "^5.5.5",
     "localforage": "^1.10.0",
-    "next": "^12.0.9",
+    "next": "^12.1.0",
     "next-pwa": "^5.4.4",
     "next-seo": "^4.28.1",
     "preact": "^10.6.4",
