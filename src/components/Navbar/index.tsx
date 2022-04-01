@@ -39,7 +39,7 @@ const Navbar = ({ ...props }) => {
             </MenuButton>
 
             <MenuList>
-              <NextLink href="https://github.com/viniciushvc" passHref>
+              <NextLink href="https://viniciusvicentini.com/github" passHref>
                 <MenuItem
                   as={Link}
                   icon={<FiGithub />}
@@ -52,7 +52,7 @@ const Navbar = ({ ...props }) => {
                 </MenuItem>
               </NextLink>
 
-              <NextLink href="https://twitter.com/ViniciusHVC" passHref>
+              <NextLink href="https://viniciusvicentini.com/twitter" passHref>
                 <MenuItem
                   as={Link}
                   icon={<FiTwitter />}
