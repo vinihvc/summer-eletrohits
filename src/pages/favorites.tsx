@@ -1,10 +1,10 @@
 import { NextSeo } from 'next-seo'
 
-import { usePlayer } from 'contexts/PlayerContext'
+import { usePlayer } from 'contexts/player'
 
 import { Button, Heading } from '@chakra-ui/react'
 
-import SongItem from 'components/SongItem'
+import { SongItem } from 'components/song-item'
 
 const Favorites = () => {
   const { favoriteSongs, playPlayList } = usePlayer()

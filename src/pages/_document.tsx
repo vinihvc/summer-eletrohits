@@ -1,23 +1,10 @@
-import Document, {
-  Html,
-  Head,
-  Main,
-  NextScript,
-  DocumentContext
-} from 'next/document'
+import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
 
 import { ColorModeScript } from '@chakra-ui/react'
 
-import theme from 'theme'
+import { theme } from 'theme'
 
-import Analytics from 'components/Analytics'
-
-class MyDocument extends Document {
-  static async getInitialProps(ctx: DocumentContext) {
-    const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps }
-  }
-
+export default class Document extends NextDocument {
   render() {
     return (
       <Html lang="en">
@@ -26,11 +13,8 @@ class MyDocument extends Document {
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Main />
           <NextScript />
-          <Analytics />
         </body>
       </Html>
     )
   }
 }
-
-export default MyDocument

@@ -4,12 +4,12 @@ import { NextSeo } from 'next-seo'
 
 import { Box, SlideFade } from '@chakra-ui/react'
 
-import AlbumInfo from 'components/AlbumInfo'
-import SongItem from 'components/SongItem'
+import { AlbumInfo } from 'components/album/album.info'
+import { SongItem } from 'components/song-item'
 
 import api from 'services/api'
 
-export type AlbumsProps = {
+type AlbumsProps = {
   album: AlbumType
 }
 

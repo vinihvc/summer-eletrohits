@@ -2,13 +2,16 @@ import { AppProps } from 'next/app'
 
 import Head from 'next/head'
 
+import { ChakraProvider } from '@chakra-ui/react'
+
 import { DefaultSeo } from 'next-seo'
 import SEO from '../../next-seo.config'
 
-import { PlayerProvider } from 'contexts/PlayerContext'
+import { PlayerProvider } from 'contexts/player'
 
-import ChakraTemplate from 'templates/Chakra'
-import BaseTemplate from 'templates/Base'
+import { DefaultLayout } from 'layouts/default'
+
+import { theme } from 'theme'
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
@@ -25,11 +28,11 @@ const App = ({ Component, pageProps }: AppProps) => {
       <DefaultSeo {...SEO} />
 
       <PlayerProvider>
-        <ChakraTemplate cookies={pageProps.cookies}>
-          <BaseTemplate>
+        <ChakraProvider theme={theme}>
+          <DefaultLayout>
             <Component {...pageProps} />
-          </BaseTemplate>
-        </ChakraTemplate>
+          </DefaultLayout>
+        </ChakraProvider>
       </PlayerProvider>
     </>
   )

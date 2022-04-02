@@ -2,7 +2,7 @@ import { NextSeo } from 'next-seo'
 
 import { Box, Flex, Grid, SlideFade, Text } from '@chakra-ui/react'
 
-import AlbumItem from 'components/AlbumItem'
+import { AlbumItem } from 'components/album/album.item'
 
 import api from 'services/api'
 
