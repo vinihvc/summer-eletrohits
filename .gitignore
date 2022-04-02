@@ -31,4 +31,4 @@ npm-debug.log*
 public/sw.js
 public/workbox-*.js
 public/robots.txt
-public/sitemap.xml
+public/sitemap*.xml
