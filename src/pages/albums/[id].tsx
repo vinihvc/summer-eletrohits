@@ -2,10 +2,11 @@ import { GetStaticProps } from 'next'
 
 import { NextSeo } from 'next-seo'
 
-import { Box, SlideFade } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 
 import { AlbumInfo } from 'components/album/album.info'
 import { SongItem } from 'components/song-item'
+import { BackAlbums } from 'components/back-albums'
 
 import api from 'services/api'
 
@@ -32,15 +33,42 @@ const Albums = ({ album }: AlbumsProps) => {
           ]
         }}
       />
-      <SlideFade in>
-        <AlbumInfo album={album} />
+
+      <Box h="full" minH="100vh" inset="0" pos="absolute" zIndex="-1">
+        <Box
+          transition="background-image 1s ease-in"
+          backgroundSize="cover"
+          transform="translateZ(0)"
+          pos="fixed"
+          backgroundPosition="center"
+          w="full"
+          h="100vh"
+          top="0"
+          filter="blur(50px)"
+          backgroundImage={`url("${album.thumb}")`}
+        />
+
+        <Box
+          bgGradient="linear(to-b, blackAlpha.800, black)"
+          h="full"
+          w="full"
+          maxH="200vh"
+          pos="sticky"
+          top="-100vh"
+        />
+      </Box>
+
+      <Box>
+        <BackAlbums />
+
+        <AlbumInfo album={album} mt={2} />
 
         <Box mt={10}>
           {album.songs?.map((song: SongType) => (
             <SongItem key={song.id} song={song} mb={3} />
           ))}
         </Box>
-      </SlideFade>
+      </Box>
     </>
   )
 }

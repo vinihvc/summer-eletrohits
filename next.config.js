@@ -11,7 +11,7 @@ module.exports = withPWA({
   },
   images: {
     deviceSizes: [320, 640, 768, 1024, 1600],
-    domains: ['res.cloudinary.com']
+    domains: ['res.cloudinary.com', 'img.youtube.com']
   },
   webpack: (config, { dev, isServer }) => {
     // Replace React with Preact only in client production build

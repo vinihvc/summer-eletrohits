@@ -4,6 +4,8 @@ import Head from 'next/head'
 
 import { ChakraProvider } from '@chakra-ui/react'
 
+import { AnimatePresence, motion } from 'framer-motion'
+
 import { DefaultSeo } from 'next-seo'
 import SEO from '../../next-seo.config'
 
@@ -12,8 +14,9 @@ import { PlayerProvider } from 'contexts/player'
 import { DefaultLayout } from 'layouts/default'
 
 import { theme } from 'theme'
+import { Player } from 'components/player'
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App = ({ Component, pageProps, router }: AppProps) => {
   return (
     <>
       <Head>
@@ -29,9 +32,20 @@ const App = ({ Component, pageProps }: AppProps) => {
 
       <PlayerProvider>
         <ChakraProvider theme={theme}>
-          <DefaultLayout>
-            <Component {...pageProps} />
-          </DefaultLayout>
+          <AnimatePresence>
+            <motion.div
+              key={router.route}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <DefaultLayout>
+                <Component {...pageProps} />
+              </DefaultLayout>
+            </motion.div>
+          </AnimatePresence>
+
+          <Player />
         </ChakraProvider>
       </PlayerProvider>
     </>

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { Container, Flex, useColorModeValue } from '@chakra-ui/react'
+import { Container, Flex } from '@chakra-ui/react'
 
 import { usePlayer } from 'contexts/player'
 
@@ -18,8 +18,14 @@ import { Repeat } from './player.repeat'
 export const Player = ({ ...props }) => {
   const { isMobile } = useDevice()
 
-  const { togglePlay, playNext, playPrevious, volumeUp, volumeDown } =
-    usePlayer()
+  const {
+    currentSong,
+    togglePlay,
+    playNext,
+    playPrevious,
+    volumeUp,
+    volumeDown
+  } = usePlayer()
 
   useEffect(() => {
     const keyboardControl = (e: KeyboardEvent) => {
@@ -43,9 +49,12 @@ export const Player = ({ ...props }) => {
     }
   }, [togglePlay, playNext, playPrevious, volumeUp, volumeDown])
 
+  if (!currentSong) {
+    return null
+  }
+
   return (
     <Flex
-      id="player"
       bg="player"
       backdropFilter="blur(10px)"
       align="center"
@@ -53,14 +62,14 @@ export const Player = ({ ...props }) => {
       h={{ base: '60px', md: '80px' }}
       pos="fixed"
       bottom={{ base: '50px', md: '0px' }}
-      borderBottomWidth="1px"
-      borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
-      borderBottomStyle="solid"
+      borderBottom="1px solid "
+      borderColor="gray.700"
+      zIndex="sticky"
       {...props}
     >
-      <Progress position="absolute" top="-16px" left="0" right="0" />
+      <Progress pos="absolute" top="-16px" left="0" right="0" />
 
-      <Container maxW="full" px={{ base: 5, md: 10 }} position="relative">
+      <Container maxW="full" px={{ base: 5, md: 10 }} pos="relative">
         <Flex justify="space-between" align="center">
           <Flex w={{ md: '30%' }}>
             <Video display={{ base: 'none', md: 'block' }} mr={5} />

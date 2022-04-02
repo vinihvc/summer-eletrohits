@@ -1,45 +1,61 @@
-import Image from 'next/image'
+import { Button, Flex, Heading, Text, chakra, Box } from '@chakra-ui/react'
 
-import { Button, Box, Flex, Heading, Text } from '@chakra-ui/react'
+import { MdPlayArrow } from 'react-icons/md'
 
 import { usePlayer } from 'contexts/player'
 
-import { useDevice } from 'hooks/use-device'
+import { BlurImage } from 'components/blur-image'
 
 type AlbumInfoProps = {
   album: AlbumType
 }
 
-export const AlbumInfo = ({ album, ...props }: AlbumInfoProps) => {
+export const AlbumInfo = chakra(({ album, ...props }: AlbumInfoProps) => {
   const { playPlayList } = usePlayer()
 
-  const { isMobile } = useDevice()
-
   return (
-    <Flex {...props}>
-      <Flex justify={{ base: 'center', md: 'initial' }}>
-        <Flex borderRadius="lg" overflow="auto">
-          <Image
-            src={album.thumb}
-            alt={album.name}
-            width={isMobile ? 150 : 250}
-            height={isMobile ? 150 : 250}
-            layout="fixed"
-          />
-        </Flex>
+    <Flex
+      align={{ base: 'center', md: 'initial' }}
+      direction={{ base: 'column', md: 'row' }}
+      gap={{ base: 5, md: 10 }}
+      {...props}
+    >
+      <Flex justify={{ base: 'center', md: 'initial' }} boxShadow="lg">
+        <BlurImage
+          src={album.thumb}
+          alt={album.name}
+          boxSize={{ base: 150, sm: 250 }}
+        />
       </Flex>
 
-      <Box textAlign={{ base: 'center', md: 'left' }} ml={5}>
-        <Heading as="h2" size="md" fontWeight="medium">
+      <Flex direction="column" align={{ base: 'center', md: 'initial' }}>
+        <Text
+          color="primary"
+          fontSize="xs"
+          textTransform="uppercase"
+          fontWeight="medium"
+        >
+          Album
+        </Text>
+
+        <Heading as="h2" size="xl" fontWeight="bold">
           {album.name}
         </Heading>
 
-        <Text mt={1}>Total songs: {album.songs?.length}</Text>
+        <Text mt={1}>{`${album.songs?.length} songs`}</Text>
 
-        <Button mt={5} onClick={() => playPlayList(album.songs!)}>
-          Play songs
-        </Button>
-      </Box>
+        <Box>
+          <Button
+            leftIcon={<MdPlayArrow />}
+            borderRadius="full"
+            px={6}
+            mt={5}
+            onClick={() => playPlayList(album.songs!)}
+          >
+            Play
+          </Button>
+        </Box>
+      </Flex>
     </Flex>
   )
-}
+})

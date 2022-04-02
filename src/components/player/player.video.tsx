@@ -22,11 +22,10 @@ export const Video = ({ ...props }) => {
   }
 
   return (
-    <Box position="relative" overflow="auto" {...props}>
+    <Box pos="relative" overflow="auto" {...props}>
       <Image
         src={`https://img.youtube.com/vi/${currentSong?.youtubeId}/0.jpg`}
-        width="40px"
-        height="40px"
+        boxSize="40px"
         borderRadius="full"
         objectFit="cover"
         fallbackSrc="https://via.placeholder.com/150/000?text="
@@ -43,7 +42,7 @@ export const Video = ({ ...props }) => {
         height={0}
       />
 
-      <Box bottom="0" left="0" position="absolute" right="0" top="0" />
+      <Box bottom="0" left="0" pos="absolute" right="0" top="0" />
     </Box>
   )
 }

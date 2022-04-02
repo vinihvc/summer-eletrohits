@@ -25,7 +25,7 @@ export const Slider = ({ value, onChange, ...props }: SliderProps) => {
       focusThumbOnChange={false}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      colorScheme="primary"
+      color="primary"
       {...props}
     >
       <SliderTrack>

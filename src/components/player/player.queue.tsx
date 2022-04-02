@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-import { MdQueueMusic } from 'react-icons/md'
+import { RiPlayList2Fill } from 'react-icons/ri'
 
 import { IconButton } from '@chakra-ui/react'
 
@@ -17,7 +17,7 @@ export const Queue = ({ ...props }) => {
 
   return (
     <IconButton
-      icon={<MdQueueMusic />}
+      icon={<RiPlayList2Fill />}
       borderRadius="full"
       aria-label="Open Queue"
       onClick={handleQueue}

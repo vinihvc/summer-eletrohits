@@ -23,9 +23,11 @@ export const PlayButton = chakra(({ song, ...props }: PlayButtonProps) => {
       icon={isSameSong && isPlaying ? <BsPauseFill /> : <BsFillPlayFill />}
       variant={isSameSong ? 'solid' : 'ghost'}
       aria-label={isPlaying ? 'Pause' : 'Play'}
+      bg="whiteAlpha.200"
+      _hover={{ bg: 'whiteAlpha.300' }}
+      cursor="pointer"
       borderRadius="full"
       onClick={handleClick}
-      _hover={{ cursor: 'pointer' }}
       {...props}
     />
   )

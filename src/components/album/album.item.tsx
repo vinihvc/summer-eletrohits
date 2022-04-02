@@ -1,95 +1,41 @@
 import NextLink from 'next/link'
 
-import Image from 'next/image'
+import { Box, Flex, Link, Text } from '@chakra-ui/react'
 
-import { MdPlayArrow } from 'react-icons/md'
-
-import {
-  Box,
-  Flex,
-  Link,
-  Text,
-  Icon,
-  useColorModeValue
-} from '@chakra-ui/react'
-
-import { usePlayer } from 'contexts/player'
+import { AlbumItemPlay } from './album.item.play'
+import { BlurImage } from 'components/blur-image'
 
 type AlbumItemProps = {
   album: AlbumType
 }
 
 export const AlbumItem = ({ album }: AlbumItemProps) => {
-  const { playPlayList } = usePlayer()
-
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation()
-
-    playPlayList(album.songs!)
-  }
-
   return (
     <Link as={NextLink} href={`/albums/${album.id}`}>
-      <Box
-        bg={{
-          base: 'transparent',
-          md: 'song-item'
-        }}
-        p={{ base: 0, md: 4 }}
-        borderRadius="lg"
-        cursor="pointer"
-        transition=".3s"
-        _hover={{
-          md: {
-            bg: useColorModeValue('gray.50', 'gray.700')
-          }
-        }}
-      >
-        <Box position="relative">
-          <Box
-            borderRadius="lg"
-            transition="0.2s"
-            overflow="auto"
-            _hover={{
-              '&+div': { opacity: 0.8 }
-            }}
-          >
-            <Image
-              src={album.thumb}
-              alt={album.name}
-              width={200}
-              height={200}
-              layout="responsive"
-            />
+      <Box as="article" cursor="pointer">
+        <Box pos="relative">
+          <Box borderRadius="lg" overflow="auto">
+            <BlurImage src={album.thumb} alt={album.name} />
           </Box>
 
           <Flex
-            onClick={handleClick}
-            color="white"
-            position="absolute"
-            bottom="15px"
-            right="15px"
-            bg="black"
-            borderRadius="full"
-            cursor="pointer"
+            pos="absolute"
             opacity="0"
-            transition=".3s"
-            boxSize="40px"
-            justify="center"
+            bg="blackAlpha.700"
+            display="flex"
             align="center"
-            _hover={{ transform: 'scale(1.2)', opacity: 1 }}
+            justify="center"
+            left="0"
+            top="0"
+            w="full"
+            h="full"
+            _hover={{ opacity: 1 }}
           >
-            <Icon as={MdPlayArrow} boxSize="25px" />
+            <AlbumItemPlay songs={album.songs} />
           </Flex>
         </Box>
 
-        <Text
-          textAlign={{ base: 'center', md: 'left' }}
-          fontWeight="medium"
-          marginTop="10px"
-          noOfLines={1}
-          isTruncated
-        >
+        <Text fontWeight="medium" noOfLines={1} mt={3} isTruncated>
           {album.name}
         </Text>
       </Box>

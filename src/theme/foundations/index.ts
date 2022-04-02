@@ -1,4 +1,5 @@
 import { colors, semanticColors } from './colors'
+import { fonts } from './fonts'
 
 /**
  * Extending foundations
@@ -6,7 +7,8 @@ import { colors, semanticColors } from './colors'
  * @see https://chakra-ui.com/docs/styled-system/theming/customize-theme
  */
 export const foundations = {
-  colors
+  colors,
+  fonts
 }
 
 /**

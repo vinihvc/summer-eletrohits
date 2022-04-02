@@ -19,7 +19,7 @@ export const Volume = ({ ...props }) => {
         onClick={toggleVolume}
       />
 
-      <Flex width="150px" ml={5}>
+      <Flex w="150px" ml={5}>
         <Slider value={volume} onChange={setVolume} />
       </Flex>
     </Flex>

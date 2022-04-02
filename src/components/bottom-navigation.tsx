@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router'
 
-import { FiHeart, FiHome, FiUser } from 'react-icons/fi'
+import { FiHeart } from 'react-icons/fi'
+import { RiPlayList2Fill } from 'react-icons/ri'
+import { BsHouseDoor } from 'react-icons/bs'
 
 import { Flex, Icon } from '@chakra-ui/react'
 
@@ -10,23 +12,23 @@ export const BottomNavigation = () => {
   const paths = [
     {
       href: '/',
-      icon: FiHome
+      icon: BsHouseDoor
     },
     {
-      href: '/queue',
+      href: '/favorites',
       icon: FiHeart
     },
     {
-      href: '/about',
-      icon: FiUser
+      href: '/queue',
+      icon: RiPlayList2Fill
     }
   ]
 
   return (
     <Flex
       pos="fixed"
-      h="50px"
-      bg="navigation"
+      h="50"
+      bg="bg"
       bottom="0"
       left="0"
       right="0"
