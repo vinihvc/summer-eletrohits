@@ -18,6 +18,7 @@ export const Slider = chakra(({ value, onChange, ...props }: SliderProps) => {
 
   return (
     <SliderBase
+      pb="0!important"
       min={0}
       max={0.999999}
       value={value}
@@ -29,7 +30,7 @@ export const Slider = chakra(({ value, onChange, ...props }: SliderProps) => {
       colorScheme="blue"
       {...props}
     >
-      <SliderTrack borderRadius="none" h="2px">
+      <SliderTrack borderRadius="none" h="3px">
         <SliderFilledTrack />
       </SliderTrack>
 

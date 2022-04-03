@@ -78,17 +78,12 @@ export const Player = ({ ...props }) => {
       left="0"
       right="0"
       bg="player"
-      borderTop="2px solid"
+      borderTop="3px solid"
       borderColor="blue.50"
       {...props}
     >
       <Container maxW="container.xl" pos="relative">
-        <Progress
-          pos="absolute"
-          top={{ base: '-17px', md: '-7px' }}
-          left="0"
-          right="0"
-        />
+        <Progress pos="absolute" top="-5px" left="0" right="0" />
         <HStack w="full" align="center" h={{ base: '60px', md: '80px' }}>
           <Flex w="full" justify="space-between" align="center">
             <Flex>

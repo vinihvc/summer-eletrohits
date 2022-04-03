@@ -1,26 +1,27 @@
-import { useRouter } from 'next/router'
+import NextLink from 'next/link'
+
+import { Flex } from '@chakra-ui/react'
 
 import { FiHeart } from 'react-icons/fi'
 import { RiPlayList2Fill } from 'react-icons/ri'
 import { BsHouseDoor } from 'react-icons/bs'
 
-import { Flex, Icon } from '@chakra-ui/react'
-
 export const BottomNavigation = () => {
-  const { push, pathname } = useRouter()
-
   const paths = [
     {
+      label: 'Home',
       href: '/',
-      icon: BsHouseDoor
+      icon: <BsHouseDoor />
     },
     {
+      label: 'Favorites',
       href: '/favorites',
-      icon: FiHeart
+      icon: <FiHeart />
     },
     {
+      label: 'Queue',
       href: '/queue',
-      icon: RiPlayList2Fill
+      icon: <RiPlayList2Fill />
     }
   ]
 
@@ -36,22 +37,19 @@ export const BottomNavigation = () => {
       align="center"
       justify="space-between"
     >
-      {paths.map((path) => (
-        <Flex
-          key={path.href}
-          onClick={() => push(path.href)}
-          justify="center"
-          align="center"
-          flex="1 1 0%"
-          h="full"
-          sx={{
-            '&>svg': {
-              ...(pathname.includes(path.href) && { color: 'primary' })
-            }
-          }}
-        >
-          <Icon as={path.icon} boxSize="20px" />
-        </Flex>
+      {paths.map(({ label, href, icon }) => (
+        <NextLink key={href} href={href} passHref>
+          <Flex
+            as="a"
+            justify="center"
+            align="center"
+            flex="1"
+            h="full"
+            aria-label={`Go to ${label}`}
+          >
+            {icon}
+          </Flex>
+        </NextLink>
       ))}
     </Flex>
   )

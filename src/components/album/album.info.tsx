@@ -30,7 +30,7 @@ export const AlbumInfo = chakra(({ album, ...props }: AlbumInfoProps) => {
 
       <Flex direction="column" align={{ base: 'center', md: 'initial' }}>
         <Text
-          color="primary"
+          color="blue.200"
           fontSize="xs"
           textTransform="uppercase"
           fontWeight="medium"
@@ -47,8 +47,6 @@ export const AlbumInfo = chakra(({ album, ...props }: AlbumInfoProps) => {
         <Box>
           <Button
             leftIcon={<MdPlayArrow />}
-            borderRadius="full"
-            px={6}
             mt={5}
             onClick={() => playPlayList(album.songs!)}
           >

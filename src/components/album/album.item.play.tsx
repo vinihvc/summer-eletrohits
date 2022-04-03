@@ -26,23 +26,20 @@ export const AlbumItemPlay = ({ songs }: AlbumItemProps) => {
 
   return (
     <Flex
-      {...{
-        pos: 'absolute',
-        bg: 'blackAlpha.700',
-        display: 'flex',
-        align: 'center',
-        justify: 'center',
-        left: '0',
-        top: '0',
-        w: 'full',
-        h: 'full',
-        ...(!isPlayingAlbum && { opacity: 0, _hover: { opacity: 1 } })
-      }}
+      pos="absolute"
+      bg="blackAlpha.700"
+      display="flex"
+      align="center"
+      justify="center"
+      left="0"
+      top="0"
+      w="full"
+      h="full"
+      {...(!isPlayingAlbum && { opacity: 0, _hover: { opacity: 1 } })}
     >
       <Flex
         bg="whiteAlpha.500"
         borderRadius="full"
-        cursor="pointer"
         boxSize={16}
         justify="center"
         align="center"

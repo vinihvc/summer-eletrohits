@@ -18,7 +18,6 @@ export const Queue = ({ ...props }) => {
   return (
     <IconButton
       icon={<RiPlayList2Fill />}
-      borderRadius="full"
       aria-label="Open Queue"
       onClick={handleQueue}
       {...props}

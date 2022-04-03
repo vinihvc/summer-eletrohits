@@ -11,8 +11,6 @@ export const Repeat = ({ ...props }) => {
     <IconButton
       icon={<MdRepeat />}
       variant={isLooping ? 'solid' : 'ghost'}
-      color={isLooping ? 'primary' : 'current'}
-      borderRadius="full"
       aria-label="Repeat song"
       onClick={toggleLoop}
       {...props}

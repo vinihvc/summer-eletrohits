@@ -12,7 +12,7 @@ export const Header = () => {
       as="header"
       d={{ base: 'none', md: 'flex' }}
       bg="player"
-      boxShadow="xl"
+      boxShadow="dark-lg"
       pos="sticky"
       top={0}
       borderBottom="1px solid"
@@ -27,16 +27,14 @@ export const Header = () => {
             </Link>
           </NextLink>
 
-          <Flex as="nav">
-            <Stack listStyleType="none">
-              <NextLink href="/favorites" passHref>
-                <Link d="flex" alignItems="center" gap={2}>
-                  Favorites
-                  <FiHeart />
-                </Link>
-              </NextLink>
-            </Stack>
-          </Flex>
+          <Stack as="nav">
+            <NextLink href="/favorites" passHref>
+              <Link d="flex" alignItems="center" gap={2}>
+                Favorites
+                <FiHeart />
+              </Link>
+            </NextLink>
+          </Stack>
         </Flex>
       </Container>
     </Flex>

@@ -11,8 +11,6 @@ export const Shuffle = ({ ...props }) => {
     <IconButton
       icon={<MdShuffle />}
       variant={isShuffling ? 'solid' : 'ghost'}
-      color={isShuffling ? 'primary' : 'current'}
-      borderRadius="full"
       aria-label="Shuffle songs"
       onClick={toggleShuffle}
       {...props}

@@ -1,3 +1,5 @@
+import { useMemo } from 'react'
+
 import { FiHeart } from 'react-icons/fi'
 
 import { chakra, IconButton } from '@chakra-ui/react'
@@ -17,7 +19,9 @@ export const FavoriteButton = chakra(
 
     const { isMobile } = useDevice()
 
-    const isFavorited = favoriteSongs?.find((item) => item.id === song.id)
+    const isFavorited = useMemo(() => {
+      return favoriteSongs?.find((item) => item.id === song.id)
+    }, [favoriteSongs, song])
 
     const handleClick = () => {
       isFavorited ? handleUnfavoriteSong(song) : handleFavoriteSong(song)
@@ -28,13 +32,12 @@ export const FavoriteButton = chakra(
         icon={<FiHeart />}
         variant={isFavorited ? 'solid' : 'ghost'}
         aria-label={`${isFavorited ? 'Favorite' : 'Unfavorite'} song`}
-        borderRadius="full"
         size={isMobile ? 'sm' : 'md'}
         onClick={handleClick}
         sx={
           isFavorited && {
-            '>svg': {
-              fill: '#fff'
+            '> svg': {
+              fill: 'white'
             }
           }
         }

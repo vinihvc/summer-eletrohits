@@ -1,8 +1,9 @@
 import { chakra, Box, Flex, Spacer, Text } from '@chakra-ui/react'
 
-import { FavoriteButton } from 'components/action-button/favorite'
-import { PlayButton } from 'components/action-button/play-pause'
 import { usePlayer } from 'contexts/player'
+
+import { FavoriteButton } from 'components/action-button/favorite'
+import { PlayButton } from 'components/action-button/play'
 
 type SongItemProps = {
   song: SongType
@@ -17,7 +18,7 @@ export const SongItem = chakra(({ song, ...props }: SongItemProps) => {
       borderBottom="1px solid"
       borderColor="whiteAlpha.300"
       _hover={{ bg: 'whiteAlpha.50' }}
-      p={2}
+      p={4}
       gap={4}
       {...(song.id === currentSong?.id && { bg: 'whiteAlpha.50' })}
       {...props}

@@ -13,7 +13,6 @@ export const Volume = ({ ...props }) => {
     <Flex {...props}>
       <IconButton
         icon={volume ? <MdVolumeUp /> : <MdVolumeOff />}
-        borderRadius="full"
         variant={volume ? 'ghost' : 'solid'}
         aria-label="Toggle volume"
         onClick={toggleVolume}
