@@ -18,9 +18,6 @@ export const semanticColors = {
   bg: {
     _dark: '#030303'
   },
-  text: {
-    _dark: '#f0f0f0'
-  },
   player: {
     _dark: '#0a0b0b'
   }

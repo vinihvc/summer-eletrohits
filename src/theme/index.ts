@@ -1,7 +1,8 @@
 import { extendTheme, ThemeConfig } from '@chakra-ui/react'
 
-import { foundations, semanticTokens } from './foundations'
 import { globalStyles } from './global'
+import { foundations, semanticTokens } from './foundations'
+import { components } from './components'
 
 const config: ThemeConfig = {
   initialColorMode: 'dark',
@@ -12,5 +13,6 @@ export const theme = extendTheme({
   config,
   styles: globalStyles,
   semanticTokens,
-  ...foundations
+  ...foundations,
+  components
 })

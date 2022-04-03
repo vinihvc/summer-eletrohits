@@ -2,9 +2,9 @@ import { colors, semanticColors } from './colors'
 import { fonts } from './fonts'
 
 /**
- * Extending foundations
+ * Extend foundations
  *
- * @see https://chakra-ui.com/docs/styled-system/theming/customize-theme
+ * @see https://chakra-ui.com/docs/styled-system/theming/customize-theme#customizing-single-components
  */
 export const foundations = {
   colors,

@@ -2,10 +2,10 @@ export const globalStyles = {
   global: () => ({
     'html, body': {
       minH: 'full',
-      color: 'text',
+      color: 'white',
 
       '&:after': {
-        bgGradient: 'linear(to-b, bg, #222)',
+        bg: 'linear(to-b, bg, black',
         right: '0',
         left: '0',
         top: '0',
