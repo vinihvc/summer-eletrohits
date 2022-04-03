@@ -44,12 +44,12 @@ const Albums = ({ album }: AlbumsProps) => {
           w="full"
           h="100vh"
           top="0"
-          filter="blur(50px)"
+          filter="blur(100px)"
           backgroundImage={`url("${album.thumb}")`}
         />
 
         <Box
-          bgGradient="linear(to-b, blackAlpha.800, black)"
+          bgGradient="linear(to-b, blackAlpha.700, black)"
           h="full"
           w="full"
           maxH="200vh"
