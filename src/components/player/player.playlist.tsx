@@ -9,7 +9,7 @@ export const Playlist = ({ ...props }) => {
       <IconButton
         as="a"
         icon={<RiPlayList2Fill />}
-        aria-label="Open Queue"
+        aria-label="Open Playlist"
         {...props}
       />
     </Link>
