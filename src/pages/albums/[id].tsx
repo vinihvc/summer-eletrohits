@@ -2,11 +2,12 @@ import { GetStaticProps } from 'next'
 
 import { NextSeo } from 'next-seo'
 
-import { Box } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 
 import { AlbumInfo } from 'components/album/album.info'
 import { SongItem } from 'components/song-item'
 import { BackAlbums } from 'components/back-albums'
+import { CustomBg } from 'components/custom-bg'
 
 import api from 'services/api'
 
@@ -14,7 +15,7 @@ type AlbumsProps = {
   album: AlbumType
 }
 
-const Albums = ({ album }: AlbumsProps) => {
+const AlbumsPage = ({ album }: AlbumsProps) => {
   return (
     <>
       <NextSeo
@@ -34,40 +35,18 @@ const Albums = ({ album }: AlbumsProps) => {
         }}
       />
 
-      <Box h="full" minH="100vh" inset="0" pos="absolute" zIndex="-1">
-        <Box
-          transition="background-image 1s ease-in"
-          backgroundSize="cover"
-          transform="translateZ(0)"
-          pos="fixed"
-          backgroundPosition="center"
-          w="full"
-          h="100vh"
-          top="0"
-          filter="blur(100px)"
-          backgroundImage={`url("${album.thumb}")`}
-        />
+      <CustomBg image={album.thumb} />
 
-        <Box
-          bgGradient="linear(to-b, blackAlpha.700, black)"
-          h="full"
-          w="full"
-          maxH="200vh"
-          pos="sticky"
-          top="-100vh"
-        />
-      </Box>
-
-      <Box>
+      <Flex justify={{ base: 'center', md: 'initial' }}>
         <BackAlbums />
+      </Flex>
 
-        <AlbumInfo album={album} mt={2} />
+      <AlbumInfo album={album} mt={5} />
 
-        <Box mt={10}>
-          {album.songs?.map((song: SongType) => (
-            <SongItem key={song.id} song={song} mb={3} />
-          ))}
-        </Box>
+      <Box mt={10}>
+        {album.songs?.map((song: SongType) => (
+          <SongItem key={song.id} song={song} />
+        ))}
       </Box>
     </>
   )
@@ -99,4 +78,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-export default Albums
+export default AlbumsPage

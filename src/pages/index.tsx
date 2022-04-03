@@ -5,15 +5,18 @@ import { Grid, Heading } from '@chakra-ui/react'
 import { AlbumItem } from 'components/album/album.item'
 
 import api from 'services/api'
+import { CustomBg } from 'components/custom-bg'
 
 export type HomeProps = {
   albums?: AlbumType[]
 }
 
-const Home = ({ albums }: HomeProps) => {
+const HomePage = ({ albums }: HomeProps) => {
   return (
     <>
       <NextSeo title="Home" />
+
+      <CustomBg gradient={['pink.400', 'purple.700']} />
 
       <Heading as="h1" mb={10}>
         Albums
@@ -45,4 +48,4 @@ export const getStaticProps = async () => {
   }
 }
 
-export default Home
+export default HomePage

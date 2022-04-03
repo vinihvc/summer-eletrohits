@@ -9,13 +9,16 @@ import { MdPlayArrow } from 'react-icons/md'
 import { usePlayer } from 'contexts/player'
 
 import { SongItem } from 'components/song-item'
+import { CustomBg } from 'components/custom-bg'
 
-const Favorites = () => {
+const FavoritesPage = () => {
   const { favoriteSongs, playPlayList } = usePlayer()
 
   return (
     <>
       <NextSeo title="Favorites" />
+
+      <CustomBg gradient={['red.500', 'yellow.300']} />
 
       <Heading as="h1">Favorites</Heading>
 
@@ -24,19 +27,15 @@ const Favorites = () => {
           <Text my={5}>No favorite yet.</Text>
 
           <Link href="/" passHref>
-            <Button as="a" borderRadius="full" px={6}>
-              Discover
-            </Button>
+            <Button as="a">Discover</Button>
           </Link>
         </Box>
       ) : (
         <Button
           leftIcon={<MdPlayArrow />}
-          borderRadius="full"
-          px={6}
           mt={5}
-          onClick={() => playPlayList(favoriteSongs)}
           my={5}
+          onClick={() => playPlayList(favoriteSongs)}
         >
           Play
         </Button>
@@ -51,4 +50,4 @@ const Favorites = () => {
   )
 }
 
-export default Favorites
+export default FavoritesPage
