@@ -19,8 +19,8 @@ export const BottomNavigation = () => {
       icon: <FiHeart />
     },
     {
-      label: 'Queue',
-      href: '/queue',
+      label: 'Paylist',
+      href: '/paylist',
       icon: <RiPlayList2Fill />
     }
   ]

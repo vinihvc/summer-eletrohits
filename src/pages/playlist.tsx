@@ -6,20 +6,20 @@ import { Button, Heading, Text } from '@chakra-ui/react'
 
 import { usePlayer } from 'contexts/player'
 
-import { SongItem } from 'components/song-item'
 import { CustomBg } from 'components/custom-bg'
+import { SongList } from 'components/song/song.list'
 
-const QueuePage = () => {
+const PlaylistPage = () => {
   const { songList } = usePlayer()
 
   return (
     <>
-      <NextSeo title="Queue" />
+      <NextSeo title="Playlist" />
 
       <CustomBg gradient={['teal.200', 'purple.800']} />
 
       <Heading as="h1" mb={10}>
-        Songs in queue
+        Playlist
       </Heading>
 
       {songList.length === 0 && (
@@ -32,11 +32,9 @@ const QueuePage = () => {
         </>
       )}
 
-      {songList?.map((song: SongType) => (
-        <SongItem key={song.id} song={song} />
-      ))}
+      {songList && <SongList songs={songList} />}
     </>
   )
 }
 
-export default QueuePage
+export default PlaylistPage

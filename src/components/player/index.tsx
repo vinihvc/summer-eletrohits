@@ -10,7 +10,7 @@ import { Video } from './player.video'
 import { SongInfo } from './player.info'
 import { Actions } from './player.actions'
 import { Progress } from './player.progress'
-import { Queue } from './player.queue'
+import { Playlist } from './player.playlist'
 import { Volume } from './player.volume'
 import { Shuffle } from './player.shuffle'
 import { Repeat } from './player.repeat'
@@ -79,31 +79,30 @@ export const Player = ({ ...props }) => {
       right="0"
       bg="player"
       borderTop="3px solid"
-      borderColor="blue.50"
+      borderColor="blue.100"
       {...props}
     >
       <Container maxW="container.xl" pos="relative">
-        <Progress pos="absolute" top="-5px" left="0" right="0" />
+        <Progress pos="absolute" top="-4px" left="0" right="0" />
+
         <HStack w="full" align="center" h={{ base: '60px', md: '80px' }}>
-          <Flex w="full" justify="space-between" align="center">
-            <Flex>
-              <Video display={{ base: 'none', md: 'block' }} mr={5} />
+          <HStack spacing={4}>
+            <Video />
 
-              <SongInfo />
-            </Flex>
+            <SongInfo />
+          </HStack>
 
-            <Actions />
+          <Actions />
 
-            <HStack>
-              {!isMobile && <Repeat />}
+          <HStack>
+            {!isMobile && <Repeat />}
 
-              {!isMobile && <Shuffle />}
+            {!isMobile && <Shuffle />}
 
-              {!isMobile && <Queue />}
+            {!isMobile && <Playlist />}
 
-              {!isMobile && <Volume maxW="150px" />}
-            </HStack>
-          </Flex>
+            {!isMobile && <Volume maxW="150px" />}
+          </HStack>
         </HStack>
       </Container>
     </Flex>

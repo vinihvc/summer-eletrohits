@@ -1,5 +1,6 @@
 import { Flex, Icon } from '@chakra-ui/react'
-import { GiStripedSun } from 'react-icons/gi'
+
+import { GiHeraldicSun } from 'react-icons/gi'
 
 export const Logo = () => {
   return (
@@ -12,7 +13,7 @@ export const Logo = () => {
       letterSpacing="wide"
       gap={4}
     >
-      <Icon as={GiStripedSun} color="blue.200" boxSize={30} />
+      <Icon as={GiHeraldicSun} color="blue.500" boxSize={30} />
       Eletrohits
     </Flex>
   )

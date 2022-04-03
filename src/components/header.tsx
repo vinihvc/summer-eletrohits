@@ -22,14 +22,22 @@ export const Header = () => {
       <Container maxW="container.xl">
         <Flex justify="space-between" align="center" h={14}>
           <NextLink href="/" passHref>
-            <Link>
+            <Link
+              aria-label="Eletrohits, Back to homepage"
+              _hover={{ textDecor: 'none' }}
+            >
               <Logo />
             </Link>
           </NextLink>
 
           <Stack as="nav">
             <NextLink href="/favorites" passHref>
-              <Link d="flex" alignItems="center" gap={2}>
+              <Link
+                d="flex"
+                alignItems="center"
+                _hover={{ textDecor: 'none' }}
+                gap={2}
+              >
                 Favorites
                 <FiHeart />
               </Link>

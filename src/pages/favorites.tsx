@@ -8,8 +8,8 @@ import { MdPlayArrow } from 'react-icons/md'
 
 import { usePlayer } from 'contexts/player'
 
-import { SongItem } from 'components/song-item'
 import { CustomBg } from 'components/custom-bg'
+import { SongList } from 'components/song/song.list'
 
 const FavoritesPage = () => {
   const { favoriteSongs, playPlayList } = usePlayer()
@@ -41,11 +41,7 @@ const FavoritesPage = () => {
         </Button>
       )}
 
-      <Box mt={10}>
-        {favoriteSongs?.map((song: SongType) => (
-          <SongItem key={song.id} song={song} mb={3} />
-        ))}
-      </Box>
+      {favoriteSongs && <SongList songs={favoriteSongs} mt={10} />}
     </>
   )
 }

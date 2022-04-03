@@ -11,7 +11,12 @@ export const Video = ({ ...props }) => {
     usePlayer()
 
   return (
-    <Box position="relative" overflow="auto" {...props}>
+    <Box
+      display={{ base: 'none', md: 'block' }}
+      position="relative"
+      overflow="auto"
+      {...props}
+    >
       <BlurImage
         src={`https://img.youtube.com/vi/${currentSong?.youtubeId}/0.jpg`}
         alt={`${currentSong?.name} album cover`}

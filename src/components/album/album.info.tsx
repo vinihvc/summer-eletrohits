@@ -1,4 +1,14 @@
-import { Button, Flex, Heading, Text, chakra, Box } from '@chakra-ui/react'
+import {
+  Button,
+  Flex,
+  Heading,
+  Text,
+  chakra,
+  Box,
+  VStack
+} from '@chakra-ui/react'
+
+import { motion } from 'framer-motion'
 
 import { MdPlayArrow } from 'react-icons/md'
 
@@ -28,7 +38,13 @@ export const AlbumInfo = chakra(({ album, ...props }: AlbumInfoProps) => {
         />
       </Flex>
 
-      <Flex direction="column" align={{ base: 'center', md: 'initial' }}>
+      <VStack
+        as={motion.div}
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        direction="column"
+        align={{ base: 'center', md: 'initial' }}
+      >
         <Text
           color="blue.200"
           fontSize="xs"
@@ -38,7 +54,7 @@ export const AlbumInfo = chakra(({ album, ...props }: AlbumInfoProps) => {
           Album
         </Text>
 
-        <Heading as="h2" size="xl" fontWeight="bold">
+        <Heading as="h2" fontSize={{ base: 'lg', md: 'xl' }} fontWeight="bold">
           {album.name}
         </Heading>
 
@@ -47,13 +63,12 @@ export const AlbumInfo = chakra(({ album, ...props }: AlbumInfoProps) => {
         <Box>
           <Button
             leftIcon={<MdPlayArrow />}
-            mt={5}
             onClick={() => playPlayList(album.songs!)}
           >
             Play
           </Button>
         </Box>
-      </Flex>
+      </VStack>
     </Flex>
   )
 })

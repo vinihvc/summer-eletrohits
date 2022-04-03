@@ -9,18 +9,15 @@ export const SongInfo = ({ ...props }) => {
 
   return (
     <Flex align="center" {...props}>
-      <Flex direction="column">
-        <Text
-          as="span"
-          fontSize="sm"
-          maxW={{ base: 150, md: 200 }}
-          fontWeight="medium"
-          isTruncated
-        >
+      <Flex
+        direction="column"
+        maxW={{ base: 150, sm: 250, md: 170, lg: 'full' }}
+      >
+        <Text as="span" fontSize="sm" fontWeight="medium" isTruncated>
           {currentSong?.name}
         </Text>
 
-        <Text as="span" fontSize="xs" maxW={{ base: 150, md: 200 }} isTruncated>
+        <Text as="span" fontSize="xs" isTruncated>
           {currentSong?.singer}
         </Text>
       </Flex>

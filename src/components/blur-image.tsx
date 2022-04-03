@@ -16,6 +16,7 @@ export const BlurImage = chakra(({ src, alt, ...props }: BlurImageProps) => {
     <AspectRatio
       ratio={1 / 1}
       w="full"
+      transitionDuration="0.3s"
       overflow="hidden"
       borderRadius="lg"
       bg="gray.900"

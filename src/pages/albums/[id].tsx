@@ -2,12 +2,12 @@ import { GetStaticProps } from 'next'
 
 import { NextSeo } from 'next-seo'
 
-import { Box, Flex } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 
 import { AlbumInfo } from 'components/album/album.info'
-import { SongItem } from 'components/song-item'
 import { BackAlbums } from 'components/back-albums'
 import { CustomBg } from 'components/custom-bg'
+import { SongList } from 'components/song/song.list'
 
 import api from 'services/api'
 
@@ -43,11 +43,7 @@ const AlbumsPage = ({ album }: AlbumsProps) => {
 
       <AlbumInfo album={album} mt={5} />
 
-      <Box mt={10}>
-        {album.songs?.map((song: SongType) => (
-          <SongItem key={song.id} song={song} />
-        ))}
-      </Box>
+      {album.songs && <SongList songs={album.songs} mt={10} />}
     </>
   )
 }
