@@ -6,7 +6,8 @@ import {
   RefObject,
   useRef,
   useEffect,
-  useCallback
+  useCallback,
+  useMemo
 } from 'react'
 
 import ReactPlayer, { ReactPlayerProps } from 'react-player/lazy'
@@ -43,6 +44,7 @@ type PlayerContextData = {
   $player: RefObject<ReactPlayer>
   progress: number
   onProgress: (progress: ReactPlayerProps) => void
+  onEnded: () => void
   handleProgress: (progress: number) => void
 }
 
@@ -73,6 +75,18 @@ export const PlayerProvider = ({ children }: PlayerContextProviderProps) => {
 
     getFavoriteSongs()
   }, [])
+
+  const currentSong = useMemo(() => {
+    return songList[currentIndex]
+  }, [songList, currentIndex])
+
+  const hasPrevious = useMemo(() => {
+    return currentIndex > 0
+  }, [currentIndex])
+
+  const hasNext = useMemo(() => {
+    return currentIndex + 1 < songList.length
+  }, [currentIndex, songList.length])
 
   const playSong = useCallback((song: SongType) => {
     setSongList([song])
@@ -151,22 +165,6 @@ export const PlayerProvider = ({ children }: PlayerContextProviderProps) => {
     volume > 0 && setVolume((old) => old - 0.05)
   }, [volume])
 
-  const onProgress = useCallback(({ played }: ReactPlayerProps) => {
-    setProgress(played)
-  }, [])
-
-  const handleProgress = useCallback((value: number) => {
-    setProgress(value)
-
-    $player.current?.seekTo(value)
-  }, [])
-
-  const currentSong = songList[currentIndex]
-
-  const hasPrevious = currentIndex > 0
-
-  const hasNext = isShuffling || currentIndex + 1 < songList.length
-
   const playNext = useCallback(() => {
     if (isShuffling) {
       const nextRandomSongIndex = Math.floor(Math.random() * songList.length)
@@ -176,6 +174,20 @@ export const PlayerProvider = ({ children }: PlayerContextProviderProps) => {
       setCurrentIndex(currentIndex + 1)
     }
   }, [isShuffling, currentIndex, hasNext, songList])
+
+  const onProgress = useCallback(({ played }: ReactPlayerProps) => {
+    setProgress(played)
+  }, [])
+
+  const onEnded = useCallback(() => {
+    if (hasNext) playNext()
+  }, [hasNext, playNext])
+
+  const handleProgress = useCallback((value: number) => {
+    setProgress(value)
+
+    $player.current?.seekTo(value)
+  }, [])
 
   const playPrevious = useCallback(() => {
     if (hasPrevious) {
@@ -215,6 +227,7 @@ export const PlayerProvider = ({ children }: PlayerContextProviderProps) => {
         $player,
         progress,
         onProgress,
+        onEnded,
         handleProgress
       }}
     >

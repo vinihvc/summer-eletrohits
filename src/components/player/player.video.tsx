@@ -1,34 +1,23 @@
-import { Box, Image } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 
 import ReactPlayer from 'react-player/lazy'
 
 import { usePlayer } from 'contexts/player'
 
-export const Video = ({ ...props }) => {
-  const {
-    $player,
-    isPlaying,
-    currentSong,
-    playNext,
-    hasNext,
-    volume,
-    onProgress
-  } = usePlayer()
+import { BlurImage } from 'components/blur-image'
 
-  const handleEpisodeEnded = () => {
-    if (hasNext) {
-      playNext()
-    }
-  }
+export const Video = ({ ...props }) => {
+  const { $player, isPlaying, currentSong, onEnded, volume, onProgress } =
+    usePlayer()
 
   return (
-    <Box pos="relative" overflow="auto" {...props}>
-      <Image
+    <Box position="relative" overflow="auto" {...props}>
+      <BlurImage
         src={`https://img.youtube.com/vi/${currentSong?.youtubeId}/0.jpg`}
-        boxSize="40px"
+        alt={`${currentSong?.name} album cover`}
+        boxSize={10}
         borderRadius="full"
         objectFit="cover"
-        fallbackSrc="https://via.placeholder.com/150/000?text="
       />
 
       <ReactPlayer
@@ -37,12 +26,12 @@ export const Video = ({ ...props }) => {
         url={`http://youtu.be/${currentSong?.youtubeId}`}
         volume={volume}
         onProgress={onProgress}
-        onEnded={handleEpisodeEnded}
+        onEnded={onEnded}
         width={0}
         height={0}
       />
 
-      <Box bottom="0" left="0" pos="absolute" right="0" top="0" />
+      <Box bottom="0" left="0" position="absolute" right="0" top="0" />
     </Box>
   )
 }

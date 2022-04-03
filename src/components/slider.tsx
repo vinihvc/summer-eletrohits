@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import {
+  chakra,
   Slider as SliderBase,
   SliderFilledTrack,
   SliderThumb,
@@ -12,7 +13,7 @@ type SliderProps = {
   onChange?: (value: number) => void
 }
 
-export const Slider = ({ value, onChange, ...props }: SliderProps) => {
+export const Slider = chakra(({ value, onChange, ...props }: SliderProps) => {
   const [hover, setHover] = useState(false)
 
   return (
@@ -25,13 +26,19 @@ export const Slider = ({ value, onChange, ...props }: SliderProps) => {
       focusThumbOnChange={false}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      color="primary"
+      colorScheme="blue"
       {...props}
     >
-      <SliderTrack>
+      <SliderTrack borderRadius="none" h="2px">
         <SliderFilledTrack />
       </SliderTrack>
-      <SliderThumb opacity={hover ? '1' : '0'} transition="opacity .2s" />
+
+      <SliderThumb
+        opacity={hover ? '1' : '0'}
+        transition="opacity .2s"
+        boxSize={3}
+        bg="blue.300"
+      />
     </SliderBase>
   )
-}
+})

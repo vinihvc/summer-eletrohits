@@ -12,7 +12,7 @@ export const Logo = () => {
       letterSpacing="wide"
       gap={4}
     >
-      <Icon as={GiStripedSun} color="yellow.200" boxSize={30} />
+      <Icon as={GiStripedSun} color="blue.200" boxSize={30} />
       Eletrohits
     </Flex>
   )

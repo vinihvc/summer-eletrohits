@@ -13,8 +13,11 @@ import { PlayerProvider } from 'contexts/player'
 
 import { DefaultLayout } from 'layouts/default'
 
-import { theme } from 'theme'
 import { Player } from 'components/player'
+import { BottomNavigation } from 'components/bottom-navigation'
+import { Header } from 'components/header'
+
+import { theme } from 'theme'
 
 const App = ({ Component, pageProps, router }: AppProps) => {
   return (
@@ -32,6 +35,8 @@ const App = ({ Component, pageProps, router }: AppProps) => {
 
       <PlayerProvider>
         <ChakraProvider theme={theme}>
+          <Header />
+
           <AnimatePresence>
             <motion.div
               key={router.route}
@@ -45,6 +50,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
             </motion.div>
           </AnimatePresence>
 
+          <BottomNavigation />
           <Player />
         </ChakraProvider>
       </PlayerProvider>

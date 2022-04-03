@@ -10,6 +10,7 @@ export const Header = () => {
   return (
     <Flex
       as="header"
+      d={{ base: 'none', md: 'flex' }}
       bg="player"
       boxShadow="xl"
       pos="sticky"

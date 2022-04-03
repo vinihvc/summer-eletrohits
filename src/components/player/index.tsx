@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { Container, Flex } from '@chakra-ui/react'
+import { Container, Flex, HStack } from '@chakra-ui/react'
 
 import { usePlayer } from 'contexts/player'
 
@@ -29,17 +29,35 @@ export const Player = ({ ...props }) => {
 
   useEffect(() => {
     const keyboardControl = (e: KeyboardEvent) => {
-      e.code === 'Space' && togglePlay()
+      if (e.code === 'Space') {
+        e.preventDefault()
+        togglePlay()
+      }
 
-      e.code === 'ArrowRight' && playNext()
+      if (e.code === 'ArrowRight') {
+        e.preventDefault()
+        playNext()
+      }
 
-      e.code === 'ArrowLeft' && playPrevious()
+      if (e.code === 'ArrowLeft') {
+        e.preventDefault()
+        playPrevious()
+      }
 
-      e.code === 'ArrowLeft' && playPrevious()
+      if (e.code === 'ArrowLeft') {
+        e.preventDefault()
+        playPrevious()
+      }
 
-      e.code === 'ArrowUp' && volumeUp()
+      if (e.code === 'ArrowUp') {
+        e.preventDefault()
+        volumeUp()
+      }
 
-      e.code === 'ArrowDown' && volumeDown()
+      if (e.code === 'ArrowDown') {
+        e.preventDefault()
+        volumeDown()
+      }
     }
 
     document.addEventListener('keydown', keyboardControl)
@@ -55,40 +73,43 @@ export const Player = ({ ...props }) => {
 
   return (
     <Flex
-      bg="player"
-      backdropFilter="blur(10px)"
-      align="center"
-      w="100%"
-      h={{ base: '60px', md: '80px' }}
-      pos="fixed"
+      pos="sticky"
       bottom={{ base: '50px', md: '0px' }}
-      borderBottom="1px solid "
-      borderColor="gray.700"
-      zIndex="sticky"
+      left="0"
+      right="0"
+      bg="player"
+      borderTop="2px solid"
+      borderColor="blue.50"
       {...props}
     >
-      <Progress pos="absolute" top="-16px" left="0" right="0" />
+      <Container maxW="container.xl" pos="relative">
+        <Progress
+          pos="absolute"
+          top={{ base: '-17px', md: '-7px' }}
+          left="0"
+          right="0"
+        />
+        <HStack w="full" align="center" h={{ base: '60px', md: '80px' }}>
+          <Flex w="full" justify="space-between" align="center">
+            <Flex>
+              <Video display={{ base: 'none', md: 'block' }} mr={5} />
 
-      <Container maxW="full" px={{ base: 5, md: 10 }} pos="relative">
-        <Flex justify="space-between" align="center">
-          <Flex w={{ md: '30%' }}>
-            <Video display={{ base: 'none', md: 'block' }} mr={5} />
+              <SongInfo />
+            </Flex>
 
-            <SongInfo />
+            <Actions />
+
+            <HStack>
+              {!isMobile && <Repeat />}
+
+              {!isMobile && <Shuffle />}
+
+              {!isMobile && <Queue />}
+
+              {!isMobile && <Volume maxW="150px" />}
+            </HStack>
           </Flex>
-
-          <Actions />
-
-          <Flex w={{ md: '30%' }}>
-            {!isMobile && <Repeat mr={3} />}
-
-            {!isMobile && <Shuffle mr={3} />}
-
-            {!isMobile && <Queue mr={3} />}
-
-            {!isMobile && <Volume maxW="150px" />}
-          </Flex>
-        </Flex>
+        </HStack>
       </Container>
     </Flex>
   )

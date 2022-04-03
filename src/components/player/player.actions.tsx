@@ -19,7 +19,7 @@ export const Actions = () => {
   return (
     <Flex
       align="center"
-      w={{ base: '100%', md: '40%' }}
+      w={{ base: 'full', md: '40%' }}
       justify={{ base: 'flex-end', md: 'center' }}
     >
       <IconButton

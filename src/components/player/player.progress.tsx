@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 
 import { usePlayer } from 'contexts/player'
 
@@ -8,8 +8,8 @@ export const Progress = ({ ...props }) => {
   const { progress, handleProgress } = usePlayer()
 
   return (
-    <Box {...props}>
+    <Flex {...props}>
       <Slider value={progress} onChange={handleProgress} />
-    </Box>
+    </Flex>
   )
 }
