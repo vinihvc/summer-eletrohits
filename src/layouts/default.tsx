@@ -13,6 +13,7 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
         {children}
       </Container>
 
+      {/* Margin bottom for <BottomNavigation */}
       <Footer mb={{ base: '50px', md: 0 }} />
     </>
   )
