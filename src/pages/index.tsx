@@ -2,10 +2,12 @@ import { NextSeo } from 'next-seo'
 
 import { Grid, Heading } from '@chakra-ui/react'
 
+import { motion } from 'framer-motion'
+
 import { AlbumItem } from 'components/album/album.item'
+import { CustomBg } from 'components/custom-bg'
 
 import api from 'services/api'
-import { CustomBg } from 'components/custom-bg'
 
 export type HomeProps = {
   albums?: AlbumType[]
@@ -22,17 +24,24 @@ const HomePage = ({ albums }: HomeProps) => {
         Albums
       </Heading>
 
-      <Grid
-        templateColumns={{
-          base: 'repeat(auto-fit, minmax(150px, 1fr))',
-          sm: 'repeat(auto-fit, minmax(200px, 1fr))'
-        }}
-        gap={{ base: 5, sm: 10 }}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        //
+        transition={{ duration: 0.3 }}
       >
-        {albums?.map((album: AlbumType) => (
-          <AlbumItem key={album.id} album={album} />
-        ))}
-      </Grid>
+        <Grid
+          templateColumns={{
+            base: 'repeat(auto-fit, minmax(150px, 1fr))',
+            sm: 'repeat(auto-fit, minmax(200px, 1fr))'
+          }}
+          gap={{ base: 5, sm: 10 }}
+        >
+          {albums?.map((album) => (
+            <AlbumItem key={album.id} album={album} />
+          ))}
+        </Grid>
+      </motion.div>
     </>
   )
 }

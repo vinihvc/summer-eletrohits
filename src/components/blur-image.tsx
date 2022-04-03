@@ -28,15 +28,13 @@ export const BlurImage = chakra(({ src, alt, ...props }: BlurImageProps) => {
         alt={alt}
         layout="fill"
         objectFit="cover"
-        transitionTimingFunction="cubic-bezier(.4, 0, .2, 1)"
+        transitionTimingFunction="cubic-bezier(.2, 0, .2, 1)"
         transitionDuration="0.3s"
         {...(isLoading
           ? {
-              transform: 'scale(1.1)',
-              filter: 'blur(20px)'
+              filter: 'blur(10px)'
             }
           : {
-              transform: 'scale(1)',
               filter: 'blur(0px)'
             })}
         onLoadingComplete={() => setLoading(false)}

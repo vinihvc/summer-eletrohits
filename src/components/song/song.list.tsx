@@ -17,9 +17,9 @@ export const SongList = chakra(({ songs, ...props }: SongListProps) => {
             as={motion.div}
             key={index}
             layoutId={song.name}
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
+            exit={{ opacity: 0, y: 20 }}
             viewport={{ once: true }}
           >
             <SongItem key={song.id} song={song} />

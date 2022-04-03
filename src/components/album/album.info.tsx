@@ -30,7 +30,13 @@ export const AlbumInfo = chakra(({ album, ...props }: AlbumInfoProps) => {
       gap={{ base: 5, md: 10 }}
       {...props}
     >
-      <Flex justify={{ base: 'center', md: 'initial' }} boxShadow="lg">
+      <Flex
+        as={motion.div}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        justify={{ base: 'center', md: 'initial' }}
+        boxShadow="lg"
+      >
         <BlurImage
           src={album.thumb}
           alt={album.name}
