@@ -35,9 +35,8 @@ export const AlbumItemPlay = ({ songs }: AlbumItemProps) => {
       top="0"
       w="full"
       h="full"
-      opacity="0"
       transition="0.2s"
-      {...(!isPlayingAlbum && { _hover: { opacity: 1 } })}
+      {...(!isPlayingAlbum && { opacity: 0, _hover: { opacity: 1 } })}
     >
       <Flex
         bg="whiteAlpha.500"
