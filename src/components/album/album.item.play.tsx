@@ -15,7 +15,7 @@ export const AlbumItemPlay = ({ songs }: AlbumItemProps) => {
   const { currentSong, playPlayList, togglePlay, isPlaying } = usePlayer()
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation()
+    e.preventDefault()
 
     isPlayingAlbum ? togglePlay() : playPlayList(songs!)
   }
@@ -28,14 +28,16 @@ export const AlbumItemPlay = ({ songs }: AlbumItemProps) => {
     <Flex
       pos="absolute"
       bg="blackAlpha.700"
-      display="flex"
+      display={{ base: 'none', md: 'flex' }}
       align="center"
       justify="center"
       left="0"
       top="0"
       w="full"
       h="full"
-      {...(!isPlayingAlbum && { opacity: 0, _hover: { opacity: 1 } })}
+      opacity="0"
+      transition="0.2s"
+      {...(!isPlayingAlbum && { _hover: { opacity: 1 } })}
     >
       <Flex
         bg="whiteAlpha.500"
@@ -43,6 +45,7 @@ export const AlbumItemPlay = ({ songs }: AlbumItemProps) => {
         boxSize={16}
         justify="center"
         align="center"
+        transition="0.2s"
         _hover={{ transform: 'scale(1.1)' }}
         onClick={handleClick}
       >

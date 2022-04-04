@@ -11,29 +11,35 @@ type AlbumItemProps = {
 
 export const AlbumItem = ({ album }: AlbumItemProps) => {
   return (
-    <Link as={NextLink} href={`/albums/${album.id}`}>
-      <Box as="article" cursor="pointer">
-        <Box
-          pos="relative"
-          borderRadius="lg"
-          overflow="auto"
-          boxShadow="dark-lg"
-        >
-          <BlurImage src={album.thumb} alt={album.name} />
+    <NextLink href={`/albums/${album.id}`} passHref>
+      <Link
+        _hover={{ textDecor: 'none' }}
+        _focus={{ boxShadow: 'none' }}
+        aria-label={album.name}
+      >
+        <Box as="article" cursor="pointer">
+          <Box
+            pos="relative"
+            borderRadius="lg"
+            overflow="auto"
+            boxShadow="dark-lg"
+          >
+            <BlurImage src={album.thumb} alt={album.name} />
 
-          <AlbumItemPlay songs={album.songs} />
+            <AlbumItemPlay songs={album.songs} />
+          </Box>
+
+          <Text
+            fontSize={{ md: 'lg' }}
+            fontWeight="medium"
+            noOfLines={1}
+            mt={3}
+            isTruncated
+          >
+            {album.name}
+          </Text>
         </Box>
-
-        <Text
-          fontSize={{ md: 'lg' }}
-          fontWeight="medium"
-          noOfLines={1}
-          mt={3}
-          isTruncated
-        >
-          {album.name}
-        </Text>
-      </Box>
-    </Link>
+      </Link>
+    </NextLink>
   )
 }
