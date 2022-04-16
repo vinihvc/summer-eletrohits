@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react'
+import { HStack } from '@chakra-ui/react'
 
 import { useStore } from 'store'
 
@@ -9,12 +9,10 @@ export const PlayerVolume = ({ ...props }) => {
   const { volume, changeVolume } = useStore()
 
   return (
-    <Flex {...props}>
+    <HStack w="full" spacing={4} {...props}>
       <VolumeButton />
 
-      <Flex w="150px" ml={5}>
-        <Slider value={volume} onChange={changeVolume} />
-      </Flex>
-    </Flex>
+      <Slider w="100px" value={volume} onChange={changeVolume} />
+    </HStack>
   )
 }

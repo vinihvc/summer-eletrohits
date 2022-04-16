@@ -14,6 +14,7 @@ export const PrevButton = chakra(({ ...props }) => {
   return (
     <IconButton
       icon={<BsSkipStartFill />}
+      title="Previous song"
       size={isMobile ? 'sm' : 'md'}
       variant="ghost"
       aria-label="Previous song"

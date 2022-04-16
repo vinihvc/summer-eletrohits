@@ -11,12 +11,15 @@ export const NextButton = chakra(({ ...props }) => {
 
   const { isMobile } = useDevice()
 
+  const title = 'Next song'
+
   return (
     <IconButton
       icon={<BsSkipEndFill />}
+      title={title}
+      aria-label={title}
       size={isMobile ? 'sm' : 'md'}
       variant="ghost"
-      aria-label="Skip song"
       onClick={playNext}
       {...props}
     />

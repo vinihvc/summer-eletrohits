@@ -23,7 +23,7 @@ export const Slider = chakra(({ value, onChange, ...props }: SliderProps) => {
       focusThumbOnChange={false}
       {...props}
     >
-      <SliderTrack borderRadius="none" h="3px">
+      <SliderTrack borderRadius="none" h="4px">
         <SliderFilledTrack bg="blue.500" />
       </SliderTrack>
 

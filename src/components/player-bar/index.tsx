@@ -6,14 +6,15 @@ import { useStore } from 'store'
 
 import { useDevice } from 'hooks/use-device'
 
-import { PlayerThumb } from './player.thumb'
+import { Player } from 'components/player'
+
 import { PlayerSongInfo } from './player.info'
 import { PlayerActions } from './player.actions'
 import { PlayerProgress } from './player.progress'
 import { PlayerPlaylist } from './player.playlist'
 import { PlayerVolume } from './player.volume'
 
-const Player = ({ ...props }) => {
+const PlayerBar = ({ ...props }) => {
   const {
     currentSong,
     playNext,
@@ -70,37 +71,37 @@ const Player = ({ ...props }) => {
   }
 
   return (
-    <Flex
-      pos="sticky"
-      bottom={{ base: '50px', md: '0px' }}
-      left="0"
-      right="0"
-      bg="player"
-      borderTop="3px solid"
-      borderColor="blue.100"
-      {...props}
-    >
-      <Container maxW="container.xl" pos="relative">
-        <PlayerProgress pos="absolute" top="-4px" left="0" right="0" />
+    <>
+      <Flex
+        pos="sticky"
+        bottom={{ base: '50px', md: '0px' }}
+        left="0"
+        right="0"
+        bg="player"
+        borderTop="3px solid"
+        borderColor="blue.100"
+        {...props}
+      >
+        <Container maxW="container.xl" pos="relative">
+          <PlayerProgress />
 
-        <HStack w="full" align="center" h={{ base: '60px', md: '80px' }}>
-          <HStack spacing={4}>
-            <PlayerThumb />
+          <HStack w={{ md: 'full' }} align="center" h={20}>
+            <PlayerSongInfo w={{ lg: '20%' }} />
 
-            <PlayerSongInfo />
+            <PlayerActions flex={1} />
+
+            <HStack w={{ lg: '20%' }}>
+              {!isMobile && <PlayerPlaylist />}
+
+              {!isMobile && <PlayerVolume />}
+            </HStack>
           </HStack>
+        </Container>
+      </Flex>
 
-          <PlayerActions />
-
-          <HStack>
-            {!isMobile && <PlayerPlaylist />}
-
-            {!isMobile && <PlayerVolume maxW="150px" />}
-          </HStack>
-        </HStack>
-      </Container>
-    </Flex>
+      <Player isHidden />
+    </>
   )
 }
 
-export default Player
+export default PlayerBar

@@ -19,7 +19,7 @@ import { Footer } from 'components/footer'
 
 import { theme } from 'theme'
 
-const Player = dynamic(() => import('components/player'))
+const PlayerBar = dynamic(() => import('components/player-bar'))
 
 const App = ({ Component, pageProps, router }: AppProps) => {
   const { initiateLikes } = useStore()
@@ -63,7 +63,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
 
           <BottomNavigation />
 
-          <Player />
+          <PlayerBar />
         </MotionConfig>
       </ChakraProvider>
     </>

@@ -7,7 +7,7 @@ import { PlayerSlice } from './player'
 export type SongSlice = {
   playlist: SongType[]
   liked: SongType[]
-  currentIndex: number
+  currentIndex: () => number
   currentSong: () => SongType
   play: (list: SongType[], index?: number) => void
   togglePlay: () => void
@@ -15,22 +15,26 @@ export type SongSlice = {
   playPrevious: () => void
   initiateLikes: () => void
   like: (song: SongType) => void
-  deslike: (song: SongType) => void
+  dislike: (song: SongType) => void
 }
 
 export const songSlice: StoreSlice<SongSlice, PlayerSlice> = (set, get) => {
   return {
     playlist: [],
     liked: [],
-    currentIndex: 0,
-    currentSong: () => get().playlist[get().currentIndex],
+    currentIndex: () =>
+      get().$player.current?.getInternalPlayer()?.getPlaylistIndex() || 0,
+    currentSong: () => {
+      return get().playlist[get().currentIndex()]
+    },
     play: (list, index = 0) => {
       set((state) => ({
         ...state,
         playlist: list,
-        isPlaying: true,
-        currentIndex: index
+        isPlaying: true
       }))
+
+      get().$player.current?.getInternalPlayer().playVideoAt(index)
     },
     togglePlay: () => {
       set((state) => ({
@@ -39,28 +43,20 @@ export const songSlice: StoreSlice<SongSlice, PlayerSlice> = (set, get) => {
       }))
     },
     playNext: () => {
-      const hasNext = get().currentIndex < get().playlist.length - 1
+      get().$player.current?.getInternalPlayer().nextVideo()
 
-      if (hasNext) {
-        const nextIndex = get().currentIndex + 1
-
-        set((state) => ({
-          ...state,
-          currentIndex: nextIndex
-        }))
-      }
+      set((state) => ({
+        ...state,
+        isPlaying: true
+      }))
     },
     playPrevious: () => {
-      const hasPrevious = get().currentIndex > 0
+      get().$player.current?.getInternalPlayer().previousVideo()
 
-      if (hasPrevious) {
-        const previousIndex = get().currentIndex - 1
-
-        set((state) => ({
-          ...state,
-          currentIndex: previousIndex
-        }))
-      }
+      set((state) => ({
+        ...state,
+        isPlaying: true
+      }))
     },
     initiateLikes: async () => {
       const liked = await storage.getSongs()
@@ -80,7 +76,7 @@ export const songSlice: StoreSlice<SongSlice, PlayerSlice> = (set, get) => {
         liked
       }))
     },
-    deslike: async (song: SongType) => {
+    dislike: async (song: SongType) => {
       await storage.removeSong(song)
 
       const liked = [...get().liked].filter((s) => s.id !== song.id)

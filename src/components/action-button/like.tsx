@@ -13,7 +13,7 @@ type LikeButtonProps = {
 }
 
 export const LikeButton = chakra(({ song, ...props }: LikeButtonProps) => {
-  const { liked, like, deslike } = useStore()
+  const { liked, like, dislike } = useStore()
 
   const { isMobile } = useDevice()
 
@@ -22,14 +22,17 @@ export const LikeButton = chakra(({ song, ...props }: LikeButtonProps) => {
   }, [liked, song])
 
   const handleClick = () => {
-    isLiked ? deslike(song) : like(song)
+    isLiked ? dislike(song) : like(song)
   }
+
+  const title = useMemo(() => (isLiked ? 'Like' : 'Dislike'), [isLiked])
 
   return (
     <IconButton
       icon={<FiHeart />}
       variant={isLiked ? 'solid' : 'ghost'}
-      aria-label={`${isLiked ? 'Like' : 'Deslike'} song`}
+      title={title}
+      aria-label={title}
       size={isMobile ? 'sm' : 'md'}
       onClick={handleClick}
       sx={

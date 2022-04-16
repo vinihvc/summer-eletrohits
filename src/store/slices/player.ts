@@ -13,7 +13,6 @@ export type PlayerSlice = {
   saveVolume: number
   progress: number
   onProgress: ({ played }: YouTubePlayerProps) => void
-  onEnded: () => void
   togglePlay: () => void
   toggleVolume: () => void
   changeVolume: (volume: number) => void
@@ -34,9 +33,6 @@ export const playerSlice: StoreSlice<PlayerSlice, SongSlice> = (set, get) => {
         ...state,
         progress: played
       }))
-    },
-    onEnded: () => {
-      get().playNext()
     },
     togglePlay: () => {
       set((state) => ({

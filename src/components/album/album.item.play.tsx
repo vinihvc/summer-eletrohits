@@ -10,12 +10,12 @@ type AlbumItemProps = {
 }
 
 export const AlbumItemPlay = ({ songs }: AlbumItemProps) => {
-  const { currentSong, play, isPlaying } = useStore()
+  const { currentSong, play, togglePlay, isPlaying } = useStore()
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
 
-    songs && play(songs)
+    isPlayingAlbum ? togglePlay() : songs && play(songs)
   }
 
   const isPlayingAlbum =
