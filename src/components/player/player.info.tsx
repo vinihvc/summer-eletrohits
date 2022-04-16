@@ -1,11 +1,11 @@
-import { usePlayer } from 'contexts/player'
-
 import { Flex, Text } from '@chakra-ui/react'
 
-import { FavoriteButton } from 'components/action-button/favorite'
+import { useStore } from 'store'
 
-export const SongInfo = ({ ...props }) => {
-  const { currentSong } = usePlayer()
+import { LikeButton } from 'components/action-button/like'
+
+export const PlayerSongInfo = ({ ...props }) => {
+  const { currentSong } = useStore()
 
   return (
     <Flex align="center" {...props}>
@@ -14,16 +14,16 @@ export const SongInfo = ({ ...props }) => {
         maxW={{ base: 150, sm: 250, md: 170, lg: 'full' }}
       >
         <Text as="span" fontSize="sm" fontWeight="medium" isTruncated>
-          {currentSong?.name}
+          {currentSong()?.name}
         </Text>
 
         <Text as="span" fontSize="xs" isTruncated>
-          {currentSong?.singer}
+          {currentSong()?.singer}
         </Text>
       </Flex>
 
       {currentSong && (
-        <FavoriteButton song={currentSong} ml={{ base: 3, md: 5 }} />
+        <LikeButton song={currentSong()} ml={{ base: 3, md: 5 }} />
       )}
     </Flex>
   )

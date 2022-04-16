@@ -1,36 +1,37 @@
-import { useMemo } from 'react'
-
-import { usePlayer } from 'contexts/player'
-
 import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs'
 
 import { chakra, IconButton } from '@chakra-ui/react'
 
+import { useStore } from 'store'
+
 type PlayButtonProps = {
-  song: SongType
+  songs: SongType[]
+  index: number
 }
 
-export const PlayButton = chakra(({ song, ...props }: PlayButtonProps) => {
-  const { isPlaying, togglePlay, currentSong, handleClickSongItem } =
-    usePlayer()
+export const PlayButton = chakra(
+  ({ songs, index, ...props }: PlayButtonProps) => {
+    const { isPlaying, togglePlay, currentSong, play } = useStore()
 
-  const isSameSong = useMemo(() => {
-    return currentSong?.id === song.id
-  }, [currentSong, song])
+    const song = songs[index]
 
-  const handleClick = () => {
-    isPlaying && isSameSong ? togglePlay() : handleClickSongItem(song)
+    const isSameSong = currentSong()?.id === song.id
+
+    const handleClick = () => {
+      isPlaying && isSameSong ? togglePlay() : play(songs, index)
+    }
+
+    return (
+      <IconButton
+        icon={isSameSong && isPlaying ? <BsPauseFill /> : <BsFillPlayFill />}
+        title={isPlaying ? 'Pause' : 'Play'}
+        variant={isSameSong ? 'solid' : 'ghost'}
+        bg="whiteAlpha.200"
+        _hover={{ bg: 'whiteAlpha.300' }}
+        aria-label={isPlaying ? 'Pause' : 'Play'}
+        onClick={handleClick}
+        {...props}
+      />
+    )
   }
-
-  return (
-    <IconButton
-      icon={isSameSong && isPlaying ? <BsPauseFill /> : <BsFillPlayFill />}
-      variant={isSameSong ? 'solid' : 'ghost'}
-      bg="whiteAlpha.200"
-      _hover={{ bg: 'whiteAlpha.300' }}
-      aria-label={isPlaying ? 'Pause' : 'Play'}
-      onClick={handleClick}
-      {...props}
-    />
-  )
-})
+)

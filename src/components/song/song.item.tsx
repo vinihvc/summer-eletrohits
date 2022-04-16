@@ -1,16 +1,25 @@
+import { memo, useMemo } from 'react'
+
 import { chakra, Box, Flex, Spacer, Text } from '@chakra-ui/react'
 
-import { usePlayer } from 'contexts/player'
+import { useStore } from 'store'
 
-import { FavoriteButton } from 'components/action-button/favorite'
+import { LikeButton } from 'components/action-button/like'
 import { PlayButton } from 'components/action-button/play'
 
 type SongItemProps = {
-  song: SongType
+  songs: SongType[]
+  index: number
 }
 
-export const SongItem = chakra(({ song, ...props }: SongItemProps) => {
-  const { currentSong } = usePlayer()
+const SongItem = chakra(({ songs, index, ...props }: SongItemProps) => {
+  const { currentSong } = useStore()
+
+  const song = songs[index]
+
+  const isCurrentSong = useMemo(() => {
+    return currentSong()?.id === song.id
+  }, [currentSong, song])
 
   return (
     <Flex
@@ -20,10 +29,10 @@ export const SongItem = chakra(({ song, ...props }: SongItemProps) => {
       p={4}
       gap={4}
       _hover={{ bg: 'whiteAlpha.50' }}
-      {...(song.id === currentSong?.id && { bg: 'whiteAlpha.50' })}
+      {...(isCurrentSong && { bg: 'whiteAlpha.50' })}
       {...props}
     >
-      <PlayButton song={song} />
+      <PlayButton songs={songs} index={index} />
 
       <Box
         maxW={{ base: 140, sm: 250, md: 'full' }}
@@ -39,8 +48,10 @@ export const SongItem = chakra(({ song, ...props }: SongItemProps) => {
       <Spacer />
 
       <Flex>
-        <FavoriteButton song={song} mr={3} />
+        <LikeButton song={song} mr={3} />
       </Flex>
     </Flex>
   )
 })
+
+export default memo(SongItem)

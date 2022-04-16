@@ -2,30 +2,28 @@ import { useEffect } from 'react'
 
 import { Container, Flex, HStack } from '@chakra-ui/react'
 
-import { usePlayer } from 'contexts/player'
+import { useStore } from 'store'
 
 import { useDevice } from 'hooks/use-device'
 
-import { Video } from './player.video'
-import { SongInfo } from './player.info'
-import { Actions } from './player.actions'
-import { Progress } from './player.progress'
-import { Playlist } from './player.playlist'
-import { Volume } from './player.volume'
-import { Shuffle } from './player.shuffle'
-import { Repeat } from './player.repeat'
+import { PlayerThumb } from './player.thumb'
+import { PlayerSongInfo } from './player.info'
+import { PlayerActions } from './player.actions'
+import { PlayerProgress } from './player.progress'
+import { PlayerPlaylist } from './player.playlist'
+import { PlayerVolume } from './player.volume'
 
-export const Player = ({ ...props }) => {
-  const { isMobile } = useDevice()
-
+const Player = ({ ...props }) => {
   const {
     currentSong,
-    togglePlay,
     playNext,
+    togglePlay,
     playPrevious,
     volumeUp,
     volumeDown
-  } = usePlayer()
+  } = useStore()
+
+  const { isMobile } = useDevice()
 
   useEffect(() => {
     const keyboardControl = (e: KeyboardEvent) => {
@@ -67,7 +65,7 @@ export const Player = ({ ...props }) => {
     }
   }, [togglePlay, playNext, playPrevious, volumeUp, volumeDown])
 
-  if (!currentSong) {
+  if (!currentSong()) {
     return null
   }
 
@@ -83,28 +81,26 @@ export const Player = ({ ...props }) => {
       {...props}
     >
       <Container maxW="container.xl" pos="relative">
-        <Progress pos="absolute" top="-4px" left="0" right="0" />
+        <PlayerProgress pos="absolute" top="-4px" left="0" right="0" />
 
         <HStack w="full" align="center" h={{ base: '60px', md: '80px' }}>
           <HStack spacing={4}>
-            <Video />
+            <PlayerThumb />
 
-            <SongInfo />
+            <PlayerSongInfo />
           </HStack>
 
-          <Actions />
+          <PlayerActions />
 
           <HStack>
-            {!isMobile && <Repeat />}
+            {!isMobile && <PlayerPlaylist />}
 
-            {!isMobile && <Shuffle />}
-
-            {!isMobile && <Playlist />}
-
-            {!isMobile && <Volume maxW="150px" />}
+            {!isMobile && <PlayerVolume maxW="150px" />}
           </HStack>
         </HStack>
       </Container>
     </Flex>
   )
 }
+
+export default Player

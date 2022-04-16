@@ -1,25 +1,33 @@
+import { useEffect } from 'react'
+
 import { AppProps } from 'next/app'
-
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
 
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, Container } from '@chakra-ui/react'
 
 import { AnimatePresence, motion, MotionConfig } from 'framer-motion'
 
 import { DefaultSeo } from 'next-seo'
 import SEO from '../../next-seo.config'
 
-import { PlayerProvider } from 'contexts/player'
+import { useStore } from 'store'
 
-import { DefaultLayout } from 'layouts/default'
-
-import { Player } from 'components/player'
 import { BottomNavigation } from 'components/bottom-navigation'
 import { Header } from 'components/header'
+import { Footer } from 'components/footer'
 
 import { theme } from 'theme'
 
+const Player = dynamic(() => import('components/player'))
+
 const App = ({ Component, pageProps, router }: AppProps) => {
+  const { initiateLikes } = useStore()
+
+  useEffect(() => {
+    initiateLikes()
+  }, [initiateLikes])
+
   return (
     <>
       <Head>
@@ -33,30 +41,31 @@ const App = ({ Component, pageProps, router }: AppProps) => {
 
       <DefaultSeo {...SEO} />
 
-      <PlayerProvider>
-        <ChakraProvider theme={theme}>
-          <MotionConfig reducedMotion="user">
-            <Header />
+      <ChakraProvider theme={theme}>
+        <MotionConfig reducedMotion="user">
+          <Header />
 
-            <AnimatePresence>
-              <motion.div
-                key={router.route}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              >
-                <DefaultLayout>
-                  <Component {...pageProps} />
-                </DefaultLayout>
-              </motion.div>
-            </AnimatePresence>
+          <AnimatePresence>
+            <motion.div
+              key={router.route}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Container as="main" maxW="container.xl" minH="100vh" pt={10}>
+                <Component {...pageProps} />
+              </Container>
 
-            <BottomNavigation />
+              {/* Margin bottom for <BottomNavigation */}
+              <Footer mb={{ base: '50px', md: 0 }} />
+            </motion.div>
+          </AnimatePresence>
 
-            <Player />
-          </MotionConfig>
-        </ChakraProvider>
-      </PlayerProvider>
+          <BottomNavigation />
+
+          <Player />
+        </MotionConfig>
+      </ChakraProvider>
     </>
   )
 }

@@ -6,23 +6,23 @@ import { Box, Button, Heading, Text } from '@chakra-ui/react'
 
 import { MdPlayArrow } from 'react-icons/md'
 
-import { usePlayer } from 'contexts/player'
+import { useStore } from 'store'
 
 import { CustomBg } from 'components/custom-bg'
 import { SongList } from 'components/song/song.list'
 
-const FavoritesPage = () => {
-  const { favoriteSongs, playPlayList } = usePlayer()
+const LikesPage = () => {
+  const { liked, play } = useStore()
 
   return (
     <>
-      <NextSeo title="Favorites" />
+      <NextSeo title="Likes" />
 
       <CustomBg gradient={['red.500', 'yellow.300']} />
 
-      <Heading as="h1">Favorites</Heading>
+      <Heading as="h1">Your Likes</Heading>
 
-      {favoriteSongs.length === 0 ? (
+      {liked.length === 0 ? (
         <Box>
           <Text my={5}>No favorite yet.</Text>
 
@@ -35,15 +35,15 @@ const FavoritesPage = () => {
           leftIcon={<MdPlayArrow />}
           mt={5}
           my={5}
-          onClick={() => playPlayList(favoriteSongs)}
+          onClick={() => play(liked)}
         >
           Play
         </Button>
       )}
 
-      {favoriteSongs && <SongList songs={favoriteSongs} mt={10} />}
+      {liked.length > 0 && <SongList songs={liked} mt={10} />}
     </>
   )
 }
 
-export default FavoritesPage
+export default LikesPage

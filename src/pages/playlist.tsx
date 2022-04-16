@@ -4,13 +4,13 @@ import { NextSeo } from 'next-seo'
 
 import { Button, Heading, Text } from '@chakra-ui/react'
 
-import { usePlayer } from 'contexts/player'
+import { useStore } from 'store'
 
 import { CustomBg } from 'components/custom-bg'
 import { SongList } from 'components/song/song.list'
 
 const PlaylistPage = () => {
-  const { songList } = usePlayer()
+  const { playlist } = useStore()
 
   return (
     <>
@@ -22,7 +22,7 @@ const PlaylistPage = () => {
         Playlist
       </Heading>
 
-      {songList.length === 0 && (
+      {playlist.length === 0 && (
         <>
           <Text my={5}>No music playing</Text>
 
@@ -32,7 +32,7 @@ const PlaylistPage = () => {
         </>
       )}
 
-      {songList && <SongList songs={songList} />}
+      {playlist.length > 0 && <SongList songs={playlist} />}
     </>
   )
 }

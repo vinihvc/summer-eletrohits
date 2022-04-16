@@ -31,14 +31,14 @@ export const Header = () => {
           </NextLink>
 
           <Stack as="nav">
-            <NextLink href="/favorites" passHref>
+            <NextLink href="/likes" passHref>
               <Link
                 d="flex"
                 alignItems="center"
                 _hover={{ textDecor: 'none' }}
                 gap={2}
               >
-                Favorites
+                Your Likes
                 <FiHeart />
               </Link>
             </NextLink>

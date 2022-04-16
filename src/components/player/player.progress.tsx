@@ -1,11 +1,11 @@
 import { Flex } from '@chakra-ui/react'
 
-import { usePlayer } from 'contexts/player'
+import { useStore } from 'store'
 
 import { Slider } from 'components/slider'
 
-export const Progress = ({ ...props }) => {
-  const { progress, handleProgress } = usePlayer()
+export const PlayerProgress = ({ ...props }) => {
+  const { progress, handleProgress } = useStore()
 
   return (
     <Flex {...props}>

@@ -1,28 +1,25 @@
-import { useMemo } from 'react'
-
 import { Flex, Icon } from '@chakra-ui/react'
 
 import { MdPlayArrow } from 'react-icons/md'
 import { BsPauseFill } from 'react-icons/bs'
 
-import { usePlayer } from 'contexts/player'
+import { useStore } from 'store'
 
 type AlbumItemProps = {
   songs?: SongType[]
 }
 
 export const AlbumItemPlay = ({ songs }: AlbumItemProps) => {
-  const { currentSong, playPlayList, togglePlay, isPlaying } = usePlayer()
+  const { currentSong, play, isPlaying } = useStore()
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
 
-    isPlayingAlbum ? togglePlay() : playPlayList(songs!)
+    songs && play(songs)
   }
 
-  const isPlayingAlbum = useMemo(() => {
-    return songs?.some((song) => song.id === currentSong?.id) && isPlaying
-  }, [currentSong, songs, isPlaying])
+  const isPlayingAlbum =
+    songs?.some((song) => song.id === currentSong()?.id) && isPlaying
 
   return (
     <Flex

@@ -1,32 +1,29 @@
 import localforage from 'localforage'
 
-const FAVORITE_SONGS = '@favorite_songs'
+const LIKED_SONGS = '@LIKED_SONGS'
 
-const storage = {
-  getSongs: async () => {
-    const songs = await localforage.getItem<SongType[]>(FAVORITE_SONGS)
+export const getSongs = async () => {
+  const songs = await localforage.getItem<SongType[]>(LIKED_SONGS)
 
-    return songs || ([] as SongType[])
-  },
-  setSong: async (song: SongType) => {
-    const songs = await storage.getSongs()
-
-    const findSong = songs.find((item) => item.id === song.id)
-
-    if (findSong) return
-
-    await localforage.setItem(FAVORITE_SONGS, [...songs, song])
-  },
-  removeSong: async (song: SongType) => {
-    const songs = await storage.getSongs()
-
-    const unremovedSongs = songs.filter((item) => item.id !== song.id)
-
-    await localforage.setItem(FAVORITE_SONGS, unremovedSongs)
-  },
-  clearSongs: async () => {
-    await localforage.removeItem(FAVORITE_SONGS)
-  }
+  return songs || ([] as SongType[])
 }
 
-export default storage
+export const setSong = async (song: SongType) => {
+  const songs = await getSongs()
+
+  const findSong = songs.find((item) => item.id === song.id)
+
+  if (findSong) return
+
+  await localforage.setItem(LIKED_SONGS, [...songs, song])
+}
+
+export const removeSong = async (song: SongType) => {
+  const songs = await getSongs()
+
+  const unremovedSongs = songs.filter((item) => item.id !== song.id)
+
+  await localforage.setItem(LIKED_SONGS, unremovedSongs)
+}
+
+export * as storage from './storage'

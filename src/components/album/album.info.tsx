@@ -8,11 +8,11 @@ import {
   VStack
 } from '@chakra-ui/react'
 
-import { motion } from 'framer-motion'
-
 import { MdPlayArrow } from 'react-icons/md'
 
-import { usePlayer } from 'contexts/player'
+import { motion } from 'framer-motion'
+
+import { useStore } from 'store'
 
 import { BlurImage } from 'components/blur-image'
 
@@ -21,7 +21,7 @@ type AlbumInfoProps = {
 }
 
 export const AlbumInfo = chakra(({ album, ...props }: AlbumInfoProps) => {
-  const { playPlayList } = usePlayer()
+  const { play } = useStore()
 
   return (
     <Flex
@@ -69,7 +69,7 @@ export const AlbumInfo = chakra(({ album, ...props }: AlbumInfoProps) => {
         <Box>
           <Button
             leftIcon={<MdPlayArrow />}
-            onClick={() => playPlayList(album.songs!)}
+            onClick={() => album.songs && play(album.songs)}
           >
             Play
           </Button>

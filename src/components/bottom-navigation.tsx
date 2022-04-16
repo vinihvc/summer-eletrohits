@@ -14,8 +14,8 @@ export const BottomNavigation = () => {
       icon: <BsHouseDoor />
     },
     {
-      label: 'Favorites',
-      href: '/favorites',
+      label: 'Likes',
+      href: '/likes',
       icon: <FiHeart />
     },
     {

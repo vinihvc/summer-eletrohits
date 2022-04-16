@@ -1,16 +1,13 @@
-import { BsSkipEndFill, BsSkipStartFill } from 'react-icons/bs'
+import { HStack } from '@chakra-ui/react'
 
-import { IconButton, HStack } from '@chakra-ui/react'
+import { useStore } from 'store'
 
-import { usePlayer } from 'contexts/player'
-
-import { useDevice } from 'hooks/use-device'
 import { PlayButton } from 'components/action-button/play'
+import { PrevButton } from 'components/action-button/prev'
+import { NextButton } from 'components/action-button/next'
 
-export const Actions = () => {
-  const { currentSong, playPrevious, playNext } = usePlayer()
-
-  const { isMobile } = useDevice()
+export const PlayerActions = () => {
+  const { playlist, currentIndex } = useStore()
 
   return (
     <HStack
@@ -18,23 +15,11 @@ export const Actions = () => {
       w="full"
       justify={{ base: 'flex-end', md: 'center' }}
     >
-      <IconButton
-        icon={<BsSkipStartFill />}
-        size={isMobile ? 'sm' : 'md'}
-        variant="ghost"
-        aria-label="Previous song"
-        onClick={playPrevious}
-      />
+      <PrevButton />
 
-      <PlayButton song={currentSong} />
+      <PlayButton songs={playlist} index={currentIndex} />
 
-      <IconButton
-        icon={<BsSkipEndFill />}
-        size={isMobile ? 'sm' : 'md'}
-        variant="ghost"
-        aria-label="Skip song"
-        onClick={playNext}
-      />
+      <NextButton />
     </HStack>
   )
 }

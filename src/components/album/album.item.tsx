@@ -2,8 +2,9 @@ import NextLink from 'next/link'
 
 import { Box, Link, Text } from '@chakra-ui/react'
 
-import { AlbumItemPlay } from './album.item.play'
 import { BlurImage } from 'components/blur-image'
+
+import { AlbumItemPlay } from './album.item.play'
 
 type AlbumItemProps = {
   album: AlbumType
