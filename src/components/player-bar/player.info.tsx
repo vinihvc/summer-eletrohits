@@ -13,6 +13,7 @@ export const PlayerSongInfo = chakra(({ ...props }) => {
       <BlurImage
         src={`https://img.youtube.com/vi/${currentSong()?.youtubeId}/0.jpg`}
         alt={`${currentSong()?.name} album cover`}
+        boxSize={10}
         minW={10}
         minH={10}
         borderRadius="full"
