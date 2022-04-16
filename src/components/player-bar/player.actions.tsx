@@ -18,7 +18,7 @@ export const PlayerActions = chakra(({ ...props }) => {
     >
       <PrevButton />
 
-      <PlayButton songs={playlist} index={currentIndex()} />
+      <PlayButton songs={playlist} index={currentIndex} />
 
       <NextButton />
     </HStack>

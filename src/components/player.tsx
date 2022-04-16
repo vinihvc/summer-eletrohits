@@ -9,10 +9,7 @@ type PlayerProps = {
 }
 
 export const Player = chakra(({ isHidden = true, ...props }: PlayerProps) => {
-  const { $player, currentSong, playlist, isPlaying, volume, onProgress } =
-    useStore()
-
-  const links = playlist.map((s) => `https://youtu.be/${s.youtubeId}`)
+  const { $player, currentSong, isPlaying, volume, onProgress } = useStore()
 
   return (
     <Box position="relative" {...props}>
@@ -20,7 +17,9 @@ export const Player = chakra(({ isHidden = true, ...props }: PlayerProps) => {
 
       <YouTubePlayer
         ref={$player}
-        {...(currentSong() && { url: links })}
+        {...(currentSong() && {
+          url: `https://youtu.be/${currentSong().youtubeId}`
+        })}
         playing={isPlaying}
         volume={volume}
         onProgress={onProgress}

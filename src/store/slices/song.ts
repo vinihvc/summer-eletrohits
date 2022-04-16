@@ -7,7 +7,7 @@ import { PlayerSlice } from './player'
 export type SongSlice = {
   playlist: SongType[]
   liked: SongType[]
-  currentIndex: () => number
+  currentIndex: number
   currentSong: () => SongType
   play: (list: SongType[], index?: number) => void
   togglePlay: () => void
@@ -22,19 +22,17 @@ export const songSlice: StoreSlice<SongSlice, PlayerSlice> = (set, get) => {
   return {
     playlist: [],
     liked: [],
-    currentIndex: () =>
-      get().$player.current?.getInternalPlayer()?.getPlaylistIndex() || 0,
+    currentIndex: 0,
     currentSong: () => {
-      return get().playlist[get().currentIndex()]
+      return get().playlist[get().currentIndex]
     },
     play: (list, index = 0) => {
       set((state) => ({
         ...state,
         playlist: list,
-        isPlaying: true
+        isPlaying: true,
+        currentIndex: index
       }))
-
-      get().$player.current?.getInternalPlayer().playVideoAt(index)
     },
     togglePlay: () => {
       set((state) => ({
@@ -43,20 +41,26 @@ export const songSlice: StoreSlice<SongSlice, PlayerSlice> = (set, get) => {
       }))
     },
     playNext: () => {
-      get().$player.current?.getInternalPlayer().nextVideo()
+      const hasNext = get().currentIndex < get().playlist.length - 1
 
-      set((state) => ({
-        ...state,
-        isPlaying: true
-      }))
+      if (hasNext) {
+        set((state) => ({
+          ...state,
+          isPlaying: true,
+          currentIndex: get().currentIndex + 1
+        }))
+      }
     },
     playPrevious: () => {
-      get().$player.current?.getInternalPlayer().previousVideo()
+      const hasPrevious = get().currentIndex > 0
 
-      set((state) => ({
-        ...state,
-        isPlaying: true
-      }))
+      if (hasPrevious) {
+        set((state) => ({
+          ...state,
+          isPlaying: true,
+          currentIndex: get().currentIndex - 1
+        }))
+      }
     },
     initiateLikes: async () => {
       const liked = await storage.getSongs()

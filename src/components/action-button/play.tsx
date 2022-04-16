@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 
 import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs'
 
@@ -19,9 +19,13 @@ export const PlayButton = chakra(
 
     const isSameSong = currentSong()?.id === song.id
 
-    const handleClick = () => {
-      isPlaying && isSameSong ? togglePlay() : play(songs, index)
-    }
+    const handleClick = useCallback(() => {
+      if (isPlaying && isSameSong) {
+        togglePlay()
+      } else {
+        play(songs, index)
+      }
+    }, [isPlaying, isSameSong, togglePlay, play, songs, index])
 
     const title = useMemo(() => (isPlaying ? 'Pause' : 'Play'), [isPlaying])
 
@@ -31,7 +35,8 @@ export const PlayButton = chakra(
         variant={isSameSong ? 'solid' : 'ghost'}
         title={title}
         aria-label={title}
-        _hover={{ bg: 'whiteAlpha.300' }}
+        bg="whiteAlpha.200"
+        _hover={{ bg: 'whiteAlpha.400' }}
         onClick={handleClick}
         {...props}
       />

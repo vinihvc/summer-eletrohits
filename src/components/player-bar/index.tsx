@@ -85,7 +85,7 @@ const PlayerBar = ({ ...props }) => {
         <Container maxW="container.xl" pos="relative">
           <PlayerProgress />
 
-          <HStack w={{ md: 'full' }} align="center" h={20}>
+          <HStack flex={1} align="center" h={20}>
             <PlayerSongInfo w={{ lg: '20%' }} />
 
             <PlayerActions flex={1} />
