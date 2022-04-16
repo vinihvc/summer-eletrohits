@@ -12,46 +12,48 @@ type SongItemProps = {
   index: number
 }
 
-const SongItem = chakra(({ songs, index, ...props }: SongItemProps) => {
-  const { currentSong } = useStore()
+const SongItemComponent = chakra(
+  ({ songs, index, ...props }: SongItemProps) => {
+    const { currentSong } = useStore()
 
-  const song = songs[index]
+    const song = songs[index]
 
-  const isCurrentSong = useMemo(() => {
-    return currentSong()?.id === song.id
-  }, [currentSong, song])
+    const isCurrentSong = useMemo(() => {
+      return currentSong()?.id === song.id
+    }, [currentSong, song])
 
-  return (
-    <Flex
-      align="center"
-      borderBottom="1px solid"
-      borderColor="whiteAlpha.300"
-      p={4}
-      gap={4}
-      _hover={{ bg: 'whiteAlpha.50' }}
-      {...(isCurrentSong && { bg: 'whiteAlpha.50' })}
-      {...props}
-    >
-      <PlayButton songs={songs} index={index} />
-
-      <Box
-        maxW={{ base: 140, sm: 250, md: 'full' }}
-        fontSize={{ base: 'sm', sm: 'md' }}
+    return (
+      <Flex
+        align="center"
+        borderBottom="1px solid"
+        borderColor="whiteAlpha.300"
+        p={4}
+        gap={4}
+        _hover={{ bg: 'whiteAlpha.50' }}
+        {...(isCurrentSong && { bg: 'whiteAlpha.50' })}
+        {...props}
       >
-        <Text fontWeight="bold" isTruncated>
-          {song.name}
-        </Text>
+        <PlayButton songs={songs} index={index} />
 
-        <Text isTruncated>{song.singer}</Text>
-      </Box>
+        <Box
+          maxW={{ base: 140, sm: 250, md: 'full' }}
+          fontSize={{ base: 'sm', sm: 'md' }}
+        >
+          <Text fontWeight="bold" isTruncated>
+            {song.name}
+          </Text>
 
-      <Spacer />
+          <Text isTruncated>{song.singer}</Text>
+        </Box>
 
-      <Flex>
-        <LikeButton song={song} mr={3} />
+        <Spacer />
+
+        <Flex>
+          <LikeButton song={song} mr={3} />
+        </Flex>
       </Flex>
-    </Flex>
-  )
-})
+    )
+  }
+)
 
-export default memo(SongItem)
+export const SongItem = memo(SongItemComponent)

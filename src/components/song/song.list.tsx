@@ -2,7 +2,7 @@ import { Box, chakra } from '@chakra-ui/react'
 
 import { AnimatePresence, motion } from 'framer-motion'
 
-import SongItem from './song.item'
+import { SongItem } from './song.item'
 
 type SongListProps = {
   songs: SongType[]

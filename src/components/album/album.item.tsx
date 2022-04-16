@@ -5,12 +5,13 @@ import { Box, Link, Text } from '@chakra-ui/react'
 import { BlurImage } from 'components/blur-image'
 
 import { AlbumItemPlay } from './album.item.play'
+import { memo } from 'react'
 
 type AlbumItemProps = {
   album: AlbumType
 }
 
-export const AlbumItem = ({ album }: AlbumItemProps) => {
+const AlbumItemComponent = ({ album }: AlbumItemProps) => {
   return (
     <NextLink href={`/albums/${album.id}`} passHref>
       <Link
@@ -44,3 +45,5 @@ export const AlbumItem = ({ album }: AlbumItemProps) => {
     </NextLink>
   )
 }
+
+export const AlbumItem = memo(AlbumItemComponent)
