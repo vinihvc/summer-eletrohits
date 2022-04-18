@@ -10,7 +10,8 @@ type PlayerProps = {
 
 export const YoutubePlayer = chakra(
   ({ isHidden = true, ...props }: PlayerProps) => {
-    const { $player, currentSong, isPlaying, volume, onProgress } = useStore()
+    const { $player, currentSong, isPlaying, volume, onProgress, playNext } =
+      useStore()
 
     return (
       <Box position="relative" {...props}>
@@ -23,6 +24,7 @@ export const YoutubePlayer = chakra(
           })}
           playing={isPlaying}
           volume={volume}
+          onEnded={playNext}
           onProgress={onProgress}
           {...(isHidden && { hidden: true })}
         />

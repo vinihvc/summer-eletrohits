@@ -12,8 +12,11 @@ export type PlayerSlice = {
   volume: number
   saveVolume: number
   progress: number
+  play: (list: SongType[], index?: number) => void
   onProgress: ({ played }: YouTubePlayerProps) => void
   togglePlay: () => void
+  playNext: () => void
+  playPrevious: () => void
   toggleVolume: () => void
   changeVolume: (volume: number) => void
   volumeUp: () => void
@@ -28,6 +31,14 @@ export const playerSlice: StoreSlice<PlayerSlice, SongSlice> = (set, get) => {
     volume: 1,
     progress: 0,
     saveVolume: 0,
+    play: (list, index = 0) => {
+      set((state) => ({
+        ...state,
+        playlist: list,
+        isPlaying: true,
+        currentIndex: index
+      }))
+    },
     onProgress: ({ played }) => {
       set((state) => ({
         ...state,
@@ -39,6 +50,28 @@ export const playerSlice: StoreSlice<PlayerSlice, SongSlice> = (set, get) => {
         ...state,
         isPlaying: !get().isPlaying
       }))
+    },
+    playNext: () => {
+      const hasNext = get().currentIndex < get().playlist.length - 1
+
+      if (hasNext) {
+        set((state) => ({
+          ...state,
+          isPlaying: true,
+          currentIndex: get().currentIndex + 1
+        }))
+      }
+    },
+    playPrevious: () => {
+      const hasPrevious = get().currentIndex > 0
+
+      if (hasPrevious) {
+        set((state) => ({
+          ...state,
+          isPlaying: true,
+          currentIndex: get().currentIndex - 1
+        }))
+      }
     },
     toggleVolume: () => {
       if (get().volume === 0) {
