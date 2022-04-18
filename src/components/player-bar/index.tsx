@@ -1,12 +1,11 @@
-import { useEffect } from 'react'
-
 import { Container, Flex, HStack } from '@chakra-ui/react'
 
 import { useStore } from 'store'
 
 import { useDevice } from 'hooks/use-device'
+import { useMediaKeyPress } from 'hooks/media-keypress'
 
-import { Player } from 'components/player'
+import { YoutubePlayer } from 'components/youtube-player'
 
 import { PlayerSongInfo } from './player.info'
 import { PlayerActions } from './player.actions'
@@ -15,56 +14,11 @@ import { PlayerPlaylist } from './player.playlist'
 import { PlayerVolume } from './player.volume'
 
 const PlayerBar = ({ ...props }) => {
-  const {
-    currentSong,
-    playNext,
-    togglePlay,
-    playPrevious,
-    volumeUp,
-    volumeDown
-  } = useStore()
+  const { currentSong } = useStore()
 
   const { isMobile } = useDevice()
 
-  useEffect(() => {
-    const keyboardControl = (e: KeyboardEvent) => {
-      if (e.code === 'Space') {
-        e.preventDefault()
-        togglePlay()
-      }
-
-      if (e.code === 'ArrowRight') {
-        e.preventDefault()
-        playNext()
-      }
-
-      if (e.code === 'ArrowLeft') {
-        e.preventDefault()
-        playPrevious()
-      }
-
-      if (e.code === 'ArrowLeft') {
-        e.preventDefault()
-        playPrevious()
-      }
-
-      if (e.code === 'ArrowUp') {
-        e.preventDefault()
-        volumeUp()
-      }
-
-      if (e.code === 'ArrowDown') {
-        e.preventDefault()
-        volumeDown()
-      }
-    }
-
-    document.addEventListener('keydown', keyboardControl)
-
-    return () => {
-      document.removeEventListener('keydown', keyboardControl)
-    }
-  }, [togglePlay, playNext, playPrevious, volumeUp, volumeDown])
+  useMediaKeyPress()
 
   if (!currentSong()) {
     return null
@@ -99,7 +53,7 @@ const PlayerBar = ({ ...props }) => {
         </Container>
       </Flex>
 
-      <Player isHidden />
+      <YoutubePlayer isHidden />
     </>
   )
 }

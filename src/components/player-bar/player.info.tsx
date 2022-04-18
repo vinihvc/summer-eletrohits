@@ -18,7 +18,7 @@ export const PlayerSongInfo = chakra(({ ...props }) => {
         minH={10}
         borderRadius="full"
         objectFit="cover"
-        d={{ base: 'none', md: 'none' }}
+        d={{ base: 'none', md: 'block' }}
       />
 
       <Stack spacing={0} maxW={{ base: 150, sm: 250, md: 170, lg: 'full' }}>
