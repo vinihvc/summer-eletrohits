@@ -36,7 +36,6 @@ const AlbumItemComponent = ({ album }: AlbumItemProps) => {
             fontWeight="medium"
             noOfLines={1}
             mt={3}
-            isTruncated
           >
             {album.name}
           </Text>

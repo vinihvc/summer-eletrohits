@@ -13,7 +13,7 @@ export const BackAlbums = chakra(({ ...props }) => {
         as={motion.a}
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
-        d={{ base: 'none', md: 'inline-flex' }}
+        display={{ base: 'none', md: 'inline-flex' }}
         justifyContent="center"
         alignItems="center"
         _hover={{ textDecor: 'none' }}

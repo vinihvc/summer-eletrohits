@@ -28,7 +28,7 @@ npm-debug.log*
 .env.production.local
 
 # sw stuff
-public/sw.js
-public/workbox-*.js
+public/sw*
+public/workbox-*
 public/robots.txt
 public/sitemap*.xml

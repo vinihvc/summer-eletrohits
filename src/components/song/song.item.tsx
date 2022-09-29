@@ -39,11 +39,11 @@ const SongItemComponent = chakra(
           maxW={{ base: 140, sm: 250, md: 'full' }}
           fontSize={{ base: 'sm', sm: 'md' }}
         >
-          <Text fontWeight="bold" isTruncated>
+          <Text fontWeight="bold" noOfLines={1}>
             {song.name}
           </Text>
 
-          <Text isTruncated>{song.singer}</Text>
+          <Text noOfLines={1}>{song.singer}</Text>
         </Box>
 
         <Spacer />

@@ -10,7 +10,7 @@ export const Header = () => {
   return (
     <Flex
       as="header"
-      d={{ base: 'none', md: 'flex' }}
+      display={{ base: 'none', md: 'flex' }}
       bg="player"
       boxShadow="dark-lg"
       pos="sticky"
@@ -33,7 +33,7 @@ export const Header = () => {
           <Stack as="nav">
             <NextLink href="/likes" passHref>
               <Link
-                d="flex"
+                display="flex"
                 alignItems="center"
                 _hover={{ textDecor: 'none' }}
                 gap={2}

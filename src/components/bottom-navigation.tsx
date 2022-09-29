@@ -28,7 +28,7 @@ export const BottomNavigation = () => {
   return (
     <Flex
       pos="fixed"
-      d={{ base: 'flex', md: 'none' }}
+      display={{ base: 'flex', md: 'none' }}
       h="50px"
       bg="bg"
       bottom="0"

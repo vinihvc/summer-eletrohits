@@ -18,15 +18,15 @@ export const PlayerSongInfo = chakra(({ ...props }) => {
         minH={10}
         borderRadius="full"
         objectFit="cover"
-        d={{ base: 'none', md: 'block' }}
+        display={{ base: 'none', md: 'block' }}
       />
 
       <Stack spacing={0} maxW={{ base: 150, sm: 250, md: 170, lg: 'full' }}>
-        <Text as="span" fontSize="sm" fontWeight="medium" isTruncated>
+        <Text as="span" fontSize="sm" fontWeight="medium" noOfLines={1}>
           {currentSong()?.name}
         </Text>
 
-        <Text as="span" fontSize="xs" isTruncated>
+        <Text as="span" fontSize="xs" noOfLines={1}>
           {currentSong()?.singer}
         </Text>
       </Stack>
