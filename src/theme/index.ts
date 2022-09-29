@@ -1,6 +1,7 @@
 import { extendTheme, ThemeConfig } from '@chakra-ui/react'
 
 import { globalStyles } from './global'
+
 import { foundations, semanticTokens } from './foundations'
 import { components } from './components'
 
@@ -11,7 +12,9 @@ const config: ThemeConfig = {
 
 export const theme = extendTheme({
   config,
-  styles: globalStyles,
+  styles: {
+    global: globalStyles
+  },
   semanticTokens,
   ...foundations,
   components
