@@ -8,6 +8,7 @@ const withPWA = require('next-pwa')({
  * @type {import('next').NextConfig}
  */
 module.exports = withPWA({
+  reactStrictMode: true,
   swcMinify: true,
   images: {
     deviceSizes: [320, 640, 768, 1024, 1600],

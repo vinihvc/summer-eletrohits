@@ -5,6 +5,7 @@ import { Container, Flex, Link, Stack } from '@chakra-ui/react'
 import { FiHeart } from 'react-icons/fi'
 
 import { Logo } from './logo'
+import { ActiveLink } from './active-link'
 
 export const Header = () => {
   return (
@@ -31,17 +32,25 @@ export const Header = () => {
           </NextLink>
 
           <Stack as="nav">
-            <NextLink href="/likes" passHref>
-              <Link
-                display="flex"
-                alignItems="center"
-                _hover={{ textDecor: 'none' }}
-                gap={2}
-              >
-                Your Likes
-                <FiHeart />
-              </Link>
-            </NextLink>
+            <ActiveLink
+              href="/likes"
+              color="gray.400"
+              display="flex"
+              alignItems="center"
+              _hover={{ textDecor: 'none' }}
+              gap={2}
+              sx={{
+                '&.active': {
+                  color: 'white',
+                  svg: {
+                    fill: 'white'
+                  }
+                }
+              }}
+            >
+              Your Likes
+              <FiHeart />
+            </ActiveLink>
           </Stack>
         </Flex>
       </Container>

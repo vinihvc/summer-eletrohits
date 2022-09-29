@@ -1,30 +1,10 @@
-import NextLink from 'next/link'
+import { Flex, VisuallyHidden } from '@chakra-ui/react'
 
-import { Flex } from '@chakra-ui/react'
-
-import { FiHeart } from 'react-icons/fi'
-import { RiPlayList2Fill } from 'react-icons/ri'
-import { BsHouseDoor } from 'react-icons/bs'
+import React from 'react'
+import { ActiveLink } from './active-link'
+import { BOTTOM_NAVIGATION } from 'constants/menu'
 
 export const BottomNavigation = () => {
-  const paths = [
-    {
-      label: 'Home',
-      href: '/',
-      icon: <BsHouseDoor />
-    },
-    {
-      label: 'Likes',
-      href: '/likes',
-      icon: <FiHeart />
-    },
-    {
-      label: 'Playlist',
-      href: '/playlist',
-      icon: <RiPlayList2Fill />
-    }
-  ]
-
   return (
     <Flex
       pos="fixed"
@@ -37,19 +17,22 @@ export const BottomNavigation = () => {
       align="center"
       justify="space-between"
     >
-      {paths.map(({ label, href, icon }) => (
-        <NextLink key={href} href={href} passHref>
-          <Flex
-            as="a"
-            justify="center"
-            align="center"
-            flex="1"
-            h="full"
-            aria-label={`Go to ${label}`}
+      {BOTTOM_NAVIGATION.map(({ label, href, icon }) => (
+        <Flex key={href} justify="center" flex={1}>
+          <ActiveLink
+            href={href}
+            color="gray.400"
+            sx={{
+              '&.active': {
+                color: 'white'
+              }
+            }}
           >
-            {icon}
-          </Flex>
-        </NextLink>
+            {React.createElement(icon, { size: 20, 'aria-hidden': true })}
+
+            <VisuallyHidden>{label}</VisuallyHidden>
+          </ActiveLink>
+        </Flex>
       ))}
     </Flex>
   )
