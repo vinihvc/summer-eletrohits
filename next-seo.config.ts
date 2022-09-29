@@ -1,5 +1,5 @@
 export default {
-  titleTemplate: 'Summer Eletrohits - %s',
+  titleTemplate: '%s // Summer Eletrohits',
   openGraph: {
     type: 'website',
     locale: 'en_US',

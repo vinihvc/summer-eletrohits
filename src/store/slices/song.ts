@@ -1,4 +1,4 @@
-import { StoreSlice } from 'store'
+import { StateCreator } from 'zustand'
 
 import { storage } from 'services/storage'
 
@@ -14,7 +14,12 @@ export type SongSlice = {
   dislike: (song: SongType) => void
 }
 
-export const songSlice: StoreSlice<SongSlice, PlayerSlice> = (set, get) => {
+export const songSlice: StateCreator<
+  SongSlice & PlayerSlice,
+  [],
+  [],
+  SongSlice
+> = (set, get) => {
   return {
     playlist: [],
     liked: [],

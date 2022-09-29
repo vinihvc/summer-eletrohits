@@ -1,10 +1,8 @@
-import create, { GetState, SetState } from 'zustand'
+import create from 'zustand'
+import { playerSlice, PlayerSlice } from './slices/player'
+import { songSlice, SongSlice } from './slices/song'
 
-import { createRootSlice } from './slices'
-
-export type StoreSlice<T extends object, E extends object = T> = (
-  set: SetState<E extends T ? E : E & T>,
-  get: GetState<E extends T ? E : E & T>
-) => T
-
-export const useStore = create(createRootSlice)
+export const useStore = create<PlayerSlice & SongSlice>()((...a) => ({
+  ...playerSlice(...a),
+  ...songSlice(...a)
+}))

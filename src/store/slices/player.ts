@@ -2,9 +2,9 @@ import { createRef, RefObject } from 'react'
 
 import ReactPlayer, { YouTubePlayerProps } from 'react-player/youtube'
 
-import { StoreSlice } from 'store'
-
 import { SongSlice } from './song'
+
+import { StateCreator } from 'zustand'
 
 export type PlayerSlice = {
   $player: RefObject<ReactPlayer>
@@ -24,7 +24,12 @@ export type PlayerSlice = {
   handleProgress: (progress: number) => void
 }
 
-export const playerSlice: StoreSlice<PlayerSlice, SongSlice> = (set, get) => {
+export const playerSlice: StateCreator<
+  PlayerSlice & SongSlice,
+  [],
+  [],
+  PlayerSlice
+> = (set, get) => {
   return {
     $player: createRef(),
     isPlaying: false,
