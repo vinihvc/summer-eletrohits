@@ -23,14 +23,14 @@ export const CustomBg = ({ image, gradient }: CustomBgProps) => {
 
       {image && (
         <Box
-          as={Image}
-          src={image}
-          layout="fill"
+          position="fixed"
+          width="full"
+          height="full"
           transition="0.3s cubic-bezier(.4, 0, .2, 1)"
           filter="blur(100px)"
-          objectFit="cover"
-          objectPosition="center"
-        />
+        >
+          <Image src={image} alt="Background" fill />
+        </Box>
       )}
 
       <Box
@@ -38,7 +38,7 @@ export const CustomBg = ({ image, gradient }: CustomBgProps) => {
         h="full"
         w="full"
         maxH="200vh"
-        pos="sticky"
+        position="sticky"
         top="-100vh"
       />
     </Box>

@@ -13,7 +13,7 @@ const NotFoundPage = () => {
         </Stack>
 
         <Link href="/" passHref>
-          <Button>Back to Home</Button>
+          <Button as="a">Back to Home</Button>
         </Link>
       </Stack>
     </Flex>

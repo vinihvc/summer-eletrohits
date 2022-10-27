@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
-import NextImage from 'next/image'
+import Image from 'next/image'
 
-import { AspectRatio, chakra, Image } from '@chakra-ui/react'
+import { AspectRatio, chakra } from '@chakra-ui/react'
 
 type BlurImageProps = {
   src: string
@@ -20,23 +20,14 @@ export const BlurImage = chakra(({ src, alt, ...props }: BlurImageProps) => {
       overflow="hidden"
       borderRadius="lg"
       bg="gray.900"
+      transitionTimingFunction="cubic-bezier(.2, 0, .2, 1)"
+      filter={isLoading ? 'blur(10px)' : 'blur(0px)'}
       {...props}
     >
       <Image
-        as={NextImage}
         src={src}
         alt={alt}
-        layout="fill"
-        objectFit="cover"
-        transitionTimingFunction="cubic-bezier(.2, 0, .2, 1)"
-        transitionDuration="0.3s"
-        {...(isLoading
-          ? {
-              filter: 'blur(10px)'
-            }
-          : {
-              filter: 'blur(0px)'
-            })}
+        fill
         onLoadingComplete={() => setLoading(false)}
       />
     </AspectRatio>
