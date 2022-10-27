@@ -13,35 +13,30 @@ type AlbumItemProps = {
 
 const AlbumItemComponent = ({ album }: AlbumItemProps) => {
   return (
-    <NextLink href={`/albums/${album.id}`} passHref>
-      <Link
-        _hover={{ textDecor: 'none' }}
-        _focus={{ boxShadow: 'none' }}
-        aria-label={album.name}
-      >
-        <Box as="article" cursor="pointer">
-          <Box
-            pos="relative"
-            borderRadius="lg"
-            overflow="auto"
-            boxShadow="dark-lg"
-          >
-            <BlurImage src={album.thumb} alt={album.name} />
+    <Link
+      as={NextLink}
+      href={`/albums/${album.id}`}
+      _hover={{ textDecor: 'none' }}
+      _focus={{ boxShadow: 'none' }}
+      aria-label={album.name}
+    >
+      <Box as="article" cursor="pointer">
+        <Box
+          pos="relative"
+          borderRadius="lg"
+          overflow="auto"
+          boxShadow="dark-lg"
+        >
+          <BlurImage src={album.thumb} alt={album.name} />
 
-            <AlbumItemPlay songs={album.songs} />
-          </Box>
-
-          <Text
-            fontSize={{ md: 'lg' }}
-            fontWeight="medium"
-            noOfLines={1}
-            mt={3}
-          >
-            {album.name}
-          </Text>
+          <AlbumItemPlay songs={album.songs} />
         </Box>
-      </Link>
-    </NextLink>
+
+        <Text fontSize={{ md: 'lg' }} fontWeight="medium" noOfLines={1} mt={3}>
+          {album.name}
+        </Text>
+      </Box>
+    </Link>
   )
 }
 

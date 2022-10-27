@@ -14,19 +14,19 @@ export const ActiveLink = (props: ActiveLinkProps) => {
   const { pathname } = useRouter()
 
   return (
-    <Link href={href} passHref>
-      <ChakraLink
-        className={pathname === href ? 'active' : ''}
-        aria-current={pathname === href ? 'page' : undefined}
-        {...rest}
-        __css={{
-          '&:hover': {
-            textDecoration: 'none'
-          }
-        }}
-      >
-        {children}
-      </ChakraLink>
-    </Link>
+    <ChakraLink
+      as={Link}
+      href={href}
+      className={pathname === href ? 'active' : ''}
+      aria-current={pathname === href ? 'page' : undefined}
+      {...rest}
+      __css={{
+        '&:hover': {
+          textDecoration: 'none'
+        }
+      }}
+    >
+      {children}
+    </ChakraLink>
   )
 }

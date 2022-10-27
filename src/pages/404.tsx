@@ -12,9 +12,9 @@ const NotFoundPage = () => {
           </Heading>
         </Stack>
 
-        <Link href="/" passHref>
-          <Button as="a">Back to Home</Button>
-        </Link>
+        <Button as={Link} href="/">
+          Back to Home
+        </Button>
       </Stack>
     </Flex>
   )

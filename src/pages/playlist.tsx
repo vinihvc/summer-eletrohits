@@ -26,9 +26,9 @@ const PlaylistPage = () => {
         <>
           <Text my={5}>No music playing</Text>
 
-          <Link href="/" passHref>
-            <Button as="a">Discover</Button>
-          </Link>
+          <Button as={Link} href="/">
+            Discover
+          </Button>
         </>
       )}
 

@@ -26,9 +26,9 @@ const LikesPage = () => {
         <Box>
           <Text my={5}>No favorite yet.</Text>
 
-          <Link href="/" passHref>
-            <Button as="a">Discover</Button>
-          </Link>
+          <Button as={Link} href="/">
+            Discover
+          </Button>
         </Box>
       ) : (
         <Button
