@@ -1,4 +1,5 @@
-import create from 'zustand'
+import { create } from 'zustand'
+
 import { playerSlice, PlayerSlice } from './slices/player'
 import { songSlice, SongSlice } from './slices/song'
 

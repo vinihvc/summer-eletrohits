@@ -1,21 +1,16 @@
-import Link, { LinkProps } from 'next/link'
-import { useRouter } from 'next/router'
+'use client'
 
-import {
-  Link as ChakraLink,
-  LinkProps as ChakraLinkProps
-} from '@chakra-ui/react'
+import { Link, LinkProps } from '@chakra-ui/next-js'
 
-type ActiveLinkProps = LinkProps & ChakraLinkProps
+import { usePathname } from 'next/navigation'
 
-export const ActiveLink = (props: ActiveLinkProps) => {
+export const ActiveLink = (props: LinkProps) => {
   const { href, children, ...rest } = props
 
-  const { pathname } = useRouter()
+  const pathname = usePathname()
 
   return (
-    <ChakraLink
-      as={Link}
+    <Link
       href={href}
       className={pathname === href ? 'active' : ''}
       aria-current={pathname === href ? 'page' : undefined}
@@ -27,6 +22,6 @@ export const ActiveLink = (props: ActiveLinkProps) => {
       }}
     >
       {children}
-    </ChakraLink>
+    </Link>
   )
 }

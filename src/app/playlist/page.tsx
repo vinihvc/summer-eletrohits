@@ -1,13 +1,15 @@
+'use client'
+
 import Link from 'next/link'
 
 import { NextSeo } from 'next-seo'
 
 import { Button, Heading, Text } from '@chakra-ui/react'
 
-import { useStore } from 'store'
+import { useStore } from '@/store'
 
-import { CustomBg } from 'components/custom-bg'
-import { SongList } from 'components/song/song.list'
+import { CustomBg } from '@/components/custom-bg'
+import { SongList } from '@/components/song/song.list'
 
 const PlaylistPage = () => {
   const { playlist } = useStore()

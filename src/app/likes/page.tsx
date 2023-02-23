@@ -1,34 +1,24 @@
-import Link from 'next/link'
+'use client'
 
-import { NextSeo } from 'next-seo'
-
-import { Box, Button, Heading, Text } from '@chakra-ui/react'
+import { Box, Button, Text } from '@chakra-ui/react'
 
 import { MdPlayArrow } from 'react-icons/md'
 
-import { useStore } from 'store'
+import { useStore } from '@/store'
 
-import { CustomBg } from 'components/custom-bg'
-import { SongList } from 'components/song/song.list'
+import { SongList } from '@/components/song/song.list'
+import { Link } from '@chakra-ui/next-js'
 
 const LikesPage = () => {
   const { liked, play } = useStore()
 
   return (
     <>
-      <NextSeo title="Likes" />
-
-      <CustomBg gradient={['red.500', 'yellow.300']} />
-
-      <Heading as="h1">Your Likes</Heading>
-
       {liked.length === 0 ? (
         <Box>
           <Text my={5}>No favorite yet.</Text>
 
-          <Button as={Link} href="/">
-            Discover
-          </Button>
+          <Link href="/">Discover</Link>
         </Box>
       ) : (
         <Button

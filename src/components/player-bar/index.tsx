@@ -31,7 +31,7 @@ const PlayerBar = ({ ...props }) => {
         bottom={{ base: '50px', md: '0px' }}
         left="0"
         right="0"
-        bg="player"
+        bg="gray.900"
         borderTop="4px solid"
         borderColor="blue.100"
         {...props}

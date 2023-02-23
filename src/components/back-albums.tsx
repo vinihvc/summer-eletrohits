@@ -1,6 +1,5 @@
-import Link from 'next/link'
-
 import { Box, chakra } from '@chakra-ui/react'
+import { Link } from '@chakra-ui/next-js'
 
 import { MdOutlineKeyboardBackspace } from 'react-icons/md'
 

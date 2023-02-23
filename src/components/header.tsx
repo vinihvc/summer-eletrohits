@@ -1,6 +1,5 @@
-import NextLink from 'next/link'
-
-import { Container, Flex, Link, Stack } from '@chakra-ui/react'
+import { Container, Flex, Stack } from '@chakra-ui/react'
+import { Link } from '@chakra-ui/next-js'
 
 import { FiHeart } from 'react-icons/fi'
 
@@ -12,18 +11,16 @@ export const Header = () => {
     <Flex
       as="header"
       display={{ base: 'none', md: 'flex' }}
-      bg="player"
-      boxShadow="dark-lg"
+      bg="gray.900"
       pos="sticky"
       top={0}
       borderBottom="1px solid"
-      borderColor="whiteAlpha.100"
+      borderColor="blackAlpha.100"
       zIndex="docked"
     >
       <Container maxW="container.xl">
         <Flex justify="space-between" align="center" h={14}>
           <Link
-            as={NextLink}
             href="/"
             aria-label="Eletrohits, Back to homepage"
             _hover={{ textDecor: 'none' }}

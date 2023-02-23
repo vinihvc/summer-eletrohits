@@ -4,7 +4,7 @@ import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs'
 
 import { chakra, IconButton } from '@chakra-ui/react'
 
-import { useStore } from 'store'
+import { useStore } from '@/store'
 
 type PlayButtonProps = {
   songs: SongType[]

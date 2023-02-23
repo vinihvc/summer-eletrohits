@@ -2,7 +2,7 @@ import YouTubePlayer from 'react-player/youtube'
 
 import { Box, chakra } from '@chakra-ui/react'
 
-import { useStore } from 'store'
+import { useStore } from '@/store'
 
 type PlayerProps = {
   isHidden?: boolean

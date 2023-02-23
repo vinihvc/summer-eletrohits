@@ -12,9 +12,9 @@ import { MdPlayArrow } from 'react-icons/md'
 
 import { motion } from 'framer-motion'
 
-import { useStore } from 'store'
+import { useStore } from '@/store'
 
-import { BlurImage } from 'components/blur-image'
+import { BlurImage } from '@/components/blur-image'
 
 type AlbumInfoProps = {
   album: AlbumType

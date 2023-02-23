@@ -4,9 +4,9 @@ import { chakra, IconButton } from '@chakra-ui/react'
 
 import { FiHeart } from 'react-icons/fi'
 
-import { useStore } from 'store'
+import { useStore } from '@/store'
 
-import { useDevice } from 'hooks/use-device'
+import { useDevice } from '@/hooks/use-device'
 
 type LikeButtonProps = {
   song: SongType

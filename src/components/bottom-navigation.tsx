@@ -1,8 +1,9 @@
+import React from 'react'
+
 import { Flex, VisuallyHidden } from '@chakra-ui/react'
 
-import React from 'react'
 import { ActiveLink } from './active-link'
-import { BOTTOM_NAVIGATION } from 'constants/menu'
+import { BOTTOM_NAVIGATION } from '@/constants/menu'
 
 export const BottomNavigation = () => {
   return (
@@ -10,7 +11,7 @@ export const BottomNavigation = () => {
       pos="fixed"
       display={{ base: 'flex', md: 'none' }}
       h="50px"
-      bg="bg"
+      bg="gray.900"
       bottom="0"
       left="0"
       right="0"

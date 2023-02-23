@@ -3,7 +3,7 @@ import { Flex, Icon } from '@chakra-ui/react'
 import { MdPlayArrow } from 'react-icons/md'
 import { BsPauseFill } from 'react-icons/bs'
 
-import { useStore } from 'store'
+import { useStore } from '@/store'
 
 type AlbumItemProps = {
   songs?: SongType[]
