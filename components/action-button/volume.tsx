@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 
-import { MdVolumeOff, MdVolumeUp } from 'react-icons/md'
+import { SpeakerWaveIcon, SpeakerXMarkIcon } from '@heroicons/react/24/solid'
 
 import { useStore } from 'store'
 import { Button } from '../ui/button'
@@ -18,7 +18,11 @@ export const VolumeButton = ({ ...props }) => {
       onClick={toggleVolume}
       {...props}
     >
-      {volume ? <MdVolumeUp /> : <MdVolumeOff />}
+      {volume ? (
+        <SpeakerWaveIcon className="w-5 h-5" />
+      ) : (
+        <SpeakerXMarkIcon className="w-5 h-5" />
+      )}
     </Button>
   )
 }

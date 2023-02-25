@@ -27,9 +27,9 @@ const SongItemComponent = (props: SongItemProps) => {
   return (
     <div
       className={cn(
-        'flex items-center border-b border-b-white/30 p-4 gap-4 hover:bg-white/50',
-        isCurrentSong && 'bg-white/50',
-        className
+        'flex items-center border-b border-b-white/30 p-4 gap-4 hover:bg-white/20',
+        isCurrentSong && 'bg-white/20',
+        className,
       )}
       {...rest}
     >

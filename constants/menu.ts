@@ -1,21 +1,19 @@
-import { FiHeart } from 'react-icons/fi'
-import { RiPlayList2Fill } from 'react-icons/ri'
-import { BsHouseDoor } from 'react-icons/bs'
+import { HeartIcon, QueueListIcon, HomeIcon } from '@heroicons/react/24/outline'
 
 export const BOTTOM_NAVIGATION = [
   {
     label: 'Home',
     href: '/',
-    icon: BsHouseDoor
+    icon: HomeIcon,
   },
   {
     label: 'Likes',
     href: '/likes',
-    icon: FiHeart
+    icon: HeartIcon,
   },
   {
     label: 'Playlist',
     href: '/playlist',
-    icon: RiPlayList2Fill
-  }
+    icon: QueueListIcon,
+  },
 ]

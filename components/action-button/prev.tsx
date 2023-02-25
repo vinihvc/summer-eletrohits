@@ -1,4 +1,4 @@
-import { BsSkipStartFill } from 'react-icons/bs'
+import { BackwardIcon } from '@heroicons/react/24/solid'
 
 import { useStore } from 'store'
 
@@ -19,7 +19,7 @@ export const PrevButton = ({ ...props }) => {
       onClick={playPrevious}
       {...props}
     >
-      <BsSkipStartFill />
+      <BackwardIcon className="w-5 h-5" />
     </Button>
   )
 }

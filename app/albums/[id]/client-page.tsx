@@ -1,6 +1,6 @@
-import { AlbumInfo } from '@/components/album/album.info'
+import { AlbumInfo } from '@/components/album-info'
 import { BackAlbums } from '@/components/back-albums'
-import { CustomBg } from '@/components/custom-bg'
+import { CustomBg } from '@/components/layout/custom-bg'
 import { SongList } from '@/components/song/song.list'
 
 type ClientAlbumPageProps = {
@@ -16,7 +16,7 @@ export const ClientAlbumPage = ({ album }: ClientAlbumPageProps) => {
         <BackAlbums />
       </div>
 
-      <AlbumInfo className="mt-5" album={album} />
+      <AlbumInfo album={album} />
 
       {album.songs && <SongList className="mt-10" songs={album.songs} />}
     </>

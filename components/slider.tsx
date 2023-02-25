@@ -15,7 +15,7 @@ export const Slider = (props: SliderProps) => {
   return (
     <input
       type="range"
-      className={cn(className)}
+      className={cn('w-full', className)}
       min={0}
       max={0.999999}
       value={value}

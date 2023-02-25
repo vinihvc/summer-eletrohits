@@ -1,12 +1,13 @@
 'use client'
 
-import { MdPlayArrow } from 'react-icons/md'
+import { PlayIcon } from '@heroicons/react/24/solid'
 
 import { motion } from 'framer-motion'
 
 import { useStore } from '@/store'
 
-import { BlurImage } from '@/components/blur-image'
+import { Image } from '@/components/image'
+import { Button } from './ui/button'
 
 type AlbumInfoProps = {
   album: AlbumType
@@ -17,15 +18,15 @@ export const AlbumInfo = ({ album, ...props }: AlbumInfoProps) => {
 
   return (
     <div
-      className="flex items-center md:items-baseline gap-5 md:gap-10 flex-col md:flex-row"
+      className="flex items-center gap-5 md:gap-10 flex-col md:flex-row"
       {...props}
     >
       <motion.div
-        className="flex justify-center md:justify-start shadow-lg"
+        className="flex justify-center md:justify-start"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
       >
-        <BlurImage
+        <Image
           src={album.thumb}
           alt={album.name}
           className="w-[150px] h-[150px] md:w-[250px] md:h-[250px]"
@@ -44,13 +45,13 @@ export const AlbumInfo = ({ album, ...props }: AlbumInfoProps) => {
         <div className="mt-1">{`${album.songs?.length} songs`}</div>
 
         <div>
-          <button
-            className="bg-red-500"
+          <Button
+            className="space-x-2"
             onClick={() => album.songs && play(album.songs)}
           >
-            <MdPlayArrow />
-            Play
-          </button>
+            <PlayIcon className="w-5 h-5" />
+            <span>Play</span>
+          </Button>
         </div>
       </motion.div>
     </div>

@@ -1,6 +1,6 @@
 'use client'
 
-import { BsSkipEndFill } from 'react-icons/bs'
+import { ForwardIcon } from '@heroicons/react/24/solid'
 
 import { useStore } from '@/store'
 
@@ -23,7 +23,7 @@ export const NextButton = ({ ...props }) => {
       onClick={playNext}
       {...props}
     >
-      <BsSkipEndFill />
+      <ForwardIcon className="w-5 h-5" />
     </Button>
   )
 }

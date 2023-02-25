@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import { motion } from 'framer-motion'
 
-import { MdOutlineKeyboardBackspace } from 'react-icons/md'
+import { ArrowLongLeftIcon } from '@heroicons/react/24/solid'
 
 export const BackAlbums = ({ ...props }) => {
   return (
@@ -14,10 +14,10 @@ export const BackAlbums = ({ ...props }) => {
         animate={{ opacity: 1 }}
         whileHover={{ x: -5 }}
         transition={{ duration: 0.1 }}
-        className="hidden md:inline-flex justify-center items-center hover:no-underline gap-2 py-3"
+        className="hidden md:inline-flex justify-center items-center gap-2 py-3"
         {...props}
       >
-        <MdOutlineKeyboardBackspace />
+        <ArrowLongLeftIcon className="w-6 h-6" />
         Back to albums
       </motion.span>
     </Link>

@@ -2,7 +2,7 @@
 
 import { useCallback, useMemo } from 'react'
 
-import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs'
+import { PauseIcon, PlayIcon } from '@heroicons/react/24/solid'
 
 import { useStore } from '@/store'
 import { Button } from '../ui/button'
@@ -34,11 +34,15 @@ export const PlayButton = ({ songs, index, ...props }: PlayButtonProps) => {
       variant={isSameSong ? 'solid' : 'ghost'}
       title={title}
       aria-label={title}
-      className="bg-white/20 hover:bg-white/40"
+      className="bg-white/20 hover:bg-white/40 rounded-full text-black"
       onClick={handleClick}
       {...props}
     >
-      {isSameSong && isPlaying ? <BsPauseFill /> : <BsFillPlayFill />}
+      {isSameSong && isPlaying ? (
+        <PauseIcon className="w-5 h-5" />
+      ) : (
+        <PlayIcon className="w-5 h-5" />
+      )}
     </Button>
   )
 }

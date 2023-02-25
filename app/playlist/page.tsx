@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import { useStore } from '@/store'
 
-import { CustomBg } from '@/components/custom-bg'
+import { CustomBg } from '@/components/layout/custom-bg'
 import { SongList } from '@/components/song/song.list'
 import { Button } from '@/components/ui/button'
 

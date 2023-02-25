@@ -1,4 +1,4 @@
-import { CustomBg } from '@/components/custom-bg'
+import { CustomBg } from '@/components/layout/custom-bg'
 
 type LikesLayoutProps = {
   children: React.ReactNode

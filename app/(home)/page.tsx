@@ -1,6 +1,14 @@
-import { AlbumItem } from '@/components/album/album.item'
+import { AlbumCard } from '@/components/album-card'
 
-import { getData } from './fetch'
+const getData = async (): Promise<AlbumType[]> => {
+  const res = await fetch('https://summer-eletrohits-api.vercel.app/api/albums')
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+
+  return res.json()
+}
 
 const HomePage = async () => {
   const data = await getData()
@@ -8,7 +16,7 @@ const HomePage = async () => {
   return (
     <>
       {data?.map((album) => (
-        <AlbumItem key={album.id} album={album} />
+        <AlbumCard key={album.id} album={album} />
       ))}
     </>
   )

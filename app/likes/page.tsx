@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 
-import { MdPlayArrow } from 'react-icons/md'
+import { PlayIcon } from '@heroicons/react/24/solid'
 
 import { useStore } from '@/store'
 
@@ -22,7 +22,7 @@ const LikesPage = () => {
         </div>
       ) : (
         <Button className="my-5" onClick={() => play(liked)}>
-          <MdPlayArrow />
+          <PlayIcon className="w-5 h-5" />
           Play
         </Button>
       )}

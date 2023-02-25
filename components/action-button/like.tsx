@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react'
 
-import { FiHeart } from 'react-icons/fi'
+import { HeartIcon } from '@heroicons/react/24/solid'
 
 import { useStore } from '@/store'
 
@@ -35,14 +35,14 @@ export const LikeButton = ({ song, ...props }: LikeButtonProps) => {
       className={cn(
         '',
         isMobile ? 'h-[20px]' : 'h-[30px]',
-        isLiked ? 'bg-white full-white' : 'bg-red'
+        isLiked ? 'bg-white full-white' : 'bg-red',
       )}
       title={title}
       aria-label={title}
       onClick={handleClick}
       {...props}
     >
-      <FiHeart />
+      <HeartIcon className="w-5 h-5" />
     </Button>
   )
 }

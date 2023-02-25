@@ -9,13 +9,13 @@ module.exports = {
       center: true,
       padding: '1.5rem',
       screens: {
-        '2xl': '1440px'
-      }
+        xl: '1280px',
+      },
     },
     extend: {
       fontFamily: {
-        sans: ['var(--font-sans)', ...fontFamily.sans]
-      }
-    }
-  }
+        sans: ['var(--font-sans)', ...fontFamily.sans],
+      },
+    },
+  },
 }
