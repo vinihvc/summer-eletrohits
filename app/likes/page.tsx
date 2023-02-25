@@ -1,10 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-
-import { PlayIcon } from '@heroicons/react/24/solid'
-
 import { useStore } from '@/store'
+import { Play } from 'lucide-react'
 
 import { SongList } from '@/components/song/song.list'
 import { Button } from '@/components/ui/button'
@@ -22,7 +20,7 @@ const LikesPage = () => {
         </div>
       ) : (
         <Button className="my-5" onClick={() => play(liked)}>
-          <PlayIcon className="w-5 h-5" />
+          <Play className="h-5 w-5" />
           Play
         </Button>
       )}

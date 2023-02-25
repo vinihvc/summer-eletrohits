@@ -2,8 +2,8 @@
 
 import { useStore } from '@/store'
 
-import { Slider } from '@/components/slider'
 import { VolumeButton } from '@/components/action-button/volume'
+import { Slider } from '@/components/slider'
 
 export const PlayerVolume = ({ ...props }) => {
   const { volume, changeVolume } = useStore()

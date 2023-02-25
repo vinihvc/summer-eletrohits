@@ -1,6 +1,5 @@
-import { StateCreator } from 'zustand'
-
 import { storage } from 'services/storage'
+import { StateCreator } from 'zustand'
 
 import { PlayerSlice } from './player'
 
@@ -30,7 +29,7 @@ export const songSlice: StateCreator<
 
       set((state) => ({
         ...state,
-        liked
+        liked,
       }))
     },
     like: async (song: SongType) => {
@@ -40,7 +39,7 @@ export const songSlice: StateCreator<
 
       set((state) => ({
         ...state,
-        liked
+        liked,
       }))
     },
     dislike: async (song: SongType) => {
@@ -50,8 +49,8 @@ export const songSlice: StateCreator<
 
       set((state) => ({
         ...state,
-        liked
+        liked,
       }))
-    }
+    },
   }
 }

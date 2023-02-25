@@ -1,8 +1,7 @@
 import { useMemo } from 'react'
-
-import { SpeakerWaveIcon, SpeakerXMarkIcon } from '@heroicons/react/24/solid'
-
+import { Volume2, VolumeX } from 'lucide-react'
 import { useStore } from 'store'
+
 import { Button } from '../ui/button'
 
 export const VolumeButton = ({ ...props }) => {
@@ -19,9 +18,9 @@ export const VolumeButton = ({ ...props }) => {
       {...props}
     >
       {volume ? (
-        <SpeakerWaveIcon className="w-5 h-5" />
+        <Volume2 className="h-5 w-5" />
       ) : (
-        <SpeakerXMarkIcon className="w-5 h-5" />
+        <VolumeX className="h-5 w-5" />
       )}
     </Button>
   )

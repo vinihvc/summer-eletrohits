@@ -1,14 +1,11 @@
 'use client'
 
 import { useMemo } from 'react'
-
-import { HeartIcon } from '@heroicons/react/24/solid'
-
 import { useStore } from '@/store'
-
-import { Button } from '@/components/ui/button'
+import { Heart } from 'lucide-react'
 
 import { useDevice } from '@/hooks/use-device'
+import { Button } from '@/components/ui/button'
 import { cn } from '@/utils/cn'
 
 type LikeButtonProps = {
@@ -35,14 +32,14 @@ export const LikeButton = ({ song, ...props }: LikeButtonProps) => {
       className={cn(
         '',
         isMobile ? 'h-[20px]' : 'h-[30px]',
-        isLiked ? 'bg-white full-white' : 'bg-red',
+        isLiked ? 'full-white bg-white' : 'bg-red',
       )}
       title={title}
       aria-label={title}
       onClick={handleClick}
       {...props}
     >
-      <HeartIcon className="w-5 h-5" />
+      <Heart className="h-5 w-5" />
     </Button>
   )
 }

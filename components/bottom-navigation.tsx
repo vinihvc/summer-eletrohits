@@ -1,17 +1,16 @@
 import React from 'react'
 
 import { BOTTOM_NAVIGATION } from '@/constants/menu'
-
 import { ActiveLink } from './active-link'
 
 export const BottomNavigation = () => {
   return (
-    <div className="fixed flex md:hidden h-[50px] bg-gray-900 bottom-0 inset-x-0 items-center justify-between">
+    <div className="fixed inset-x-0 bottom-0 flex h-[50px] items-center justify-between bg-neutral-900 sm:hidden">
       {BOTTOM_NAVIGATION.map(({ label, href, icon }) => (
-        <div className="flex justify-center flex-1" key={href}>
+        <div className="flex flex-1 justify-center" key={href}>
           <ActiveLink
             href={href}
-            className="text-gray-400 aria-[current=page]:text-white"
+            className="text-neutral-400 aria-[current=page]:text-white"
           >
             {React.createElement(icon, {
               className: 'h-4 w-4',

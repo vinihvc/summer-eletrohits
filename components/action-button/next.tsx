@@ -1,8 +1,7 @@
 'use client'
 
-import { ForwardIcon } from '@heroicons/react/24/solid'
-
 import { useStore } from '@/store'
+import { Forward } from 'lucide-react'
 
 import { useDevice } from '@/hooks/use-device'
 import { Button } from '../ui/button'
@@ -23,7 +22,7 @@ export const NextButton = ({ ...props }) => {
       onClick={playNext}
       {...props}
     >
-      <ForwardIcon className="w-5 h-5" />
+      <Forward className="h-5 w-5" />
     </Button>
   )
 }

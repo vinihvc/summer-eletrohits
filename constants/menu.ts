@@ -1,19 +1,19 @@
-import { HeartIcon, QueueListIcon, HomeIcon } from '@heroicons/react/24/outline'
+import { Heart, Home, ListVideo } from 'lucide-react'
 
 export const BOTTOM_NAVIGATION = [
   {
     label: 'Home',
     href: '/',
-    icon: HomeIcon,
+    icon: Home,
   },
   {
     label: 'Likes',
     href: '/likes',
-    icon: HeartIcon,
+    icon: Heart,
   },
   {
     label: 'Playlist',
     href: '/playlist',
-    icon: QueueListIcon,
+    icon: ListVideo,
   },
 ]

@@ -3,9 +3,7 @@ import { Josefin_Sans as FontSans } from '@next/font/google'
 import { BottomNavigation } from '@/components/bottom-navigation'
 import { Footer } from '@/components/layout/footer'
 import PlayerBar from '@/components/player-bar'
-
 import { cn } from '@/utils/cn'
-
 import '@/styles/global.css'
 import { Header } from '@/components/layout/header'
 
@@ -37,7 +35,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
         <main className="container min-h-screen pt-10">{children}</main>
 
         {/* Margin bottom for <BottomNavigation */}
-        <Footer className="mb-[50px] md:mb-0" />
+        <Footer className="mb-[50px] sm:mb-0" />
 
         <BottomNavigation />
 

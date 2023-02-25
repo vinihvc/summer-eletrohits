@@ -2,15 +2,13 @@
 
 import { useStore } from '@/store'
 
-import { useDevice } from '@/hooks/use-device'
 import { useMediaKeyPress } from '@/hooks/media-keypress'
-
+import { useDevice } from '@/hooks/use-device'
 import { YoutubePlayer } from '@/components/youtube-player'
-
-import { PlayerSongInfo } from './player.info'
 import { PlayerActions } from './player.actions'
-import { PlayerProgress } from './player.progress'
+import { PlayerSongInfo } from './player.info'
 import { PlayerPlaylist } from './player.playlist'
+import { PlayerProgress } from './player.progress'
 import { PlayerVolume } from './player.volume'
 
 const PlayerBar = ({ ...props }) => {
@@ -27,18 +25,18 @@ const PlayerBar = ({ ...props }) => {
   return (
     <>
       <div
-        className="flex sticky bottom-[50px] md:bottom-0 inset-x-0 bg-gray-900 border-t-4 border-blue-100"
+        className="sticky inset-x-0 bottom-[50px] z-50 flex border-t-4 bg-gradient-to-t from-black to-black/20 sm:bottom-0 sm:bg-black"
         {...props}
       >
         <div className="container relative">
           <PlayerProgress />
 
-          <div className="flex-1 items-center flex h-20">
+          <div className="flex h-20 flex-1 items-center">
             <PlayerSongInfo w={{ lg: '20%' }} />
 
             <PlayerActions flex={1} />
 
-            <div className="flex-1 items-center flex w-1/5">
+            <div className="flex w-1/5 flex-1 items-center">
               {!isMobile && <PlayerPlaylist />}
 
               {!isMobile && <PlayerVolume />}

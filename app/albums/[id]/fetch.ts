@@ -2,7 +2,7 @@ import { DataParams } from './types'
 
 export const getData = async ({ params }: DataParams): Promise<AlbumType> => {
   const res = await fetch(
-    `https://summer-eletrohits-api.vercel.app/api/albums/${params.id}`
+    `https://summer-eletrohits-api.vercel.app/api/albums/${params.id}`,
   )
 
   if (!res.ok) {

@@ -2,16 +2,16 @@
 
 import { useStore } from '@/store'
 
+import { NextButton } from '@/components/action-button/next'
 import { PlayButton } from '@/components/action-button/play'
 import { PrevButton } from '@/components/action-button/prev'
-import { NextButton } from '@/components/action-button/next'
 
 export const PlayerActions = ({ ...props }) => {
   const { playlist, currentIndex } = useStore()
 
   return (
     <div
-      className="flex-1 items-center flex justify-end md:justify-center"
+      className="flex flex-1 items-center justify-end sm:justify-center"
       {...props}
     >
       <PrevButton />

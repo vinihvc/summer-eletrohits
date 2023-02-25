@@ -1,19 +1,20 @@
 'use client'
 
 import Link from 'next/link'
+import { ChevronLeft } from 'lucide-react'
 
-import { ArrowLongLeftIcon } from '@heroicons/react/24/solid'
+import { Button } from './ui/button'
 
 export const BackAlbums = ({ ...props }) => {
   return (
     <Link href="/">
-      <span
-        className="hidden md:inline-flex justify-center items-center gap-2 py-3"
+      <Button
+        className="hidden items-center justify-center gap-2 py-3 sm:inline-flex"
         {...props}
       >
-        <ArrowLongLeftIcon className="w-6 h-6" />
+        <ChevronLeft className="h-6 w-6" />
         Back to albums
-      </span>
+      </Button>
     </Link>
   )
 }

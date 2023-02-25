@@ -1,10 +1,9 @@
 'use client'
 
 import { useCallback, useMemo } from 'react'
-
-import { PauseIcon, PlayIcon } from '@heroicons/react/24/solid'
-
 import { useStore } from '@/store'
+import { Pause, Play } from 'lucide-react'
+
 import { Button } from '../ui/button'
 
 type PlayButtonProps = {
@@ -34,14 +33,14 @@ export const PlayButton = ({ songs, index, ...props }: PlayButtonProps) => {
       variant={isSameSong ? 'solid' : 'ghost'}
       title={title}
       aria-label={title}
-      className="bg-white/20 hover:bg-white/40 rounded-full text-black"
+      className="rounded-full bg-white/20 text-black hover:bg-white/40"
       onClick={handleClick}
       {...props}
     >
       {isSameSong && isPlaying ? (
-        <PauseIcon className="w-5 h-5" />
+        <Pause className="h-5 w-5" />
       ) : (
-        <PlayIcon className="w-5 h-5" />
+        <Play className="h-5 w-5" />
       )}
     </Button>
   )

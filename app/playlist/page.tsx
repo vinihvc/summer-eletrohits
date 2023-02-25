@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-
 import { useStore } from '@/store'
 
 import { CustomBg } from '@/components/layout/custom-bg'

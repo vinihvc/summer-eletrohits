@@ -1,5 +1,4 @@
 import * as React from 'react'
-
 import Link from 'next/link'
 
 import { cn } from '@/utils/cn'
@@ -11,7 +10,7 @@ export const Footer = (props: FooterProps) => {
 
   return (
     <footer className={cn(className)} {...rest}>
-      <div className="flex justify-center items-center h-[100px] gap-1">
+      <div className="flex h-[100px] items-center justify-center gap-1">
         {'Created by '}
         <Link
           className="text-blue-500"

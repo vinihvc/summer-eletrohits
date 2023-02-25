@@ -8,7 +8,7 @@ export const PlayerProgress = () => {
   const { progress, handleProgress } = useStore()
 
   return (
-    <div className="flex absolute -top-1 inset-x-0">
+    <div className="absolute inset-x-0 -top-1 flex">
       <Slider value={progress} onChange={handleProgress} />
     </div>
   )

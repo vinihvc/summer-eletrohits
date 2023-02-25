@@ -1,5 +1,5 @@
-import { getData } from './fetch'
 import { ClientAlbumPage } from './client-page'
+import { getData } from './fetch'
 import { DataParams } from './types'
 
 type AlbumsProps = DataParams

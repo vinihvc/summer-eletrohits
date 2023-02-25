@@ -1,8 +1,7 @@
-import { BackwardIcon } from '@heroicons/react/24/solid'
+import { useStore } from '@/store'
+import { SkipBack } from 'lucide-react'
 
-import { useStore } from 'store'
-
-import { useDevice } from 'hooks/use-device'
+import { useDevice } from '@/hooks/use-device'
 import { Button } from '../ui/button'
 
 export const PrevButton = ({ ...props }) => {
@@ -19,7 +18,7 @@ export const PrevButton = ({ ...props }) => {
       onClick={playPrevious}
       {...props}
     >
-      <BackwardIcon className="w-5 h-5" />
+      <SkipBack className="h-5 w-5" />
     </Button>
   )
 }

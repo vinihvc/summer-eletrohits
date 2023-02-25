@@ -1,10 +1,8 @@
-import { createRef, RefObject } from 'react'
-
+import { RefObject, createRef } from 'react'
 import ReactPlayer, { YouTubePlayerProps } from 'react-player/youtube'
+import { StateCreator } from 'zustand'
 
 import { SongSlice } from './song'
-
-import { StateCreator } from 'zustand'
 
 export type PlayerSlice = {
   $player: RefObject<ReactPlayer>
@@ -41,19 +39,19 @@ export const playerSlice: StateCreator<
         ...state,
         playlist: list,
         isPlaying: true,
-        currentIndex: index
+        currentIndex: index,
       }))
     },
     onProgress: ({ played }) => {
       set((state) => ({
         ...state,
-        progress: played
+        progress: played,
       }))
     },
     togglePlay: () => {
       set((state) => ({
         ...state,
-        isPlaying: !get().isPlaying
+        isPlaying: !get().isPlaying,
       }))
     },
     playNext: () => {
@@ -63,7 +61,7 @@ export const playerSlice: StateCreator<
         set((state) => ({
           ...state,
           isPlaying: true,
-          currentIndex: get().currentIndex + 1
+          currentIndex: get().currentIndex + 1,
         }))
       }
     },
@@ -74,7 +72,7 @@ export const playerSlice: StateCreator<
         set((state) => ({
           ...state,
           isPlaying: true,
-          currentIndex: get().currentIndex - 1
+          currentIndex: get().currentIndex - 1,
         }))
       }
     },
@@ -82,27 +80,27 @@ export const playerSlice: StateCreator<
       if (get().volume === 0) {
         set((state) => ({
           ...state,
-          volume: get().saveVolume
+          volume: get().saveVolume,
         }))
       } else {
         set((state) => ({
           ...state,
           saveVolume: get().volume,
-          volume: 0
+          volume: 0,
         }))
       }
     },
     changeVolume: (volume: number) => {
       set((state) => ({
         ...state,
-        volume
+        volume,
       }))
     },
     volumeUp: () => {
       if (get().volume < 1) {
         set((state) => ({
           ...state,
-          volume: get().volume + 0.1
+          volume: get().volume + 0.1,
         }))
       }
     },
@@ -110,17 +108,17 @@ export const playerSlice: StateCreator<
       if (get().volume > 0) {
         set((state) => ({
           ...state,
-          volume: get().volume - 0.1
+          volume: get().volume - 0.1,
         }))
       }
     },
     handleProgress: (value: number) => {
       set((state) => ({
         ...state,
-        progress: value
+        progress: value,
       }))
 
       get().$player?.current?.seekTo(value)
-    }
+    },
   }
 }

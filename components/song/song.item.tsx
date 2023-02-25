@@ -1,7 +1,6 @@
 'use client'
 
 import { memo, useMemo } from 'react'
-
 import { useStore } from '@/store'
 
 import { LikeButton } from '@/components/action-button/like'
@@ -27,7 +26,7 @@ const SongItemComponent = (props: SongItemProps) => {
   return (
     <div
       className={cn(
-        'flex items-center border-b border-b-white/30 p-4 gap-4 hover:bg-white/20',
+        'flex items-center gap-4 border-b border-b-white/30 p-4 hover:bg-white/20',
         isCurrentSong && 'bg-white/20',
         className,
       )}
@@ -35,13 +34,13 @@ const SongItemComponent = (props: SongItemProps) => {
     >
       <PlayButton songs={songs} index={index} />
 
-      <div className="max-w-[140px] sm:max-w-[250px] md:max-w-full text-sm sm:text-md">
-        <div className="font-bold text-ellipsis">{song.name}</div>
+      <div className="sm:text-md max-w-[140px] text-sm sm:max-w-[250px] md:max-w-full">
+        <div className="text-ellipsis font-bold">{song.name}</div>
 
         <div>{song.singer}</div>
       </div>
 
-      <div className="flex-grow" />
+      <div className="grow" />
 
       <div className="flex">
         <LikeButton song={song} className="mr-3" />

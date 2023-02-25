@@ -12,7 +12,7 @@ export const ClientAlbumPage = ({ album }: ClientAlbumPageProps) => {
     <>
       <CustomBg image={album.thumb} />
 
-      <div className="flex justify-center md:justify-start">
+      <div className="flex justify-center sm:justify-start">
         <BackAlbums />
       </div>
 

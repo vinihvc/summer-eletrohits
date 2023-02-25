@@ -1,8 +1,7 @@
 'use client'
 
-import YouTubePlayer from 'react-player/youtube'
-
 import { useStore } from '@/store'
+import YouTubePlayer from 'react-player/youtube'
 
 type PlayerProps = {
   isHidden?: boolean
@@ -14,7 +13,7 @@ export const YoutubePlayer = ({ isHidden = true, ...props }: PlayerProps) => {
 
   return (
     <div className="relative" {...props}>
-      <div className="inset-0 absolute" />
+      <div className="absolute inset-0" />
 
       <YouTubePlayer
         ref={$player}
