@@ -2,8 +2,6 @@
 
 import { PlayIcon } from '@heroicons/react/24/solid'
 
-import { motion } from 'framer-motion'
-
 import { useStore } from '@/store'
 
 import { Image } from '@/components/image'
@@ -21,23 +19,15 @@ export const AlbumInfo = ({ album, ...props }: AlbumInfoProps) => {
       className="flex items-center gap-5 md:gap-10 flex-col md:flex-row"
       {...props}
     >
-      <motion.div
-        className="flex justify-center md:justify-start"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-      >
+      <div className="flex justify-center md:justify-start">
         <Image
           src={album.thumb}
           alt={album.name}
           className="w-[150px] h-[150px] md:w-[250px] md:h-[250px]"
         />
-      </motion.div>
+      </div>
 
-      <motion.div
-        className="space-y-4 flex-col items-center md:items-start"
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-      >
+      <div className="space-y-4 flex-col items-center md:items-start">
         <div className="text-blue-200 text-xs uppercase font-medium">Album</div>
 
         <h2 className="text-lg md:text-xl font-bold">{album.name}</h2>
@@ -53,7 +43,7 @@ export const AlbumInfo = ({ album, ...props }: AlbumInfoProps) => {
             <span>Play</span>
           </Button>
         </div>
-      </motion.div>
+      </div>
     </div>
   )
 }

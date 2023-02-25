@@ -10,7 +10,7 @@ export const CustomBg = (props: CustomBgProps) => {
   const { image, className } = props
 
   return (
-    <div className="h-full min-h-screen inset-0 absolute -z-[1]">
+    <div className="h-full min-h-screen inset-0 absolute z-[-1]">
       {!image && (
         <div
           className={cn(
@@ -26,7 +26,7 @@ export const CustomBg = (props: CustomBgProps) => {
         </div>
       )}
 
-      <div className="sticky w-full -top-[100vh] max-h-[200vh] h-full filter blur-3xl bg-gradient-to-b from-black/70 to-black/90" />
+      <div className="fixed w-full h-full top-0 bg-gradient-to-b from-black/60 to-black/80 mix-blend-multiply" />
     </div>
   )
 }

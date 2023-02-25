@@ -9,7 +9,7 @@ export const Image = (props: ImageProps) => {
     <div
       className={cn(
         'relative aspect-square w-full h-full overflow-hidden rounded-lg',
-        className
+        className,
       )}
       {...rest}
     >

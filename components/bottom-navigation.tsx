@@ -13,7 +13,10 @@ export const BottomNavigation = () => {
             href={href}
             className="text-gray-400 aria-[current=page]:text-white"
           >
-            {React.createElement(icon, { size: 20, 'aria-hidden': true })}
+            {React.createElement(icon, {
+              className: 'h-4 w-4',
+              'aria-hidden': true,
+            })}
 
             <span className="sr-only">{label}</span>
           </ActiveLink>

@@ -19,7 +19,7 @@ export const YoutubePlayer = ({ isHidden = true, ...props }: PlayerProps) => {
       <YouTubePlayer
         ref={$player}
         {...(currentSong() && {
-          url: `https://youtu.be/${currentSong().youtubeId}`
+          url: `https://youtu.be/${currentSong().youtubeId}`,
         })}
         playing={isPlaying}
         volume={volume}
