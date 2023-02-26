@@ -1,17 +1,22 @@
 'use client'
 
 import { useCallback, useMemo } from 'react'
+
 import { useStore } from '@/store'
 import { Pause, Play } from 'lucide-react'
+
+import { cn } from '@/utils/cn'
 
 import { Button } from '../ui/button'
 
 type PlayButtonProps = {
   songs: SongType[]
   index: number
-}
+} & React.ButtonHTMLAttributes<HTMLButtonElement>
 
-export const PlayButton = ({ songs, index, ...props }: PlayButtonProps) => {
+export const PlayButton = (props: PlayButtonProps) => {
+  const { songs, index, className, ...rest } = props
+
   const { isPlaying, togglePlay, currentSong, play } = useStore()
 
   const song = useMemo(() => songs[index], [songs, index])
@@ -26,22 +31,18 @@ export const PlayButton = ({ songs, index, ...props }: PlayButtonProps) => {
     }
   }, [isPlaying, isSameSong, togglePlay, play, songs, index])
 
-  const title = useMemo(() => (isPlaying ? 'Pause' : 'Play'), [isPlaying])
-
   return (
     <Button
-      variant={isSameSong ? 'solid' : 'ghost'}
-      title={title}
-      aria-label={title}
-      className="rounded-full bg-white/20 text-black hover:bg-white/40"
+      variant="solid"
+      className={cn('h-8 w-8 p-0 [&>svg]:fill-current', className)}
       onClick={handleClick}
-      {...props}
+      {...rest}
     >
-      {isSameSong && isPlaying ? (
-        <Pause className="h-5 w-5" />
-      ) : (
-        <Play className="h-5 w-5" />
-      )}
+      {isSameSong && isPlaying ? <Pause size={16} /> : <Play size={16} />}
+
+      <span className="sr-only">
+        {isSameSong && isPlaying ? 'Pause' : 'Play'}
+      </span>
     </Button>
   )
 }

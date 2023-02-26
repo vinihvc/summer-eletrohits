@@ -1,11 +1,15 @@
-import { Josefin_Sans as FontSans } from '@next/font/google'
+import { Inter as FontSans } from '@next/font/google'
 
 import { BottomNavigation } from '@/components/bottom-navigation'
-import { Footer } from '@/components/layout/footer'
 import PlayerBar from '@/components/player-bar'
+
 import { cn } from '@/utils/cn'
+
 import '@/styles/global.css'
+
 import { Header } from '@/components/layout/header'
+
+import { RootProviders } from './providers'
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -18,7 +22,7 @@ type RootLayoutProps = {
 
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
-    <html lang="en" className="dark overflow-y-scroll">
+    <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,22 +30,21 @@ const RootLayout = ({ children }: RootLayoutProps) => {
 
       <body
         className={cn(
-          'min-h-screen bg-white font-sans text-neutral-900 antialiased dark:bg-neutral-900 dark:text-neutral-50',
+          'flex min-h-screen flex-col bg-blue-50 font-sans text-neutral-900 antialiased dark:bg-neutral-900 dark:text-neutral-50',
           fontSans.variable,
         )}
       >
-        <Header />
+        <RootProviders>
+          <Header />
 
-        <main className="container min-h-screen pt-10">{children}</main>
+          <main className="container flex max-w-6xl flex-1 flex-col py-10">
+            {children}
+          </main>
 
-        {/* Margin bottom for <BottomNavigation */}
-        <Footer className="mb-[50px] sm:mb-0" />
+          <BottomNavigation />
 
-        <BottomNavigation />
-
-        {/* add analytics */}
-
-        <PlayerBar />
+          <PlayerBar />
+        </RootProviders>
       </body>
     </html>
   )

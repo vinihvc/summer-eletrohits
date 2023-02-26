@@ -1,21 +1,18 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 
 import Link from 'next/link'
+
 import { useStore } from '@/store'
 
-import { CustomBg } from '@/components/layout/custom-bg'
 import { SongList } from '@/components/song/song.list'
 import { Button } from '@/components/ui/button'
 
 const PlaylistPage = () => {
-  const { playlist } = useStore()
+  const { playlist, currentSong } = useStore()
 
   return (
-    <>
-      <CustomBg className="from-teal-200 to-purple-800" />
-
-      <h1 className="mb-10">Playlist</h1>
-
+    <div className="flex flex-1 flex-col">
       {playlist.length === 0 && (
         <>
           <div className="my-5">No music playing</div>
@@ -26,8 +23,17 @@ const PlaylistPage = () => {
         </>
       )}
 
-      {playlist.length > 0 && <SongList songs={playlist} />}
-    </>
+      <div className="grid max-h-full flex-1 grid-cols-2 items-center gap-4">
+        <img
+          src={`https://img.youtube.com/vi/${currentSong()?.youtubeId}/0.jpg`}
+          alt=""
+        />
+
+        <div className="max-h-96 overflow-auto">
+          {playlist.length > 0 && <SongList songs={playlist} />}
+        </div>
+      </div>
+    </div>
   )
 }
 

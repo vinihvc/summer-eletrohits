@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+
 import { Volume2, VolumeX } from 'lucide-react'
 import { useStore } from 'store'
 
@@ -17,11 +18,7 @@ export const VolumeButton = ({ ...props }) => {
       onClick={toggleVolume}
       {...props}
     >
-      {volume ? (
-        <Volume2 className="h-5 w-5" />
-      ) : (
-        <VolumeX className="h-5 w-5" />
-      )}
+      {volume ? <Volume2 size={20} /> : <VolumeX size={20} />}
     </Button>
   )
 }

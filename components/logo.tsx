@@ -2,10 +2,10 @@ import { Music } from 'lucide-react'
 
 export const Logo = () => {
   return (
-    <div className="flex select-none items-center gap-4 text-xl font-medium tracking-wide">
+    <div className="flex select-none items-center space-x-2 text-lg font-medium tracking-wide">
       <Music className="h-6 w-6 text-blue-500" />
 
-      <span className="text-white">Eletrohits</span>
+      <span className="text-sm">Eletrohits</span>
     </div>
   )
 }

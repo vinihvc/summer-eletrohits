@@ -2,20 +2,23 @@
 
 import { AnimatePresence, motion } from 'framer-motion'
 
+import { cn } from '@/utils/cn'
+
 import { SongItem } from './song.item'
 
 type SongListProps = {
   songs: SongType[]
 } & React.HtmlHTMLAttributes<HTMLDivElement>
 
-export const SongList = ({ songs, ...props }: SongListProps) => {
+export const SongList = (props: SongListProps) => {
+  const { songs, className, ...rest } = props
+
   return (
-    <div {...props}>
+    <div className={cn(className)} {...rest}>
       <AnimatePresence>
         {songs?.map((song, index) => (
           <motion.div
             key={index}
-            layoutId={song.name}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+
 import { useStore } from '@/store'
 import { Play } from 'lucide-react'
 
@@ -16,11 +17,13 @@ const LikesPage = () => {
         <div>
           <div className="my-5">No favorite yet.</div>
 
-          <Link href="/">Discover</Link>
+          <Link href="/">
+            <Button>Discover</Button>
+          </Link>
         </div>
       ) : (
         <Button className="my-5" onClick={() => play(liked)}>
-          <Play className="h-5 w-5" />
+          <Play size={20} />
           Play
         </Button>
       )}

@@ -18,7 +18,7 @@ export const ActiveLink = (props: ActiveLinkProps) => {
   return (
     <Link
       href={href}
-      className={cn(className, pathname === href && 'active')}
+      className={cn(className)}
       aria-current={pathname === href ? 'page' : undefined}
       {...rest}
     >

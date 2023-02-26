@@ -1,4 +1,6 @@
-import { CustomBg } from '@/components/layout/custom-bg'
+import { AlbumInfo } from '@/components/album-info'
+
+import { USER_ALBUM } from './data'
 
 type LikesLayoutProps = {
   children: React.ReactNode
@@ -7,9 +9,7 @@ type LikesLayoutProps = {
 const LikesLayout = ({ children }: LikesLayoutProps) => {
   return (
     <>
-      <CustomBg className="from-red-500 to-yellow-300" />
-
-      <h1>Your Likes</h1>
+      <AlbumInfo album={USER_ALBUM} />
 
       {children}
     </>

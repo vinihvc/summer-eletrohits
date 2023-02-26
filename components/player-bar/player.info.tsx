@@ -2,7 +2,7 @@
 
 import { useStore } from '@/store'
 
-import { LikeButton } from '@/components/action-button/like'
+import { LikeButton } from '@/components/actions/like'
 import { Image } from '@/components/image'
 
 export const PlayerSongInfo = ({ ...props }) => {
@@ -16,12 +16,12 @@ export const PlayerSongInfo = ({ ...props }) => {
         className="hidden h-10 min-h-[40px] w-10 min-w-[40px] rounded-full sm:block"
       />
 
-      <div className="flex max-w-[150px] sm:max-w-[250px] md:max-w-[170px] lg:max-w-full">
-        <span className="text-ellipsis text-sm font-medium">
+      <div className="flex max-w-[150px] flex-col sm:max-w-[250px] md:max-w-[170px] lg:max-w-full">
+        <div className="text-ellipsis text-sm font-medium">
           {currentSong()?.name}
-        </span>
+        </div>
 
-        <span className="text-ellipsis text-xs">{currentSong()?.singer}</span>
+        <div className="text-ellipsis text-xs">{currentSong()?.singer}</div>
       </div>
 
       <LikeButton song={currentSong()} />

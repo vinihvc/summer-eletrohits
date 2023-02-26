@@ -1,10 +1,10 @@
 'use client'
 
 import { useStore } from '@/store'
-import { Play } from 'lucide-react'
+import { Play, Shuffle } from 'lucide-react'
 
 import { Image } from '@/components/image'
-import { Button } from './ui/button'
+import { Button } from '@/components/ui/button'
 
 type AlbumInfoProps = {
   album: AlbumType
@@ -18,28 +18,49 @@ export const AlbumInfo = ({ album, ...props }: AlbumInfoProps) => {
       className="flex flex-col items-center gap-5 sm:flex-row sm:gap-10"
       {...props}
     >
-      <div className="flex justify-center sm:justify-start">
+      <div className="relative flex justify-center sm:justify-start">
         <Image
           src={album.thumb}
           alt={album.name}
-          className="h-[150px] w-[150px] sm:h-[250px] sm:w-[250px]"
+          className="relative z-10 h-[150px] w-[150px] rounded-3xl sm:h-[250px] sm:w-[250px]"
+        />
+
+        <Image
+          src={album.thumb}
+          alt={album.name}
+          className="absolute z-[-1] h-[150px] w-[150px] rounded-3xl blur-3xl dark:opacity-50 sm:h-[250px] sm:w-[250px]"
         />
       </div>
 
-      <div className="flex flex-col items-center space-y-4 sm:items-start">
-        <div className="text-xs font-medium uppercase text-blue-200">Album</div>
+      <div className="flex flex-col items-center space-y-2 sm:items-start">
+        <div>
+          <div className="text-xs font-medium uppercase">Album</div>
 
-        <h2 className="text-lg font-bold sm:text-xl">{album.name}</h2>
+          <h2 className="text-lg font-bold sm:text-xl">{album.name}</h2>
+        </div>
 
-        <div className="mt-1">{`${album.songs?.length} songs`}</div>
+        {album.songs && (
+          <div className="mt-1">{`${album.songs?.length} songs`}</div>
+        )}
 
-        <Button
-          className="space-x-2"
-          onClick={() => album.songs && play(album.songs)}
-        >
-          <Play className="h-5 w-5" />
-          <span>Play</span>
-        </Button>
+        <div className="flex space-x-4">
+          <Button
+            className="space-x-2"
+            onClick={() => album.songs && play(album.songs)}
+          >
+            <Play size={20} />
+            <span>Play</span>
+          </Button>
+
+          <Button
+            variant="outline"
+            className="space-x-2"
+            onClick={() => alert('soon')}
+          >
+            <Shuffle size={20} />
+            <span>Shuffle</span>
+          </Button>
+        </div>
       </div>
     </div>
   )

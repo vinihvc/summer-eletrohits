@@ -1,27 +1,70 @@
 import Link from 'next/link'
-import { Heart } from 'lucide-react'
+
+import { Github, Twitter } from 'lucide-react'
 
 import { ActiveLink } from '@/components/active-link'
 import { Logo } from '@/components/logo'
 
+import { ModeToggle } from '../mode-toggle'
+import { Button } from '../ui/button'
+
 export const Header = () => {
   return (
-    <header className="sticky top-0 z-50 hidden bg-neutral-900 sm:flex">
+    <header className="sticky top-0 z-50 hidden bg-white dark:bg-black sm:flex">
       <div className="container">
         <div className="flex h-14 items-center justify-between">
           <Link href="/" aria-label="Eletrohits, Back to homepage">
             <Logo />
           </Link>
 
-          <nav>
+          <nav className="flex space-x-4">
             <ActiveLink
               href="/likes"
-              className="flex items-center gap-2 text-neutral-400"
+              className="font-semibold text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200"
             >
-              Your Likes
-              <Heart />
+              Songs
+            </ActiveLink>
+
+            <ActiveLink
+              href="/party"
+              className="font-semibold text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200"
+            >
+              Party
+            </ActiveLink>
+
+            <ActiveLink
+              href="/likes"
+              className="font-semibold text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200"
+            >
+              Playlists
             </ActiveLink>
           </nav>
+
+          <div className="flex items-center space-x-4">
+            <a
+              href="https://github.com/vinihvc/summer-eletrohits"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="ghost" size="sm">
+                <Github size={20} />
+                <span className="sr-only">Github</span>
+              </Button>
+            </a>
+
+            <a
+              href="https://viniciusvicentini.com/twitter"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="ghost" size="sm">
+                <Twitter size={20} />
+                <span className="sr-only">Twitter</span>
+              </Button>
+            </a>
+
+            <ModeToggle />
+          </div>
         </div>
       </div>
     </header>

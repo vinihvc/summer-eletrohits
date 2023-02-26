@@ -4,7 +4,9 @@ import { useStore } from '@/store'
 
 import { useMediaKeyPress } from '@/hooks/media-keypress'
 import { useDevice } from '@/hooks/use-device'
+
 import { YoutubePlayer } from '@/components/youtube-player'
+
 import { PlayerActions } from './player.actions'
 import { PlayerSongInfo } from './player.info'
 import { PlayerPlaylist } from './player.playlist'
@@ -23,9 +25,9 @@ const PlayerBar = ({ ...props }) => {
   }
 
   return (
-    <>
+    <div className="sticky inset-x-0 bottom-[50px] z-50 sm:bottom-0">
       <div
-        className="sticky inset-x-0 bottom-[50px] z-50 flex border-t-4 bg-gradient-to-t from-black to-black/20 sm:bottom-0 sm:bg-black"
+        className="flex border-t-4 border-t-neutral-300 bg-white dark:border-t-neutral-800 dark:bg-black"
         {...props}
       >
         <div className="container relative">
@@ -46,7 +48,7 @@ const PlayerBar = ({ ...props }) => {
       </div>
 
       <YoutubePlayer isHidden />
-    </>
+    </div>
   )
 }
 
