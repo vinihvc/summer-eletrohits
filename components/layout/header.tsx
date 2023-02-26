@@ -26,13 +26,6 @@ export const Header = () => {
             </ActiveLink>
 
             <ActiveLink
-              href="/party"
-              className="font-semibold text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200"
-            >
-              Party
-            </ActiveLink>
-
-            <ActiveLink
               href="/likes"
               className="font-semibold text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200"
             >
@@ -41,17 +34,6 @@ export const Header = () => {
           </nav>
 
           <div className="flex items-center space-x-4">
-            <a
-              href="https://github.com/vinihvc/summer-eletrohits"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="ghost" size="sm">
-                <Github size={20} />
-                <span className="sr-only">Github</span>
-              </Button>
-            </a>
-
             <a
               href="https://viniciusvicentini.com/twitter"
               target="_blank"
@@ -63,7 +45,22 @@ export const Header = () => {
               </Button>
             </a>
 
+            <a
+              href="https://github.com/vinihvc/summer-eletrohits"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="ghost" size="sm">
+                <Github size={20} />
+                <span className="sr-only">Github</span>
+              </Button>
+            </a>
+
             <ModeToggle />
+
+            <Link href="/profile">
+              <Button>Login</Button>
+            </Link>
           </div>
         </div>
       </div>

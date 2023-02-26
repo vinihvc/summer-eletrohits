@@ -44,7 +44,7 @@ const SongItemComponent = (props: SongItemProps) => {
   return (
     <div
       className={cn(
-        'group flex items-center space-x-5 rounded-3xl px-5 py-3 transition-colors duration-200 hover:bg-black/10 dark:hover:bg-white/10',
+        'group flex items-center space-x-5 rounded-3xl px-5 py-2.5 transition-colors duration-200 hover:bg-black/10 dark:hover:bg-white/10',
         isCurrentSong && 'bg-white/20',
         className,
       )}

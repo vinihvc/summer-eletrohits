@@ -3,7 +3,6 @@
 import { useStore } from '@/store'
 
 import { useMediaKeyPress } from '@/hooks/media-keypress'
-import { useDevice } from '@/hooks/use-device'
 
 import { YoutubePlayer } from '@/components/youtube-player'
 
@@ -15,8 +14,6 @@ import { PlayerVolume } from './player.volume'
 
 const PlayerBar = ({ ...props }) => {
   const { currentSong } = useStore()
-
-  const { isMobile } = useDevice()
 
   useMediaKeyPress()
 
@@ -38,10 +35,10 @@ const PlayerBar = ({ ...props }) => {
 
             <PlayerActions flex={1} />
 
-            <div className="flex w-1/5 flex-1 items-center">
-              {!isMobile && <PlayerPlaylist />}
+            <div className="hidden w-1/5 flex-1 items-center sm:flex">
+              <PlayerPlaylist />
 
-              {!isMobile && <PlayerVolume />}
+              <PlayerVolume />
             </div>
           </div>
         </div>

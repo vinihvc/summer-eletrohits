@@ -22,11 +22,11 @@ export const ModeToggle = () => {
       <DropdownTrigger asChild>
         <Button variant="ghost" size="sm">
           <Sun
-            className="rotate-0 scale-100 transition-all hover:text-neutral-900 dark:-rotate-90 dark:scale-0 dark:text-neutral-400 dark:hover:text-neutral-100"
+            className="rotate-0 scale-100 transition-all hover:text-neutral-900 dark:-rotate-90 dark:scale-0 dark:hover:text-neutral-100"
             size={20}
           />
           <Moon
-            className="absolute rotate-90 scale-0 transition-all hover:text-neutral-900 dark:rotate-0 dark:scale-100 dark:text-neutral-400 dark:hover:text-neutral-100"
+            className="absolute rotate-90 scale-0 transition-all hover:text-neutral-900 dark:rotate-0 dark:scale-100 dark:hover:text-neutral-100"
             size={20}
           />
           <span className="sr-only">Toggle theme</span>

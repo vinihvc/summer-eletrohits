@@ -7,6 +7,8 @@ import { cn } from '@/utils/cn'
 
 import '@/styles/global.css'
 
+import type { Metadata } from 'next'
+
 import { Header } from '@/components/layout/header'
 
 import { RootProviders } from './providers'
@@ -18,6 +20,11 @@ const fontSans = FontSans({
 
 type RootLayoutProps = {
   children: React.ReactNode
+}
+
+export const metadata: Metadata = {
+  title: 'Eletrohits',
+  description: 'The best of electro music.',
 }
 
 const RootLayout = ({ children }: RootLayoutProps) => {

@@ -3,6 +3,8 @@
 
 import * as React from 'react'
 
+import Image from 'next/image'
+
 const Party = () => {
   const [color, setColor] = React.useState('#000000')
 
@@ -27,11 +29,9 @@ const Party = () => {
       style={{ backgroundColor: color }}
       onClick={randomizeBackgroundStyle}
     >
-      <img
-        src="/img/slowpoke.gif"
-        alt="this slowpoke moves"
-        className="w-[250px]"
-      />
+      <div className="relative aspect-video w-[250px]">
+        <Image src="/img/slowpoke.gif" alt="this slowpoke moves" fill />
+      </div>
     </div>
   )
 }

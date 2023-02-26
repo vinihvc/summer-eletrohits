@@ -5,8 +5,6 @@ import { useMemo } from 'react'
 import { useStore } from '@/store'
 import { Heart } from 'lucide-react'
 
-import { useDevice } from '@/hooks/use-device'
-
 import { Button } from '@/components/ui/button'
 
 import { cn } from '@/utils/cn'
@@ -17,8 +15,6 @@ type LikeButtonProps = {
 
 export const LikeButton = ({ song, ...props }: LikeButtonProps) => {
   const { liked, like, dislike } = useStore()
-
-  const { isMobile } = useDevice()
 
   const isLiked = useMemo(() => {
     return liked?.find((item) => item.id === song.id)
@@ -34,8 +30,7 @@ export const LikeButton = ({ song, ...props }: LikeButtonProps) => {
     <Button
       variant="ghost"
       className={cn(
-        'p-0',
-        isMobile ? 'h-6 w-6' : 'h-8 w-8',
+        'h-6 w-6 p-0 sm:h-8 sm:w-8',
         isLiked && '[&>*]:fill-red-500 [&>*]:stroke-red-500',
       )}
       title={title}
