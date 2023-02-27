@@ -2,11 +2,10 @@ import Link from 'next/link'
 
 import { Github, Twitter } from 'lucide-react'
 
-import { ActiveLink } from '@/components/active-link'
-import { Logo } from '@/components/logo'
-
-import { ModeToggle } from '../mode-toggle'
-import { Button } from '../ui/button'
+import { Logo } from '@/components/icon/logo'
+import { ModeToggle } from '@/components/mode-toggle'
+import { ActiveLink } from '@/components/ui/active-link'
+import { Button } from '@/components/ui/button'
 
 export const Header = () => {
   return (

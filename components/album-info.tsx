@@ -3,8 +3,9 @@
 import { useStore } from '@/store'
 import { Play, Shuffle } from 'lucide-react'
 
-import { Image } from '@/components/image'
 import { Button } from '@/components/ui/button'
+
+import { Image } from './ui/image'
 
 type AlbumInfoProps = {
   album: AlbumType
@@ -18,19 +19,12 @@ export const AlbumInfo = ({ album, ...props }: AlbumInfoProps) => {
       className="flex flex-col items-center gap-5 sm:flex-row sm:gap-10"
       {...props}
     >
-      <div className="relative flex justify-center sm:justify-start">
-        <Image
-          src={album.thumb}
-          alt={album.name}
-          className="relative z-10 h-[150px] w-[150px] rounded-3xl sm:h-[250px] sm:w-[250px]"
-        />
-
-        <Image
-          src={album.thumb}
-          alt={album.name}
-          className="absolute z-[-1] h-[150px] w-[150px] rounded-3xl blur-3xl dark:opacity-50 sm:h-[250px] sm:w-[250px]"
-        />
-      </div>
+      <Image
+        src={album.thumb}
+        alt={album.name}
+        className="h-[150px] w-[150px] justify-center rounded-3xl sm:h-[250px] sm:w-[250px] sm:justify-start"
+        shadow
+      />
 
       <div className="flex flex-col items-center space-y-2 sm:items-start">
         <div>

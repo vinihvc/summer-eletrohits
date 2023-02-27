@@ -2,7 +2,7 @@
 
 import { useStore } from '@/store'
 
-import { Slider } from '../ui/slider'
+import { Slider } from '@/components/ui/slider'
 
 export const PlayerProgress = () => {
   const { progress, handleProgress } = useStore()

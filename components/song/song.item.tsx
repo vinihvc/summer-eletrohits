@@ -13,17 +13,17 @@ import {
 
 import { LikeButton } from '@/components/actions/like'
 import { PlayButton } from '@/components/actions/play'
-
-import { cn } from '@/utils/cn'
-
-import { Image } from '../image'
-import { Button } from '../ui/button'
+import { Button } from '@/components/ui/button'
 import {
   Dropdown,
   DropdownContent,
   DropdownItem,
   DropdownTrigger,
-} from '../ui/dropdown'
+} from '@/components/ui/dropdown'
+
+import { cn } from '@/utils/cn'
+
+import { Image } from '../ui/image'
 
 type SongItemProps = {
   songs: SongType[]
@@ -79,9 +79,15 @@ const SongItemComponent = (props: SongItemProps) => {
           </DropdownTrigger>
 
           <DropdownContent className="w-56" align="end">
-            <DropdownItem>
-              <CreditCard className="mr-2 h-4 w-4" />
-              <span>Youtube</span>
+            <DropdownItem asChild>
+              <a
+                href={`https://youtu.be/${song.youtubeId}`}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <CreditCard className="mr-2 h-4 w-4" />
+                <span>Youtube</span>
+              </a>
             </DropdownItem>
 
             <DropdownItem>

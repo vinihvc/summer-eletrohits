@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import { ListVideo } from 'lucide-react'
 
-import { Button } from '../ui/button'
+import { Button } from '@/components/ui/button'
 
 export const PlayerPlaylist = ({ ...props }) => {
   const title = 'Go to Playlist'

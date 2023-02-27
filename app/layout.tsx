@@ -1,6 +1,6 @@
 import { Inter as FontSans } from '@next/font/google'
 
-import { BottomNavigation } from '@/components/bottom-navigation'
+import { BottomNavigation } from '@/components/layout/bottom-navigation'
 import PlayerBar from '@/components/player-bar'
 
 import { cn } from '@/utils/cn'
@@ -25,6 +25,7 @@ type RootLayoutProps = {
 export const metadata: Metadata = {
   title: 'Eletrohits',
   description: 'The best of electro music.',
+  icons: '/favicon.ico',
 }
 
 const RootLayout = ({ children }: RootLayoutProps) => {

@@ -4,7 +4,7 @@ import { useStore } from '@/store'
 
 import { useMediaKeyPress } from '@/hooks/media-keypress'
 
-import { YoutubePlayer } from '@/components/youtube-player'
+import { YoutubePlayer } from '@/components/ui/youtube-player'
 
 import { PlayerActions } from './player.actions'
 import { PlayerSongInfo } from './player.info'

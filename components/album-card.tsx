@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useStore } from '@/store'
 import { Pause, Play } from 'lucide-react'
 
-import { Image } from '@/components/image'
+import { Image } from '@/components/ui/image'
 
 import { cn } from '@/utils/cn'
 
@@ -43,7 +43,7 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
           >
             <Button
               variant="ghost"
-              className="h-20 w-20 bg-white/30 text-neutral-200 hover:scale-110"
+              className="h-20 w-20 bg-white/30 text-neutral-200 transition-all hover:scale-110 hover:bg-white/40"
               onClick={handleClick}
             >
               {isPlayingAlbum ? <Pause size={30} /> : <Play size={30} />}

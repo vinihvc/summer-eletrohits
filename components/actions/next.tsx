@@ -3,7 +3,7 @@
 import { useStore } from '@/store'
 import { SkipForward } from 'lucide-react'
 
-import { Button } from '../ui/button'
+import { Button } from '@/components/ui/button'
 
 export const NextButton = ({ ...props }) => {
   const { playNext } = useStore()

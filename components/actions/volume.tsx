@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { Volume2, VolumeX } from 'lucide-react'
 import { useStore } from 'store'
 
-import { Button } from '../ui/button'
+import { Button } from '@/components/ui/button'
 
 export const VolumeButton = ({ ...props }) => {
   const { volume, toggleVolume } = useStore()

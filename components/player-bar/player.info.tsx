@@ -3,7 +3,7 @@
 import { useStore } from '@/store'
 
 import { LikeButton } from '@/components/actions/like'
-import { Image } from '@/components/image'
+import { Image } from '@/components/ui/image'
 
 export const PlayerSongInfo = ({ ...props }) => {
   const { currentSong } = useStore()

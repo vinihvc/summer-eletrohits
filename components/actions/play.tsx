@@ -5,9 +5,9 @@ import { useCallback, useMemo } from 'react'
 import { useStore } from '@/store'
 import { Pause, Play } from 'lucide-react'
 
-import { cn } from '@/utils/cn'
+import { Button } from '@/components/ui/button'
 
-import { Button } from '../ui/button'
+import { cn } from '@/utils/cn'
 
 type PlayButtonProps = {
   songs: SongType[]
