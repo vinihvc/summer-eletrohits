@@ -8,7 +8,7 @@ import { Play } from 'lucide-react'
 import { SongList } from '@/components/song/song.list'
 import { Button } from '@/components/ui/button'
 
-const LikesPage = () => {
+const PlaylistsPage = () => {
   const { liked, play } = useStore()
 
   return (
@@ -33,4 +33,4 @@ const LikesPage = () => {
   )
 }
 
-export default LikesPage
+export default PlaylistsPage

@@ -7,7 +7,10 @@ export default withAuth(
   async function middleware(req) {
     const token = await getToken({ req })
     const isAuth = !!token
-    const isAuthPage = req.nextUrl.pathname.startsWith('/profile')
+    const isAuthPage =
+      req.nextUrl.pathname.startsWith('/profile') ||
+      req.nextUrl.pathname.startsWith('/songs') ||
+      req.nextUrl.pathname.startsWith('/playlists')
 
     if (isAuthPage) {
       if (isAuth) {
@@ -40,4 +43,4 @@ export default withAuth(
   },
 )
 
-export const config = { matcher: ['/profile'] }
+export const config = { matcher: ['/profile', '/songs', '/playlists'] }

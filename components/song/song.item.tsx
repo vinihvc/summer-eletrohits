@@ -3,23 +3,11 @@
 import { memo, useMemo } from 'react'
 
 import { useStore } from '@/store'
-import {
-  CreditCard,
-  Keyboard,
-  MoreHorizontal,
-  Plus,
-  Settings,
-} from 'lucide-react'
+import { Plus } from 'lucide-react'
 
 import { LikeButton } from '@/components/actions/like'
 import { PlayButton } from '@/components/actions/play'
 import { Button } from '@/components/ui/button'
-import {
-  Dropdown,
-  DropdownContent,
-  DropdownItem,
-  DropdownTrigger,
-} from '@/components/ui/dropdown'
 
 import { cn } from '@/utils/cn'
 
@@ -71,37 +59,6 @@ const SongItemComponent = (props: SongItemProps) => {
       <div className="grow" />
 
       <div className="flex space-x-1">
-        <Dropdown>
-          <DropdownTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <MoreHorizontal size={16} />
-            </Button>
-          </DropdownTrigger>
-
-          <DropdownContent className="w-56" align="end">
-            <DropdownItem asChild>
-              <a
-                href={`https://youtu.be/${song.youtubeId}`}
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                <CreditCard className="mr-2 h-4 w-4" />
-                <span>Youtube</span>
-              </a>
-            </DropdownItem>
-
-            <DropdownItem>
-              <Settings className="mr-2 h-4 w-4" />
-              <span>Like song</span>
-            </DropdownItem>
-
-            <DropdownItem>
-              <Keyboard className="mr-2 h-4 w-4" />
-              <span>Share</span>
-            </DropdownItem>
-          </DropdownContent>
-        </Dropdown>
-
         <Button variant="ghost" className="h-8 w-8 p-0">
           <Plus size={16} />
         </Button>

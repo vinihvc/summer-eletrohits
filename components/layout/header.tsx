@@ -17,6 +17,8 @@ type HeaderProps = {
 }
 
 export const Header = ({ user }: HeaderProps) => {
+  const hasUser = !!user
+
   return (
     <header className="sticky top-0 z-50 hidden bg-white dark:bg-black sm:flex">
       <div className="container">
@@ -25,21 +27,23 @@ export const Header = ({ user }: HeaderProps) => {
             <Logo />
           </Link>
 
-          <nav className="flex space-x-4">
-            <ActiveLink
-              href="/likes"
-              className="font-semibold text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200"
-            >
-              Songs
-            </ActiveLink>
+          {hasUser && (
+            <nav className="flex space-x-4">
+              <ActiveLink
+                href="/songs"
+                className="font-semibold text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200"
+              >
+                Songs
+              </ActiveLink>
 
-            <ActiveLink
-              href="/likes"
-              className="font-semibold text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200"
-            >
-              Playlists
-            </ActiveLink>
-          </nav>
+              <ActiveLink
+                href="/playlists"
+                className="font-semibold text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200"
+              >
+                Playlists
+              </ActiveLink>
+            </nav>
+          )}
 
           <div className="flex items-center space-x-4">
             <a
@@ -66,7 +70,7 @@ export const Header = ({ user }: HeaderProps) => {
 
             <ModeToggle />
 
-            {user ? (
+            {hasUser ? (
               <Link href="/profile">
                 <Avatar>
                   <AvatarImage
