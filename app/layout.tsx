@@ -9,9 +9,14 @@ import '@/styles/global.css'
 
 import type { Metadata } from 'next'
 
+import { getCurrentUser } from '@/libs/user'
+
 import { Header } from '@/components/layout/header'
+import { TailwindIndicator } from '@/components/tailwind-indicator'
 
 import { RootProviders } from './providers'
+
+// Instantiate it
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -28,9 +33,11 @@ export const metadata: Metadata = {
   icons: '/favicon.ico',
 }
 
-const RootLayout = ({ children }: RootLayoutProps) => {
+const RootLayout = async ({ children }: RootLayoutProps) => {
+  const user = await getCurrentUser()
+
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -43,7 +50,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
         )}
       >
         <RootProviders>
-          <Header />
+          <Header user={user} />
 
           <main className="container flex max-w-6xl flex-1 flex-col py-10">
             {children}
@@ -52,6 +59,8 @@ const RootLayout = ({ children }: RootLayoutProps) => {
           <BottomNavigation />
 
           <PlayerBar />
+
+          <TailwindIndicator />
         </RootProviders>
       </body>
     </html>

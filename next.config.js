@@ -8,6 +8,7 @@ module.exports = {
       'img.youtube.com',
       'www.gstatic.com',
       'api.dicebear.com',
+      'lh3.googleusercontent.com',
     ],
   },
   experimental: {

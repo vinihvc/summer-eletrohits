@@ -1,13 +1,22 @@
 import Link from 'next/link'
 
+import { getUserInitials } from '@/libs/initials'
 import { Github, Twitter } from 'lucide-react'
+import { User } from 'next-auth'
 
 import { Logo } from '@/components/icon/logo'
 import { ModeToggle } from '@/components/mode-toggle'
 import { ActiveLink } from '@/components/ui/active-link'
 import { Button } from '@/components/ui/button'
 
-export const Header = () => {
+import { ModalLogin } from '../modal-login'
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
+
+type HeaderProps = {
+  user?: User
+}
+
+export const Header = ({ user }: HeaderProps) => {
   return (
     <header className="sticky top-0 z-50 hidden bg-white dark:bg-black sm:flex">
       <div className="container">
@@ -57,9 +66,21 @@ export const Header = () => {
 
             <ModeToggle />
 
-            <Link href="/profile">
-              <Button>Login</Button>
-            </Link>
+            {user ? (
+              <Link href="/profile">
+                <Avatar>
+                  <AvatarImage
+                    src={user.image || ''}
+                    alt="Profile picture, click to view profile"
+                  />
+                  <AvatarFallback>{getUserInitials(user)}</AvatarFallback>
+                </Avatar>
+              </Link>
+            ) : (
+              <ModalLogin>
+                <Button>Login</Button>
+              </ModalLogin>
+            )}
           </div>
         </div>
       </div>
