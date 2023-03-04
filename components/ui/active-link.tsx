@@ -18,7 +18,12 @@ export const ActiveLink = (props: ActiveLinkProps) => {
   return (
     <Link
       href={href}
-      className={cn(className)}
+      className={cn(
+        'text-sm font-semibold',
+        'text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200',
+        'aria-[current=page]:text-neutral-900 dark:aria-[current=page]:text-neutral-200',
+        className,
+      )}
       aria-current={pathname === href ? 'page' : undefined}
       {...rest}
     >

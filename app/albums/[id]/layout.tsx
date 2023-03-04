@@ -1,17 +1,16 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 
+import { DataParams } from '@/models/params'
+import { getAlbum } from '@/services/requests'
 import { ChevronLeft } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 
-import { getData } from './fetch'
-import { DataParams } from './types'
-
 export const generateMetadata = async ({
   params,
 }: DataParams): Promise<Metadata> => {
-  const album = await getData({ params })
+  const album = await getAlbum({ params })
 
   return { title: album.name }
 }

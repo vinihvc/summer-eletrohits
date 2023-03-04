@@ -13,7 +13,7 @@ export const BOTTOM_NAVIGATION = [
   },
   {
     label: 'Playlist',
-    href: '/playlist',
+    href: '/queue',
     icon: ListVideo,
   },
 

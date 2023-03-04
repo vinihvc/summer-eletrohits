@@ -1,7 +1,7 @@
 import { Inter as FontSans } from '@next/font/google'
 
 import { BottomNavigation } from '@/components/layout/bottom-navigation'
-import PlayerBar from '@/components/player-bar'
+import { PlayerBar } from '@/components/player/player'
 
 import { cn } from '@/utils/cn'
 
@@ -15,8 +15,6 @@ import { Header } from '@/components/layout/header'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
 
 import { RootProviders } from './providers'
-
-// Instantiate it
 
 const fontSans = FontSans({
   subsets: ['latin'],

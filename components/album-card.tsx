@@ -31,7 +31,7 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
 
   return (
     <Link href={`/albums/${album.id}`} aria-label={album.name}>
-      <article className="focus:group relative space-y-4 overflow-hidden rounded-3xl">
+      <article className="focus:group relative space-y-4 overflow-hidden rounded-xl">
         <div>
           <Image src={album.thumb} alt={album.name} />
 

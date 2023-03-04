@@ -1,17 +1,9 @@
+import { getAlbums } from '@/services/requests'
+
 import { AlbumCard } from '@/components/album-card'
 
-const getData = async (): Promise<AlbumType[]> => {
-  const res = await fetch('https://summer-eletrohits-api.vercel.app/api/albums')
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
-  }
-
-  return res.json()
-}
-
 const HomePage = async () => {
-  const data = await getData()
+  const data = await getAlbums()
 
   return (
     <>

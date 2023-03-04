@@ -10,7 +10,7 @@ export const ClientAlbumPage = ({ album }: ClientAlbumPageProps) => {
     <>
       <AlbumInfo album={album} />
 
-      <section className="pt-8">
+      <section className="pt-4">
         {album.songs && <SongList songs={album.songs} />}
       </section>
     </>

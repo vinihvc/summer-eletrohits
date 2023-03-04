@@ -18,7 +18,7 @@ export const Image = (props: ImageProps) => {
       <NextImage
         src={src}
         alt={alt}
-        className={cn('relative', rounded && 'rounded-3xl')}
+        className={cn('relative', rounded && 'rounded-xl')}
         fill
       />
 
@@ -28,7 +28,7 @@ export const Image = (props: ImageProps) => {
           alt={alt}
           className={cn(
             'absolute z-[-1] blur-xl dark:opacity-50',
-            rounded && 'rounded-3xl',
+            rounded && 'rounded-xl',
           )}
           fill
         />

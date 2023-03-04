@@ -2,11 +2,11 @@ import { AlbumInfo } from '@/components/album-info'
 
 import { USER_ALBUM } from './data'
 
-type FavoritesProps = {
+type LibraryLayoutProps = {
   children: React.ReactNode
 }
 
-const Favorites = ({ children }: FavoritesProps) => {
+const LibraryLayout = ({ children }: LibraryLayoutProps) => {
   return (
     <>
       <AlbumInfo album={USER_ALBUM} />
@@ -16,4 +16,4 @@ const Favorites = ({ children }: FavoritesProps) => {
   )
 }
 
-export default Favorites
+export default LibraryLayout

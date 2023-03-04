@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
 import { getUserInitials } from '@/libs/initials'
-import { Github, Twitter } from 'lucide-react'
 import { User } from 'next-auth'
 
 import { Logo } from '@/components/icon/logo'
@@ -27,46 +26,8 @@ export const Header = ({ user }: HeaderProps) => {
             <Logo />
           </Link>
 
-          {hasUser && (
-            <nav className="flex space-x-4">
-              <ActiveLink
-                href="/songs"
-                className="font-semibold text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200"
-              >
-                Songs
-              </ActiveLink>
-
-              <ActiveLink
-                href="/playlists"
-                className="font-semibold text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200"
-              >
-                Playlists
-              </ActiveLink>
-            </nav>
-          )}
-
-          <div className="flex items-center space-x-4">
-            <a
-              href="https://viniciusvicentini.com/twitter"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="ghost" size="sm">
-                <Twitter size={20} />
-                <span className="sr-only">Twitter</span>
-              </Button>
-            </a>
-
-            <a
-              href="https://github.com/vinihvc/summer-eletrohits"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="ghost" size="sm">
-                <Github size={20} />
-                <span className="sr-only">Github</span>
-              </Button>
-            </a>
+          <nav className="flex items-center space-x-4">
+            {hasUser && <ActiveLink href="/library">Library</ActiveLink>}
 
             <ModeToggle />
 
@@ -85,7 +46,7 @@ export const Header = ({ user }: HeaderProps) => {
                 <Button>Login</Button>
               </ModalLogin>
             )}
-          </div>
+          </nav>
         </div>
       </div>
     </header>

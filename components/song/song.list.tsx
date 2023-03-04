@@ -22,6 +22,7 @@ export const SongList = (props: SongListProps) => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
+            className="transition-colors duration-200 odd:bg-black/10 hover:bg-black/5 odd:dark:bg-black/40 dark:hover:bg-white/5"
             viewport={{ once: true }}
           >
             <SongItem key={song.id} songs={songs} index={index} />

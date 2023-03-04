@@ -12,14 +12,12 @@ import { PlayerPlaylist } from './player.playlist'
 import { PlayerProgress } from './player.progress'
 import { PlayerVolume } from './player.volume'
 
-const PlayerBar = ({ ...props }) => {
+export const PlayerBar = ({ ...props }) => {
   const { currentSong } = useStore()
 
   useMediaKeyPress()
 
-  if (!currentSong()) {
-    return null
-  }
+  if (!currentSong()) return null
 
   return (
     <div className="sticky inset-x-0 bottom-[50px] z-50 sm:bottom-0">
@@ -48,5 +46,3 @@ const PlayerBar = ({ ...props }) => {
     </div>
   )
 }
-
-export default PlayerBar

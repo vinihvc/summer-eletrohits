@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-
 import { getUserInitials } from '@/libs/initials'
 import { getCurrentUser } from '@/libs/user'
 

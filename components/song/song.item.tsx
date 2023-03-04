@@ -32,7 +32,7 @@ const SongItemComponent = (props: SongItemProps) => {
   return (
     <div
       className={cn(
-        'group flex items-center space-x-5 rounded-3xl px-5 py-2.5 transition-colors duration-200 hover:bg-black/10 dark:hover:bg-white/10',
+        'group flex items-center space-x-5 rounded-xl p-2.5 transition-colors duration-200 hover:bg-black/10 dark:hover:bg-white/10',
         isCurrentSong && 'bg-white/20',
         className,
       )}
@@ -50,11 +50,11 @@ const SongItemComponent = (props: SongItemProps) => {
         </div>
       </div>
 
-      <div className="w-full max-w-[140px] text-sm sm:max-w-[300px]">
-        <div className="text-ellipsis text-sm">{song.name}</div>
+      <div className="w-full max-w-[140px] text-sm sm:max-w-[400px]">
+        <div className="truncate text-sm">{song.name}</div>
       </div>
 
-      <div className="text-sm">{song.singer}</div>
+      <div className="truncate text-sm">{song.singer}</div>
 
       <div className="grow" />
 
