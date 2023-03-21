@@ -27,7 +27,7 @@ export const Image = (props: ImageProps) => {
           src={src}
           alt={alt}
           className={cn(
-            'absolute z-[-1] blur-xl dark:opacity-50',
+            'absolute z-[-1] blur-xl dark:opacity-30',
             rounded && 'rounded-xl',
           )}
           fill

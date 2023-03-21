@@ -9,8 +9,6 @@ import '@/styles/global.css'
 
 import type { Metadata } from 'next'
 
-import { getCurrentUser } from '@/libs/user'
-
 import { Header } from '@/components/layout/header'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
 
@@ -32,8 +30,6 @@ export const metadata: Metadata = {
 }
 
 const RootLayout = async ({ children }: RootLayoutProps) => {
-  const user = await getCurrentUser()
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -48,7 +44,7 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
         )}
       >
         <RootProviders>
-          <Header user={user} />
+          <Header />
 
           <main className="container flex max-w-6xl flex-1 flex-col py-10">
             {children}

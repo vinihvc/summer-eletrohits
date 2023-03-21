@@ -4,7 +4,7 @@ import { useStore } from '@/store'
 
 import { useMediaKeyPress } from '@/hooks/media-keypress'
 
-import { YoutubePlayer } from '@/components/ui/youtube-player'
+import { Player } from '@/components/ui/player'
 
 import { PlayerActions } from './player.actions'
 import { PlayerSongInfo } from './player.info'
@@ -42,7 +42,7 @@ export const PlayerBar = ({ ...props }) => {
         </div>
       </div>
 
-      <YoutubePlayer isHidden />
+      <Player isHidden />
     </div>
   )
 }

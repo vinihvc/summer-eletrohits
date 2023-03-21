@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useStore } from '@/store'
 import { Play } from 'lucide-react'
 
-import { SongList } from '@/components/song/song.list'
+import { Songs } from '@/components/songs'
 import { Button } from '@/components/ui/button'
 
 const SongsPage = () => {
@@ -28,7 +28,7 @@ const SongsPage = () => {
         </Button>
       )}
 
-      {liked.length > 0 && <SongList className="mt-10" songs={liked} />}
+      {liked.length > 0 && <Songs className="mt-10" songs={liked} />}
     </>
   )
 }

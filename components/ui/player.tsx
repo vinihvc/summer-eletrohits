@@ -1,13 +1,13 @@
 'use client'
 
 import { useStore } from '@/store'
-import YouTubePlayer from 'react-player/youtube'
+import ReactPlayer from 'react-player/youtube'
 
 type PlayerProps = {
   isHidden?: boolean
 }
 
-export const YoutubePlayer = ({ isHidden = true, ...props }: PlayerProps) => {
+export const Player = ({ isHidden = true, ...props }: PlayerProps) => {
   const { $player, currentSong, isPlaying, volume, onProgress, playNext } =
     useStore()
 
@@ -15,7 +15,7 @@ export const YoutubePlayer = ({ isHidden = true, ...props }: PlayerProps) => {
     <div className="relative" {...props}>
       <div className="absolute inset-0" />
 
-      <YouTubePlayer
+      <ReactPlayer
         ref={$player}
         {...(currentSong() && {
           url: `https://youtu.be/${currentSong().youtubeId}`,
