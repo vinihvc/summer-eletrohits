@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 
-import { DataParams } from '@/models/params'
 import { getAlbum } from '@/services/requests'
 import { ChevronLeft } from 'lucide-react'
 

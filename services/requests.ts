@@ -1,5 +1,3 @@
-import { DataParams } from '@/models/params'
-
 const get = async <T>(url: string): Promise<T> => {
   const res = await fetch(url)
 

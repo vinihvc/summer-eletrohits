@@ -1,4 +1,4 @@
-export type DataParams = {
+type DataParams = {
   params: {
     id: string | number
   }

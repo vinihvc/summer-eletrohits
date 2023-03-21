@@ -1,4 +1,3 @@
-import { DataParams } from '@/models/params'
 import { getAlbum } from '@/services/requests'
 
 import { ClientAlbumPage } from './client-page'
