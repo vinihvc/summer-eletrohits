@@ -1,3 +1,5 @@
+name: Pull Request
+
 on:
   - push
   - pull_request
@@ -13,7 +15,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
       - uses: pnpm/action-setup@v2
         name: Install pnpm
@@ -37,4 +39,10 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Run lint
+        run: pnpm lint:write
+
+      - name: Run build
+        run: pnpm build
