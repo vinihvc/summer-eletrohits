@@ -1,15 +1,26 @@
 'use client'
 
+import { HTMLAttributes } from 'react'
+
 import { useStore } from '@/store'
 
 import { LikeButton } from '@/components/actions/like'
 import { Image } from '@/components/ui/image'
 
-export const PlayerSongInfo = ({ ...props }) => {
+import { cn } from '@/utils/cn'
+
+type PlayerSongInfoProps = HTMLAttributes<HTMLDivElement>
+
+export const PlayerSongInfo = (props: PlayerSongInfoProps) => {
+  const { className, ...rest } = props
+
   const { currentSong } = useStore()
 
   return (
-    <div className="flex flex-1 items-center space-x-4" {...props}>
+    <div
+      className={cn('flex flex-1 items-center space-x-4', className)}
+      {...rest}
+    >
       <div className="relative h-10 w-10 overflow-hidden rounded-full">
         <Image
           width={40}

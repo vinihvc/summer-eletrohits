@@ -6,16 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint:check": "eslint \"**/*.{ts,tsx}\" --max-warnings=0",
-    "lint:write": "eslint \"**/*.{ts,tsx}\" --max-warnings=0 --fix",
-    "format:write": "prettier --write \"**/*.{ts,tsx}\" --cache",
-    "format:check": "prettier --check \"**/*.{ts,tsx}\" --cache",
+    "lint": "eslint . --max-warnings=0",
+    "format:write": "prettier --write \"**/*.{js,ts,tsx,mdx}\" --cache",
+    "format:check": "prettier --check \"**/*.{js,ts,tsx,mdx}\" --cache",
+    "prepare": "husky install",
     "postinstall": "husky install"
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
-      "pnpm lint:check",
-      "pnpm format:check"
+      "pnpm format:write",
+      "pnpm lint"
     ]
   },
   "dependencies": {

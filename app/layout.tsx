@@ -50,9 +50,9 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
             {children}
           </main>
 
-          <BottomNavigation />
-
           <PlayerBar />
+
+          <BottomNavigation />
 
           <TailwindIndicator />
         </RootProviders>

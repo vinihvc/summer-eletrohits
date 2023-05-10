@@ -20,7 +20,7 @@ export const PlayerBar = ({ ...props }) => {
   if (!currentSong()) return null
 
   return (
-    <div className="sticky inset-x-0 bottom-[50px] z-50 sm:bottom-0">
+    <div className="sticky inset-x-0 bottom-[45px] z-50 sm:bottom-0">
       <div
         className="flex border-t-4 border-t-neutral-300 bg-white dark:border-t-neutral-800 dark:bg-black"
         {...props}
@@ -29,7 +29,7 @@ export const PlayerBar = ({ ...props }) => {
           <PlayerProgress />
 
           <div className="flex h-20 flex-1 items-center">
-            <PlayerSongInfo w={{ lg: '20%' }} />
+            <PlayerSongInfo className="lg:w-[20%]" />
 
             <PlayerActions flex={1} />
 
