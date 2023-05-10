@@ -3,33 +3,29 @@
 import Link from 'next/link'
 
 import { useStore } from '@/store'
-import { Play } from 'lucide-react'
 
 import { Songs } from '@/components/songs'
-import { Button } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
 
 const SongsPage = () => {
-  const { liked, play } = useStore()
+  const { playlist } = useStore()
 
   return (
-    <>
-      {liked.length === 0 ? (
-        <div>
-          <div className="my-5">No favorite yet.</div>
+    <div className="space-y-5">
+      <h2 className="text-3xl font-bold">Queue</h2>
 
-          <Link href="/">
-            <Button>Discover</Button>
+      {playlist.length === 0 && (
+        <>
+          <p>Nothing in queue yet, go discover!</p>
+
+          <Link href="/" className={buttonVariants()}>
+            Discover
           </Link>
-        </div>
-      ) : (
-        <Button className="my-5" onClick={() => play(liked)}>
-          <Play size={20} />
-          Play
-        </Button>
+        </>
       )}
 
-      {liked.length > 0 && <Songs className="mt-10" songs={liked} />}
-    </>
+      {playlist.length > 0 && <Songs songs={playlist} />}
+    </div>
   )
 }
 

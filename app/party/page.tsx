@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 'use client'
 
 import * as React from 'react'
@@ -18,7 +17,7 @@ const Party = () => {
   React.useEffect(() => {
     const interval = setInterval(() => {
       randomizeBackgroundStyle()
-    }, 200)
+    }, 300)
 
     return () => clearInterval(interval)
   }, [])

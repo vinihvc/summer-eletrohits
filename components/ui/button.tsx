@@ -4,7 +4,7 @@ import { VariantProps, cva } from 'class-variance-authority'
 
 import { cn } from '@/utils/cn'
 
-const buttonVariants = cva(
+export const buttonVariants = cva(
   cn(
     'inline-flex items-center justify-center rounded-full',
     'transition-colors duration-200',

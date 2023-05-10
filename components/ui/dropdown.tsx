@@ -28,7 +28,7 @@ const DropdownSubTrigger = React.forwardRef<
   <RDropdown.SubTrigger
     ref={ref}
     className={cn(
-      'flex cursor-default select-none items-center rounded py-1.5 px-2 text-sm font-medium outline-none focus:bg-neutral-100 data-[state=open]:bg-neutral-100 dark:focus:bg-neutral-700 dark:data-[state=open]:bg-neutral-700',
+      'flex cursor-default select-none items-center rounded px-2 py-1.5 text-sm font-medium outline-none focus:bg-neutral-100 data-[state=open]:bg-neutral-100 dark:focus:bg-neutral-700 dark:data-[state=open]:bg-neutral-700',
       inset && 'pl-8',
       className,
     )}
@@ -82,7 +82,7 @@ const DropdownItem = React.forwardRef<
   <RDropdown.Item
     ref={ref}
     className={cn(
-      'relative flex cursor-default select-none items-center rounded py-3 px-2 text-sm font-medium outline-none focus:bg-neutral-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-neutral-700',
+      'relative flex cursor-default select-none items-center rounded px-2 py-3 text-sm font-medium outline-none focus:bg-neutral-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-neutral-700',
       inset && 'pl-8',
       className,
     )}

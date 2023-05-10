@@ -4,26 +4,35 @@ import Link from 'next/link'
 
 import { useStore } from '@/store'
 
+import { AlbumInfo } from '@/components/album-info'
 import { Songs } from '@/components/songs'
-import { Button } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
+
+import { USER_ALBUM } from './data'
 
 const LibraryPage = () => {
   const { liked } = useStore()
 
   return (
-    <>
+    <div className="space-y-5">
       {liked.length === 0 && (
-        <div>
-          <div className="my-5">No favorite yet.</div>
+        <>
+          <p>Nothing in your library yet, go discover!</p>
 
-          <Link href="/">
-            <Button>Discover</Button>
+          <Link href="/" className={buttonVariants()}>
+            Discover
           </Link>
-        </div>
+        </>
       )}
 
-      {liked.length > 0 && <Songs className="mt-10" songs={liked} />}
-    </>
+      {liked.length > 0 && (
+        <>
+          <AlbumInfo album={{ ...USER_ALBUM, songs: liked }} />
+
+          <Songs songs={liked} />
+        </>
+      )}
+    </div>
   )
 }
 

@@ -26,6 +26,8 @@ export const Header = (props: HeaderProps) => {
           </Link>
 
           <nav className="flex items-center space-x-4">
+            <ActiveLink href="/party">Party</ActiveLink>
+
             <ActiveLink href="/library">Library</ActiveLink>
 
             <ModeToggle />

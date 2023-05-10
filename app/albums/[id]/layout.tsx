@@ -11,7 +11,21 @@ export const generateMetadata = async ({
 }: DataParams): Promise<Metadata> => {
   const album = await getAlbum({ params })
 
-  return { title: album.name }
+  return {
+    title: album.name,
+    description: `Album ${album.name}`,
+    openGraph: {
+      url: `https://eletrohits.viniciusvicentini.com/albums/${album.id}`,
+      title: `${album.name} - Summer Eletrohits`,
+      description: `Album ${album.name}`,
+      images: [
+        {
+          url: album.thumb,
+          alt: `${album.name}`,
+        },
+      ],
+    },
+  }
 }
 
 type AlbumsLayoutProps = {
@@ -23,7 +37,7 @@ const AlbumsLayout = ({ children }: AlbumsLayoutProps) => {
     <div className="space-y-4">
       <div className="flex justify-center sm:justify-start">
         <Link href="/" className="hidden sm:inline-flex">
-          <Button className="space-x-1 text-xs">
+          <Button className="space-x-1">
             <ChevronLeft size={20} />
 
             <span>Back to albums</span>

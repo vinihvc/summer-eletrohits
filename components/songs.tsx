@@ -1,15 +1,14 @@
 'use client'
 
+import Image from 'next/image'
+
 import { useStore } from '@/store'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Plus } from 'lucide-react'
 
 import { cn } from '@/utils/cn'
 
 import { LikeButton } from './actions/like'
 import { PlayButton } from './actions/play'
-import { Button } from './ui/button'
-import { Image } from './ui/image'
 
 type SongsProps = {
   songs: SongType[]
@@ -25,10 +24,11 @@ export const Songs = (props: SongsProps) => {
       <AnimatePresence>
         {songs?.map((song, index) => (
           <motion.div
-            key={index}
+            key={song.id}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.1 }}
             className="overflow-hidden rounded-sm transition-colors duration-200 odd:bg-black/10 hover:bg-black/5 odd:dark:bg-black/40 dark:hover:bg-white/5"
             viewport={{ once: true }}
           >
@@ -42,13 +42,19 @@ export const Songs = (props: SongsProps) => {
             >
               <div className="relative h-10 w-10 overflow-hidden rounded-full">
                 <Image
-                  className="aspect-square h-full w-full scale-150"
+                  width={40}
+                  height={40}
+                  className="aspect-square scale-150"
                   src={`https://img.youtube.com/vi/${song?.youtubeId}/0.jpg`}
                   alt={song?.name}
                 />
 
-                <div className="absolute inset-0 hidden  items-center justify-center group-hover:flex">
-                  <PlayButton songs={songs} index={index} />
+                <div className="absolute inset-0 hidden items-center justify-center group-hover:flex">
+                  <PlayButton
+                    className="bg-white/50"
+                    songs={songs}
+                    index={index}
+                  />
                 </div>
               </div>
 
@@ -60,13 +66,7 @@ export const Songs = (props: SongsProps) => {
 
               <div className="grow" />
 
-              <div className="flex space-x-1">
-                <Button variant="ghost" className="h-8 w-8 p-0">
-                  <Plus size={16} />
-                </Button>
-
-                <LikeButton song={song} />
-              </div>
+              <LikeButton song={song} />
             </div>
           </motion.div>
         ))}

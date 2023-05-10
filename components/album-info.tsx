@@ -12,7 +12,7 @@ type AlbumInfoProps = {
 } & React.HTMLAttributes<HTMLDivElement>
 
 export const AlbumInfo = ({ album, ...props }: AlbumInfoProps) => {
-  const { play } = useStore()
+  const { play, playRandom } = useStore()
 
   return (
     <div
@@ -43,13 +43,14 @@ export const AlbumInfo = ({ album, ...props }: AlbumInfoProps) => {
             onClick={() => album.songs && play(album.songs)}
           >
             <Play size={20} />
+
             <span>Play</span>
           </Button>
 
           <Button
             variant="outline"
             className="space-x-2"
-            onClick={() => alert('soon')}
+            onClick={() => album.songs && playRandom(album.songs)}
           >
             <Shuffle size={20} />
             <span>Shuffle</span>

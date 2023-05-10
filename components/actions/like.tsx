@@ -16,9 +16,7 @@ type LikeButtonProps = {
 export const LikeButton = ({ song, ...props }: LikeButtonProps) => {
   const { liked, like, dislike } = useStore()
 
-  const isLiked = useMemo(() => {
-    return liked?.find((item) => item.id === song.id)
-  }, [liked, song])
+  const isLiked = liked?.find((item) => item.id === song.id)
 
   const handleClick = () => {
     isLiked ? dislike(song) : like(song)

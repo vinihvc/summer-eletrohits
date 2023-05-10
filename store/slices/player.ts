@@ -12,6 +12,7 @@ export type PlayerSlice = {
   saveVolume: number
   progress: number
   play: (list: SongType[], index?: number) => void
+  playRandom: (list: SongType[]) => void
   onProgress: ({ played }: YouTubePlayerProps) => void
   togglePlay: () => void
   playNext: () => void
@@ -41,6 +42,16 @@ export const playerSlice: StateCreator<
         playlist: list,
         isPlaying: true,
         currentIndex: index,
+      }))
+    },
+    playRandom: (list) => {
+      const randomIndex = Math.floor(Math.random() * list.length)
+
+      set((state) => ({
+        ...state,
+        playlist: list,
+        isPlaying: true,
+        currentIndex: randomIndex,
       }))
     },
     onProgress: ({ played }) => {

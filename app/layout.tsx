@@ -1,4 +1,4 @@
-import { Inter as FontSans } from '@next/font/google'
+import { Josefin_Sans as FontSans } from 'next/font/google'
 
 import { BottomNavigation } from '@/components/layout/bottom-navigation'
 import { PlayerBar } from '@/components/player/player'
