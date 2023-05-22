@@ -31,12 +31,12 @@ export const PlayerSongInfo = (props: PlayerSongInfoProps) => {
         />
       </div>
 
-      <div className="flex max-w-[150px] flex-col sm:max-w-[250px] md:max-w-[170px] lg:max-w-full">
-        <div className="text-ellipsis text-sm font-medium">
+      <div className="flex max-w-[100px] flex-col sm:max-w-[250px] md:max-w-[170px] lg:max-w-full">
+        <div className="truncate text-sm font-medium">
           {currentSong()?.name}
         </div>
 
-        <div className="text-ellipsis text-xs">{currentSong()?.singer}</div>
+        <div className="truncate text-xs">{currentSong()?.singer}</div>
       </div>
 
       <LikeButton song={currentSong()} />

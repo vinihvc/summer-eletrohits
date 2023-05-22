@@ -28,7 +28,7 @@ export const PlayerBar = ({ ...props }) => {
         <div className="container relative">
           <PlayerProgress />
 
-          <div className="flex h-20 flex-1 items-center">
+          <div className="flex h-14 flex-1 items-center md:h-20">
             <PlayerSongInfo className="lg:w-[20%]" />
 
             <PlayerActions flex={1} />

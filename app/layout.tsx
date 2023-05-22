@@ -9,6 +9,7 @@ import '@/styles/global.css'
 
 import type { Metadata } from 'next'
 
+import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
 
@@ -24,14 +25,14 @@ type RootLayoutProps = {
 }
 
 export const metadata: Metadata = {
-  title: 'Eletrohits',
+  title: { default: 'Eletrohits', template: '%s | Eletrohits' },
   description: 'The best of electro music.',
   icons: '/favicon.ico',
 }
 
 const RootLayout = async ({ children }: RootLayoutProps) => {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="overflow-y-scroll" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -49,6 +50,8 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
           <main className="container flex max-w-6xl flex-1 flex-col py-10">
             {children}
           </main>
+
+          <Footer />
 
           <PlayerBar />
 

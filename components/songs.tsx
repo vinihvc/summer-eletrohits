@@ -34,7 +34,7 @@ export const Songs = (props: SongsProps) => {
           >
             <div
               className={cn(
-                'group flex items-center space-x-5 p-2.5 transition-colors duration-200 hover:bg-black/10 dark:hover:bg-white/10',
+                'group flex items-center space-x-3 p-2.5 transition-colors duration-200 hover:bg-black/10 dark:hover:bg-white/10 md:space-x-5',
                 currentSong()?.id === song.id && 'bg-white/20',
                 className,
               )}
@@ -49,20 +49,18 @@ export const Songs = (props: SongsProps) => {
                   alt={song?.name}
                 />
 
-                <div className="absolute inset-0 hidden items-center justify-center group-hover:flex">
-                  <PlayButton
-                    className="bg-white/50"
-                    songs={songs}
-                    index={index}
-                  />
+                <div className="absolute inset-0 flex items-center justify-center group-hover:flex md:hidden">
+                  <PlayButton songs={songs} index={index} />
                 </div>
               </div>
 
-              <div className="w-full max-w-[140px] text-sm sm:max-w-[400px]">
+              <div className="w-full max-w-[100px] text-sm sm:max-w-[200px] md:max-w-[300px]">
                 <div className="truncate text-sm">{song.name}</div>
               </div>
 
-              <div className="truncate text-sm">{song.singer}</div>
+              <div className="w-full max-w-[100px] text-sm sm:max-w-[200px] md:max-w-[300px]">
+                <div className="truncate text-sm">{song.singer}</div>
+              </div>
 
               <div className="grow" />
 

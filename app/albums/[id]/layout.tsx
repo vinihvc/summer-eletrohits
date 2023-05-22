@@ -6,21 +6,23 @@ import { ChevronLeft } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 
-export const generateMetadata = async ({
-  params,
-}: DataParams): Promise<Metadata> => {
+export const generateMetadata = async (
+  props: DataParams,
+): Promise<Metadata> => {
+  const { params } = props
+
   const album = await getAlbum({ params })
 
   return {
     title: album.name,
     description: `Album ${album.name}`,
     openGraph: {
-      url: `https://eletrohits.viniciusvicentini.com/albums/${album.id}`,
+      url: `/img/albums/${album.id}.webp`,
       title: `${album.name} - Summer Eletrohits`,
       description: `Album ${album.name}`,
       images: [
         {
-          url: album.thumb,
+          url: `/img/albums/${album.id}.webp`,
           alt: `${album.name}`,
         },
       ],

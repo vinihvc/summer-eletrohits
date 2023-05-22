@@ -4,23 +4,29 @@ import { useStore } from '@/store'
 import { Play, Shuffle } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
+import { Image } from '@/components/ui/image'
 
-import { Image } from './ui/image'
+import { cn } from '@/utils/cn'
 
 type AlbumInfoProps = {
   album: AlbumType
 } & React.HTMLAttributes<HTMLDivElement>
 
-export const AlbumInfo = ({ album, ...props }: AlbumInfoProps) => {
+export const AlbumInfo = (props: AlbumInfoProps) => {
+  const { album, className, ...rest } = props
+
   const { play, playRandom } = useStore()
 
   return (
     <div
-      className="flex flex-col items-center gap-5 sm:flex-row sm:gap-10"
-      {...props}
+      className={cn(
+        'flex flex-col items-center gap-5 sm:flex-row sm:gap-10',
+        className,
+      )}
+      {...rest}
     >
       <Image
-        src={album.thumb}
+        src={`/img/albums/${album.id}.webp`}
         alt={album.name}
         className="h-[150px] w-[150px] justify-center rounded-xl sm:h-[250px] sm:w-[250px] sm:justify-start"
         shadow

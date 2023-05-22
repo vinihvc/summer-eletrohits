@@ -1,6 +1,6 @@
 import { getAlbums } from '@/services/requests'
 
-import { AlbumCard } from '@/components/album-card'
+import { AlbumCard } from '@/components/album'
 
 const HomePage = async () => {
   const data = await getAlbums()

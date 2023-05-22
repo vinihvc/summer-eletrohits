@@ -1,4 +1,4 @@
-import { AlbumInfo } from '@/components/album-info'
+import { AlbumInfo } from '@/components/album'
 import { Songs } from '@/components/songs'
 
 type ClientAlbumPageProps = {

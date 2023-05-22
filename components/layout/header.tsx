@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { Logo } from '@/components/icon/logo'
+import { Logo } from '@/components/logo'
 import { ModeToggle } from '@/components/mode-toggle'
 import { ActiveLink } from '@/components/ui/active-link'
 

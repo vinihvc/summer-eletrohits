@@ -9,7 +9,7 @@ import { Image } from '@/components/ui/image'
 
 import { cn } from '@/utils/cn'
 
-import { Button } from './ui/button'
+import { Button } from '../ui/button'
 
 type AlbumCardProps = {
   album: AlbumType
@@ -33,7 +33,11 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
     <Link href={`/albums/${album.id}`} aria-label={album.name}>
       <article className="focus:group relative space-y-4 overflow-hidden rounded-xl">
         <div>
-          <Image src={album.thumb} alt={album.name} />
+          <Image
+            src={`/img/albums/${album.id}.webp`}
+            placeholder="blur"
+            alt={album.name}
+          />
 
           <div
             className={cn(
@@ -51,8 +55,8 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
           </div>
 
           <div className="absolute inset-x-0 bottom-0">
-            <div className="flex h-[60px] flex-col justify-center bg-black/30 px-5 backdrop-blur-3xl">
-              <div className="text-[10px] font-medium uppercase text-gray-200">
+            <div className="flex h-[40px] flex-col justify-center bg-black/30 px-2 backdrop-blur-3xl md:h-[60px] md:px-5">
+              <div className="hidden text-[10px] font-medium uppercase text-gray-200 md:block">
                 Album
               </div>
 
