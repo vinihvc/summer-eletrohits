@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 const RootLayout = async ({ children }: RootLayoutProps) => {
   return (
-    <html lang="en" className="overflow-y-scroll" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -40,7 +40,7 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
 
       <body
         className={cn(
-          'flex min-h-screen flex-col bg-blue-50 font-sans text-neutral-900 antialiased dark:bg-neutral-900 dark:text-neutral-50',
+          'flex min-h-screen flex-col overflow-y-scroll bg-blue-50 font-sans text-neutral-900 antialiased dark:bg-neutral-900 dark:text-neutral-50',
           fontSans.variable,
         )}
       >

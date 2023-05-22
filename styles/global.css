@@ -1,9 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-html:root {
-  --chakra-colors-blackAlpha-700: #1a202c;
-  --chakra-colors-blackAlpha-900: #1a202c;
-  --chakra-sizes-full: 100%;
-}
