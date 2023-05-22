@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import { useStore } from '@/store'
 
-import { AlbumInfo } from '@/components/album'
+import { AlbumInfo } from '@/components/album/album.info'
 import { Songs } from '@/components/songs'
 import { buttonVariants } from '@/components/ui/button'
 

@@ -5,7 +5,4 @@ module.exports = {
     deviceSizes: [320, 640, 768, 1024, 1600],
     domains: ['img.youtube.com'],
   },
-  experimental: {
-    appDir: true,
-  },
 }
