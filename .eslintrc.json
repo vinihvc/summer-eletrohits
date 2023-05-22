@@ -1,12 +1,12 @@
 {
-  "env": {
-    "browser": true,
-    "es2020": true,
-    "node": true
-  },
+  "$schema": "https://json.schemastore.org/eslintrc",
+  "root": true,
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "tailwindcss": {
+      "callees": ["cn"]
     }
   },
   "extends": [
@@ -15,9 +15,11 @@
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
-    "plugin:@next/next/recommended"
+    "plugin:@next/next/recommended",
+    "next/core-web-vitals",
+    "prettier",
+    "plugin:tailwindcss/recommended"
   ],
-  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -25,7 +27,7 @@
     "ecmaVersion": 11,
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks", "@typescript-eslint"],
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "tailwindcss"],
   "rules": {
     "no-console": "warn",
     "react-hooks/rules-of-hooks": "error",
@@ -33,6 +35,9 @@
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/no-non-null-assertion": "off"
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "tailwindcss/no-custom-classname": "off",
+    "@next/next/no-html-link-for-pages": "off"
   }
 }
