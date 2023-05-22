@@ -8,7 +8,7 @@ type ClientAlbumPageProps = {
 export const ClientAlbumPage = ({ album }: ClientAlbumPageProps) => {
   return (
     <>
-      <AlbumInfo album={album} />
+      <AlbumInfo album={{ ...album, thumb: `/img/albums/${album.id}.webp` }} />
 
       <section className="pt-4">
         {album.songs && <Songs songs={album.songs} />}

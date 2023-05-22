@@ -26,7 +26,7 @@ export const AlbumInfo = (props: AlbumInfoProps) => {
       {...rest}
     >
       <Image
-        src={`/img/albums/${album.id}.webp`}
+        src={album.thumb}
         alt={album.name}
         className="h-[150px] w-[150px] justify-center rounded-xl sm:h-[250px] sm:w-[250px] sm:justify-start"
         shadow
