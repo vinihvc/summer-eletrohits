@@ -1,5 +1,4 @@
-import { RefObject, createRef } from 'react'
-
+import { createRef, RefObject } from 'react'
 import ReactPlayer, { YouTubePlayerProps } from 'react-player/youtube'
 import { StateCreator } from 'zustand'
 

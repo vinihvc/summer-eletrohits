@@ -2,7 +2,6 @@ import { Josefin_Sans as FontSans } from 'next/font/google'
 
 import { BottomNavigation } from '@/components/layout/bottom-navigation'
 import { PlayerBar } from '@/components/player/player'
-
 import { cn } from '@/utils/cn'
 
 import '@/styles/global.css'
@@ -12,7 +11,6 @@ import type { Metadata } from 'next'
 import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
-
 import { RootProviders } from './providers'
 
 const fontSans = FontSans({

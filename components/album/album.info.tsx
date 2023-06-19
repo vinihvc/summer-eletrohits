@@ -5,7 +5,6 @@ import { Play, Shuffle } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Image } from '@/components/ui/image'
-
 import { cn } from '@/utils/cn'
 
 type AlbumInfoProps = {

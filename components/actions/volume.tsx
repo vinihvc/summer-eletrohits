@@ -1,5 +1,4 @@
 import { useMemo } from 'react'
-
 import { Volume2, VolumeX } from 'lucide-react'
 import { useStore } from 'store'
 

@@ -1,12 +1,10 @@
 'use client'
 
 import { HTMLAttributes } from 'react'
-
 import { useStore } from '@/store'
 
 import { LikeButton } from '@/components/actions/like'
 import { Image } from '@/components/ui/image'
-
 import { cn } from '@/utils/cn'
 
 type PlayerSongInfoProps = HTMLAttributes<HTMLDivElement>

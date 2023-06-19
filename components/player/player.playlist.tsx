@@ -1,5 +1,4 @@
 import Link from 'next/link'
-
 import { ListVideo } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'

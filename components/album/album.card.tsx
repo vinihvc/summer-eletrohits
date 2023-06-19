@@ -1,14 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-
 import { useStore } from '@/store'
 import { Pause, Play } from 'lucide-react'
 
 import { Image } from '@/components/ui/image'
-
 import { cn } from '@/utils/cn'
-
 import { Button } from '../ui/button'
 
 type AlbumCardProps = {

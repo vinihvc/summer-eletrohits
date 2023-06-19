@@ -1,12 +1,10 @@
 'use client'
 
 import { useCallback, useMemo } from 'react'
-
 import { useStore } from '@/store'
 import { Pause, Play } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
-
 import { cn } from '@/utils/cn'
 
 type PlayButtonProps = {

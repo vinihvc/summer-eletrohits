@@ -1,12 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-
 import { useStore } from '@/store'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { cn } from '@/utils/cn'
-
 import { LikeButton } from './actions/like'
 import { PlayButton } from './actions/play'
 

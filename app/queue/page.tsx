@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-
 import { useStore } from '@/store'
 
 import { Songs } from '@/components/songs'

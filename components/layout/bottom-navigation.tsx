@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { BOTTOM_NAVIGATION } from '@/constants/menu'
-
 import { ActiveLink } from '@/components/ui/active-link'
 
 export const BottomNavigation = () => {

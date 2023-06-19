@@ -3,9 +3,7 @@
 import { useStore } from '@/store'
 
 import { useMediaKeyPress } from '@/hooks/media-keypress'
-
 import { Player } from '@/components/ui/player'
-
 import { PlayerActions } from './player.actions'
 import { PlayerSongInfo } from './player.info'
 import { PlayerPlaylist } from './player.playlist'

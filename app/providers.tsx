@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect } from 'react'
-
 import { useStore } from '@/store'
 import { ThemeProvider } from 'next-themes'
 import { GoogleAnalytics } from 'nextjs-google-analytics'
