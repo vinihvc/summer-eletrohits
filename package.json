@@ -23,7 +23,7 @@
     "@radix-ui/react-slider": "^1.1.2",
     "class-variance-authority": "^0.6.0",
     "clsx": "^1.2.1",
-    "framer-motion": "^10.12.16",
+    "framer-motion": "^10.12.17",
     "localforage": "^1.10.0",
     "lucide-react": "^0.246.0",
     "next": "13.4.6",
