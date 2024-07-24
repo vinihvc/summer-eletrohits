@@ -1,9 +1,9 @@
-import { Music } from 'lucide-react'
 import type React from 'react'
 
 import { cn } from '@/lib/cn'
+import { Music } from './icons/music'
 
-type LogoProps = React.HTMLAttributes<HTMLDivElement>
+interface LogoProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const Logo = (props: LogoProps) => {
   const { className, ...rest } = props
@@ -11,14 +11,14 @@ export const Logo = (props: LogoProps) => {
   return (
     <div
       className={cn(
-        'flex select-none items-center space-x-2 text-lg font-bold tracking-wide',
+        'flex items-center gap-2 text-lg font-semibold tracking-wide select-none',
         className,
       )}
       {...rest}
     >
-      <Music className="h-6 w-6 text-blue-500" />
+      <Music className="size-6 text-primary" />
 
-      <span className="text-sm">Eletrohits</span>
+      <span>Eletrohits</span>
     </div>
   )
 }

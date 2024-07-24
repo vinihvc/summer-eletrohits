@@ -1,14 +1,11 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
+import type React from 'react'
 
 export const metadata: Metadata = {
   title: 'Library',
 }
 
-type LibraryLayoutProps = {
-  children: React.ReactNode
-}
-
-const LibraryLayout = ({ children }: LibraryLayoutProps) => {
+const LibraryLayout = ({ children }: React.PropsWithChildren) => {
   return <>{children}</>
 }
 

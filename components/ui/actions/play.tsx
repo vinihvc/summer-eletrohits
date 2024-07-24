@@ -1,25 +1,31 @@
 'use client'
 
-import { useStore } from '@/store'
 import { Pause, Play } from 'lucide-react'
 import { useCallback, useMemo } from 'react'
 
 import { Button } from '@/components/ui/button'
+import { useMusicActions } from '@/contexts/music'
 import { cn } from '@/lib/cn'
+import { usePlayerActions, usePlayerState } from '@/store/player.store'
 
-type PlayButtonProps = {
+interface PlayButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   songs: SongType[]
   index: number
-} & React.ButtonHTMLAttributes<HTMLButtonElement>
+}
 
 export const PlayButton = (props: PlayButtonProps) => {
   const { songs, index, className, ...rest } = props
 
-  const { isPlaying, togglePlay, currentSong, play } = useStore()
+  const { togglePlay, play } = usePlayerActions()
+
+  const { currentSong } = useMusicActions()
+
+  const { isPlaying } = usePlayerState()
 
   const song = useMemo(() => songs[index], [songs, index])
 
-  const isSameSong = currentSong()?.id === song.id
+  const isSameSong = currentSong?.()?.id === song.id
 
   const handleClick = useCallback(() => {
     if (isPlaying && isSameSong) {

@@ -2,6 +2,7 @@ import { type VariantProps, cva } from 'cva'
 import React from 'react'
 
 import { cn } from '@/lib/cn'
+import { Slot } from '@radix-ui/react-slot'
 
 export const buttonVariants = cva({
   base: [
@@ -19,13 +20,14 @@ export const buttonVariants = cva({
         'focus-visible:ring-primary',
       ],
       outline: 'bg-transparent border hover:bg-primary/20',
-      ghost: 'bg-transparent hover:bg-primary/70',
+      ghost: 'bg-transparent hover:bg-primary/20',
       link: 'bg-transparent underline-offset-4 hover:underline text-primary hover:bg-transparent',
     },
     size: {
       sm: 'h-9 px-2',
       md: 'h-10 py-2 px-4',
       lg: 'h-11 px-8',
+      icon: 'size-8',
     },
   },
   defaultVariants: {
@@ -34,15 +36,30 @@ export const buttonVariants = cva({
   },
 })
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
-  VariantProps<typeof buttonVariants>
+interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  /**
+   * If true, the button will be rendered as a child of a slot.
+   */
+  asChild?: boolean
+}
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
-    const { type = 'button', variant, size, className, ...rest } = props
+    const {
+      asChild,
+      type = 'button',
+      variant,
+      size,
+      className,
+      ...rest
+    } = props
+
+    const Comp = asChild ? Slot : 'button'
 
     return (
-      <button
+      <Comp
         ref={ref}
         type={type}
         className={cn(buttonVariants({ variant, size }), className)}

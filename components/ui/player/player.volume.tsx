@@ -1,12 +1,12 @@
 'use client'
 
-import { useStore } from '@/store'
-
-import { VolumeButton } from '@/components/actions/volume'
+import { VolumeButton } from '@/components/ui/actions/volume'
 import { Slider } from '@/components/ui/slider'
+import { usePlayerActions, usePlayerState } from '@/store/player.store'
 
 export const PlayerVolume = ({ ...props }) => {
-  const { volume, changeVolume } = useStore()
+  const { volume } = usePlayerState()
+  const { changeVolume } = usePlayerActions()
 
   const handleOnProgress = (value: number[]) => {
     const [progress] = value

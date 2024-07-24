@@ -1,37 +1,43 @@
-import Link from 'next/link'
-
-import { Logo } from '@/components/logo'
-import { ModeToggle } from '@/components/mode-toggle'
-import { ActiveLink } from '@/components/ui/active-link'
 import { cn } from '@/lib/cn'
+import { ChevronLeft, ChevronRight, Github } from 'lucide-react'
+import Link from 'next/link'
+import { Button } from '../ui/button'
+import { ModeToggle } from './mode-toggle'
 
-type HeaderProps = React.HtmlHTMLAttributes<HTMLDivElement>
+interface HeaderProps extends React.HtmlHTMLAttributes<HTMLDivElement> {}
 
 export const Header = (props: HeaderProps) => {
   const { className, ...rest } = props
 
   return (
     <header
-      className={cn(
-        'sticky top-0 z-50 hidden bg-white dark:bg-black sm:flex',
-        className,
-      )}
+      className={cn('absolute top-0 inset-x-0 z-50 hidden sm:flex', className)}
       {...rest}
     >
-      <div className="container">
-        <div className="flex h-14 items-center justify-between">
-          <Link href="/" aria-label="Eletrohits, Back to homepage">
-            <Logo />
-          </Link>
+      <div className="flex w-full h-14 items-center justify-between px-4">
+        <div className="space-x-2">
+          <Button size="icon">
+            <ChevronLeft />
+          </Button>
 
-          <nav className="flex items-center space-x-4">
-            <ActiveLink href="/party">Party</ActiveLink>
-
-            <ActiveLink href="/library">Library</ActiveLink>
-
-            <ModeToggle />
-          </nav>
+          <Button size="icon">
+            <ChevronRight />
+          </Button>
         </div>
+
+        <nav className="flex items-center space-x-4">
+          <ModeToggle />
+
+          <Button size="icon">
+            <Link
+              href="https://github.com/vinihvc/summer-eletrohits"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Github className="size-4" />
+            </Link>
+          </Button>
+        </nav>
       </div>
     </header>
   )

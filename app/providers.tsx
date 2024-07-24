@@ -1,19 +1,15 @@
 'use client'
 
-import { useStore } from '@/store'
+import { MusicProvider } from '@/contexts/music'
 import { ThemeProvider } from 'next-themes'
 import { GoogleAnalytics } from 'nextjs-google-analytics'
-import React from 'react'
+import type React from 'react'
 
 export const Providers = ({ children }: React.PropsWithChildren) => {
-  React.useEffect(() => {
-    useStore.persist.rehydrate()
-  }, [])
-
   return (
     <>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        {children}
+        <MusicProvider>{children}</MusicProvider>
       </ThemeProvider>
 
       <GoogleAnalytics trackPageViews />

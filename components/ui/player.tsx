@@ -1,15 +1,22 @@
 'use client'
 
-import { useStore } from '@/store'
+import { useMusicActions } from '@/contexts/music'
+import { usePlayerActions, usePlayerState } from '@/store/player.store'
 import ReactPlayer from 'react-player/youtube'
 
-type PlayerProps = {
+interface PlayerProps {
+  /**
+   * Whether the player is hidden
+   */
   isHidden?: boolean
 }
 
 export const Player = ({ isHidden = true, ...props }: PlayerProps) => {
-  const { $player, currentSong, isPlaying, volume, onProgress, playNext } =
-    useStore()
+  const { $player, isPlaying, volume } = usePlayerState()
+
+  const { playNext, onProgress } = usePlayerActions()
+
+  const { currentSong } = useMusicActions()
 
   return (
     <div className="relative" {...props}>

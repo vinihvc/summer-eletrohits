@@ -5,10 +5,9 @@ import { usePathname } from 'next/navigation'
 
 import { cn } from '@/lib/cn'
 
-type ActiveLinkProps = {
-  children: React.ReactNode
-  className?: string
-} & LinkProps
+interface ActiveLinkProps
+  extends LinkProps,
+    React.HTMLAttributes<HTMLAnchorElement> {}
 
 export const ActiveLink = (props: ActiveLinkProps) => {
   const { href, className, children, ...rest } = props

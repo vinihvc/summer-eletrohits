@@ -1,18 +1,22 @@
 'use client'
 
-import { useStore } from '@/store'
 import { Heart } from 'lucide-react'
 import { useMemo } from 'react'
 
 import { Button } from '@/components/ui/button'
+import { useMusicActions, useMusicState } from '@/contexts/music'
 import { cn } from '@/lib/cn'
 
-type LikeButtonProps = {
+interface LikeButtonProps extends React.HtmlHTMLAttributes<HTMLButtonElement> {
+  /**
+   * The song to like or dislike
+   */
   song: SongType
-} & React.HtmlHTMLAttributes<HTMLButtonElement>
+}
 
 export const LikeButton = ({ song, ...props }: LikeButtonProps) => {
-  const { liked, like, dislike } = useStore()
+  const { liked } = useMusicState()
+  const { like, dislike } = useMusicActions()
 
   const isLiked = liked?.find((item) => item.id === song.id)
 
@@ -26,7 +30,7 @@ export const LikeButton = ({ song, ...props }: LikeButtonProps) => {
     <Button
       variant="ghost"
       className={cn(
-        'h-6 w-6 p-0 sm:h-8 sm:w-8',
+        'size-6 p-0 sm:h-8 sm:w-8',
         isLiked && '[&>*]:fill-red-500 [&>*]:stroke-red-500',
       )}
       title={title}

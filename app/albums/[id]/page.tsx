@@ -1,11 +1,8 @@
 import { getAlbum } from '@/services/requests'
 
-import { AlbumInfo } from '@/components/album/album.info'
 import { Songs } from '@/components/songs'
-import { Button } from '@/components/ui/button'
-import { ChevronLeft } from 'lucide-react'
+import { AlbumInfo } from '@/components/ui/album/album.info'
 import type { Metadata } from 'next'
-import Link from 'next/link'
 
 export const generateMetadata = async (
   props: DataParams,
@@ -35,23 +32,13 @@ const AlbumsPage = async ({ params }: DataParams) => {
   const album = await getAlbum({ params })
 
   return (
-    <div className="space-y-4">
-      <div className="flex justify-center sm:justify-start">
-        <Link href="/" className="hidden sm:inline-flex">
-          <Button className="space-x-1">
-            <ChevronLeft size={20} />
-
-            <span>Back to albums</span>
-          </Button>
-        </Link>
-      </div>
-
+    <>
       <AlbumInfo album={{ ...album, thumb: `/img/albums/${album.id}.webp` }} />
 
-      <section className="pt-4">
+      <section className="pt-4 px-4">
         {album.songs && <Songs songs={album.songs} />}
       </section>
-    </div>
+    </>
   )
 }
 

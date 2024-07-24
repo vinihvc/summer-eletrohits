@@ -1,8 +1,7 @@
 'use client'
 
-import { useStore } from '@/store'
-
 import { Player } from '@/components/ui/player'
+import { useMusicActions } from '@/contexts/music'
 import { useMediaKeyPress } from '@/hooks/media-keypress'
 import { PlayerActions } from './player.actions'
 import { PlayerSongInfo } from './player.info'
@@ -11,7 +10,7 @@ import { PlayerProgress } from './player.progress'
 import { PlayerVolume } from './player.volume'
 
 export const PlayerBar = ({ ...props }) => {
-  const { currentSong } = useStore()
+  const { currentSong } = useMusicActions()
 
   useMediaKeyPress()
 

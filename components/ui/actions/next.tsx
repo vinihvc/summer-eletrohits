@@ -1,12 +1,12 @@
 'use client'
 
-import { useStore } from '@/store'
 import { SkipForward } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
+import { usePlayerActions } from '@/store/player.store'
 
 export const NextButton = ({ ...props }) => {
-  const { playNext } = useStore()
+  const { playNext } = usePlayerActions()
 
   const title = 'Next song'
 

@@ -1,15 +1,15 @@
 'use client'
 
 import Link from 'next/link'
-import { useStore } from '@/store'
 
-import { AlbumInfo } from '@/components/album/album.info'
 import { Songs } from '@/components/songs'
+import { AlbumInfo } from '@/components/ui/album/album.info'
 import { buttonVariants } from '@/components/ui/button'
+import { useMusicState } from '@/contexts/music'
 import { USER_ALBUM } from './data'
 
 const LibraryPage = () => {
-  const { liked } = useStore()
+  const { liked } = useMusicState()
 
   return (
     <div className="space-y-5">

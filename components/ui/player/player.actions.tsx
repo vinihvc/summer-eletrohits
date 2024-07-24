@@ -1,13 +1,12 @@
 'use client'
 
-import { useStore } from '@/store'
-
-import { NextButton } from '@/components/actions/next'
-import { PlayButton } from '@/components/actions/play'
-import { PrevButton } from '@/components/actions/prev'
+import { NextButton } from '@/components/ui/actions/next'
+import { PlayButton } from '@/components/ui/actions/play'
+import { PrevButton } from '@/components/ui/actions/prev'
+import { useMusicState } from '@/contexts/music'
 
 export const PlayerActions = ({ ...props }) => {
-  const { playlist, currentIndex } = useStore()
+  const { playlist, currentIndex } = useMusicState()
 
   return (
     <div

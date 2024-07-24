@@ -1,29 +1,40 @@
 'use client'
 
-import { useStore } from '@/store'
 import { Play, Shuffle } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/cn'
-import { BlurImage } from '../ui/blur-image'
+import { usePlayerActions } from '@/store/player.store'
+import Image from 'next/image'
+import { BlurImage } from '../blur-image'
 
-type AlbumInfoProps = {
+interface AlbumInfoProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Album data
+   */
   album: AlbumType
-} & React.HTMLAttributes<HTMLDivElement>
+}
 
 export const AlbumInfo = (props: AlbumInfoProps) => {
   const { album, className, ...rest } = props
 
-  const { play, playRandom } = useStore()
+  const { play, playRandom } = usePlayerActions()
 
   return (
     <div
       className={cn(
-        'flex flex-col items-center gap-5 sm:flex-row sm:gap-10',
+        'relative flex flex-col items-center gap-5 sm:flex-row sm:gap-10 overflow-hidden p-5 pt-20',
         className,
       )}
       {...rest}
     >
+      <Image
+        className="object-cover blur-lg opacity-10"
+        src={`/img/albums/${album.id}.webp`}
+        alt={album.name}
+        fill
+      />
+
       <BlurImage
         src={album.thumb}
         alt={album.name}
@@ -32,7 +43,7 @@ export const AlbumInfo = (props: AlbumInfoProps) => {
         className="h-[150px] w-[150px] justify-center rounded-xl sm:h-[250px] sm:w-[250px] sm:justify-start"
       />
 
-      <div className="flex flex-col items-center space-y-2 sm:items-start">
+      <div className="relative flex flex-col items-center space-y-2 sm:items-start">
         <div>
           <div className="text-xs font-medium uppercase">Album</div>
 

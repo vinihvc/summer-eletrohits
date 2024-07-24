@@ -1,13 +1,13 @@
+import { AlbumCard } from '@/components/ui/album/album.card'
 import { getAlbums } from '@/services/requests'
 
-import { AlbumCard } from '@/components/album/album.card'
 import Link from 'next/link'
 
 const HomePage = async () => {
   const data = await getAlbums()
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 p-10 pt-20">
       {data?.map((album) => (
         <Link
           key={album.id}

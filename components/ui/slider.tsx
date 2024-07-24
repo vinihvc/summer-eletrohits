@@ -5,7 +5,7 @@ import React from 'react'
 
 import { cn } from '@/lib/cn'
 
-const Slider = React.forwardRef<
+export const Slider = React.forwardRef<
   React.ElementRef<typeof SliderPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
 >(({ min = 0, max = 1, step = 0.01, className, ...props }, ref) => (
@@ -26,6 +26,5 @@ const Slider = React.forwardRef<
     <SliderPrimitive.Thumb className="block h-3 w-3 rounded-full bg-neutral-900 transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:bg-neutral-50 dark:focus:ring-neutral-400 dark:focus:ring-offset-neutral-900" />
   </SliderPrimitive.Root>
 ))
-Slider.displayName = SliderPrimitive.Root.displayName
 
-export { Slider }
+Slider.displayName = SliderPrimitive.Root.displayName

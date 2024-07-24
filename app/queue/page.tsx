@@ -1,13 +1,13 @@
 'use client'
 
 import Link from 'next/link'
-import { useStore } from '@/store'
 
 import { Songs } from '@/components/songs'
 import { buttonVariants } from '@/components/ui/button'
+import { useMusicState } from '@/contexts/music'
 
 const SongsPage = () => {
-  const { playlist } = useStore()
+  const { playlist } = useMusicState()
 
   return (
     <div className="space-y-5">

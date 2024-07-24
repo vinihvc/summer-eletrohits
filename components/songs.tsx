@@ -1,32 +1,35 @@
 'use client'
 
-import { useStore } from '@/store'
 import Image from 'next/image'
 
+import { useMusicActions } from '@/contexts/music'
 import { cn } from '@/lib/cn'
-import { LikeButton } from './actions/like'
-import { PlayButton } from './actions/play'
+import { LikeButton } from './ui/actions/like'
+import { PlayButton } from './ui/actions/play'
 
-type SongsProps = {
+interface SongsProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
+  /**
+   * List of songs
+   */
   songs: SongType[]
-} & React.HtmlHTMLAttributes<HTMLDivElement>
+}
 
 export const Songs = (props: SongsProps) => {
   const { songs, className, ...rest } = props
 
-  const { currentSong } = useStore()
+  const { currentSong } = useMusicActions()
 
   return (
     <div className={cn(className)} {...rest}>
       {songs?.map((song, index) => (
         <div
           key={song.id}
-          className="overflow-hidden rounded-sm transition-colors duration-200 odd:bg-black/10 hover:bg-black/5 odd:dark:bg-black/40 dark:hover:bg-white/5"
+          className="overflow-hidden rounded-sm transition-colors odd:bg-black/10 hover:bg-black/5"
         >
           <div
             className={cn(
-              'group flex items-center space-x-3 p-2.5 transition-colors duration-200 hover:bg-black/10 dark:hover:bg-white/10 md:space-x-5',
-              currentSong()?.id === song.id && 'bg-white/20',
+              'group flex items-center space-x-3 p-2.5 transition-colors hover:bg-black/10 dark:hover:bg-white/10 md:space-x-5 px-5',
+              currentSong?.()?.id === song.id && 'bg-white/20',
               className,
             )}
             {...rest}

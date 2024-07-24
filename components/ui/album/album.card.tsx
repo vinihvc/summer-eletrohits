@@ -1,16 +1,22 @@
 'use client'
 
-import { useStore } from '@/store'
+import { useMusicActions } from '@/contexts/music'
+import { usePlayerActions, usePlayerState } from '@/store/player.store'
 import { Pause, Play } from 'lucide-react'
 import Image from 'next/image'
-import { Button } from '../ui/button'
+import { Button } from '../button'
 
-type AlbumCardProps = {
+interface AlbumCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Album data
+   */
   album: AlbumType
-} & React.HTMLAttributes<HTMLDivElement>
+}
 
 export const AlbumCard = ({ album }: AlbumCardProps) => {
-  const { currentSong, play, togglePlay, isPlaying } = useStore()
+  const { play, togglePlay } = usePlayerActions()
+  const { isPlaying } = usePlayerState()
+  const { currentSong } = useMusicActions()
 
   const songs = album.songs
 
@@ -21,7 +27,7 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
   }
 
   const isPlayingAlbum =
-    songs?.some((song) => song.id === currentSong()?.id) && isPlaying
+    songs?.some((song) => song.id === currentSong?.()?.id) && isPlaying
 
   return (
     <article className="relative rounded-xl">
@@ -33,7 +39,7 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
           fill
         />
 
-        <div className="group-hover:opacity-100 opacity-0 absolute left-0 top-0 hidden size-full items-center justify-center transition-all duration-200 sm:flex">
+        <div className="group-hover:opacity-100 opacity-0 absolute left-0 top-0 hidden size-full items-center justify-center transition-all sm:flex">
           <Button
             tabIndex={-1}
             variant="ghost"

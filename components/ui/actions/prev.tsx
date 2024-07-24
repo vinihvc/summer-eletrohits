@@ -1,10 +1,10 @@
-import { useStore } from '@/store'
 import { SkipBack } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
+import { usePlayerActions } from '@/store/player.store'
 
 export const PrevButton = ({ ...props }) => {
-  const { playPrevious } = useStore()
+  const { playPrevious } = usePlayerActions()
 
   return (
     <Button
