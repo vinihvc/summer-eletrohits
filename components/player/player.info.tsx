@@ -1,11 +1,12 @@
 'use client'
 
-import { HTMLAttributes } from 'react'
 import { useStore } from '@/store'
+import type { HTMLAttributes } from 'react'
 
 import { LikeButton } from '@/components/actions/like'
-import { Image } from '@/components/ui/image'
-import { cn } from '@/utils/cn'
+
+import { cn } from '@/lib/cn'
+import { BlurImage } from '../ui/blur-image'
 
 type PlayerSongInfoProps = HTMLAttributes<HTMLDivElement>
 
@@ -20,7 +21,7 @@ export const PlayerSongInfo = (props: PlayerSongInfoProps) => {
       {...rest}
     >
       <div className="relative h-10 w-10 overflow-hidden rounded-full">
-        <Image
+        <BlurImage
           width={40}
           height={40}
           className="aspect-square scale-150"

@@ -1,11 +1,8 @@
 'use client'
 
-import Link from 'next/link'
 import { useStore } from '@/store'
 import { Pause, Play } from 'lucide-react'
-
-import { Image } from '@/components/ui/image'
-import { cn } from '@/utils/cn'
+import Image from 'next/image'
 import { Button } from '../ui/button'
 
 type AlbumCardProps = {
@@ -27,43 +24,34 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
     songs?.some((song) => song.id === currentSong()?.id) && isPlaying
 
   return (
-    <Link href={`/albums/${album.id}`} aria-label={album.name}>
-      <article className="focus:group relative space-y-4 overflow-hidden rounded-xl">
-        <div>
-          <Image
-            src={`/img/albums/${album.id}.webp`}
-            placeholder="blur"
-            alt={album.name}
-          />
+    <article className="relative rounded-xl">
+      <div className="transition-all group-focus-visible:ring-2 ring-primary ring-offset-2 ring-offset-background relative size-full aspect-square rounded-xl overflow-hidden">
+        <Image
+          src={`/img/albums/${album.id}.webp`}
+          className="size-full object-cover"
+          alt={album.name}
+          fill
+        />
 
-          <div
-            className={cn(
-              'absolute left-0 top-0 hidden h-full w-full items-center justify-center bg-black/50 transition-all duration-200 sm:flex',
-              !isPlayingAlbum && 'opacity-0 hover:opacity-100',
-            )}
+        <div className="group-hover:opacity-100 opacity-0 absolute left-0 top-0 hidden size-full items-center justify-center transition-all duration-200 sm:flex">
+          <Button
+            tabIndex={-1}
+            variant="ghost"
+            className="size-14 bg-black/60 text-white hover:bg-black hover:scale-105"
+            onClick={handleClick}
           >
-            <Button
-              variant="ghost"
-              className="h-20 w-20 bg-white/30 text-neutral-200 transition-all hover:scale-110 hover:bg-white/40"
-              onClick={handleClick}
-            >
-              {isPlayingAlbum ? <Pause size={30} /> : <Play size={30} />}
-            </Button>
-          </div>
-
-          <div className="absolute inset-x-0 bottom-0">
-            <div className="flex h-[40px] flex-col justify-center bg-black/30 px-2 backdrop-blur-3xl md:h-[60px] md:px-5">
-              <div className="hidden text-[10px] font-medium uppercase text-gray-200 md:block">
-                Album
-              </div>
-
-              <div className="text-ellipsis text-sm font-semibold text-white">
-                {album.name}
-              </div>
-            </div>
-          </div>
+            {isPlayingAlbum ? <Pause size={30} /> : <Play size={30} />}
+          </Button>
         </div>
-      </article>
-    </Link>
+      </div>
+
+      <div className="flex h-[40px] flex-col justify-center md:h-[60px]">
+        <div className="hidden text-[10px] font-medium uppercase text-muted-foreground md:block">
+          Album
+        </div>
+
+        <div className="line-clamp-1 font-semibold">{album.name}</div>
+      </div>
+    </article>
   )
 }

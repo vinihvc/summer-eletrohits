@@ -1,8 +1,9 @@
-import { createRef, RefObject } from 'react'
-import ReactPlayer, { YouTubePlayerProps } from 'react-player/youtube'
-import { StateCreator } from 'zustand'
+import { type RefObject, createRef } from 'react'
+import type ReactPlayer from 'react-player/youtube'
+import type { YouTubePlayerProps } from 'react-player/youtube'
+import type { StateCreator } from 'zustand'
 
-import { SongSlice } from './song'
+import type { SongSlice } from './song'
 
 export type PlayerSlice = {
   $player: RefObject<ReactPlayer>

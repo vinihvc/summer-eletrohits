@@ -1,61 +1,44 @@
 {
-  "name": "summer-eletrohits",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint . --max-warnings=0",
-    "format:write": "prettier --write \"**/*.{js,ts,tsx,mdx}\" --cache",
-    "format:check": "prettier --check \"**/*.{js,ts,tsx,mdx}\" --cache",
-    "prepare": "husky install",
-    "postinstall": "husky install"
-  },
-  "lint-staged": {
-    "**/*.{ts,tsx}": [
-      "pnpm format:write",
-      "pnpm lint"
-    ]
-  },
-  "dependencies": {
-    "@radix-ui/react-dropdown-menu": "^2.0.6",
-    "@radix-ui/react-slider": "^1.1.2",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.0.0",
-    "framer-motion": "^10.16.11",
-    "localforage": "^1.10.0",
-    "lucide-react": "^0.294.0",
-    "next": "14.0.3",
-    "next-themes": "^0.2.1",
-    "nextjs-google-analytics": "^2.3.3",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-player": "^2.13.0",
-    "tailwind-merge": "^2.0.0",
-    "zustand": "^4.4.7"
-  },
-  "devDependencies": {
-    "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
-    "@next/eslint-plugin-next": "^14.0.3",
-    "@types/node": "^20.10.1",
-    "@types/react": "^18.2.39",
-    "@typescript-eslint/eslint-plugin": "^6.13.1",
-    "@typescript-eslint/parser": "^6.13.1",
-    "autoprefixer": "^10.4.16",
-    "eslint": "^8.54.0",
-    "eslint-config-next": "^14.0.3",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.1",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-tailwindcss": "^3.13.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.1.0",
-    "postcss": "^8.4.31",
-    "prettier": "^3.1.0",
-    "prettier-plugin-tailwindcss": "^0.5.7",
-    "tailwindcss": "^3.3.5",
-    "typescript": "^5.3.2"
-  }
+	"name": "summer-eletrohits",
+	"authors": "Vinicius Vicentini <viniciusvicentini@live.com>",
+	"version": "1.0.0",
+	"private": true,
+	"packageManager": "pnpm@9.5.0",
+	"engines": {
+		"node": ">=18"
+	},
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"format": "biome format --continue --",
+		"format:fix": "biome format --continue -- --write",
+		"lint": "biome lint --continue --",
+		"lint:fix": "biome lint --continue -- --apply",
+		"preinstall": "npx only-allow pnpm"
+	},
+	"dependencies": {
+		"@radix-ui/react-dropdown-menu": "^2.1.1",
+		"@radix-ui/react-slider": "^1.2.0",
+		"cva": "1.0.0-beta.1",
+		"lucide-react": "^0.414.0",
+		"next": "14.2.5",
+		"next-themes": "^0.3.0",
+		"nextjs-google-analytics": "^2.3.3",
+		"react": "18.3.1",
+		"react-dom": "18.3.1",
+		"react-player": "^2.16.0",
+		"tailwind-merge": "^2.4.0",
+		"zustand": "^4.5.4"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.8.3",
+		"@types/node": "^20.14.12",
+		"@types/react": "^18.3.3",
+		"autoprefixer": "^10.4.19",
+		"postcss": "^8.4.39",
+		"tailwindcss": "^3.4.6",
+		"tailwindcss-animate": "^1.0.7",
+		"typescript": "^5.5.4"
+	}
 }

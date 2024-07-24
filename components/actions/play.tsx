@@ -1,11 +1,11 @@
 'use client'
 
-import { useCallback, useMemo } from 'react'
 import { useStore } from '@/store'
 import { Pause, Play } from 'lucide-react'
+import { useCallback, useMemo } from 'react'
 
 import { Button } from '@/components/ui/button'
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/cn'
 
 type PlayButtonProps = {
   songs: SongType[]

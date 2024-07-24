@@ -1,11 +1,11 @@
 'use client'
 
-import { useMemo } from 'react'
 import { useStore } from '@/store'
 import { Heart } from 'lucide-react'
+import { useMemo } from 'react'
 
 import { Button } from '@/components/ui/button'
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/cn'
 
 type LikeButtonProps = {
   song: SongType

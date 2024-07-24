@@ -2,8 +2,8 @@
 
 import { useStore } from '@/store'
 
-import { useMediaKeyPress } from '@/hooks/media-keypress'
 import { Player } from '@/components/ui/player'
+import { useMediaKeyPress } from '@/hooks/media-keypress'
 import { PlayerActions } from './player.actions'
 import { PlayerSongInfo } from './player.info'
 import { PlayerPlaylist } from './player.playlist'
@@ -19,10 +19,7 @@ export const PlayerBar = ({ ...props }) => {
 
   return (
     <div className="sticky inset-x-0 bottom-[45px] z-50 sm:bottom-0">
-      <div
-        className="flex border-t-4 border-t-neutral-300 bg-white dark:border-t-neutral-800 dark:bg-black"
-        {...props}
-      >
+      <div className="flex border-t-4 bg-background" {...props}>
         <div className="container relative">
           <PlayerProgress />
 

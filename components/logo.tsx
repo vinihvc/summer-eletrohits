@@ -1,7 +1,7 @@
-import React from 'react'
 import { Music } from 'lucide-react'
+import type React from 'react'
 
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/cn'
 
 type LogoProps = React.HTMLAttributes<HTMLDivElement>
 

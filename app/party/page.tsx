@@ -1,7 +1,7 @@
 'use client'
 
-import * as React from 'react'
 import Image from 'next/image'
+import React from 'react'
 
 const Party = () => {
   const [color, setColor] = React.useState('#000000')

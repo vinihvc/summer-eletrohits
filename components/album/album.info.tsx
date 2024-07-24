@@ -4,8 +4,8 @@ import { useStore } from '@/store'
 import { Play, Shuffle } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
-import { Image } from '@/components/ui/image'
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/cn'
+import { BlurImage } from '../ui/blur-image'
 
 type AlbumInfoProps = {
   album: AlbumType
@@ -24,11 +24,12 @@ export const AlbumInfo = (props: AlbumInfoProps) => {
       )}
       {...rest}
     >
-      <Image
+      <BlurImage
         src={album.thumb}
         alt={album.name}
+        width={150}
+        height={150}
         className="h-[150px] w-[150px] justify-center rounded-xl sm:h-[250px] sm:w-[250px] sm:justify-start"
-        shadow
       />
 
       <div className="flex flex-col items-center space-y-2 sm:items-start">

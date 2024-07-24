@@ -19,8 +19,9 @@ const NotFoundPage = () => {
           Check if the search term is correct. If you think this is an error,
           send me a tweet{' '}
           <a
-            href="https://viniciusvicentini.com/twitter"
+            href="https://vini.one/twitter"
             target="_blank"
+            rel="noopener noreferrer nofollow"
             className="text-blue-500 underline underline-offset-2"
           >
             @vinihvc

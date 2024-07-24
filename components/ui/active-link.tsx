@@ -1,9 +1,9 @@
 'use client'
 
-import Link, { LinkProps } from 'next/link'
+import Link, { type LinkProps } from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/cn'
 
 type ActiveLinkProps = {
   children: React.ReactNode
