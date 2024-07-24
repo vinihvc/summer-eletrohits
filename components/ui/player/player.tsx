@@ -23,7 +23,10 @@ export const Player = (props: PlayerProps) => {
 
   return (
     <div className="sticky inset-x-0 bottom-[45px] z-50 sm:bottom-0">
-      <div className={cn('flex border-t-4 bg-background', className)} {...rest}>
+      <div
+        className={cn('flex border-t-4 bg-background px-5', className)}
+        {...rest}
+      >
         <div className="w-full relative">
           <PlayerProgress />
 

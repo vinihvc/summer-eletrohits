@@ -7,15 +7,9 @@ export const PrevButton = ({ ...props }) => {
   const { playPrevious } = usePlayerActions()
 
   return (
-    <Button
-      title="Previous song"
-      className="h-9 w-9 p-0"
-      variant="ghost"
-      aria-label="Previous song"
-      onClick={playPrevious}
-      {...props}
-    >
-      <SkipBack size={20} />
+    <Button size="icon" variant="ghost" onClick={playPrevious} {...props}>
+      <SkipBack className="size-4" />
+      <span className="sr-only">Previous song</span>
     </Button>
   )
 }

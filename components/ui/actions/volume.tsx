@@ -1,5 +1,4 @@
 import { Volume2, VolumeX } from 'lucide-react'
-import { useMemo } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { usePlayerActions, usePlayerState } from '@/store'
@@ -8,17 +7,16 @@ export const VolumeButton = ({ ...props }) => {
   const { volume } = usePlayerState()
   const { toggleVolume } = usePlayerActions()
 
-  const title = useMemo(() => (volume ? 'Mute' : 'Unmute'), [volume])
-
   return (
     <Button
-      title={title}
-      aria-label={title}
       variant={volume ? 'ghost' : 'solid'}
+      size="icon"
       onClick={toggleVolume}
       {...props}
     >
-      {volume ? <Volume2 size={20} /> : <VolumeX size={20} />}
+      {volume ? <Volume2 className="size-4" /> : <VolumeX className="size-4" />}
+
+      <span className="sr-only">{volume ? 'Mute' : 'Unmute'}</span>
     </Button>
   )
 }

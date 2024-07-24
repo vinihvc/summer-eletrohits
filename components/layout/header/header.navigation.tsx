@@ -3,8 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/cn'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import React from 'react'
 
 interface HeaderNavigationProps
@@ -13,26 +12,33 @@ interface HeaderNavigationProps
 export const HeaderNavigation = (props: HeaderNavigationProps) => {
   const { className, ...rest } = props
 
+  const router = useRouter()
   const pathname = usePathname()
 
   const routesList = React.useRef<string[]>([pathname])
   const currentIndex = React.useRef<number>(0)
+
+  const activeRoute = routesList.current[currentIndex.current]
 
   React.useEffect(() => {
     routesList.current = [...routesList.current, pathname]
     currentIndex.current = routesList.current.length - 1
   }, [pathname])
 
-  const getPrevRoute = () => {
+  const handlePrev = () => {
     if (currentIndex.current === 0) return
 
-    return routesList.current[currentIndex.current - 1]
+    currentIndex.current -= 1
+
+    router.push(activeRoute)
   }
 
-  const getNextRoute = () => {
+  const handleNext = () => {
     if (currentIndex.current === routesList.current.length - 1) return
 
-    return routesList.current[currentIndex.current + 1]
+    currentIndex.current += 1
+
+    router.push(activeRoute)
   }
 
   const isPrevDisabled = currentIndex.current === 0
@@ -41,22 +47,22 @@ export const HeaderNavigation = (props: HeaderNavigationProps) => {
 
   return (
     <div className={cn('flex gap-2', className)} {...rest}>
-      <Button size="icon" disabled={isPrevDisabled} asChild>
-        <Link href={getPrevRoute() || ''}>
-          <ChevronLeft className="size-4" />
-
-          <span className="sr-only">Go to previous page</span>
-        </Link>
+      <Button
+        variant="inverted"
+        size="icon"
+        disabled={isPrevDisabled}
+        onClick={handlePrev}
+      >
+        <ChevronLeft className="size-4" />
       </Button>
 
-      <Button size="icon" disabled={isNextDisabled} asChild>
-        <Link href={getNextRoute() || ''}>
-          <ChevronRight className="size-4" />
-
-          <span className="sr-only">
-            Go to {isNextDisabled ? 'next' : 'previous'}
-          </span>
-        </Link>
+      <Button
+        variant="inverted"
+        size="icon"
+        disabled={isNextDisabled}
+        onClick={handleNext}
+      >
+        <ChevronRight className="size-4" />
       </Button>
     </div>
   )

@@ -12,23 +12,27 @@ const Party = () => {
     setColor(`#${randomColor}`)
   }
 
-  // change color each 1 second
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   React.useEffect(() => {
     const interval = setInterval(() => {
       randomizeBackgroundStyle()
-    }, 300)
+    }, 500)
 
     return () => clearInterval(interval)
   }, [])
 
   return (
     <div
-      className="absolute inset-0 flex flex-1 items-center justify-center"
+      className="h-dvh flex items-center justify-center"
       style={{ backgroundColor: color }}
-      onClick={randomizeBackgroundStyle}
     >
       <div className="relative aspect-video w-[250px]">
-        <Image src="/img/slowpoke.gif" alt="this slowpoke moves" fill />
+        <Image
+          src="/img/slowpoke.gif"
+          className="object-contain cursor-pointer"
+          alt="this slowpoke moves"
+          fill
+        />
       </div>
     </div>
   )

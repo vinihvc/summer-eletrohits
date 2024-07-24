@@ -21,6 +21,7 @@ export const buttonVariants = cva({
         'hover:bg-primary/90',
         'focus-visible:ring-primary',
       ],
+      inverted: ['bg-foreground text-background'],
       outline:
         'bg-transparent border border-primary text-primary hover:bg-primary/10',
       ghost: 'bg-transparent hover:bg-primary/20',

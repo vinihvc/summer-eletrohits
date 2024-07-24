@@ -12,16 +12,19 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <header
-      className={cn('absolute top-0 inset-x-0 z-50 hidden sm:flex', className)}
+      className={cn(
+        'fixed top-0 left-[1px] right-2 ml-64 z-50 hidden sm:flex bg-background/40 backdrop-blur',
+        className,
+      )}
       {...rest}
     >
-      <div className="flex w-full h-14 items-center justify-between px-4">
+      <div className="flex w-full h-14 items-center justify-between px-5">
         <HeaderNavigation />
 
         <nav className="flex items-center gap-4">
           <HeaderTheme />
 
-          <Button size="icon">
+          <Button variant="ghost" size="icon">
             <Link
               href="https://github.com/vinihvc/summer-eletrohits"
               target="_blank"

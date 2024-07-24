@@ -7,7 +7,7 @@ const HomePage = async () => {
   const data = await getAlbums()
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 p-10 pt-20">
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 p-5 pt-20">
       {data?.map((album) => (
         <Link
           key={album.id}

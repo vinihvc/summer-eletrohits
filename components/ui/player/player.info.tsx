@@ -15,7 +15,7 @@ export const PlayerSongInfo = (props: PlayerSongInfoProps) => {
 
   return (
     <div className={cn('flex flex-1 items-center gap-4', className)} {...rest}>
-      <div className="relative h-10 w-10 overflow-hidden rounded-full">
+      <div className="relative size-10 overflow-hidden rounded-full">
         <BlurImage
           width={40}
           height={40}

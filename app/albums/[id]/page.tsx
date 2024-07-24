@@ -49,7 +49,7 @@ const AlbumsPage = async ({ params }: DataParams) => {
     <>
       <AlbumInfo album={{ ...album, thumb: `/img/albums/${album.id}.webp` }} />
 
-      <section className="pt-4 px-4">
+      <section className="relative p-2 sm:p-5">
         {album.songs && <Songs songs={album.songs} />}
       </section>
     </>

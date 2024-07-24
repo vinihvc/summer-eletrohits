@@ -6,11 +6,11 @@ import '@/styles/global.css'
 import type { Metadata } from 'next'
 
 import { MediaQuery } from '@/components/debug/media-query'
-import { Footer } from '@/components/layout/footer'
-import { Header } from '@/components/layout/header'
 import { Sidebar } from '@/components/layout/sidebar'
 
+import { Header } from '@/components/layout/header'
 import { Player } from '@/components/ui/player'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { SEO } from '@/constants/seo'
 import { fontSans } from '@/lib/font'
 import type React from 'react'
@@ -46,7 +46,7 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          'bg-background text-foreground font-sans antialiased',
+          'bg-background text-foreground font-sans antialiased overflow-hidden',
           fontSans.variable,
         )}
       >
@@ -57,9 +57,9 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
             <div className="relative w-full lg:border-l">
               <Header />
 
-              <main className="flex flex-col flex-1 min-h-dvh">{children}</main>
-
-              <Footer />
+              <main className="flex flex-col flex-1 max-h-dvh">
+                <ScrollArea className="max-h-dvh">{children}</ScrollArea>
+              </main>
             </div>
           </div>
 

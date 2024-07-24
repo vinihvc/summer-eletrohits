@@ -40,12 +40,16 @@ export const PlayButton = (props: PlayButtonProps) => {
 
   return (
     <Button
-      variant="solid"
-      className={cn('h-8 w-8 p-0 [&>svg]:fill-current', className)}
+      size="icon"
+      className={cn('[&>svg]:fill-current', className)}
       onClick={handleClick}
       {...rest}
     >
-      {isSameSong && isPlaying ? <Pause size={16} /> : <Play size={16} />}
+      {isSameSong && isPlaying ? (
+        <Pause className="size-4" />
+      ) : (
+        <Play className="size-4" />
+      )}
 
       <span className="sr-only">
         {isSameSong && isPlaying ? 'Pause' : 'Play'}
