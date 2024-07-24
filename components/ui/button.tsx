@@ -6,9 +6,11 @@ import { Slot } from '@radix-ui/react-slot'
 
 export const buttonVariants = cva({
   base: [
-    'inline-flex items-center justify-center rounded-full',
-    'transition-all',
+    'inline-flex items-center justify-center',
+    'gap-2',
     'font-medium',
+    'rounded-full',
+    'transition-all',
     'outline-none focus-visible:ring-2 ring-offset-2 ring-offset-background',
     'disabled:pointer-events-none disabled:opacity-50',
   ],
@@ -19,7 +21,8 @@ export const buttonVariants = cva({
         'hover:bg-primary/90',
         'focus-visible:ring-primary',
       ],
-      outline: 'bg-transparent border hover:bg-primary/20',
+      outline:
+        'bg-transparent border border-primary text-primary hover:bg-primary/10',
       ghost: 'bg-transparent hover:bg-primary/20',
       link: 'bg-transparent underline-offset-4 hover:underline text-primary hover:bg-transparent',
     },

@@ -1,9 +1,9 @@
 import { cn } from '@/lib/cn'
-import { AudioLines, ListMusic, PartyPopper } from 'lucide-react'
+import { AudioLines, Disc3, ListMusic, PartyPopper } from 'lucide-react'
 import Link from 'next/link'
 import { Hub } from '../icons/hub'
-import { Logo } from '../logo'
 import { Button } from '../ui/button'
+import { Logo } from '../ui/logo'
 import { NavLink } from '../ui/nav-link'
 import { ScrollArea } from '../ui/scroll-area'
 
@@ -67,11 +67,11 @@ export const Sidebar = (props: SidebarProps) => {
               asChild
             >
               <NavLink
-                href="/library"
+                href="/queue"
                 className="aria-[current=true]:bg-primary aria-[current=true]:text-white"
               >
-                <ListMusic className="size-4" />
-                Playlists
+                <AudioLines className="size-4" />
+                Playing
               </NavLink>
             </Button>
 
@@ -81,11 +81,25 @@ export const Sidebar = (props: SidebarProps) => {
               asChild
             >
               <NavLink
-                href="/queue"
+                href="/playlist/albums"
                 className="aria-[current=true]:bg-primary aria-[current=true]:text-white"
               >
-                <AudioLines className="size-4" />
-                Playing
+                <Disc3 className="size-4" />
+                Albums
+              </NavLink>
+            </Button>
+
+            <Button
+              variant="ghost"
+              className="w-full justify-start gap-2"
+              asChild
+            >
+              <NavLink
+                href="/playlist/songs"
+                className="aria-[current=true]:bg-primary aria-[current=true]:text-white"
+              >
+                <ListMusic className="size-4" />
+                Songs
               </NavLink>
             </Button>
           </div>

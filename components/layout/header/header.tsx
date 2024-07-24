@@ -1,8 +1,9 @@
+import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/cn'
-import { ChevronLeft, ChevronRight, Github } from 'lucide-react'
+import { Github } from 'lucide-react'
 import Link from 'next/link'
-import { Button } from '../ui/button'
-import { ModeToggle } from './mode-toggle'
+import { HeaderNavigation } from './header.navigation'
+import { HeaderTheme } from './header.theme'
 
 interface HeaderProps extends React.HtmlHTMLAttributes<HTMLDivElement> {}
 
@@ -15,18 +16,10 @@ export const Header = (props: HeaderProps) => {
       {...rest}
     >
       <div className="flex w-full h-14 items-center justify-between px-4">
-        <div className="space-x-2">
-          <Button size="icon" disabled>
-            <ChevronLeft className="size-4" />
-          </Button>
+        <HeaderNavigation />
 
-          <Button size="icon" disabled>
-            <ChevronRight className="size-4" />
-          </Button>
-        </div>
-
-        <nav className="flex items-center space-x-4">
-          <ModeToggle />
+        <nav className="flex items-center gap-4">
+          <HeaderTheme />
 
           <Button size="icon">
             <Link

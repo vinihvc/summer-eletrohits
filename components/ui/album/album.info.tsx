@@ -29,9 +29,10 @@ export const AlbumInfo = (props: AlbumInfoProps) => {
       {...rest}
     >
       <Image
-        className="object-cover blur-lg opacity-10"
+        className="object-cover blur-lg opacity-40 dark:opacity-10"
         src={`/img/albums/${album.id}.webp`}
         alt={album.name}
+        sizes="(max-width: 768px) 100vw, 33vw"
         fill
       />
 
@@ -43,20 +44,18 @@ export const AlbumInfo = (props: AlbumInfoProps) => {
         className="h-[150px] w-[150px] justify-center rounded-xl sm:h-[250px] sm:w-[250px] sm:justify-start"
       />
 
-      <div className="relative flex flex-col items-center space-y-2 sm:items-start">
-        <div>
-          <div className="text-xs font-medium uppercase">Album</div>
-
-          <h2 className="text-lg font-bold sm:text-xl">{album.name}</h2>
+      <div className="relative">
+        <div className="text-xs font-medium uppercase text-muted-foreground">
+          Album
         </div>
 
-        {album.songs && (
-          <div className="mt-1">{`${album.songs?.length} songs`}</div>
-        )}
+        <h2 className="text-lg font-bold sm:text-xl">{album.name}</h2>
 
-        <div className="flex space-x-4">
+        {album.songs && <div>{`${album.songs?.length} tracks`}</div>}
+
+        <div className="flex gap-4 mt-4">
           <Button
-            className="space-x-2"
+            className="gap-2"
             onClick={() => album.songs && play(album.songs)}
           >
             <Play size={20} />
@@ -66,7 +65,6 @@ export const AlbumInfo = (props: AlbumInfoProps) => {
 
           <Button
             variant="outline"
-            className="space-x-2"
             onClick={() => album.songs && playRandom(album.songs)}
           >
             <Shuffle size={20} />

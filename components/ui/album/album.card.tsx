@@ -35,6 +35,8 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
           src={`/img/albums/${album.id}.webp`}
           className="size-full object-cover"
           alt={album.name}
+          sizes="(max-width: 768px) 100vw, 33vw"
+          priority
           fill
         />
 

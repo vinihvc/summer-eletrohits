@@ -1,4 +1,5 @@
 'use client'
+
 import { Laptop, Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 
@@ -8,9 +9,9 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '../ui/dropdown'
+} from '@/components/ui/dropdown'
 
-export const ModeToggle = () => {
+export const HeaderTheme = () => {
   const { setTheme } = useTheme()
 
   return (
@@ -24,26 +25,17 @@ export const ModeToggle = () => {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end">
-        <DropdownMenuItem
-          className="space-x-2"
-          onClick={() => setTheme('light')}
-        >
+        <DropdownMenuItem className="gap-2" onClick={() => setTheme('light')}>
           <Sun className="size-4" />
           <span>Light</span>
         </DropdownMenuItem>
 
-        <DropdownMenuItem
-          className="space-x-2"
-          onClick={() => setTheme('dark')}
-        >
+        <DropdownMenuItem className="gap-2" onClick={() => setTheme('dark')}>
           <Moon className="size-4" />
           <span>Dark</span>
         </DropdownMenuItem>
 
-        <DropdownMenuItem
-          className="space-x-2"
-          onClick={() => setTheme('system')}
-        >
+        <DropdownMenuItem className="gap-2" onClick={() => setTheme('system')}>
           <Laptop className="size-4" />
           <span>System</span>
         </DropdownMenuItem>

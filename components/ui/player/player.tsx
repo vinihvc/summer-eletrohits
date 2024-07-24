@@ -24,7 +24,7 @@ export const Player = (props: PlayerProps) => {
   return (
     <div className="sticky inset-x-0 bottom-[45px] z-50 sm:bottom-0">
       <div className={cn('flex border-t-4 bg-background', className)} {...rest}>
-        <div className="relative">
+        <div className="w-full relative">
           <PlayerProgress />
 
           <div className="flex h-14 flex-1 items-center md:h-20">
@@ -32,7 +32,7 @@ export const Player = (props: PlayerProps) => {
 
             <PlayerActions flex={1} />
 
-            <div className="hidden w-1/5 flex-1 items-center sm:flex">
+            <div className="hidden w-1/5 flex-1 items-center sm:flex justify-end">
               <PlayerPlaylist />
 
               <PlayerVolume />

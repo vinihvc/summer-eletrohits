@@ -1,7 +1,8 @@
-import { Songs } from '@/components/songs'
 import { AlbumInfo } from '@/components/ui/album/album.info'
+import { Songs } from '@/components/ui/songs'
 import { getAlbum, getAlbums } from '@/services/queries/album'
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
 export const generateStaticParams = async () => {
   const data = await getAlbums()
@@ -17,6 +18,10 @@ export const generateMetadata = async (
   const { params } = props
 
   const album = await getAlbum({ params })
+
+  if (!album) {
+    return notFound()
+  }
 
   return {
     title: album.name,
@@ -35,6 +40,10 @@ export const generateMetadata = async (
 
 const AlbumsPage = async ({ params }: DataParams) => {
   const album = await getAlbum({ params })
+
+  if (!album) {
+    return notFound()
+  }
 
   return (
     <>

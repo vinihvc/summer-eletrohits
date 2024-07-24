@@ -14,10 +14,7 @@ export const PlayerSongInfo = (props: PlayerSongInfoProps) => {
   const { currentSong } = useMusicActions()
 
   return (
-    <div
-      className={cn('flex flex-1 items-center space-x-4', className)}
-      {...rest}
-    >
+    <div className={cn('flex flex-1 items-center gap-4', className)} {...rest}>
       <div className="relative h-10 w-10 overflow-hidden rounded-full">
         <BlurImage
           width={40}

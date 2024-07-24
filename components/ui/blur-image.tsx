@@ -13,7 +13,7 @@ export const BlurImage = (props: ImageProps) => {
   return (
     <div
       className={cn(
-        "relative flex overflow-hidden bg-white/[2%] after:pointer-events-none after:absolute after:inset-0 after:z-10 after:content-['']",
+        "relative flex overflow-hidden rounded-xl bg-white/[2%] after:pointer-events-none after:absolute after:inset-0 after:z-10 after:content-['']",
         { 'animate-pulse': isLoading },
       )}
     >

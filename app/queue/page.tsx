@@ -2,8 +2,8 @@
 
 import Link from 'next/link'
 
-import { Songs } from '@/components/songs'
 import { buttonVariants } from '@/components/ui/button'
+import { Songs } from '@/components/ui/songs'
 import { useMusicState } from '@/store'
 
 const SongsPage = () => {

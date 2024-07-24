@@ -15,7 +15,7 @@ export const PlayerVolume = ({ ...props }) => {
   }
 
   return (
-    <div className="flex w-full space-x-4" {...props}>
+    <div className="flex w-full gap-4" {...props}>
       <VolumeButton />
 
       <Slider

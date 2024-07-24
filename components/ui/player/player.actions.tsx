@@ -10,7 +10,7 @@ export const PlayerActions = ({ ...props }) => {
 
   return (
     <div
-      className="flex flex-1 items-center justify-end space-x-2 sm:justify-center"
+      className="flex flex-1 items-center justify-end gap-2 sm:justify-center"
       {...props}
     >
       <PrevButton />

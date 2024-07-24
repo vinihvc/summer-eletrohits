@@ -4,8 +4,8 @@ import Image from 'next/image'
 
 import { cn } from '@/lib/cn'
 import { useMusicActions } from '@/store'
-import { LikeButton } from './ui/actions/like'
-import { PlayButton } from './ui/actions/play'
+import { LikeButton } from './actions/like'
+import { PlayButton } from './actions/play'
 
 interface SongsProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
   /**
@@ -28,7 +28,7 @@ export const Songs = (props: SongsProps) => {
         >
           <div
             className={cn(
-              'group flex items-center space-x-3 p-2.5 transition-colors hover:bg-black/10 dark:hover:bg-white/10 md:space-x-5 px-5',
+              'group flex items-center gap-3 p-2.5 transition-colors hover:bg-foreground/10 md:gap-5 px-5',
               currentSong?.()?.id === song.id && 'bg-white/20',
               className,
             )}
