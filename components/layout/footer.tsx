@@ -10,7 +10,7 @@ export const Footer = () => {
           <p className="text-center text-sm leading-loose md:text-left">
             Built by{' '}
             <a
-              href="https://vini.one/twitter"
+              href="https://vini.one"
               target="_blank"
               rel="noreferrer noopener"
               className="underline-offset-3 font-medium text-white underline"

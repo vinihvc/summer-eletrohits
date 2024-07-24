@@ -1,11 +1,12 @@
-import { useMemo } from 'react'
 import { Volume2, VolumeX } from 'lucide-react'
-import { useStore } from 'store'
+import { useMemo } from 'react'
 
 import { Button } from '@/components/ui/button'
+import { usePlayerActions, usePlayerState } from '@/store'
 
 export const VolumeButton = ({ ...props }) => {
-  const { volume, toggleVolume } = useStore()
+  const { volume } = usePlayerState()
+  const { toggleVolume } = usePlayerActions()
 
   const title = useMemo(() => (volume ? 'Mute' : 'Unmute'), [volume])
 

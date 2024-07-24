@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import { Songs } from '@/components/songs'
 import { buttonVariants } from '@/components/ui/button'
-import { useMusicState } from '@/contexts/music'
+import { useMusicState } from '@/store'
 
 const SongsPage = () => {
   const { playlist } = useMusicState()

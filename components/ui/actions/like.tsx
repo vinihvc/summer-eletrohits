@@ -4,8 +4,8 @@ import { Heart } from 'lucide-react'
 import { useMemo } from 'react'
 
 import { Button } from '@/components/ui/button'
-import { useMusicActions, useMusicState } from '@/contexts/music'
 import { cn } from '@/lib/cn'
+import { useMusicActions, useMusicState } from '@/store'
 
 interface LikeButtonProps extends React.HtmlHTMLAttributes<HTMLButtonElement> {
   /**

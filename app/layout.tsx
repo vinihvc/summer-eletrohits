@@ -9,13 +9,36 @@ import { MediaQuery } from '@/components/debug/media-query'
 import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
 import { Sidebar } from '@/components/layout/sidebar'
+
+import { Player } from '@/components/ui/player'
+import { SEO } from '@/constants/seo'
 import { fontSans } from '@/lib/font'
 import type React from 'react'
 import { Providers } from './providers'
 
 export const metadata: Metadata = {
-  title: { default: 'Eletrohits', template: '%s | Eletrohits' },
-  description: 'The Best of Electro Music',
+  metadataBase: new URL(SEO.url),
+  title: { default: SEO.title, template: `%s | ${SEO.title}` },
+  applicationName: SEO.title,
+  keywords: SEO.keywords,
+  openGraph: {
+    title: SEO.title,
+    siteName: SEO.title,
+    type: 'website',
+    url: SEO.url,
+    images: [
+      {
+        url: '/img/logo.jpg',
+        width: 800,
+        height: 600,
+        alt: 'Eletrohits cover',
+      },
+    ],
+  },
+  twitter: {
+    creator: SEO.twitter,
+    card: 'summary_large_image',
+  },
 }
 
 const RootLayout = async ({ children }: React.PropsWithChildren) => {
@@ -29,7 +52,7 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
       >
         <Providers>
           <div className="flex">
-            <Sidebar className="max-w-80 shrink-0 hidden lg:block" />
+            <Sidebar className="w-full max-w-64 shrink-0 hidden lg:block" />
 
             <div className="relative w-full lg:border-l">
               <Header />
@@ -40,7 +63,7 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
             </div>
           </div>
 
-          {/* <PlayerBar /> */}
+          <Player />
 
           <BottomNavigation />
 

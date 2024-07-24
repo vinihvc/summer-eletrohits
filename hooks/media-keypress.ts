@@ -1,12 +1,12 @@
+import { usePlayerActions } from '@/store'
 import { useEffect } from 'react'
-import { useStore } from 'store'
 
 /**
  * Hook to listen for media keypresses
  */
 export const useMediaKeyPress = () => {
   const { playNext, togglePlay, playPrevious, volumeUp, volumeDown } =
-    useStore()
+    usePlayerActions()
 
   useEffect(() => {
     const keyboardControl = (e: KeyboardEvent) => {

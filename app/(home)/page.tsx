@@ -1,5 +1,5 @@
 import { AlbumCard } from '@/components/ui/album/album.card'
-import { getAlbums } from '@/services/requests'
+import { getAlbums } from '@/services/queries/album'
 
 import Link from 'next/link'
 

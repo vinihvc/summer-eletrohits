@@ -4,7 +4,7 @@ import { Play, Shuffle } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/cn'
-import { usePlayerActions } from '@/store/player.store'
+import { usePlayerActions } from '@/store'
 import Image from 'next/image'
 import { BlurImage } from '../blur-image'
 

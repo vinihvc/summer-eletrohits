@@ -1,8 +1,15 @@
-import { getAlbum } from '@/services/requests'
-
 import { Songs } from '@/components/songs'
 import { AlbumInfo } from '@/components/ui/album/album.info'
+import { getAlbum, getAlbums } from '@/services/queries/album'
 import type { Metadata } from 'next'
+
+export const generateStaticParams = async () => {
+  const data = await getAlbums()
+
+  return data.map((album) => ({
+    id: album.id.toString(),
+  }))
+}
 
 export const generateMetadata = async (
   props: DataParams,
@@ -15,13 +22,11 @@ export const generateMetadata = async (
     title: album.name,
     description: `Album ${album.name}`,
     openGraph: {
-      url: `/img/albums/${album.id}.webp`,
-      title: `${album.name} - Summer Eletrohits`,
-      description: `Album ${album.name}`,
       images: [
         {
           url: `/img/albums/${album.id}.webp`,
-          alt: `${album.name}`,
+          width: 800,
+          height: 600,
         },
       ],
     },

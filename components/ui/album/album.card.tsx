@@ -1,7 +1,6 @@
 'use client'
 
-import { useMusicActions } from '@/contexts/music'
-import { usePlayerActions, usePlayerState } from '@/store/player.store'
+import { useMusicActions, usePlayerActions, usePlayerState } from '@/store'
 import { Pause, Play } from 'lucide-react'
 import Image from 'next/image'
 import { Button } from '../button'

@@ -2,8 +2,8 @@
 
 import { LikeButton } from '@/components/ui/actions/like'
 
-import { useMusicActions } from '@/contexts/music'
 import { cn } from '@/lib/cn'
+import { useMusicActions } from '@/store'
 import { BlurImage } from '../blur-image'
 
 interface PlayerSongInfoProps extends React.HTMLAttributes<HTMLDivElement> {}

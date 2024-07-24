@@ -1,17 +1,19 @@
 'use client'
 
-import { useMusicActions } from '@/contexts/music'
-import { usePlayerActions, usePlayerState } from '@/store/player.store'
-import ReactPlayer from 'react-player/youtube'
+import { useMusicActions, usePlayerActions, usePlayerState } from '@/store'
+import RPlayer from 'react-player/youtube'
 
-interface PlayerProps {
+interface ReactPlayerProps {
   /**
    * Whether the player is hidden
    */
   isHidden?: boolean
 }
 
-export const Player = ({ isHidden = true, ...props }: PlayerProps) => {
+export const ReactPlayer = ({
+  isHidden = true,
+  ...props
+}: ReactPlayerProps) => {
   const { $player, isPlaying, volume } = usePlayerState()
 
   const { playNext, onProgress } = usePlayerActions()
@@ -22,7 +24,7 @@ export const Player = ({ isHidden = true, ...props }: PlayerProps) => {
     <div className="relative" {...props}>
       <div className="absolute inset-0" />
 
-      <ReactPlayer
+      <RPlayer
         ref={$player}
         {...(currentSong() && {
           url: `https://youtu.be/${currentSong().youtubeId}`,

@@ -19,7 +19,7 @@ const NotFoundPage = () => {
           Check if the search term is correct. If you think this is an error,
           send me a tweet{' '}
           <a
-            href="https://vini.one/twitter"
+            href="https://vini.one"
             target="_blank"
             rel="noopener noreferrer nofollow"
             className="text-blue-500 underline underline-offset-2"

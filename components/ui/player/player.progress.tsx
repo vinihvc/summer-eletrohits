@@ -1,7 +1,7 @@
 'use client'
 
 import { Slider } from '@/components/ui/slider'
-import { usePlayerActions, usePlayerState } from '@/store/player.store'
+import { usePlayerActions, usePlayerState } from '@/store'
 
 export const PlayerProgress = () => {
   const { progress } = usePlayerState()

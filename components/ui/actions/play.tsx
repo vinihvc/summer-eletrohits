@@ -4,24 +4,27 @@ import { Pause, Play } from 'lucide-react'
 import { useCallback, useMemo } from 'react'
 
 import { Button } from '@/components/ui/button'
-import { useMusicActions } from '@/contexts/music'
 import { cn } from '@/lib/cn'
-import { usePlayerActions, usePlayerState } from '@/store/player.store'
+import { useMusicActions, usePlayerActions, usePlayerState } from '@/store'
 
 interface PlayButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * List of songs
+   */
   songs: SongType[]
+  /**
+   * Index of the song
+   */
   index: number
 }
 
 export const PlayButton = (props: PlayButtonProps) => {
   const { songs, index, className, ...rest } = props
 
-  const { togglePlay, play } = usePlayerActions()
-
-  const { currentSong } = useMusicActions()
-
   const { isPlaying } = usePlayerState()
+  const { togglePlay, play } = usePlayerActions()
+  const { currentSong } = useMusicActions()
 
   const song = useMemo(() => songs[index], [songs, index])
 

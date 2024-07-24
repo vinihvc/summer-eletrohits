@@ -26,10 +26,10 @@ export const Music = (props: React.SVGProps<SVGSVGElement>) => {
         y2="8"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0" stop-color="#bd1949" />
-        <stop offset=".108" stop-color="#c31a4b" />
-        <stop offset=".38" stop-color="#ca1b4d" />
-        <stop offset="1" stop-color="#cc1b4e" />
+        <stop offset="0" stopColor="#bd1949" />
+        <stop offset=".108" stopColor="#c31a4b" />
+        <stop offset=".38" stopColor="#ca1b4d" />
+        <stop offset="1" stopColor="#cc1b4e" />
       </linearGradient>
       <path
         fill="url(#thMIbMD7~VnYoyixFJ5D6a_p6vT9rfwUGw6_gr1)"

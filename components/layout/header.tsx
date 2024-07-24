@@ -16,12 +16,12 @@ export const Header = (props: HeaderProps) => {
     >
       <div className="flex w-full h-14 items-center justify-between px-4">
         <div className="space-x-2">
-          <Button size="icon">
-            <ChevronLeft />
+          <Button size="icon" disabled>
+            <ChevronLeft className="size-4" />
           </Button>
 
-          <Button size="icon">
-            <ChevronRight />
+          <Button size="icon" disabled>
+            <ChevronRight className="size-4" />
           </Button>
         </div>
 

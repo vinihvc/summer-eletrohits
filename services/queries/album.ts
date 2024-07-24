@@ -1,21 +1,13 @@
-const get = async <T>(url: string): Promise<T> => {
-  const res = await fetch(url)
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
-  }
-
-  return res.json()
-}
+import { http } from '../http'
 
 export const getAlbum = async ({ params }: DataParams) => {
-  return await get<AlbumType>(
+  return await http<AlbumType>(
     `https://summer-eletrohits-api.vercel.app/api/albums/${params.id}`,
   )
 }
 
 export const getAlbums = async () => {
-  return await get<AlbumType[]>(
+  return await http<AlbumType[]>(
     'https://summer-eletrohits-api.vercel.app/api/albums',
   )
 }

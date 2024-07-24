@@ -2,8 +2,8 @@
 
 import Image from 'next/image'
 
-import { useMusicActions } from '@/contexts/music'
 import { cn } from '@/lib/cn'
+import { useMusicActions } from '@/store'
 import { LikeButton } from './ui/actions/like'
 import { PlayButton } from './ui/actions/play'
 
