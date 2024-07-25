@@ -10,7 +10,6 @@ import { Sidebar } from '@/components/layout/sidebar'
 
 import { Header } from '@/components/layout/header'
 import { Player } from '@/components/ui/player'
-import { ScrollArea } from '@/components/ui/scroll-area'
 import { SEO } from '@/constants/seo'
 import { fontSans } from '@/lib/font'
 import type React from 'react'
@@ -46,20 +45,18 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          'bg-background text-foreground font-sans antialiased overflow-hidden',
+          'bg-background text-foreground font-sans antialiased',
           fontSans.variable,
         )}
       >
         <Providers>
           <div className="flex">
-            <Sidebar className="w-full max-w-64 shrink-0 hidden lg:block" />
+            <Sidebar className="fixed top-0 left-0 w-full max-w-64 shrink-0 hidden lg:block" />
 
-            <div className="relative w-full lg:border-l">
+            <div className="relative w-full lg:border-l ml-64">
               <Header />
 
-              <main className="flex flex-col flex-1 max-h-dvh">
-                <ScrollArea className="max-h-dvh">{children}</ScrollArea>
-              </main>
+              <main className="flex flex-col flex-1 min-h-dvh">{children}</main>
             </div>
           </div>
 

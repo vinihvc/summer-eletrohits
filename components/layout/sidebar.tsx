@@ -5,7 +5,6 @@ import { Hub } from '../icons/hub'
 import { Button } from '../ui/button'
 import { Logo } from '../ui/logo'
 import { NavLink } from '../ui/nav-link'
-import { ScrollArea } from '../ui/scroll-area'
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -108,9 +107,8 @@ export const Sidebar = (props: SidebarProps) => {
           <h2 className="relative px-7 text-lg font-semibold tracking-tight">
             Playlists
           </h2>
-          <ScrollArea className="h-[300px] px-1">
-            <div className="space-y-1 p-2">
-              {/* {playlists?.map((playlist, i) => (
+          <div className="space-y-1 p-2">
+            {/* {playlists?.map((playlist, i) => (
                 <Button
                   key={`${playlist}-${i}`}
                   variant="ghost"
@@ -135,8 +133,7 @@ export const Sidebar = (props: SidebarProps) => {
                   {playlist}
                 </Button>
               ))} */}
-            </div>
-          </ScrollArea>
+          </div>
         </div>
       </div>
     </div>

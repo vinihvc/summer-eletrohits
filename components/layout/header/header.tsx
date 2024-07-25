@@ -13,7 +13,7 @@ export const Header = (props: HeaderProps) => {
   return (
     <header
       className={cn(
-        'fixed top-0 left-[1px] right-2 ml-64 z-50 hidden sm:flex bg-background/40 backdrop-blur',
+        'fixed top-0 left-[1px] right-0 ml-64 z-50 hidden sm:flex bg-background/40 backdrop-blur',
         className,
       )}
       {...rest}
@@ -24,7 +24,7 @@ export const Header = (props: HeaderProps) => {
         <nav className="flex items-center gap-4">
           <HeaderTheme />
 
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" asChild>
             <Link
               href="https://github.com/vinihvc/summer-eletrohits"
               target="_blank"

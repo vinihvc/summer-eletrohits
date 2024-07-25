@@ -2,7 +2,8 @@
 
 import { useMusicActions, usePlayerActions, usePlayerState } from '@/store'
 import { Pause, Play } from 'lucide-react'
-import Image from 'next/image'
+
+import { BlurImage } from '../blur-image'
 import { Button } from '../button'
 
 interface AlbumCardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -30,11 +31,11 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
 
   return (
     <article className="relative rounded-xl">
-      <div className="transition-all group-focus-visible:ring-2 ring-primary ring-offset-2 ring-offset-background relative size-full aspect-square rounded-xl overflow-hidden">
-        <Image
+      <div className="relative size-full transition-all group-focus-visible:ring-2 ring-primary ring-offset-2 ring-offset-background aspect-square">
+        <BlurImage
           src={`/img/albums/${album.id}.webp`}
-          className="size-full object-cover"
           alt={album.name}
+          className="rounded-xl"
           sizes="(max-width: 768px) 100vw, 33vw"
           priority
           fill

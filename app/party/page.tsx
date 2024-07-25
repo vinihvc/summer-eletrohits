@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image'
+import { BlurImage } from '@/components/ui/blur-image'
 import React from 'react'
 
 const Party = () => {
@@ -27,7 +27,7 @@ const Party = () => {
       style={{ backgroundColor: color }}
     >
       <div className="relative aspect-video w-[250px]">
-        <Image
+        <BlurImage
           src="/img/slowpoke.gif"
           className="object-contain cursor-pointer"
           alt="this slowpoke moves"

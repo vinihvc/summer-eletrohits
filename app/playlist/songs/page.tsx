@@ -12,7 +12,7 @@ const SongsPlaylistPage = () => {
   const { liked } = useMusicState()
 
   return (
-    <div className="relative px-5">
+    <div className="relative">
       {liked.length === 0 && (
         <>
           <AlbumInfo
@@ -24,7 +24,7 @@ const SongsPlaylistPage = () => {
             }}
           />
 
-          <div className="space-y-5">
+          <div className="space-y-5 px-5">
             <div className="text-2xl font-semibold">
               Nothing in your library yet, go discover!
             </div>

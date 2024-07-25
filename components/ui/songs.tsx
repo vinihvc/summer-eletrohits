@@ -1,11 +1,10 @@
 'use client'
 
-import Image from 'next/image'
-
 import { cn } from '@/lib/cn'
 import { useMusicActions } from '@/store'
 import { LikeButton } from './actions/like'
 import { PlayButton } from './actions/play'
+import { BlurImage } from './blur-image'
 
 interface SongsProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
   /**
@@ -20,18 +19,18 @@ export const Songs = (props: SongsProps) => {
   const { currentSong } = useMusicActions()
 
   return (
-    <div className={cn(className)} {...rest}>
+    <div className={cn('overflow-hidden rounded-lg', className)} {...rest}>
       {songs?.map((song, index) => {
         const currentIndex = index + 1
 
         return (
           <div
             key={song.id}
-            className="overflow-hidden transition-colors odd:bg-black/10 hover:bg-black/5"
+            className="transition odd:bg-black/10 hover:bg-black/5"
           >
             <div
               className={cn(
-                'group flex items-center gap-3 p-2.5 transition-colors hover:bg-foreground/10 md:gap-5 px-2 sm:px-5 rounded-lg text-sm',
+                'group flex items-center gap-3 p-2.5 transition hover:bg-foreground/5 md:gap-5 px-2 sm:px-5 text-sm',
                 currentSong?.()?.id === song.id && 'bg-white/20',
                 className,
               )}
@@ -48,7 +47,7 @@ export const Songs = (props: SongsProps) => {
               </div>
 
               <div className="max-sm:hidden overflow-hidden rounded-lg shrink-0">
-                <Image
+                <BlurImage
                   width={40}
                   height={40}
                   className="size-10 aspect-square scale-150"
