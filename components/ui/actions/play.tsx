@@ -4,8 +4,12 @@ import { Pause, Play } from 'lucide-react'
 import { useCallback, useMemo } from 'react'
 
 import { Button } from '@/components/ui/button'
+import {
+  useMusicActions,
+  usePlayerActions,
+  usePlayerState,
+} from '@/contexts/app.context'
 import { cn } from '@/lib/cn'
-import { useMusicActions, usePlayerActions, usePlayerState } from '@/store'
 
 interface PlayButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -34,7 +38,7 @@ export const PlayButton = (props: PlayButtonProps) => {
     if (isPlaying && isSameSong) {
       togglePlay()
     } else {
-      play(songs, index)
+      play?.(songs, index)
     }
   }, [isPlaying, isSameSong, togglePlay, play, songs, index])
 

@@ -1,8 +1,12 @@
 'use client'
 
-import { useMusicActions, usePlayerActions, usePlayerState } from '@/store'
 import { Pause, Play } from 'lucide-react'
 
+import {
+  useMusicActions,
+  usePlayerActions,
+  usePlayerState,
+} from '@/contexts/app.context'
 import { BlurImage } from '../blur-image'
 import { Button } from '../button'
 
@@ -23,7 +27,7 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
 
-    isPlayingAlbum ? togglePlay() : songs && play(songs)
+    isPlayingAlbum ? togglePlay() : songs && play?.(songs)
   }
 
   const isPlayingAlbum =

@@ -1,6 +1,10 @@
 'use client'
 
-import { useMusicActions, usePlayerActions, usePlayerState } from '@/store'
+import {
+  useMusicActions,
+  usePlayerActions,
+  usePlayerState,
+} from '@/contexts/app.context'
 import RPlayer from 'react-player/youtube'
 
 interface ReactPlayerProps {
@@ -26,8 +30,8 @@ export const ReactPlayer = ({
 
       <RPlayer
         ref={$player}
-        {...(currentSong() && {
-          url: `https://youtu.be/${currentSong().youtubeId}`,
+        {...(currentSong?.() && {
+          url: `https://youtu.be/${currentSong?.().youtubeId}`,
         })}
         playing={isPlaying}
         volume={volume}

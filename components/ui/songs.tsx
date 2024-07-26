@@ -1,7 +1,7 @@
 'use client'
 
+import { useMusicActions } from '@/contexts/app.context'
 import { cn } from '@/lib/cn'
-import { useMusicActions } from '@/store'
 import { LikeButton } from './actions/like'
 import { PlayButton } from './actions/play'
 import { BlurImage } from './blur-image'

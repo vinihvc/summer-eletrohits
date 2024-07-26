@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { AlbumInfo } from '@/components/ui/album/album.info'
 import { buttonVariants } from '@/components/ui/button'
 import { Songs } from '@/components/ui/songs'
-import { useMusicState } from '@/store'
+import { useMusicState } from '@/contexts/app.context'
 import { USER_ALBUM } from './data'
 
 const LibraryPage = () => {

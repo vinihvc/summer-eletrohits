@@ -1,8 +1,8 @@
 'use client'
 
+import { useMusicActions } from '@/contexts/app.context'
 import { useMediaKeyPress } from '@/hooks/media-keypress'
 import { cn } from '@/lib/cn'
-import { useMusicActions } from '@/store'
 import { ReactPlayer } from '../react-player'
 import { PlayerActions } from './player.actions'
 import { PlayerSongInfo } from './player.info'
@@ -19,7 +19,7 @@ export const Player = (props: PlayerProps) => {
 
   useMediaKeyPress()
 
-  if (!currentSong()) return null
+  if (!currentSong?.()) return null
 
   return (
     <div className="sticky inset-x-0 bottom-[45px] z-50 sm:bottom-0">

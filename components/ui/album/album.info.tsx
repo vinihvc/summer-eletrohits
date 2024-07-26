@@ -3,8 +3,8 @@
 import { Play, Shuffle } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
+import { usePlayerActions } from '@/contexts/app.context'
 import { cn } from '@/lib/cn'
-import { usePlayerActions } from '@/store'
 import { BlurImage } from '../blur-image'
 
 interface AlbumInfoProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -60,7 +60,10 @@ export const AlbumInfo = (props: AlbumInfoProps) => {
 
         {album.songs?.length !== 0 && (
           <div className="flex gap-4 mt-4">
-            <Button size="lg" onClick={() => album.songs && play(album.songs)}>
+            <Button
+              size="lg"
+              onClick={() => album.songs && play?.(album.songs)}
+            >
               <Play className="size-4" />
 
               <span>Play</span>

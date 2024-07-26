@@ -3,7 +3,7 @@
 import { SkipForward } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
-import { usePlayerActions } from '@/store'
+import { usePlayerActions } from '@/contexts/app.context'
 
 export const NextButton = ({ ...props }) => {
   const { playNext } = usePlayerActions()

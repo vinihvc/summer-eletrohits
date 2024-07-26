@@ -3,7 +3,7 @@
 import { NextButton } from '@/components/ui/actions/next'
 import { PlayButton } from '@/components/ui/actions/play'
 import { PrevButton } from '@/components/ui/actions/prev'
-import { useMusicState } from '@/store'
+import { useMusicState } from '@/contexts/app.context'
 
 export const PlayerActions = ({ ...props }) => {
   const { playlist, currentIndex } = useMusicState()

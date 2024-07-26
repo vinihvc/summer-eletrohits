@@ -1,5 +1,3 @@
-'use client'
-
 import type { StateCreator } from 'zustand'
 import type { PlayerSlice } from './player.slice'
 

@@ -2,7 +2,7 @@
 
 import { VolumeButton } from '@/components/ui/actions/volume'
 import { Slider } from '@/components/ui/slider'
-import { usePlayerActions, usePlayerState } from '@/store'
+import { usePlayerActions, usePlayerState } from '@/contexts/app.context'
 
 export const PlayerVolume = ({ ...props }) => {
   const { volume } = usePlayerState()

@@ -1,4 +1,4 @@
-import { usePlayerActions } from '@/store'
+import { usePlayerActions } from '@/contexts/app.context'
 import { useEffect } from 'react'
 
 /**
