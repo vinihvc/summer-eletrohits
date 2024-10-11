@@ -10,12 +10,14 @@ import GridPattern from "@/components/backgrounds/grid-pattern";
 import { InteractiveBlurBackground } from "@/components/backgrounds/interactive-blur-background";
 import { RainbowLine } from "@/components/backgrounds/rainbow-line";
 import { Header } from "@/components/layout/header";
-import { Player } from "@/components/player";
 import { SEO } from "@/constants/seo";
 import { fontSans } from "@/lib/font";
 import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
 import type React from "react";
 import { Providers } from "./providers";
+
+const Player = dynamic(() => import("@/components/player"), { ssr: false });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SEO.url),

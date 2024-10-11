@@ -25,7 +25,7 @@ const LibraryPage = () => {
             }}
           />
 
-          <div className="space-y-5 px-5">
+          <div className="space-y-5">
             <div className="text-2xl font-semibold">
               Nothing in your library yet, go discover!
             </div>

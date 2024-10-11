@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import type React from "react";
 import { createContext, useContext, useRef } from "react";
 import { type StoreApi, create, useStore } from "zustand";
 import { persist } from "zustand/middleware";

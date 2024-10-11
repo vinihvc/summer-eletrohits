@@ -12,14 +12,16 @@ import { ReactPlayer } from "./react-player";
 
 interface PlayerProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const Player = (props: PlayerProps) => {
+const Player = (props: PlayerProps) => {
   const { className, ...rest } = props;
 
   const { currentSong } = useMusicActions();
 
   useMediaKeyPress();
 
-  if (!currentSong?.()) return null;
+  if (!currentSong?.()) {
+    return null;
+  }
 
   return (
     <div className="sticky inset-x-0 bottom-[45px] z-50 sm:bottom-0">
@@ -51,3 +53,5 @@ export const Player = (props: PlayerProps) => {
     </div>
   );
 };
+
+export default Player;

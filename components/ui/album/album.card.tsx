@@ -8,7 +8,7 @@ import {
   usePlayerActions,
   usePlayerState,
 } from "@/contexts/app.context";
-import { BlurImage } from "../blur-image";
+import Image from "next/image";
 import { Button } from "../button";
 
 interface AlbumCardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -48,7 +48,7 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
       onMouseEnter={handleMouseEnter}
     >
       <div className="relative size-full transition-all group-focus-visible:ring-2 ring-primary ring-offset-2 ring-offset-background aspect-square rounded-xl overflow-hidden">
-        <BlurImage
+        <Image
           src={`/img/albums/${album.id}.webp`}
           alt={album.name}
           className="shadow-lg"

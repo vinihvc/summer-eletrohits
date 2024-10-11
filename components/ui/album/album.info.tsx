@@ -1,9 +1,13 @@
 "use client";
 
-import { Play, Shuffle } from "lucide-react";
+import { Pause, Play, Shuffle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { usePlayerActions } from "@/contexts/app.context";
+import {
+  useMusicActions,
+  usePlayerActions,
+  usePlayerState,
+} from "@/contexts/app.context";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
@@ -17,12 +21,26 @@ interface AlbumInfoProps extends React.HTMLAttributes<HTMLDivElement> {
 export const AlbumInfo = (props: AlbumInfoProps) => {
   const { album, className, ...rest } = props;
 
-  const { play, playRandom } = usePlayerActions();
+  const { play, playRandom, togglePlay } = usePlayerActions();
+  const { currentSong } = useMusicActions();
+  const { isPlaying } = usePlayerState();
+
+  const hasSongInAlbum = album.songs?.some(
+    (song) => song.id === currentSong?.()?.id
+  );
+
+  const handlePlay = () => {
+    if (hasSongInAlbum) {
+      togglePlay();
+    } else {
+      album.songs && play?.(album.songs, 0);
+    }
+  };
 
   return (
     <div
       className={cn(
-        "flex flex-col items-center gap-5 sm:flex-row sm:gap-10 animate-in slide-in-from-bottom-4 duration-300",
+        "flex flex-col items-center gap-5 sm:flex-row sm:gap-10",
         className
       )}
       {...rest}
@@ -48,13 +66,14 @@ export const AlbumInfo = (props: AlbumInfoProps) => {
 
         {album.songs?.length !== 0 && (
           <div className="flex gap-4 mt-4">
-            <Button
-              size="lg"
-              onClick={() => album.songs && play?.(album.songs)}
-            >
-              <Play className="size-4" />
+            <Button size="lg" onClick={handlePlay}>
+              {hasSongInAlbum && isPlaying ? (
+                <Pause className="size-4" />
+              ) : (
+                <Play className="size-4" />
+              )}
 
-              <span>Play</span>
+              <span>{hasSongInAlbum && isPlaying ? "Pause" : "Play"}</span>
             </Button>
 
             <Button

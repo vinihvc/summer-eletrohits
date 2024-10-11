@@ -33,7 +33,7 @@ export const InteractiveBlurBackground = () => {
 
     const transitionTimer = setTimeout(() => {
       setIsTransitioning(false);
-    }, TRANSITION_DURATION * 1000);
+    }, TRANSITION_DURATION * 1000 - TRANSITION_DURATION * 100);
 
     return () => {
       clearTimeout(imageTimer);
@@ -46,7 +46,7 @@ export const InteractiveBlurBackground = () => {
       src={delayedImage}
       style={{
         transition: `opacity ${TRANSITION_DURATION}s ease-in-out`,
-        opacity: isTransitioning ? 0.8 : 1,
+        opacity: isTransitioning ? 0.1 : undefined,
       }}
     />
   );

@@ -12,6 +12,7 @@ export const BlurBackground = (props: BlurBackgroundProps) => {
         "absolute inset-0 h-dvh opacity-60 dark:opacity-20 -z-[1] overflow-clip",
         className
       )}
+      {...rest}
     >
       <Image
         className="object-cover blur-xl"

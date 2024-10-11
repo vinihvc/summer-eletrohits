@@ -8,7 +8,7 @@ const HomePage = async () => {
 
   return (
     <div className="container py-20 sm:py-40">
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 md:gap-8 animate-in fade-in slide-in-from-bottom-5">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 md:gap-8 animate-in fade-in">
         {data?.map((album) => (
           <Link
             key={album.id}
