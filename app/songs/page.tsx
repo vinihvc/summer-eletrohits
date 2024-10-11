@@ -1,27 +1,27 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
+import Link from "next/link";
 
-import { AlbumInfo } from '@/components/ui/album/album.info'
-import { buttonVariants } from '@/components/ui/button'
-import { Songs } from '@/components/ui/songs'
-import { useMusicState } from '@/contexts/app.context'
-import { USER_ALBUM } from './data'
+import { AlbumInfo } from "@/components/ui/album/album.info";
+import { buttonVariants } from "@/components/ui/button";
+import { Songs } from "@/components/ui/songs";
+import { useMusicState } from "@/contexts/app.context";
+import { USER_ALBUM } from "./data";
 
 const LibraryPage = () => {
-  const { liked } = useMusicState()
+  const { liked } = useMusicState();
 
   return (
-    <div className="relative">
+    <div className="container py-20 sm:py-40 space-y-10">
       {liked.length === 0 && (
         <>
           <AlbumInfo
             album={{
               id: 0,
-              name: 'Albums',
+              name: "Albums",
               songs: liked,
-              thumb: '/img/albums/library.webp',
-              releaseDate: new Date('2020-01-01').toDateString(),
+              thumb: "/img/albums/library.webp",
+              releaseDate: new Date("2020-01-01").toDateString(),
             }}
           />
 
@@ -45,7 +45,7 @@ const LibraryPage = () => {
         </>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default LibraryPage
+export default LibraryPage;

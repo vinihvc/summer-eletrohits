@@ -1,18 +1,18 @@
-import type React from 'react'
+import type React from "react";
 
-import { cn } from '@/lib/cn'
-import { Music } from '../icons/music'
+import { cn } from "@/lib/utils";
+import { Music } from "../icons/music";
 
 interface LogoProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const Logo = (props: LogoProps) => {
-  const { className, ...rest } = props
+  const { className, ...rest } = props;
 
   return (
     <div
       className={cn(
-        'flex items-center gap-2 text-lg font-semibold tracking-wide select-none',
-        className,
+        "flex items-center gap-2 text-lg font-semibold tracking-wide select-none",
+        className
       )}
       {...rest}
     >
@@ -20,5 +20,5 @@ export const Logo = (props: LogoProps) => {
 
       <span>Eletrohits</span>
     </div>
-  )
-}
+  );
+};

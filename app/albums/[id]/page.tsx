@@ -1,26 +1,26 @@
-import { AlbumInfo } from '@/components/ui/album/album.info'
-import { Songs } from '@/components/ui/songs'
-import { getAlbum, getAlbums } from '@/services/queries/album'
-import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
+import { AlbumInfo } from "@/components/ui/album/album.info";
+import { Songs } from "@/components/ui/songs";
+import { getAlbum, getAlbums } from "@/services/queries/album";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 export const generateStaticParams = async () => {
-  const data = await getAlbums()
+  const data = await getAlbums();
 
   return data.map((album) => ({
     id: album.id.toString(),
-  }))
-}
+  }));
+};
 
 export const generateMetadata = async (
-  props: DataParams,
+  props: DataParams
 ): Promise<Metadata> => {
-  const { params } = props
+  const { params } = props;
 
-  const album = await getAlbum({ params })
+  const album = await getAlbum({ params });
 
   if (!album) {
-    return notFound()
+    return notFound();
   }
 
   return {
@@ -35,25 +35,27 @@ export const generateMetadata = async (
         },
       ],
     },
-  }
-}
+  };
+};
 
 const AlbumsPage = async ({ params }: DataParams) => {
-  const album = await getAlbum({ params })
+  const album = await getAlbum({ params });
 
   if (!album) {
-    return notFound()
+    return notFound();
   }
 
   return (
     <>
-      <AlbumInfo album={{ ...album, thumb: `/img/albums/${album.id}.webp` }} />
+      <div className="container space-y-10 py-20 sm:py-40">
+        <AlbumInfo
+          album={{ ...album, thumb: `/img/albums/${album.id}.webp` }}
+        />
 
-      <section className="relative p-2 sm:p-5">
         {album.songs && <Songs songs={album.songs} />}
-      </section>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default AlbumsPage
+export default AlbumsPage;

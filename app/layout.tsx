@@ -1,19 +1,21 @@
-import { BottomNavigation } from '@/components/layout/bottom-navigation'
-import { cn } from '@/lib/cn'
+import { BottomNavigation } from "@/components/layout/bottom-navigation";
 
-import '@/styles/global.css'
+import "@/styles/global.css";
 
-import type { Metadata } from 'next'
+import type { Metadata } from "next";
 
-import { MediaQuery } from '@/components/debug/media-query'
-import { Sidebar } from '@/components/layout/sidebar'
+import { MediaQuery } from "@/components/debug/media-query";
 
-import { Header } from '@/components/layout/header'
-import { Player } from '@/components/ui/player'
-import { SEO } from '@/constants/seo'
-import { fontSans } from '@/lib/font'
-import type React from 'react'
-import { Providers } from './providers'
+import GridPattern from "@/components/backgrounds/grid-pattern";
+import { InteractiveBlurBackground } from "@/components/backgrounds/interactive-blur-background";
+import { RainbowLine } from "@/components/backgrounds/rainbow-line";
+import { Header } from "@/components/layout/header";
+import { Player } from "@/components/player";
+import { SEO } from "@/constants/seo";
+import { fontSans } from "@/lib/font";
+import { cn } from "@/lib/utils";
+import type React from "react";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SEO.url),
@@ -23,42 +25,46 @@ export const metadata: Metadata = {
   openGraph: {
     title: SEO.title,
     siteName: SEO.title,
-    type: 'website',
+    type: "website",
     url: SEO.url,
     images: [
       {
-        url: '/img/logo.jpg',
+        url: "/img/logo.jpg",
         width: 800,
         height: 600,
-        alt: 'Eletrohits cover',
+        alt: "Eletrohits cover",
       },
     ],
   },
   twitter: {
     creator: SEO.twitter,
-    card: 'summary_large_image',
+    card: "summary_large_image",
   },
-}
+};
 
 const RootLayout = async ({ children }: React.PropsWithChildren) => {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn(
-          'bg-background text-foreground font-sans antialiased',
-          fontSans.variable,
-        )}
-      >
+      <body className={cn(fontSans.variable)}>
         <Providers>
-          <div className="flex">
-            <Sidebar className="fixed top-0 left-0 w-full max-w-64 shrink-0 hidden lg:block" />
+          <Header />
 
-            <div className="relative w-full lg:border-l ml-64">
-              <Header />
+          <GridPattern
+            width={20}
+            height={20}
+            x={-1}
+            y={-1}
+            className={
+              // "[mask-image:linear-gradient(to_top,transparent,black_75%)]"
+              "[mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"
+            }
+          />
 
-              <main className="flex flex-col flex-1 min-h-dvh">{children}</main>
-            </div>
-          </div>
+          <main>{children}</main>
+
+          <RainbowLine />
+
+          <InteractiveBlurBackground />
 
           <Player />
 
@@ -68,7 +74,7 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
         </Providers>
       </body>
     </html>
-  )
-}
+  );
+};
 
-export default RootLayout
+export default RootLayout;

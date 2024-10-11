@@ -1,51 +1,51 @@
-'use client'
+"use client";
 
-import { Pause, Play } from 'lucide-react'
-import { useCallback, useMemo } from 'react'
+import { Pause, Play } from "lucide-react";
+import { useCallback, useMemo } from "react";
 
-import { Button } from '@/components/ui/button'
+import { Button } from "@/components/ui/button";
 import {
   useMusicActions,
   usePlayerActions,
   usePlayerState,
-} from '@/contexts/app.context'
-import { cn } from '@/lib/cn'
+} from "@/contexts/app.context";
+import { cn } from "@/lib/utils";
 
 interface PlayButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * List of songs
    */
-  songs: SongType[]
+  songs: SongType[];
   /**
    * Index of the song
    */
-  index: number
+  index: number;
 }
 
 export const PlayButton = (props: PlayButtonProps) => {
-  const { songs, index, className, ...rest } = props
+  const { songs, index, className, ...rest } = props;
 
-  const { isPlaying } = usePlayerState()
-  const { togglePlay, play } = usePlayerActions()
-  const { currentSong } = useMusicActions()
+  const { isPlaying } = usePlayerState();
+  const { togglePlay, play } = usePlayerActions();
+  const { currentSong } = useMusicActions();
 
-  const song = useMemo(() => songs[index], [songs, index])
+  const song = useMemo(() => songs[index], [songs, index]);
 
-  const isSameSong = currentSong?.()?.id === song.id
+  const isSameSong = currentSong?.()?.id === song.id;
 
   const handleClick = useCallback(() => {
     if (isPlaying && isSameSong) {
-      togglePlay()
+      togglePlay();
     } else {
-      play?.(songs, index)
+      play?.(songs, index);
     }
-  }, [isPlaying, isSameSong, togglePlay, play, songs, index])
+  }, [isPlaying, isSameSong, togglePlay, play, songs, index]);
 
   return (
     <Button
       size="icon"
-      className={cn('[&>svg]:fill-current', className)}
+      className={cn("[&>svg]:fill-current", className)}
       onClick={handleClick}
       {...rest}
     >
@@ -56,8 +56,8 @@ export const PlayButton = (props: PlayButtonProps) => {
       )}
 
       <span className="sr-only">
-        {isSameSong && isPlaying ? 'Pause' : 'Play'}
+        {isSameSong && isPlaying ? "Pause" : "Play"}
       </span>
     </Button>
-  )
-}
+  );
+};

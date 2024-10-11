@@ -1,20 +1,15 @@
-'use client'
+"use client";
 
-import { LikeButton } from '@/components/ui/actions/like'
+import { LikeButton } from "@/components/ui/actions/like";
 
-import { useMusicActions } from '@/contexts/app.context'
-import { cn } from '@/lib/cn'
-import { BlurImage } from '../blur-image'
+import { useMusicActions } from "@/contexts/app.context";
+import { BlurImage } from "../ui/blur-image";
 
-interface PlayerSongInfoProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-export const PlayerSongInfo = (props: PlayerSongInfoProps) => {
-  const { className, ...rest } = props
-
-  const { currentSong } = useMusicActions()
+export const PlayerSongInfo = () => {
+  const { currentSong } = useMusicActions();
 
   return (
-    <div className={cn('flex flex-1 items-center gap-4', className)} {...rest}>
+    <>
       <div className="relative size-10 overflow-hidden rounded-full">
         <BlurImage
           width={40}
@@ -34,6 +29,6 @@ export const PlayerSongInfo = (props: PlayerSongInfoProps) => {
       </div>
 
       <LikeButton song={currentSong?.()} />
-    </div>
-  )
-}
+    </>
+  );
+};

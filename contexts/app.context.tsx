@@ -1,18 +1,18 @@
-'use client'
+"use client";
 
-import React from 'react'
-import { createContext, useContext, useRef } from 'react'
-import { type StoreApi, create, useStore } from 'zustand'
-import { persist } from 'zustand/middleware'
-import { type MusicSlice, createMusicSlice } from './music.slice'
-import { type PlayerSlice, createPlayerSlice } from './player.slice'
+import React from "react";
+import { createContext, useContext, useRef } from "react";
+import { type StoreApi, create, useStore } from "zustand";
+import { persist } from "zustand/middleware";
+import { type MusicSlice, createMusicSlice } from "./music.slice";
+import { type PlayerSlice, createPlayerSlice } from "./player.slice";
 
 export interface AppStore extends MusicSlice, PlayerSlice {}
 
-export const AppStoreContext = createContext<StoreApi<AppStore> | null>(null)
+export const AppStoreContext = createContext<StoreApi<AppStore> | null>(null);
 
 export const AppStoreProvider = ({ children }: React.PropsWithChildren) => {
-  const storeRef = useRef<StoreApi<AppStore>>()
+  const storeRef = useRef<StoreApi<AppStore>>();
 
   if (!storeRef.current) {
     storeRef.current = create<AppStore>()(
@@ -22,34 +22,30 @@ export const AppStoreProvider = ({ children }: React.PropsWithChildren) => {
           ...createPlayerSlice(...state),
         }),
         {
-          name: 'eletrohits-store',
+          name: "eletrohits-store",
           partialize: (state) => ({ liked: state.liked, volume: state.volume }),
           version: 1,
-        },
-      ),
-    )
+        }
+      )
+    );
   }
-
-  React.useEffect(() => {
-    storeRef.current.persist.rehydrate()
-  }, []) // (b)
 
   return (
     <AppStoreContext.Provider value={storeRef.current}>
       {children}
     </AppStoreContext.Provider>
-  )
-}
+  );
+};
 
 const useAppStore = <T,>(selector: (store: AppStore) => T): T => {
-  const appStoreContext = useContext(AppStoreContext)
+  const appStoreContext = useContext(AppStoreContext);
 
   if (!appStoreContext) {
-    throw new Error('useAppStore must be use within AppStoreProvider')
+    throw new Error("useAppStore must be use within AppStoreProvider");
   }
 
-  return useStore(appStoreContext, selector)
-}
+  return useStore(appStoreContext, selector);
+};
 
 /**
  * Hook to get the music state
@@ -59,7 +55,7 @@ export const useMusicState = () =>
     playlist: state.playlist,
     liked: state.liked,
     currentIndex: state.currentIndex,
-  }))
+  }));
 
 /**
  * Hook to get the player state
@@ -71,15 +67,15 @@ export const usePlayerState = () =>
     volume: state.volume,
     saveVolume: state.saveVolume,
     progress: state.progress,
-  }))
+  }));
 
 /**
  * Hook to get the music actions
  */
-export const useMusicActions = () => useAppStore((state) => state.musicActions)
+export const useMusicActions = () => useAppStore((state) => state.musicActions);
 
 /**
  * Hook to get the player actions
  */
 export const usePlayerActions = () =>
-  useAppStore((state) => state.playerActions)
+  useAppStore((state) => state.playerActions);

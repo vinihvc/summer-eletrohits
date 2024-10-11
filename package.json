@@ -1,49 +1,51 @@
 {
-	"name": "summer-eletrohits",
-	"authors": "Vinicius Vicentini <viniciusvicentini@live.com>",
-	"version": "1.0.0",
-	"private": true,
-	"packageManager": "pnpm@9.5.0",
-	"engines": {
-		"node": ">=18"
-	},
-	"scripts": {
-		"dev": "next dev",
-		"build": "next build",
-		"start": "next start",
-		"format": "biome format --continue --",
-		"format:fix": "biome format --continue -- --write",
-		"lint": "biome lint --continue --",
-		"lint:fix": "biome lint --continue -- --apply",
-		"preinstall": "npx only-allow pnpm"
-	},
-	"dependencies": {
-		"@plaiceholder/next": "^3.0.0",
-		"@radix-ui/react-dropdown-menu": "^2.1.1",
-		"@radix-ui/react-icons": "^1.3.0",
-		"@radix-ui/react-slider": "^1.2.0",
-		"@radix-ui/react-slot": "^1.1.0",
-		"cva": "1.0.0-beta.1",
-		"lucide-react": "^0.414.0",
-		"next": "14.2.5",
-		"next-themes": "^0.3.0",
-		"nextjs-google-analytics": "^2.3.3",
-		"plaiceholder": "^3.0.0",
-		"react": "18.3.1",
-		"react-dom": "18.3.1",
-		"react-player": "^2.16.0",
-		"sharp": "^0.33.4",
-		"tailwind-merge": "^2.4.0",
-		"zustand": "^4.5.4"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "^1.8.3",
-		"@types/node": "^20.14.12",
-		"@types/react": "^18.3.3",
-		"autoprefixer": "^10.4.19",
-		"postcss": "^8.4.39",
-		"tailwindcss": "^3.4.6",
-		"tailwindcss-animate": "^1.0.7",
-		"typescript": "^5.5.4"
-	}
+  "name": "summer-eletrohits",
+  "authors": "Vinicius Vicentini <viniciusvicentini@live.com>",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@9.12.1",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "format": "biome format --continue --",
+    "format:fix": "biome format --continue -- --write",
+    "lint": "biome lint --continue --",
+    "lint:fix": "biome lint --continue -- --apply",
+    "preinstall": "npx only-allow pnpm"
+  },
+  "dependencies": {
+    "@plaiceholder/next": "^3.0.0",
+    "@radix-ui/react-dropdown-menu": "^2.1.2",
+    "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-slider": "^1.2.1",
+    "@radix-ui/react-slot": "^1.1.0",
+    "cva": "1.0.0-beta.1",
+    "framer-motion": "^11.11.8",
+    "lucide-react": "^0.451.0",
+    "next": "14.2.15",
+    "next-themes": "^0.3.0",
+    "nextjs-google-analytics": "^2.3.7",
+    "plaiceholder": "^3.0.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-player": "^2.16.0",
+    "react-remove-scroll": "^2.6.0",
+    "sharp": "^0.33.5",
+    "tailwind-merge": "^2.5.3",
+    "zustand": "^4.5.5"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.3",
+    "@types/node": "^22.7.5",
+    "@types/react": "^18.3.11",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.6.3"
+  }
 }

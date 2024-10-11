@@ -1,45 +1,57 @@
-'use client'
+"use client";
 
-import { Pause, Play } from 'lucide-react'
+import { Pause, Play } from "lucide-react";
 
+import { useInteractiveBlurBackgroundStore } from "@/components/backgrounds/interactive-blur-background";
 import {
   useMusicActions,
   usePlayerActions,
   usePlayerState,
-} from '@/contexts/app.context'
-import { BlurImage } from '../blur-image'
-import { Button } from '../button'
+} from "@/contexts/app.context";
+import { BlurImage } from "../blur-image";
+import { Button } from "../button";
 
 interface AlbumCardProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Album data
    */
-  album: AlbumType
+  album: AlbumType;
 }
 
 export const AlbumCard = ({ album }: AlbumCardProps) => {
-  const { play, togglePlay } = usePlayerActions()
-  const { isPlaying } = usePlayerState()
-  const { currentSong } = useMusicActions()
+  const { play, togglePlay } = usePlayerActions();
+  const { isPlaying } = usePlayerState();
+  const { currentSong } = useMusicActions();
+  const { image, setImage } = useInteractiveBlurBackgroundStore();
 
-  const songs = album.songs
+  const songs = album.songs;
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    isPlayingAlbum ? togglePlay() : songs && play?.(songs)
-  }
+    isPlayingAlbum ? togglePlay() : songs && play?.(songs);
+  };
 
   const isPlayingAlbum =
-    songs?.some((song) => song.id === currentSong?.()?.id) && isPlaying
+    songs?.some((song) => song.id === currentSong?.()?.id) && isPlaying;
+
+  const handleMouseEnter = () => {
+    if (album.thumb !== image) {
+      setImage(`/img/albums/${album.id}.webp`);
+    }
+  };
 
   return (
-    <article className="relative rounded-xl">
-      <div className="relative size-full transition-all group-focus-visible:ring-2 ring-primary ring-offset-2 ring-offset-background aspect-square">
+    <article
+      className="rounded-xl"
+      onTouchStart={handleMouseEnter}
+      onMouseEnter={handleMouseEnter}
+    >
+      <div className="relative size-full transition-all group-focus-visible:ring-2 ring-primary ring-offset-2 ring-offset-background aspect-square rounded-xl overflow-hidden">
         <BlurImage
           src={`/img/albums/${album.id}.webp`}
           alt={album.name}
-          className="rounded-xl"
+          className="shadow-lg"
           sizes="(max-width: 768px) 100vw, 33vw"
           priority
           fill
@@ -65,5 +77,5 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
         <div className="line-clamp-1 font-semibold">{album.name}</div>
       </div>
     </article>
-  )
-}
+  );
+};

@@ -1,31 +1,31 @@
-'use client'
+"use client";
 
 import {
   useMusicActions,
   usePlayerActions,
   usePlayerState,
-} from '@/contexts/app.context'
-import RPlayer from 'react-player/youtube'
+} from "@/contexts/app.context";
+import RPlayer from "react-player/youtube";
 
 interface ReactPlayerProps {
   /**
    * Whether the player is hidden
    */
-  isHidden?: boolean
+  isHidden?: boolean;
 }
 
 export const ReactPlayer = ({
   isHidden = true,
   ...props
 }: ReactPlayerProps) => {
-  const { $player, isPlaying, volume } = usePlayerState()
+  const { $player, isPlaying, volume } = usePlayerState();
 
-  const { playNext, onProgress } = usePlayerActions()
+  const { playNext, onProgress } = usePlayerActions();
 
-  const { currentSong } = useMusicActions()
+  const { currentSong } = useMusicActions();
 
   return (
-    <div className="relative" {...props}>
+    <div className="relative hidden" {...props}>
       <div className="absolute inset-0" />
 
       <RPlayer
@@ -40,5 +40,5 @@ export const ReactPlayer = ({
         {...(isHidden && { hidden: true })}
       />
     </div>
-  )
-}
+  );
+};
