@@ -1,7 +1,7 @@
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils'
 
 export const Music = (props: React.SVGProps<SVGSVGElement>) => {
-  const { className, ...rest } = props;
+  const { className, ...rest } = props
 
   return (
     <svg
@@ -37,5 +37,5 @@ export const Music = (props: React.SVGProps<SVGSVGElement>) => {
       />
       <path fill="#ed3675" d="M30,4h-2c-2.209,0-4,1.791-4,4v26h6V4z" />
     </svg>
-  );
-};
+  )
+}

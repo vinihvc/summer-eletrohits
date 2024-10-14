@@ -1,7 +1,7 @@
-import { ListVideo } from "lucide-react";
+import { ListVideo } from 'lucide-react'
 
-import { Button, type ButtonProps } from "@/components/ui/button";
-import { NavLink } from "../ui/nav-link";
+import { Button, type ButtonProps } from '@/components/ui/button'
+import { NavLink } from '../ui/nav-link'
 
 interface PlayerPlaylistProps extends ButtonProps {}
 
@@ -16,5 +16,5 @@ export const PlayerPlaylist = (props: PlayerPlaylistProps) => {
         <span className="sr-only">Go to Playlist</span>
       </NavLink>
     </Button>
-  );
-};
+  )
+}

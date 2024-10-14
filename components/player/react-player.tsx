@@ -1,44 +1,44 @@
-"use client";
+'use client'
 
 import {
   useMusicActions,
   usePlayerActions,
   usePlayerState,
-} from "@/contexts/app.context";
-import RPlayer from "react-player/youtube";
+} from '@/store/app.store'
+import type React from 'react'
+import RPlayer from 'react-player/youtube'
 
-interface ReactPlayerProps {
-  /**
-   * Whether the player is hidden
-   */
-  isHidden?: boolean;
-}
+interface ReactPlayerProps extends React.ComponentProps<typeof RPlayer> {}
 
-export const ReactPlayer = ({
-  isHidden = true,
-  ...props
-}: ReactPlayerProps) => {
-  const { $player, isPlaying, volume } = usePlayerState();
+export const ReactPlayer = (props: ReactPlayerProps) => {
+  const { $player, isPlaying, volume } = usePlayerState()
 
-  const { playNext, onProgress } = usePlayerActions();
+  const { nextSong, onProgress } = usePlayerActions()
 
-  const { currentSong } = useMusicActions();
+  const { currentSong } = useMusicActions()
 
   return (
-    <div className="relative hidden" {...props}>
-      <div className="absolute inset-0" />
-
-      <RPlayer
-        ref={$player}
-        {...(currentSong?.() && {
-          url: `https://youtu.be/${currentSong?.().youtubeId}`,
-        })}
-        playing={isPlaying}
-        volume={volume}
-        onEnded={playNext}
-        onProgress={onProgress}
-        {...(isHidden && { hidden: true })}
-      />
-    </div>
-  );
-};
+    <RPlayer
+      ref={$player}
+      style={{
+        position: 'absolute',
+        width: '1px',
+        height: '1px',
+        padding: 0,
+        margin: '-1px',
+        overflow: 'hidden',
+        clip: 'rect(0, 0, 0, 0)',
+        whiteSpace: 'nowrap',
+        borderWidth: 0,
+      }}
+      {...(currentSong() && {
+        url: `https://youtu.be/${currentSong()?.youtubeId}`,
+      })}
+      playing={isPlaying}
+      volume={volume}
+      onEnded={nextSong}
+      onProgress={onProgress}
+      {...props}
+    />
+  )
+}

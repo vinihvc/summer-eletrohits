@@ -1,38 +1,40 @@
-import { useId } from "react";
+import { useId } from 'react'
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils'
 
 interface GridPatternProps {
-  width?: number;
-  height?: number;
-  x?: number;
-  y?: number;
-  squares?: Array<[x: number, y: number]>;
-  strokeDasharray?: string;
-  className?: string;
-  [key: string]: unknown;
+  width?: number
+  height?: number
+  x?: number
+  y?: number
+  squares?: Array<[x: number, y: number]>
+  strokeDasharray?: string
+  className?: string
+  [key: string]: unknown
 }
 
-export function GridPattern({
-  width = 40,
-  height = 40,
-  x = -1,
-  y = -1,
-  strokeDasharray = "0",
-  squares,
-  className,
-  ...props
-}: GridPatternProps) {
-  const id = useId();
+export const GridPattern = (props: GridPatternProps) => {
+  const {
+    width = 20,
+    height = 20,
+    x = -1,
+    y = -1,
+    strokeDasharray = '0',
+    squares,
+    className,
+    ...rest
+  } = props
+
+  const id = useId()
 
   return (
     <svg
       aria-hidden="true"
       className={cn(
-        "pointer-events-none fixed inset-0 size-full z-[-1] fill-card-forestroke-card-foreground/10 stroke-card-foreground/10 dark:fill-card-forestroke-card-foreground/5 dark:stroke-card-foreground/5",
-        className
+        'pointer-events-none fixed inset-0 size-full z-[-1] fill-card-forestroke-card-foreground/10 stroke-card-foreground/10 dark:fill-card-forestroke-card-foreground/5 dark:stroke-card-foreground/5',
+        className,
       )}
-      {...props}
+      {...rest}
     >
       <defs>
         <pattern
@@ -67,7 +69,7 @@ export function GridPattern({
         </svg>
       )}
     </svg>
-  );
+  )
 }
 
-export default GridPattern;
+export default GridPattern

@@ -1,41 +1,42 @@
-import Link from 'next/link'
+import { Button } from "@/components/ui/button";
+import dynamic from "next/dynamic";
+import Link from "next/link";
 
-import { buttonVariants } from '@/components/ui/button'
+const LottiePlayer = dynamic(() => import("@/components/ui/lottie"), {
+  ssr: false,
+});
 
 const NotFoundPage = () => {
   return (
     <div className="flex flex-1 items-center justify-center">
-      <div className="max-w-md space-y-3">
-        <div className="font-dark text-5xl font-bold">
-          Uppsss...
-          <strong> 404 </strong>
+      <div className="relative container max-w-screen-md flex flex-col flex-1 py-20">
+        <div className="flex flex-col gap-5 order-2">
+          <div>
+            <output className="text-sm font-medium">Error 404</output>
+
+            <h2 className="font-bold text-2xl md:text-5xl">Hey Buddy</h2>
+          </div>
+
+          <p className="text-balance">
+            We can't seem to find the page
+            <br />
+            you are looking for.
+          </p>
+
+          <div>
+            <Button className="font-semibold" size="lg" asChild>
+              <Link href="/">Go Home</Link>
+            </Button>
+          </div>
         </div>
 
-        <p className="text-2xl font-light leading-normal md:text-3xl">
-          <strong>Page Not Found</strong>
-        </p>
-
-        <p className="mb-8">
-          Check if the search term is correct. If you think this is an error,
-          send me a tweet{' '}
-          <a
-            href="https://vini.one"
-            target="_blank"
-            rel="noopener noreferrer nofollow"
-            className="text-blue-500 underline underline-offset-2"
-          >
-            @vinihvc
-          </a>
-          {', '}
-          <strong>Thanks!</strong>
-        </p>
-
-        <Link href="/" className={buttonVariants()}>
-          Back to home
-        </Link>
+        <LottiePlayer
+          className="sm:absolute inset-0 -z-[1] size-full order-1"
+          path="/lottie/astronaut.lottie"
+        />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NotFoundPage
+export default NotFoundPage;

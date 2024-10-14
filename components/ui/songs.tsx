@@ -1,35 +1,35 @@
-"use client";
+'use client'
 
-import { useMusicActions } from "@/contexts/app.context";
-import { cn } from "@/lib/utils";
-import { LikeButton } from "./actions/like";
-import { PlayButton } from "./actions/play";
-import { BlurImage } from "./blur-image";
+import { cn } from '@/lib/utils'
+import { useMusicActions } from '@/store/app.store'
+import { LikeButton } from './actions/like'
+import { PlayButton } from './actions/play'
+import { BlurImage } from './blur-image'
 
 interface SongsProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
   /**
    * List of songs
    */
-  songs: SongType[];
+  songs: SongType[]
 }
 
 export const Songs = (props: SongsProps) => {
-  const { songs, className, ...rest } = props;
+  const { songs, className, ...rest } = props
 
-  const { currentSong } = useMusicActions();
+  const { currentSong } = useMusicActions()
 
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-lg border border-border/60 black:border-border/20 animate-in fade-in slide-in-from-bottom-2 divide-y divide-border/60",
-        className
+        'relative overflow-hidden rounded-lg border border-border/60 black:border-border/20 animate-in fade-in divide-y divide-border/60',
+        className,
       )}
       {...rest}
     >
       {songs?.map((song, index) => {
-        const currentIndex = index + 1;
+        const currentIndex = index + 1
 
-        const isCurrentSong = currentSong?.()?.id === song.id;
+        const isCurrentSong = currentSong()?.id === song.id
 
         return (
           <div
@@ -38,15 +38,15 @@ export const Songs = (props: SongsProps) => {
           >
             <div
               className={cn(
-                "group flex items-center gap-3 p-2.5 md:gap-5 px-2 sm:px-5 text-sm",
-                isCurrentSong && "bg-background/40",
-                className
+                'group flex items-center gap-3 p-2.5 md:gap-5 px-2 sm:px-5 text-sm',
+                isCurrentSong && 'bg-background/40',
+                className,
               )}
               {...rest}
             >
-              <div className="w-10 flex items-center justify-center shrink-0">
+              <div className="w-10 flex items-center justify-center shrink-0 max-sm:hidden">
                 <div
-                  className={cn("max-sm:!hidden group-hover:hidden", {
+                  className={cn('group-hover:hidden text-muted-foreground', {
                     hidden: isCurrentSong,
                   })}
                 >
@@ -54,15 +54,15 @@ export const Songs = (props: SongsProps) => {
                 </div>
 
                 <div
-                  className={cn("max-sm:!block group-hover:block", {
-                    hidden: !isCurrentSong,
+                  className={cn('hidden sm:group-hover:block', {
+                    block: isCurrentSong,
                   })}
                 >
                   <PlayButton songs={songs} index={index} />
                 </div>
               </div>
 
-              <div className="max-sm:hidden overflow-hidden rounded-lg shrink-0">
+              <div className="overflow-hidden rounded-lg shrink-0">
                 <BlurImage
                   width={40}
                   height={40}
@@ -73,11 +73,15 @@ export const Songs = (props: SongsProps) => {
               </div>
 
               <div className="flex flex-col sm:flex-row flex-1">
-                <div className="flex-1 line-clamp-1 font-medium">
+                <div
+                  className={cn('flex-1 line-clamp-1 font-medium', {
+                    'text-primary': isCurrentSong,
+                  })}
+                >
                   {song.name}
                 </div>
 
-                <div className="w-full max-sm:text-muted-foreground sm:max-w-[30%] line-clamp-1">
+                <div className="w-full max-sm:text-muted-foreground sm:max-w-[35%] line-clamp-1 text-xs text-muted-foreground">
                   {song.singer}
                 </div>
               </div>
@@ -87,8 +91,8 @@ export const Songs = (props: SongsProps) => {
               </div>
             </div>
           </div>
-        );
+        )
       })}
     </div>
-  );
-};
+  )
+}

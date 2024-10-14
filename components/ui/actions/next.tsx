@@ -3,13 +3,13 @@
 import { SkipForward } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
-import { usePlayerActions } from '@/contexts/app.context'
+import { usePlayerActions } from '@/store/app.store'
 
 export const NextButton = ({ ...props }) => {
-  const { playNext } = usePlayerActions()
+  const { nextSong } = usePlayerActions()
 
   return (
-    <Button variant="ghost" size="icon" onClick={playNext} {...props}>
+    <Button variant="ghost" size="icon" onClick={nextSong} {...props}>
       <SkipForward className="size-4" />
       <span className="sr-only">Next song</span>
     </Button>

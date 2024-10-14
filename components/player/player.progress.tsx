@@ -1,21 +1,21 @@
-"use client";
+'use client'
 
-import { Slider } from "@/components/ui/slider";
-import { usePlayerActions, usePlayerState } from "@/contexts/app.context";
+import { Slider } from '@/components/ui/slider'
+import { usePlayerActions, usePlayerState } from '@/store/app.store'
 
 export const PlayerProgress = () => {
-  const { progress } = usePlayerState();
-  const { handleProgress } = usePlayerActions();
+  const { progress } = usePlayerState()
+  const { handleProgress } = usePlayerActions()
 
   const handleOnProgress = (value: number[]) => {
-    const [progress] = value;
+    const [progress] = value
 
-    handleProgress(progress);
-  };
+    handleProgress(progress)
+  }
 
   return (
     <div className="absolute inset-x-0 -top-1 flex">
       <Slider value={[progress]} onValueChange={handleOnProgress} />
     </div>
-  );
-};
+  )
+}

@@ -1,26 +1,33 @@
-import { AlbumInfo } from "@/components/ui/album/album.info";
-import { Songs } from "@/components/ui/songs";
-import { getAlbum, getAlbums } from "@/services/queries/album";
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { BlurBackground } from '@/components/backgrounds/blur-background'
+import { AlbumInfo } from '@/components/ui/album/album.info'
+import { Songs } from '@/components/ui/songs'
+import { getAlbum, getAlbums } from '@/services/queries/album'
+import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
 export const generateStaticParams = async () => {
-  const data = await getAlbums();
+  const data = await getAlbums()
+
+  if (!data) {
+    return notFound()
+  }
 
   return data.map((album) => ({
     id: album.id.toString(),
-  }));
-};
+  }))
+}
 
 export const generateMetadata = async (
-  props: DataParams
+  props: AlbumsPageProps,
 ): Promise<Metadata> => {
-  const { params } = props;
+  const { params } = props
 
-  const album = await getAlbum({ params });
+  const idParam = params.id
+
+  const album = await getAlbum(idParam)
 
   if (!album) {
-    return notFound();
+    return notFound()
   }
 
   return {
@@ -35,18 +42,30 @@ export const generateMetadata = async (
         },
       ],
     },
-  };
-};
+  }
+}
 
-const AlbumsPage = async ({ params }: DataParams) => {
-  const album = await getAlbum({ params });
+interface AlbumsPageProps {
+  params: {
+    id: string
+  }
+}
+
+const AlbumsPage = async (props: AlbumsPageProps) => {
+  const { params } = props
+
+  const idParam = params.id
+
+  const album = await getAlbum(idParam)
 
   if (!album) {
-    return notFound();
+    return notFound()
   }
 
   return (
     <>
+      <BlurBackground src={`/img/albums/${album.id}.webp`} />
+
       <div className="container space-y-10 py-20 sm:py-40">
         <AlbumInfo
           album={{ ...album, thumb: `/img/albums/${album.id}.webp` }}
@@ -55,7 +74,7 @@ const AlbumsPage = async ({ params }: DataParams) => {
         {album.songs && <Songs songs={album.songs} />}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default AlbumsPage;
+export default AlbumsPage

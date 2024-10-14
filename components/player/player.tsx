@@ -1,31 +1,31 @@
-"use client";
+'use client'
 
-import { useMusicActions } from "@/contexts/app.context";
-import { useMediaKeyPress } from "@/hooks/media-keypress";
-import { cn } from "@/lib/utils";
-import { PlayerActions } from "./player.actions";
-import { PlayerSongInfo } from "./player.info";
-import { PlayerPlaylist } from "./player.playlist";
-import { PlayerProgress } from "./player.progress";
-import { PlayerVolume } from "./player.volume";
-import { ReactPlayer } from "./react-player";
+import { useMediaKeyPress } from '@/hooks/media-keypress'
+import { cn } from '@/lib/utils'
+import { useMusicState } from '@/store/app.store'
+import { PlayerActions } from './player.actions'
+import { PlayerSongInfo } from './player.info'
+import { PlayerPlaylist } from './player.playlist'
+import { PlayerProgress } from './player.progress'
+import { PlayerVolume } from './player.volume'
+import { ReactPlayer } from './react-player'
 
-interface PlayerProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface PlayerProps extends React.HTMLAttributes<HTMLDivElement> { }
 
 const Player = (props: PlayerProps) => {
-  const { className, ...rest } = props;
+  const { className, ...rest } = props
 
-  const { currentSong } = useMusicActions();
+  const { playlist } = useMusicState()
 
-  useMediaKeyPress();
+  useMediaKeyPress()
 
-  if (!currentSong?.()) {
-    return null;
+  if (!playlist) {
+    return null
   }
 
   return (
     <div className="sticky inset-x-0 bottom-[45px] z-50 sm:bottom-0">
-      <div className={cn("flex border-t-4 bg-background", className)} {...rest}>
+      <div className={cn('flex border-t-4 bg-background', className)} {...rest}>
         <div className="container w-full relative">
           <PlayerProgress />
 
@@ -51,7 +51,7 @@ const Player = (props: PlayerProps) => {
 
       <ReactPlayer />
     </div>
-  );
-};
+  )
+}
 
-export default Player;
+export default Player

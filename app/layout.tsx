@@ -6,9 +6,6 @@ import type { Metadata } from "next";
 
 import { MediaQuery } from "@/components/debug/media-query";
 
-import GridPattern from "@/components/backgrounds/grid-pattern";
-import { InteractiveBlurBackground } from "@/components/backgrounds/interactive-blur-background";
-import { RainbowLine } from "@/components/backgrounds/rainbow-line";
 import { Header } from "@/components/layout/header";
 import { SEO } from "@/constants/seo";
 import { fontSans } from "@/lib/font";
@@ -18,6 +15,14 @@ import type React from "react";
 import { Providers } from "./providers";
 
 const Player = dynamic(() => import("@/components/player"), { ssr: false });
+const GridPattern = dynamic(
+  () => import("@/components/backgrounds/grid-pattern"),
+  { ssr: false }
+);
+const RainbowLine = dynamic(
+  () => import("@/components/backgrounds/rainbow-line"),
+  { ssr: false }
+);
 
 export const metadata: Metadata = {
   metadataBase: new URL(SEO.url),
@@ -52,10 +57,6 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
           <Header />
 
           <GridPattern
-            width={20}
-            height={20}
-            x={-1}
-            y={-1}
             className={
               // "[mask-image:linear-gradient(to_top,transparent,black_75%)]"
               "[mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"
@@ -65,8 +66,6 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
           <main>{children}</main>
 
           <RainbowLine />
-
-          <InteractiveBlurBackground />
 
           <Player />
 

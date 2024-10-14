@@ -1,45 +1,46 @@
-"use client";
+'use client'
 
-import { Pause, Play } from "lucide-react";
+import { Pause, Play } from 'lucide-react'
 
-import { useInteractiveBlurBackgroundStore } from "@/components/backgrounds/interactive-blur-background";
+import { useInteractiveBlurBackgroundStore } from '@/components/backgrounds/interactive-blur-background'
 import {
   useMusicActions,
   usePlayerActions,
   usePlayerState,
-} from "@/contexts/app.context";
-import Image from "next/image";
-import { Button } from "../button";
+} from '@/store/app.store'
+import Image from 'next/image'
+import React from 'react'
+import { Button } from '../button'
 
 interface AlbumCardProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Album data
    */
-  album: AlbumType;
+  album: AlbumType
 }
 
 export const AlbumCard = ({ album }: AlbumCardProps) => {
-  const { play, togglePlay } = usePlayerActions();
-  const { isPlaying } = usePlayerState();
-  const { currentSong } = useMusicActions();
-  const { image, setImage } = useInteractiveBlurBackgroundStore();
+  const { play, togglePlay } = usePlayerActions()
+  const { isPlaying } = usePlayerState()
+  const { currentSong } = useMusicActions()
+  const { image, setImage } = useInteractiveBlurBackgroundStore()
 
-  const songs = album.songs;
+  const songs = album.songs
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    isPlayingAlbum ? togglePlay() : songs && play?.(songs);
-  };
+    isPlayingAlbum ? togglePlay() : songs && play?.(songs)
+  }
 
   const isPlayingAlbum =
-    songs?.some((song) => song.id === currentSong?.()?.id) && isPlaying;
+    songs?.some((song) => song.id === currentSong()?.id) && isPlaying
 
   const handleMouseEnter = () => {
     if (album.thumb !== image) {
-      setImage(`/img/albums/${album.id}.webp`);
+      setImage(`/img/albums/${album.id}.webp`)
     }
-  };
+  }
 
   return (
     <article
@@ -64,7 +65,9 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
             className="size-14 bg-black/60 text-white hover:bg-black hover:scale-105"
             onClick={handleClick}
           >
-            {isPlayingAlbum ? <Pause size={30} /> : <Play size={30} />}
+            {React.cloneElement(isPlayingAlbum ? <Pause /> : <Play />, {
+              className: 'size-5 fill-current',
+            })}
           </Button>
         </div>
       </div>
@@ -77,5 +80,5 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
         <div className="line-clamp-1 font-semibold">{album.name}</div>
       </div>
     </article>
-  );
-};
+  )
+}

@@ -1,45 +1,62 @@
-"use client";
+'use client'
 
-import React from "react";
-import { BlurBackground } from "./blur-background";
+import React from 'react'
+import { BlurBackground } from './blur-background'
 
-import { create } from "zustand";
+import { create } from 'zustand'
 
-const TRANSITION_DURATION = 1;
+const TRANSITION_DURATION = 0.5
 
 interface BackgroundState {
-  image: string;
-  setImage: (image: string) => void;
+  /**
+   * The image to display
+   *
+   * @default ''
+   */
+  image: string
+  /**
+   * Set the image to display
+   */
+  setImage: (image: string) => void
 }
 
 export const useInteractiveBlurBackgroundStore = create<BackgroundState>(
   (set) => ({
-    image: "/img/albums/1.webp",
+    image: '',
     setImage: (image) => set({ image }),
-  })
-);
+  }),
+)
 
 export const InteractiveBlurBackground = () => {
-  const { image } = useInteractiveBlurBackgroundStore();
-  const [delayedImage, setDelayedImage] = React.useState(image);
-  const [isTransitioning, setIsTransitioning] = React.useState(false);
+  const { image } = useInteractiveBlurBackgroundStore()
+
+  const [isFirstRender, setIsFirstRender] = React.useState(true)
+  const [delayedImage, setDelayedImage] = React.useState(image)
+  const [isTransitioning, setIsTransitioning] = React.useState(false)
 
   React.useEffect(() => {
-    setIsTransitioning(true);
+    if (isFirstRender) {
+      return setIsFirstRender(false)
+    }
+
+    setIsTransitioning(true)
 
     const imageTimer = setTimeout(() => {
-      setDelayedImage(image);
-    }, TRANSITION_DURATION * 1000);
+      setDelayedImage(image)
+    }, TRANSITION_DURATION * 1000)
 
-    const transitionTimer = setTimeout(() => {
-      setIsTransitioning(false);
-    }, TRANSITION_DURATION * 1000 - TRANSITION_DURATION * 100);
+    const transitionTimer = setTimeout(
+      () => {
+        setIsTransitioning(false)
+      },
+      TRANSITION_DURATION * 1000 - TRANSITION_DURATION * 100,
+    )
 
     return () => {
-      clearTimeout(imageTimer);
-      clearTimeout(transitionTimer);
-    };
-  }, [image]);
+      clearTimeout(imageTimer)
+      clearTimeout(transitionTimer)
+    }
+  }, [image, isFirstRender])
 
   return (
     <BlurBackground
@@ -49,5 +66,5 @@ export const InteractiveBlurBackground = () => {
         opacity: isTransitioning ? 0.1 : undefined,
       }}
     />
-  );
-};
+  )
+}

@@ -1,18 +1,18 @@
-"use client";
+'use client'
 
-import { VolumeButton } from "@/components/ui/actions/volume";
-import { Slider } from "@/components/ui/slider";
-import { usePlayerActions, usePlayerState } from "@/contexts/app.context";
+import { VolumeButton } from '@/components/ui/actions/volume'
+import { Slider } from '@/components/ui/slider'
+import { usePlayerActions, usePlayerState } from '@/store/app.store'
 
 export const PlayerVolume = () => {
-  const { volume } = usePlayerState();
-  const { changeVolume } = usePlayerActions();
+  const { volume } = usePlayerState()
+  const { changeVolume } = usePlayerActions()
 
   const handleOnProgress = (value: number[]) => {
-    const [progress] = value;
+    const [progress] = value
 
-    changeVolume(progress);
-  };
+    changeVolume(progress)
+  }
 
   return (
     <>
@@ -24,5 +24,5 @@ export const PlayerVolume = () => {
         onValueChange={handleOnProgress}
       />
     </>
-  );
-};
+  )
+}

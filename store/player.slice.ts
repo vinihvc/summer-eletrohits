@@ -21,7 +21,7 @@ export interface PlayerSlice {
   /**
    * Volume to save when muting
    */
-  saveVolume: number
+  isMuted: boolean
   /**
    * Progress of the player
    */
@@ -47,13 +47,13 @@ export interface PlayerSlice {
      */
     togglePlay: () => void
     /**
-     * Play the next song in the playlist
+     * Skip to the next song
      */
-    playNext: () => void
+    nextSong: () => void
     /**
-     * Play the previous song in the playlist
+     * Go back to the previous song
      */
-    playPrevious: () => void
+    previousSong: () => void
     /**
      * Toggle the volume of the player
      */
@@ -84,11 +84,11 @@ export const createPlayerSlice: StateCreator<
   PlayerSlice
 > = (set, get) => {
   return {
-    $player: React.createRef(),
+    $player: React.createRef<ReactPlayer>(),
     isPlaying: false,
     volume: 1,
     progress: 0,
-    saveVolume: 0,
+    isMuted: false,
     playerActions: {
       play: (list, index = 0) => {
         set((state) => ({
@@ -98,93 +98,53 @@ export const createPlayerSlice: StateCreator<
           currentIndex: index,
         }))
       },
+
       playRandom: (list) => {
         const randomIndex = Math.floor(Math.random() * list.length)
-
-        set((state) => ({
-          ...state,
-          playlist: list,
-          isPlaying: true,
-          currentIndex: randomIndex,
-        }))
+        get().playerActions.play(list, randomIndex)
       },
+
       onProgress: ({ played }) => {
-        set((state) => ({
-          ...state,
-          progress: played,
-        }))
+        set((state) => ({ ...state, progress: played }))
       },
+
       togglePlay: () => {
+        set((state) => ({ ...state, isPlaying: !state.isPlaying }))
+      },
+
+      nextSong: () => {
         set((state) => ({
-          ...state,
-          isPlaying: !get().isPlaying,
+          currentIndex: (state.currentIndex + 1) % state.playlist.length,
         }))
       },
-      playNext: () => {
-        const hasNext = get().currentIndex < get().playlist.length - 1
 
-        if (hasNext) {
-          set((state) => ({
-            ...state,
-            isPlaying: true,
-            currentIndex: get().currentIndex + 1,
-          }))
-        }
+      previousSong: () => {
+        set((state) => ({
+          currentIndex:
+            (state.currentIndex - 1 + state.playlist.length) %
+            state.playlist.length,
+        }))
       },
-      playPrevious: () => {
-        const hasPrevious = get().currentIndex > 0
 
-        if (hasPrevious) {
-          set((state) => ({
-            ...state,
-            isPlaying: true,
-            currentIndex: get().currentIndex - 1,
-          }))
-        }
-      },
       toggleVolume: () => {
-        if (get().volume === 0) {
-          set((state) => ({
-            ...state,
-            volume: get().saveVolume,
-          }))
-        } else {
-          set((state) => ({
-            ...state,
-            saveVolume: get().volume,
-            volume: 0,
-          }))
-        }
+        set((state) => ({ ...state, isMuted: !state.isMuted }))
       },
-      changeVolume: (volume: number) => {
-        set((state) => ({
-          ...state,
-          volume,
-        }))
-      },
-      volumeUp: () => {
-        if (get().volume < 1) {
-          set((state) => ({
-            ...state,
-            volume: get().volume + 0.1,
-          }))
-        }
-      },
-      volumeDown: () => {
-        if (get().volume > 0) {
-          set((state) => ({
-            ...state,
-            volume: get().volume - 0.1,
-          }))
-        }
-      },
-      handleProgress: (value: number) => {
-        set((state) => ({
-          ...state,
-          progress: value,
-        }))
 
-        get().$player?.current?.seekTo(value)
+      changeVolume: (volume: number) => {
+        set((state) => ({ ...state, volume: Math.max(0, Math.min(1, volume)) }))
+      },
+
+      volumeUp: () => {
+        get().playerActions.changeVolume(get().volume + 0.1)
+      },
+
+      volumeDown: () => {
+        get().playerActions.changeVolume(get().volume - 0.1)
+      },
+
+      handleProgress: (value: number) => {
+        set((state) => ({ ...state, progress: value }))
+        get().$player.current?.seekTo(value)
       },
     },
   }

@@ -1,9 +1,9 @@
-"use client";
+'use client'
 
-import { cn } from "@/lib/utils";
-import NextLink, { type LinkProps as NextLinkProps } from "next/link";
-import { usePathname } from "next/navigation";
-import React from "react";
+import { cn } from '@/lib/utils'
+import NextLink, { type LinkProps as NextLinkProps } from 'next/link'
+import { usePathname } from 'next/navigation'
+import React from 'react'
 
 interface LinkProps
   extends NextLinkProps,
@@ -13,11 +13,11 @@ interface LinkProps
    *
    * @default false
    */
-  exact?: boolean;
+  exact?: boolean
   /**
    *  If `true`, the link will open in new tab
    */
-  isExternal?: boolean;
+  isExternal?: boolean
 }
 
 export const NavLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
@@ -29,13 +29,13 @@ export const NavLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
       className,
       children,
       ...rest
-    } = props;
+    } = props
 
-    const pathname = usePathname();
+    const pathname = usePathname()
 
     const isActive = exact
       ? href === pathname
-      : pathname.startsWith(href.toString());
+      : pathname.startsWith(href.toString())
 
     return (
       <NextLink
@@ -45,16 +45,16 @@ export const NavLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
         ref={ref}
         {...(isExternal && {
           href,
-          target: "_blank",
-          rel: "noopener noreferrer nofollow",
+          target: '_blank',
+          rel: 'noopener noreferrer nofollow',
           prefetch: false,
         })}
         {...rest}
       >
         {children}
       </NextLink>
-    );
-  }
-);
+    )
+  },
+)
 
-NavLink.displayName = "NavLink";
+NavLink.displayName = 'NavLink'

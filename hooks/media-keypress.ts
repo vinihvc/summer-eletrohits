@@ -1,14 +1,14 @@
-import { usePlayerActions } from '@/contexts/app.context'
-import { useEffect } from 'react'
+import { usePlayerActions } from '@/store/app.store'
+import React from 'react'
 
 /**
  * Hook to listen for media keypresses
  */
 export const useMediaKeyPress = () => {
-  const { playNext, togglePlay, playPrevious, volumeUp, volumeDown } =
+  const { nextSong, togglePlay, previousSong, volumeUp, volumeDown } =
     usePlayerActions()
 
-  useEffect(() => {
+  React.useEffect(() => {
     const keyboardControl = (e: KeyboardEvent) => {
       if (e.code === 'Space') {
         e.preventDefault()
@@ -17,17 +17,17 @@ export const useMediaKeyPress = () => {
 
       if (e.code === 'ArrowRight') {
         e.preventDefault()
-        playNext()
+        nextSong()
       }
 
       if (e.code === 'ArrowLeft') {
         e.preventDefault()
-        playPrevious()
+        previousSong()
       }
 
       if (e.code === 'ArrowLeft') {
         e.preventDefault()
-        playPrevious()
+        previousSong()
       }
 
       if (e.code === 'ArrowUp') {
@@ -46,5 +46,5 @@ export const useMediaKeyPress = () => {
     return () => {
       document.removeEventListener('keydown', keyboardControl)
     }
-  }, [togglePlay, playNext, playPrevious, volumeUp, volumeDown])
+  }, [nextSong, previousSong, togglePlay, volumeDown, volumeUp])
 }

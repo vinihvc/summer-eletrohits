@@ -1,12 +1,12 @@
-"use client";
+'use client'
 
-import { LikeButton } from "@/components/ui/actions/like";
+import { LikeButton } from '@/components/ui/actions/like'
 
-import { useMusicActions } from "@/contexts/app.context";
-import { BlurImage } from "../ui/blur-image";
+import { useMusicActions } from '@/store/app.store'
+import { BlurImage } from '../ui/blur-image'
 
 export const PlayerSongInfo = () => {
-  const { currentSong } = useMusicActions();
+  const { currentSong } = useMusicActions()
 
   return (
     <>
@@ -15,20 +15,20 @@ export const PlayerSongInfo = () => {
           width={40}
           height={40}
           className="aspect-square scale-150"
-          src={`https://img.youtube.com/vi/${currentSong?.()?.youtubeId}/0.jpg`}
-          alt={`${currentSong?.()?.name} album cover`}
+          src={`https://img.youtube.com/vi/${currentSong()?.youtubeId}/0.jpg`}
+          alt={`${currentSong()?.name} album cover`}
         />
       </div>
 
       <div className="flex max-w-[100px] flex-col sm:max-w-[250px] md:max-w-[170px] lg:max-w-full">
         <div className="truncate text-sm font-medium">
-          {currentSong?.()?.name}
+          {currentSong()?.name}
         </div>
 
-        <div className="truncate text-xs">{currentSong?.()?.singer}</div>
+        <div className="truncate text-xs">{currentSong()?.singer}</div>
       </div>
 
-      <LikeButton song={currentSong?.()} />
+      <LikeButton song={currentSong()} />
     </>
-  );
-};
+  )
+}

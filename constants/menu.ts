@@ -7,8 +7,8 @@ export const BOTTOM_NAVIGATION = [
     icon: Home,
   },
   {
-    label: 'Songs',
-    href: '/songs',
+    label: 'Likes',
+    href: '/likes',
     icon: Disc3,
   },
   {
