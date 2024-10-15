@@ -29,7 +29,7 @@ const Player = (props: PlayerProps) => {
         <div className="container w-full relative">
           <PlayerProgress />
 
-          <div className="flex flex-1 items-center py-5">
+          <div className="flex flex-1 items-center py-2 md:py-5">
             <div className="flex flex-1 items-center gap-4 lg:w-[20%]">
               <PlayerSongInfo />
             </div>

@@ -11,7 +11,7 @@ import RPlayer from 'react-player/youtube'
 interface ReactPlayerProps extends React.ComponentProps<typeof RPlayer> {}
 
 export const ReactPlayer = (props: ReactPlayerProps) => {
-  const { $player, isPlaying, volume } = usePlayerState()
+  const { $player, isPlaying, volume, isMuted } = usePlayerState()
 
   const { nextSong, onProgress } = usePlayerActions()
 
@@ -35,7 +35,7 @@ export const ReactPlayer = (props: ReactPlayerProps) => {
         url: `https://youtu.be/${currentSong()?.youtubeId}`,
       })}
       playing={isPlaying}
-      volume={volume}
+      volume={isMuted ? 0 : volume}
       onEnded={nextSong}
       onProgress={onProgress}
       {...props}

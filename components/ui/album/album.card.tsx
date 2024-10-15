@@ -77,7 +77,7 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
           Album
         </div>
 
-        <div className="line-clamp-1 font-semibold">{album.name}</div>
+        <div className="line-clamp-1 font-medium">{album.name}</div>
       </div>
     </article>
   )

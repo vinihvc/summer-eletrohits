@@ -1,41 +1,20 @@
 'use client'
 
-import { BlurImage } from '@/components/ui/blur-image'
-import React from 'react'
+import { PartyBackground } from '@/components/backgrounds/party-background'
+import dynamic from 'next/dynamic'
 
-const Party = () => {
-  const [color, setColor] = React.useState('#000000')
+const LottiePlayer = dynamic(() => import('@/components/ui/lottie'), {
+  ssr: false,
+})
 
-  const randomizeBackgroundStyle = () => {
-    const randomColor = Math.floor(Math.random() * 16777215).toString(16)
-
-    setColor(`#${randomColor}`)
-  }
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      randomizeBackgroundStyle()
-    }, 500)
-
-    return () => clearInterval(interval)
-  }, [])
-
+const PartyPage = () => {
   return (
-    <div
-      className="h-dvh flex items-center justify-center"
-      style={{ backgroundColor: color }}
-    >
-      <div className="relative aspect-video w-[250px]">
-        <BlurImage
-          src="/img/slowpoke.gif"
-          className="object-contain cursor-pointer"
-          alt="this slowpoke moves"
-          fill
-        />
+    <PartyBackground className="flex-1 flex items-center justify-center">
+      <div className="relative aspect-video w-[450px]">
+        <LottiePlayer path="/lottie/parrot.lottie" />
       </div>
-    </div>
+    </PartyBackground>
   )
 }
 
-export default Party
+export default PartyPage

@@ -3,6 +3,7 @@
 import React from 'react'
 import { BlurBackground } from './blur-background'
 
+import { useBypassFirstRender } from '@/hooks/use-bypass-first-render'
 import { create } from 'zustand'
 
 const TRANSITION_DURATION = 0.5
@@ -30,14 +31,13 @@ export const useInteractiveBlurBackgroundStore = create<BackgroundState>(
 export const InteractiveBlurBackground = () => {
   const { image } = useInteractiveBlurBackgroundStore()
 
-  const [isFirstRender, setIsFirstRender] = React.useState(true)
   const [delayedImage, setDelayedImage] = React.useState(image)
   const [isTransitioning, setIsTransitioning] = React.useState(false)
 
+  const isFirstRender = useBypassFirstRender()
+
   React.useEffect(() => {
-    if (isFirstRender) {
-      return setIsFirstRender(false)
-    }
+    if (isFirstRender) return
 
     setIsTransitioning(true)
 

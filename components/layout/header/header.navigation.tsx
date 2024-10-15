@@ -3,11 +3,10 @@
 import { Button } from '@/components/ui/button'
 import { NavLink } from '@/components/ui/nav-link'
 import { cn } from '@/lib/utils'
-import React from 'react'
-
 import { useMusicState } from '@/store/app.store'
 import { Disc3 } from 'lucide-react'
 import { PartyPopper } from 'lucide-react'
+import React from 'react'
 
 interface HeaderNavigationProps
   extends React.HtmlHTMLAttributes<HTMLDivElement> {}
@@ -17,29 +16,39 @@ export const HeaderNavigation = (props: HeaderNavigationProps) => {
 
   const { liked } = useMusicState()
 
-  const [likedList, setLikedList] = React.useState(liked)
+  const isFirstRender = React.useRef(true)
+  const likedList = React.useRef(liked)
   const [animate, setAnimate] = React.useState(false)
 
   React.useEffect(() => {
-    if (liked.length > likedList.length) {
+    // first render, no data, because it's a client component
+    if (liked.length === 0) return
+
+    // after get liked, the effect will run one more time, so we need to bypass it
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+
+    if (liked.length > likedList.current.length) {
       setAnimate(true)
     }
 
     const timeout = setTimeout(() => {
       setAnimate(false)
-    }, 2000)
+    }, 1500)
 
-    setLikedList(liked)
+    likedList.current = liked
 
     return () => clearTimeout(timeout)
-  }, [liked, likedList])
+  }, [liked])
 
   return (
     <nav className={cn('flex gap-4 max-sm:hidden', className)} {...rest}>
       <Button variant="ghost" size="sm" className="gap-2" asChild>
         <NavLink
           href="/party"
-          className="text-muted-foreground hover:text-foreground [&.active]:bg-primary [&.active]:text-white"
+          className="dark:text-muted-foreground hover:text-foreground [&.active]:bg-primary [&.active]:text-white"
         >
           <PartyPopper className="size-4" />
           Party
@@ -49,7 +58,7 @@ export const HeaderNavigation = (props: HeaderNavigationProps) => {
       <Button variant="ghost" size="sm" className="gap-2" asChild>
         <NavLink
           href="/likes"
-          className="group text-muted-foreground hover:text-foreground [&.active]:bg-primary [&.active]:text-white"
+          className="group dark:text-muted-foreground hover:text-foreground [&.active]:bg-primary [&.active]:text-white"
         >
           <Disc3
             className={cn('size-4', {

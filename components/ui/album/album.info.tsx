@@ -62,12 +62,12 @@ export const AlbumInfo = (props: AlbumInfoProps) => {
         <h2 className="text-lg font-bold sm:text-xl">{album.name}</h2>
 
         {album.songs?.length !== 0 && (
-          <div className="text-sm">{`${album.songs?.length ?? 0} tracks`}</div>
+          <div className="text-sm opacity-80">{`${album.songs?.length ?? 0} tracks`}</div>
         )}
 
         {album.songs?.length !== 0 && (
           <div className="flex gap-4 mt-4">
-            <Button size="lg" onClick={handlePlay}>
+            <Button size="lg" className="w-[125px]" onClick={handlePlay}>
               {React.cloneElement(
                 hasSongInAlbum && isPlaying ? <Pause /> : <Play />,
                 { className: 'size-4 fill-current' },

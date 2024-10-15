@@ -1,9 +1,10 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { useMusicActions } from '@/store/app.store'
-import { LikeButton } from './actions/like'
-import { PlayButton } from './actions/play'
+import { useMusicActions, useMusicState } from '@/store/app.store'
+import type React from 'react'
+import { LikeButton } from '../player/actions/like'
+import { PlayButton } from '../player/actions/play'
 import { BlurImage } from './blur-image'
 
 interface SongsProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
@@ -16,7 +17,12 @@ interface SongsProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
 export const Songs = (props: SongsProps) => {
   const { songs, className, ...rest } = props
 
+  const { playlist } = useMusicState()
+
   const { currentSong } = useMusicActions()
+
+  // hack to trigger currentSong
+  if (playlist.length === -1) return null
 
   return (
     <div

@@ -1,6 +1,6 @@
 'use client'
 
-import { LikeButton } from '@/components/ui/actions/like'
+import { LikeButton } from '@/components/player/actions/like'
 
 import { useMusicActions } from '@/store/app.store'
 import { BlurImage } from '../ui/blur-image'

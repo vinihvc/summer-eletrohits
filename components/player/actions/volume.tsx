@@ -2,9 +2,10 @@ import { Volume2, VolumeX } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { usePlayerActions, usePlayerState } from '@/store/app.store'
+import React from 'react'
 
 export const VolumeButton = ({ ...props }) => {
-  const { volume } = usePlayerState()
+  const { volume, isMuted } = usePlayerState()
   const { toggleVolume } = usePlayerActions()
 
   return (
@@ -14,9 +15,11 @@ export const VolumeButton = ({ ...props }) => {
       onClick={toggleVolume}
       {...props}
     >
-      {volume ? <Volume2 className="size-4" /> : <VolumeX className="size-4" />}
+      {React.cloneElement(isMuted ? <VolumeX /> : <Volume2 />, {
+        className: 'size-4',
+      })}
 
-      <span className="sr-only">{volume ? 'Mute' : 'Unmute'}</span>
+      <span className="sr-only">{isMuted ? 'Mute' : 'Unmute'}</span>
     </Button>
   )
 }
