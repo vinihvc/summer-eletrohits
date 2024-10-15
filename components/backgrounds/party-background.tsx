@@ -69,7 +69,7 @@ export const PartyBackground = (props: PartyBackgroundProps) => {
 
   return (
     <div
-      className={cn('fixed inset-0 transition-all duration-500', className)}
+      className={cn('transition-all duration-500', className)}
       style={{
         backgroundImage: `linear-gradient(to bottom right, ${gradientColors[0]}, ${gradientColors[1]})`,
       }}

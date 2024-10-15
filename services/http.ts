@@ -4,7 +4,7 @@ export const http = async <T>(url: string, options?: RequestInit) => {
   try {
     const res = await fetch(`${API_URL}${url}`, {
       method: options?.method ?? 'GET',
-      cache: options?.cache ?? 'no-store',
+      cache: options?.cache ?? 'force-cache',
       ...(options?.body && { body: JSON.stringify(options.body) }),
       ...options,
     })

@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { RemoveScroll } from 'react-remove-scroll'
 
-import { Github } from 'lucide-react'
+import { SiGithub } from '@icons-pack/react-simple-icons'
 import { HeaderNavigation } from './header.navigation'
 
 const HeaderTheme = dynamic(() => import('./header.theme'), {
@@ -45,7 +45,9 @@ export const Header = (props: HeaderProps) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Github className="size-4" />
+            <SiGithub className="size-4" />
+
+            <span className="sr-only">Visit Github repository</span>
           </Link>
         </Button>
       </nav>
