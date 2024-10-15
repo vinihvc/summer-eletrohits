@@ -73,7 +73,7 @@ export const AlbumInfo = (props: AlbumInfoProps) => {
                 { className: 'size-4 fill-current' },
               )}
 
-              <span>{hasSongInAlbum && isPlaying ? 'Pause' : 'Play'}</span>
+              {hasSongInAlbum && isPlaying ? 'Pause' : 'Play'}
             </Button>
 
             <Button
@@ -82,7 +82,7 @@ export const AlbumInfo = (props: AlbumInfoProps) => {
               onClick={() => album.songs && playRandom(album.songs)}
             >
               <Shuffle className="size-4" />
-              <span>Shuffle</span>
+              Shuffle
             </Button>
           </div>
         )}
