@@ -4,13 +4,15 @@ import Link from 'next/link'
 
 import { BlurBackground } from '@/components/backgrounds/blur-background'
 import { AlbumInfo } from '@/components/ui/album/album.info'
-import { buttonVariants } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import { Songs } from '@/components/ui/songs'
 import { useMusicState } from '@/store/app.store'
 import { USER_ALBUM } from '../likes/data'
 
 const SongsPage = () => {
   const { playlist } = useMusicState()
+
+  const hasQueue = playlist.length > 0
 
   return (
     <>
@@ -21,24 +23,25 @@ const SongsPage = () => {
           album={{
             id: 0,
             name: 'Playing',
+            songs: playlist,
             thumb: '/img/albums/library.webp',
             releaseDate: new Date('2020-01-01').toDateString(),
           }}
         />
 
-        {playlist.length === 0 && (
+        {!hasQueue && (
           <div className="space-y-5">
-            <div className="text-2xl font-semibold">
-              Nothing in your library yet, go discover!
+            <div className="text-base font-medium">
+              Nothing in your queue yet, go discover!
             </div>
 
-            <Link href="/" className={buttonVariants()}>
-              Discover
-            </Link>
+            <Button size="lg" asChild>
+              <Link href="/">Discover</Link>
+            </Button>
           </div>
         )}
 
-        {playlist.length > 0 && <Songs songs={playlist} />}
+        {hasQueue && <Songs songs={playlist} />}
       </div>
     </>
   )

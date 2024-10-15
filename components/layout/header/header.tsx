@@ -1,14 +1,12 @@
 import { Button } from '@/components/ui/button'
 import { Logo } from '@/components/ui/logo'
-import { NavLink } from '@/components/ui/nav-link'
 import { cn } from '@/lib/utils'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import React from 'react'
 import { RemoveScroll } from 'react-remove-scroll'
 
 import { Github } from 'lucide-react'
-import { HEADER_NAV_LINKS } from './header.data'
+import { HeaderNavigation } from './header.navigation'
 
 const HeaderTheme = dynamic(() => import('./header.theme'), {
   ssr: false,
@@ -36,25 +34,7 @@ export const Header = (props: HeaderProps) => {
         <Logo />
       </Link>
 
-      <nav className="flex gap-4 max-sm:hidden">
-        {HEADER_NAV_LINKS.map((link) => (
-          <Button
-            key={link.href}
-            variant="ghost"
-            size="sm"
-            className="gap-2"
-            asChild
-          >
-            <NavLink
-              href={link.href}
-              className="text-muted-foreground hover:text-foreground [&.active]:bg-primary [&.active]:text-white"
-            >
-              {React.createElement(link.icon, { className: 'size-4' })}
-              {link.label}
-            </NavLink>
-          </Button>
-        ))}
-      </nav>
+      <HeaderNavigation />
 
       <nav className="flex items-center gap-4">
         <HeaderTheme />

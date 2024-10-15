@@ -1,28 +1,26 @@
-import { BottomNavigation } from "@/components/layout/bottom-navigation";
+import { BottomNavigation } from '@/components/layout/bottom-navigation'
 
-import "@/styles/global.css";
+import '@/styles/global.css'
 
-import type { Metadata } from "next";
+import type { Metadata } from 'next'
 
-import { MediaQuery } from "@/components/debug/media-query";
+import { Header } from '@/components/layout/header'
+import { SEO } from '@/constants/seo'
+import { fontSans } from '@/lib/font'
+import { cn } from '@/lib/utils'
+import dynamic from 'next/dynamic'
+import type React from 'react'
+import { Providers } from './providers'
 
-import { Header } from "@/components/layout/header";
-import { SEO } from "@/constants/seo";
-import { fontSans } from "@/lib/font";
-import { cn } from "@/lib/utils";
-import dynamic from "next/dynamic";
-import type React from "react";
-import { Providers } from "./providers";
-
-const Player = dynamic(() => import("@/components/player"), { ssr: false });
+const Player = dynamic(() => import('@/components/player'), { ssr: false })
 const GridPattern = dynamic(
-  () => import("@/components/backgrounds/grid-pattern"),
-  { ssr: false }
-);
+  () => import('@/components/backgrounds/grid-pattern'),
+  { ssr: false },
+)
 const RainbowLine = dynamic(
-  () => import("@/components/backgrounds/rainbow-line"),
-  { ssr: false }
-);
+  () => import('@/components/backgrounds/rainbow-line'),
+  { ssr: false },
+)
 
 export const metadata: Metadata = {
   metadataBase: new URL(SEO.url),
@@ -32,22 +30,22 @@ export const metadata: Metadata = {
   openGraph: {
     title: SEO.title,
     siteName: SEO.title,
-    type: "website",
+    type: 'website',
     url: SEO.url,
     images: [
       {
-        url: "/img/logo.jpg",
+        url: '/img/logo.jpg',
         width: 800,
         height: 600,
-        alt: "Eletrohits cover",
+        alt: 'Eletrohits cover',
       },
     ],
   },
   twitter: {
     creator: SEO.twitter,
-    card: "summary_large_image",
+    card: 'summary_large_image',
   },
-};
+}
 
 const RootLayout = async ({ children }: React.PropsWithChildren) => {
   return (
@@ -59,7 +57,7 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
           <GridPattern
             className={
               // "[mask-image:linear-gradient(to_top,transparent,black_75%)]"
-              "[mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"
+              '[mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]'
             }
           />
 
@@ -71,11 +69,11 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
 
           <BottomNavigation />
 
-          <MediaQuery />
+          {/* <MediaQuery /> */}
         </Providers>
       </body>
     </html>
-  );
-};
+  )
+}
 
-export default RootLayout;
+export default RootLayout

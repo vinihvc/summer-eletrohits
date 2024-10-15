@@ -10,7 +10,7 @@ import { PlayerProgress } from './player.progress'
 import { PlayerVolume } from './player.volume'
 import { ReactPlayer } from './react-player'
 
-interface PlayerProps extends React.HTMLAttributes<HTMLDivElement> { }
+interface PlayerProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const Player = (props: PlayerProps) => {
   const { className, ...rest } = props
@@ -19,7 +19,7 @@ const Player = (props: PlayerProps) => {
 
   useMediaKeyPress()
 
-  if (!playlist) {
+  if (playlist.length === 0) {
     return null
   }
 
