@@ -3,12 +3,8 @@
 import { PartyBackground } from '@/components/backgrounds/party-background'
 import dynamic from 'next/dynamic'
 
-const LottiePlayer = dynamic(() => import('@/components/ui/lottie'), {
-  ssr: false,
-})
-const Confetti = dynamic(() => import('@/components/ui/confetti'), {
-  ssr: false,
-})
+const LottiePlayer = dynamic(() => import('@/components/ui/lottie'))
+const Confetti = dynamic(() => import('@/components/ui/confetti'))
 
 const PartyPage = () => {
   return (

@@ -28,11 +28,11 @@ export const PlayButton = (props: PlayButtonProps) => {
 
   const { isPlaying } = usePlayerState()
   const { togglePlay, play } = usePlayerActions()
-  const { currentSong } = useMusicActions()
+  const { getCurrentSong } = useMusicActions()
 
   const song = songs?.[index]
 
-  const isSameSong = currentSong()?.id === song?.id
+  const isSameSong = getCurrentSong()?.id === song?.id
 
   const handleClick = () => {
     if (isPlaying && isSameSong) {

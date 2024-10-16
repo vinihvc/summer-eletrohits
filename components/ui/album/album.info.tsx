@@ -23,11 +23,11 @@ export const AlbumInfo = (props: AlbumInfoProps) => {
   const { album, className, ...rest } = props
 
   const { play, playRandom, togglePlay } = usePlayerActions()
-  const { currentSong } = useMusicActions()
+  const { getCurrentSong } = useMusicActions()
   const { isPlaying } = usePlayerState()
 
   const hasSongInAlbum = album.songs?.some(
-    (song) => song.id === currentSong()?.id,
+    (song) => song.id === getCurrentSong()?.id,
   )
 
   const handlePlay = () => {

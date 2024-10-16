@@ -6,7 +6,7 @@ import * as React from 'react'
 import { cn } from '@/lib/utils'
 
 export const Slider = React.forwardRef<
-  React.ElementRef<typeof SliderPrimitive.Root>,
+  React.ComponentRef<typeof SliderPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
 >((props, ref) => {
   const { min = 0, max = 1, step = 0.01, className, ...rest } = props
@@ -23,7 +23,7 @@ export const Slider = React.forwardRef<
       )}
       {...rest}
     >
-      <SliderPrimitive.Track className="relative h-1 w-full grow overflow-hidden rounded-full bg-primary/20">
+      <SliderPrimitive.Track className="relative h-0.5 w-full grow overflow-hidden rounded-full bg-primary/20">
         <SliderPrimitive.Range className="absolute h-full bg-primary" />
       </SliderPrimitive.Track>
 

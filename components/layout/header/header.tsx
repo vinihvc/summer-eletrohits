@@ -1,17 +1,12 @@
 import { Button } from '@/components/ui/button'
 import { Logo } from '@/components/ui/logo'
 import { cn } from '@/lib/utils'
-import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { RemoveScroll } from 'react-remove-scroll'
 
 import { SiGithub } from '@icons-pack/react-simple-icons'
 import { HeaderNavigation } from './header.navigation'
-
-const HeaderTheme = dynamic(() => import('./header.theme'), {
-  ssr: false,
-  loading: () => <Button variant="ghost" size="icon" />,
-})
+import { HeaderTheme } from './header.theme'
 
 interface HeaderProps extends React.HtmlHTMLAttributes<HTMLDivElement> {}
 
@@ -21,7 +16,8 @@ export const Header = (props: HeaderProps) => {
   return (
     <header
       className={cn(
-        'sm:fixed container top-0 sm:top-5 inset-x-0 z-50 max-sm:shadow-[0px_1px_1px_rgba(240,240,240,.60),0px_0px_1px_inset_#fffbed3c] dark:max-sm:shadow-[0px_1px_1px_rgba(0,0,0,.95),0px_0px_1px_inset_#fffbed3c] bg-background/40 dark:bg-background/80 backdrop-blur sm:rounded-xl flex h-14 items-center justify-between',
+        'sm:sticky container top-0 sm:top-5 z-50 max-sm:shadow-[0px_1px_1px_rgba(240,240,240,.60),0px_0px_1px_inset_#fffbed3c] dark:max-sm:shadow-[0px_1px_1px_rgba(0,0,0,.95),0px_0px_1px_inset_#fffbed3c]',
+        'bg-background/40 dark:bg-background/80 backdrop-blur sm:rounded-xl flex h-14 items-center justify-between',
         RemoveScroll.classNames.zeroRight,
         className,
       )}
@@ -32,6 +28,8 @@ export const Header = (props: HeaderProps) => {
         href="/"
       >
         <Logo />
+
+        <span className="sr-only">Eletrohits, Back to home</span>
       </Link>
 
       <HeaderNavigation />

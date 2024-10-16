@@ -14,8 +14,12 @@ export const PlayerProgress = () => {
   }
 
   return (
-    <div className="absolute inset-x-0 -top-1 flex">
-      <Slider value={[progress]} onValueChange={handleOnProgress} />
+    <div className="absolute inset-x-0 -top-2.5 flex">
+      <Slider
+        className="py-2"
+        value={[progress]}
+        onValueChange={handleOnProgress}
+      />
     </div>
   )
 }

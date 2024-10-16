@@ -12,14 +12,12 @@ import dynamic from 'next/dynamic'
 import type React from 'react'
 import { Providers } from './providers'
 
-const Player = dynamic(() => import('@/components/player'), { ssr: false })
+const Player = dynamic(() => import('@/components/player'))
 const GridPattern = dynamic(
   () => import('@/components/backgrounds/grid-pattern'),
-  { ssr: false },
 )
 const RainbowLine = dynamic(
   () => import('@/components/backgrounds/rainbow-line'),
-  { ssr: false },
 )
 
 export const metadata: Metadata = {

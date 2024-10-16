@@ -11,7 +11,7 @@ interface ConfettiProps extends React.HTMLAttributes<HTMLDivElement> {}
 const Confetti = (props: ConfettiProps) => {
   const { className, ...rest } = props
 
-  const controller = React.useRef<TConductorInstance>()
+  const controller = React.useRef<TConductorInstance>(undefined)
 
   const $ref = React.useRef<HTMLDivElement>(null)
 

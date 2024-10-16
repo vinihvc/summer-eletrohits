@@ -21,7 +21,7 @@ export interface MusicSlice {
     /**
      * Get the current song
      */
-    currentSong: () => SongType | null
+    getCurrentSong: () => SongType | null
     /**
      * Like a song
      */
@@ -52,17 +52,20 @@ export const createMusicSlice: StateCreator<
     liked: [],
     currentIndex: 0,
     musicActions: {
-      currentSong: () => get().playlist[get().currentIndex],
+      getCurrentSong: () => get().playlist[get().currentIndex],
+
       like: (song) => {
         set((state) => ({
           liked: [...state.liked.filter((s) => s.id !== song.id), song],
         }))
       },
+
       dislike: (song) => {
         set((state) => ({
           liked: state.liked.filter((s) => s.id !== song.id),
         }))
       },
+
       addToPlaylist: (song, position) => {
         set((state) => {
           if (state.playlist.some((s) => s.id === song.id)) {
@@ -86,6 +89,7 @@ export const createMusicSlice: StateCreator<
           }
         })
       },
+
       removeFromPlaylist: (songId) => {
         set((state) => ({
           playlist: state.playlist.filter((s) => s.id !== songId),

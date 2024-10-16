@@ -1,10 +1,8 @@
-import { Button } from "@/components/ui/button";
-import dynamic from "next/dynamic";
-import Link from "next/link";
+import { Button } from '@/components/ui/button'
+import dynamic from 'next/dynamic'
+import Link from 'next/link'
 
-const LottiePlayer = dynamic(() => import("@/components/ui/lottie"), {
-  ssr: false,
-});
+const LottiePlayer = dynamic(() => import('@/components/ui/lottie'))
 
 const NotFoundPage = () => {
   return (
@@ -36,7 +34,7 @@ const NotFoundPage = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NotFoundPage;
+export default NotFoundPage

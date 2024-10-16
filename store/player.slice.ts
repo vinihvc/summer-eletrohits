@@ -9,7 +9,7 @@ export interface PlayerSlice {
   /**
    * Reference to the player
    */
-  $player: React.RefObject<ReactPlayer>
+  $player: React.RefObject<ReactPlayer | null>
   /**
    * Whether the player is playing
    */
@@ -39,7 +39,7 @@ export interface PlayerSlice {
      */
     playRandom: (list: SongType[]) => void
     /**
-     * Handle the progress of the player
+     * react-player onProgress, update Slider progress
      */
     onProgress: ({ played }: YouTubePlayerProps) => void
     /**
@@ -71,7 +71,7 @@ export interface PlayerSlice {
      */
     volumeDown: () => void
     /**
-     * Handle the progress of the player
+     * User interaction to update the progress of the player
      */
     handleProgress: (progress: number) => void
   }
@@ -101,6 +101,7 @@ export const createPlayerSlice: StateCreator<
 
       playRandom: (list) => {
         const randomIndex = Math.floor(Math.random() * list.length)
+
         get().playerActions.play(list, randomIndex)
       },
 

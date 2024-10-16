@@ -25,11 +25,11 @@ const Player = (props: PlayerProps) => {
 
   return (
     <div className="sticky inset-x-0 bottom-[45px] z-50 sm:bottom-0">
-      <div className={cn('flex border-t-4 bg-background', className)} {...rest}>
+      <div className={cn('flex border-t-2 bg-background', className)} {...rest}>
         <div className="container w-full relative">
           <PlayerProgress />
 
-          <div className="flex flex-1 items-center py-2 md:py-5">
+          <div className="flex flex-1 items-center py-2 md:py-3">
             <div className="flex flex-1 items-center gap-4 lg:w-[20%]">
               <PlayerSongInfo />
             </div>

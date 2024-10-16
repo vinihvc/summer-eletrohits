@@ -22,7 +22,7 @@ interface AlbumCardProps extends React.HTMLAttributes<HTMLDivElement> {
 export const AlbumCard = ({ album }: AlbumCardProps) => {
   const { play, togglePlay } = usePlayerActions()
   const { isPlaying } = usePlayerState()
-  const { currentSong } = useMusicActions()
+  const { getCurrentSong } = useMusicActions()
   const { image, setImage } = useInteractiveBlurBackgroundStore()
 
   const songs = album.songs
@@ -34,7 +34,7 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
   }
 
   const isPlayingAlbum =
-    songs?.some((song) => song.id === currentSong()?.id) && isPlaying
+    songs?.some((song) => song.id === getCurrentSong()?.id) && isPlaying
 
   const handleMouseEnter = () => {
     if (album.thumb !== image) {

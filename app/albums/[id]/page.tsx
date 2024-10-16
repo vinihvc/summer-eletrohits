@@ -22,9 +22,9 @@ export const generateMetadata = async (
 ): Promise<Metadata> => {
   const { params } = props
 
-  const idParam = params.id
+  const idParam = await params
 
-  const album = await getAlbum(idParam)
+  const album = await getAlbum(idParam.id)
 
   if (!album) {
     return notFound()
@@ -46,17 +46,15 @@ export const generateMetadata = async (
 }
 
 interface AlbumsPageProps {
-  params: {
-    id: string
-  }
+  params: Promise<{ id: string }>
 }
 
 const AlbumsPage = async (props: AlbumsPageProps) => {
   const { params } = props
 
-  const idParam = params.id
+  const idParam = await params
 
-  const album = await getAlbum(idParam)
+  const album = await getAlbum(idParam.id)
 
   if (!album) {
     return notFound()

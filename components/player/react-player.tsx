@@ -15,7 +15,7 @@ export const ReactPlayer = (props: ReactPlayerProps) => {
 
   const { nextSong, onProgress } = usePlayerActions()
 
-  const { currentSong } = useMusicActions()
+  const { getCurrentSong } = useMusicActions()
 
   return (
     <RPlayer
@@ -31,11 +31,12 @@ export const ReactPlayer = (props: ReactPlayerProps) => {
         whiteSpace: 'nowrap',
         borderWidth: 0,
       }}
-      {...(currentSong() && {
-        url: `https://youtu.be/${currentSong()?.youtubeId}`,
+      {...(getCurrentSong() && {
+        url: `https://youtu.be/${getCurrentSong()?.youtubeId}`,
       })}
       playing={isPlaying}
-      volume={isMuted ? 0 : volume}
+      muted={isMuted}
+      volume={volume}
       onEnded={nextSong}
       onProgress={onProgress}
       {...props}
