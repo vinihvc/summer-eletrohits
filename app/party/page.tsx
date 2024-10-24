@@ -1,7 +1,7 @@
 'use client'
 
-import { PartyBackground } from '@/components/backgrounds/party-background'
 import dynamic from 'next/dynamic'
+import { PartyBackground } from './_components/party-background'
 
 const LottiePlayer = dynamic(() => import('@/components/ui/lottie'))
 const Confetti = dynamic(() => import('@/components/ui/confetti'))

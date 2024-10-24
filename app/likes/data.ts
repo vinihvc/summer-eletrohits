@@ -1,3 +1,5 @@
+import type { AlbumType } from '@/types/album'
+
 export const USER_ALBUM: AlbumType = {
   id: 0,
   name: 'My Library',

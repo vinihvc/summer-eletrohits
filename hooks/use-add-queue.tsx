@@ -1,4 +1,5 @@
 import { useMusicActions, useMusicState } from '@/store/app.store'
+import type { SongType } from '@/types/song'
 
 export const useAddQueue = (data: SongType) => {
   const { playlist } = useMusicState()

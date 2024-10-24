@@ -5,10 +5,11 @@ import { Pause, Play, Shuffle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import {
-  useMusicActions,
+  useMusicState,
   usePlayerActions,
   usePlayerState,
 } from '@/store/app.store'
+import type { AlbumType } from '@/types/album'
 import Image from 'next/image'
 import React from 'react'
 
@@ -23,11 +24,14 @@ export const AlbumInfo = (props: AlbumInfoProps) => {
   const { album, className, ...rest } = props
 
   const { play, playRandom, togglePlay } = usePlayerActions()
-  const { getCurrentSong } = useMusicActions()
+  const { playlist, currentIndex } = useMusicState()
+
   const { isPlaying } = usePlayerState()
 
+  const currentSong = playlist?.[currentIndex]
+
   const hasSongInAlbum = album.songs?.some(
-    (song) => song.id === getCurrentSong()?.id,
+    (song) => song.id === currentSong?.id,
   )
 
   const handlePlay = () => {

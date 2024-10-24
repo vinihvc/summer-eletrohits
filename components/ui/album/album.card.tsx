@@ -4,10 +4,11 @@ import { Pause, Play } from 'lucide-react'
 
 import { useInteractiveBlurBackgroundStore } from '@/components/backgrounds/interactive-blur-background'
 import {
-  useMusicActions,
+  useMusicState,
   usePlayerActions,
   usePlayerState,
 } from '@/store/app.store'
+import type { AlbumType } from '@/types/album'
 import Image from 'next/image'
 import React from 'react'
 import { Button } from '../button'
@@ -22,8 +23,12 @@ interface AlbumCardProps extends React.HTMLAttributes<HTMLDivElement> {
 export const AlbumCard = ({ album }: AlbumCardProps) => {
   const { play, togglePlay } = usePlayerActions()
   const { isPlaying } = usePlayerState()
-  const { getCurrentSong } = useMusicActions()
+
   const { image, setImage } = useInteractiveBlurBackgroundStore()
+
+  const { playlist, currentIndex } = useMusicState()
+
+  const currentSong = playlist?.[currentIndex]
 
   const songs = album.songs
 
@@ -34,7 +39,7 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
   }
 
   const isPlayingAlbum =
-    songs?.some((song) => song.id === getCurrentSong()?.id) && isPlaying
+    songs?.some((song) => song.id === currentSong?.id) && isPlaying
 
   const handleMouseEnter = () => {
     if (album.thumb !== image) {

@@ -1,3 +1,4 @@
+import type { SongType } from '@/types/song'
 import type { StateCreator } from 'zustand'
 import type { PlayerSlice } from './player.slice'
 
@@ -18,10 +19,6 @@ export interface MusicSlice {
    * Actions to manage music
    */
   musicActions: {
-    /**
-     * Get the current song
-     */
-    getCurrentSong: () => SongType | null
     /**
      * Like a song
      */
@@ -46,14 +43,12 @@ export const createMusicSlice: StateCreator<
   [],
   [],
   MusicSlice
-> = (set, get) => {
+> = (set) => {
   return {
     playlist: [],
     liked: [],
     currentIndex: 0,
     musicActions: {
-      getCurrentSong: () => get().playlist[get().currentIndex],
-
       like: (song) => {
         set((state) => ({
           liked: [...state.liked.filter((s) => s.id !== song.id), song],

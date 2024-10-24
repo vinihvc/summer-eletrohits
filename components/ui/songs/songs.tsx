@@ -4,7 +4,8 @@ import { LikeButton } from '@/components/player/actions/like'
 import { PlayButton } from '@/components/player/actions/play'
 import { BlurImage } from '@/components/ui/blur-image'
 import { cn } from '@/lib/utils'
-import { useMusicActions, useMusicState } from '@/store/app.store'
+import { useMusicState } from '@/store/app.store'
+import type { SongType } from '@/types/song'
 import dynamic from 'next/dynamic'
 import type React from 'react'
 
@@ -22,9 +23,9 @@ interface SongsProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
 export const Songs = (props: SongsProps) => {
   const { songs, className, ...rest } = props
 
-  const { playlist } = useMusicState()
+  const { playlist, currentIndex } = useMusicState()
 
-  const { getCurrentSong } = useMusicActions()
+  const currentSong = playlist?.[currentIndex]
 
   // hack to trigger currentSong
   if (playlist.length === -1) return null
@@ -40,7 +41,7 @@ export const Songs = (props: SongsProps) => {
       {songs?.map((song, index) => {
         const currentIndex = index + 1
 
-        const isCurrentSong = getCurrentSong()?.id === song.id
+        const isCurrentSong = currentSong?.id === song.id
 
         return (
           <SongsContextMenu key={song.id} data={song}>

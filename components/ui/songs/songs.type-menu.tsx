@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/dropdown'
 import { useAddQueue } from '@/hooks/use-add-queue'
 import { useLike } from '@/hooks/use-like'
+import type { SongType } from '@/types/song'
 import { ListPlus, ListStart, ListX } from 'lucide-react'
 
 interface SongsTypeMenuProps extends React.HTMLAttributes<HTMLDivElement> {

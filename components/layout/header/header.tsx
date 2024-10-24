@@ -16,7 +16,7 @@ export const Header = (props: HeaderProps) => {
   return (
     <header
       className={cn(
-        'sm:sticky container top-0 sm:top-5 z-50 max-sm:shadow-[0px_1px_1px_rgba(240,240,240,.60),0px_0px_1px_inset_#fffbed3c] dark:max-sm:shadow-[0px_1px_1px_rgba(0,0,0,.95),0px_0px_1px_inset_#fffbed3c]',
+        'sm:sticky container top-0 sm:top-5 z-10 max-sm:shadow-[0px_1px_1px_rgba(240,240,240,.60),0px_0px_1px_inset_#fffbed3c] dark:max-sm:shadow-[0px_1px_1px_rgba(0,0,0,.95),0px_0px_1px_inset_#fffbed3c]',
         'bg-background/40 dark:bg-background/80 backdrop-blur sm:rounded-xl flex h-14 items-center justify-between',
         RemoveScroll.classNames.zeroRight,
         className,

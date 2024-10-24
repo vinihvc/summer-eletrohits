@@ -1,3 +1,4 @@
+import type { SongType } from '@/types/song'
 import { SongsTypeMenu } from './songs.type-menu'
 
 interface SongsContextMenuProps extends React.HTMLAttributes<HTMLDivElement> {

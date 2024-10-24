@@ -6,10 +6,11 @@ import React from 'react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import {
-  useMusicActions,
+  useMusicState,
   usePlayerActions,
   usePlayerState,
 } from '@/store/app.store'
+import type { SongType } from '@/types/song'
 
 interface PlayButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -28,13 +29,22 @@ export const PlayButton = (props: PlayButtonProps) => {
 
   const { isPlaying } = usePlayerState()
   const { togglePlay, play } = usePlayerActions()
-  const { getCurrentSong } = useMusicActions()
+
+  const { playlist, currentIndex } = useMusicState()
+
+  const currentSong = playlist?.[currentIndex]
 
   const song = songs?.[index]
 
-  const isSameSong = getCurrentSong()?.id === song?.id
+  const isSameSong = currentSong?.id === song?.id
 
   const handleClick = () => {
+    console.log('click', {
+      isPlaying,
+      isSameSong,
+      index,
+    })
+
     if (isPlaying && isSameSong) {
       togglePlay()
     } else {

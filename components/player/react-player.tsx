@@ -1,7 +1,7 @@
 'use client'
 
 import {
-  useMusicActions,
+  useMusicState,
   usePlayerActions,
   usePlayerState,
 } from '@/store/app.store'
@@ -15,7 +15,9 @@ export const ReactPlayer = (props: ReactPlayerProps) => {
 
   const { nextSong, onProgress } = usePlayerActions()
 
-  const { getCurrentSong } = useMusicActions()
+  const { playlist, currentIndex } = useMusicState()
+
+  const currentSong = playlist?.[currentIndex]
 
   return (
     <RPlayer
@@ -31,9 +33,12 @@ export const ReactPlayer = (props: ReactPlayerProps) => {
         whiteSpace: 'nowrap',
         borderWidth: 0,
       }}
-      {...(getCurrentSong() && {
-        url: `https://youtu.be/${getCurrentSong()?.youtubeId}`,
+      {...(currentSong && {
+        url: `https://youtu.be/${currentSong?.youtubeId}`,
       })}
+      // url={playlist?.map((song) => ({
+      //   src: `https://youtu.be/${song.youtubeId}`,
+      // }))}
       playing={isPlaying}
       muted={isMuted}
       volume={volume}

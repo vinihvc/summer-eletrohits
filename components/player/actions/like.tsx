@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { useLike } from '@/hooks/use-like'
 import { cn } from '@/lib/utils'
+import type { SongType } from '@/types/song'
 
 interface LikeButtonProps extends React.HtmlHTMLAttributes<HTMLButtonElement> {
   /**

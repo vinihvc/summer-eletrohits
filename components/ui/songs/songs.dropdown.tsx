@@ -3,6 +3,7 @@
 import { EllipsisVertical } from 'lucide-react'
 import { Button } from '../button'
 
+import type { SongType } from '@/types/song'
 import { SongsTypeMenu } from './songs.type-menu'
 
 interface SongsDropdownProps extends React.HTMLAttributes<HTMLDivElement> {

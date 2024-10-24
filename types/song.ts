@@ -1,4 +1,4 @@
-type SongType = {
+export interface SongType {
   id: number
   albumId: number
   name: string

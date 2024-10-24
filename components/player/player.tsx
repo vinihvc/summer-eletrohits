@@ -2,6 +2,7 @@
 
 import { useMediaKeyPress } from '@/hooks/media-keypress'
 import { cn } from '@/lib/utils'
+
 import { useMusicState } from '@/store/app.store'
 import { PlayerActions } from './player.actions'
 import { PlayerSongInfo } from './player.info'
