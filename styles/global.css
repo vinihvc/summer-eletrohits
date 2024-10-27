@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 html {
+	-webkit-tap-highlight-color: transparent;
 	@apply scroll-smooth max-sm:select-none;
 }
 
