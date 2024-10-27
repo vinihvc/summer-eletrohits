@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html {
-	@apply scroll-smooth;
+	@apply scroll-smooth max-sm:select-none;
 }
 
 body {
