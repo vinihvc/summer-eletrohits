@@ -16,9 +16,6 @@ const Player = dynamic(() => import('@/components/player'))
 const GridPattern = dynamic(
   () => import('@/components/backgrounds/grid-pattern'),
 )
-const RainbowLine = dynamic(
-  () => import('@/components/backgrounds/rainbow-line'),
-)
 
 export const metadata: Metadata = {
   metadataBase: new URL(SEO.url),
@@ -60,8 +57,6 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
           />
 
           <main>{children}</main>
-
-          <RainbowLine />
 
           <Player />
 

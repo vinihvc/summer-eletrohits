@@ -1,9 +1,11 @@
 'use client'
 
-import { useMediaKeyPress } from '@/hooks/media-keypress'
+import { useMediaKeyPress } from '@/hooks/use-media-keypress'
 import { cn } from '@/lib/utils'
 
-import { useMusicState } from '@/store/app.store'
+import { useBreakpoints } from '@/hooks/use-breakpoints'
+import { useMusicState, usePlayerActions } from '@/store/app.store'
+import React from 'react'
 import { PlayerActions } from './player.actions'
 import { PlayerSongInfo } from './player.info'
 import { PlayerPlaylist } from './player.playlist'
@@ -15,6 +17,12 @@ interface PlayerProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const Player = (props: PlayerProps) => {
   const { className, ...rest } = props
+
+  const $ref = React.useRef<HTMLDivElement>(null)
+
+  const { togglePlaylist } = usePlayerActions()
+
+  const { isMaxSm } = useBreakpoints()
 
   const { playlist } = useMusicState()
 
@@ -30,12 +38,24 @@ const Player = (props: PlayerProps) => {
         <div className="container w-full relative">
           <PlayerProgress />
 
-          <div className="flex flex-1 items-center py-2 md:py-3">
-            <div className="flex flex-1 items-center gap-4 lg:w-[20%]">
+          <div
+            ref={$ref}
+            className="flex flex-1 items-center max-sm:justify-between py-2 md:py-3"
+            {...(isMaxSm && {
+              onClick: (e) => {
+                if (e.target !== $ref.current) {
+                  return
+                }
+                e.stopPropagation()
+                togglePlaylist()
+              },
+            })}
+          >
+            <div className="flex items-center gap-4 lg:w-[20%]">
               <PlayerSongInfo />
             </div>
 
-            <div className="flex flex-1 items-center justify-end gap-2 sm:justify-center">
+            <div className="flex items-center justify-end gap-2 sm:justify-center">
               <PlayerActions />
             </div>
 

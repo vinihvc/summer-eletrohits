@@ -25,7 +25,6 @@
 		"@radix-ui/react-dropdown-menu": "^2.1.2",
 		"@radix-ui/react-slider": "^1.2.1",
 		"@radix-ui/react-slot": "^1.1.0",
-		"babel-plugin-react-compiler": "0.0.0-experimental-fa06e2c-20241016",
 		"cva": "1.0.0-beta.1",
 		"lucide-react": "^0.453.0",
 		"next": "15.0.0-rc.1",
@@ -38,6 +37,7 @@
 		"react-remove-scroll": "^2.6.0",
 		"sharp": "^0.33.5",
 		"tailwind-merge": "^2.5.4",
+		"vaul": "^1.1.0",
 		"zustand": "^4.5.5"
 	},
 	"devDependencies": {

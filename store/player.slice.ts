@@ -28,6 +28,10 @@ export interface PlayerSlice {
    */
   progress: number
   /**
+   * Whether the playlist is open
+   */
+  isPlaylistOpen: boolean
+  /**
    *  Actions to manage the player
    */
   playerActions: {
@@ -75,6 +79,10 @@ export interface PlayerSlice {
      * User interaction to update the progress of the player
      */
     handleProgress: (progress: number) => void
+    /**
+     * Toggle the playlist
+     */
+    togglePlaylist: () => void
   }
 }
 
@@ -90,6 +98,7 @@ export const createPlayerSlice: StateCreator<
     volume: 1,
     progress: 0,
     isMuted: false,
+    isPlaylistOpen: false,
     playerActions: {
       play: (list, index = 0) => {
         set((state) => ({
@@ -147,6 +156,10 @@ export const createPlayerSlice: StateCreator<
       handleProgress: (value: number) => {
         set((state) => ({ ...state, progress: value }))
         get().$player.current?.seekTo(value)
+      },
+
+      togglePlaylist: () => {
+        set((state) => ({ ...state, isPlaylistOpen: !state.isPlaylistOpen }))
       },
     },
   }

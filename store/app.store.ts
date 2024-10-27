@@ -37,6 +37,7 @@ export const usePlayerState = () =>
     volume: state.volume,
     isMuted: state.isMuted,
     progress: state.progress,
+    isPlaylistOpen: state.isPlaylistOpen,
   }))
 
 /**
