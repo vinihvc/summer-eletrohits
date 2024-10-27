@@ -12,7 +12,7 @@ const LibraryPage = () => {
   const hasLiked = liked.length > 0
 
   return (
-    <div className="container py-20 space-y-10">
+    <div className="container pt-20 sm:py-40 space-y-10">
       <AlbumInfo
         album={{
           id: 0,

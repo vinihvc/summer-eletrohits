@@ -1,7 +1,7 @@
 'use client'
 import { useMediaKeyPress } from '@/hooks/use-media-keypress'
 import { cn } from '@/lib/utils'
-import { useMusicState, usePlayerState } from '@/store/app.store'
+import { useMusicState } from '@/store/app.store'
 import * as Portal from '@radix-ui/react-portal'
 import React from 'react'
 import { PlayerActions } from './player.actions'
@@ -19,8 +19,6 @@ const Player = (props: PlayerProps) => {
 
   const { playlist } = useMusicState()
 
-  const { isPlaylistOpen } = usePlayerState()
-
   useMediaKeyPress()
 
   if (playlist.length === 0) {
@@ -30,9 +28,7 @@ const Player = (props: PlayerProps) => {
   return (
     <Portal.Root
       className={cn(
-        'sticky inset-x-0 bottom-[53px] z-50 sm:bottom-0',
-        // tricky to make the player visible when the playlist is open
-        { fixed: isPlaylistOpen },
+        'fixed inset-x-0 bottom-[53px] z-50 sm:bottom-0',
         className,
       )}
     >

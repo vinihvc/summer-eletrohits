@@ -11,7 +11,7 @@ const HomePage = async () => {
     <>
       <InteractiveBlurBackground />
 
-      <div className="container py-20 sm:py-40">
+      <div className="container pt-20 sm:py-40">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 md:gap-8 animate-in fade-in">
           {data?.map((album) => (
             <Link
