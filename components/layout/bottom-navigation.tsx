@@ -1,23 +1,23 @@
 import React from 'react'
 
-import { ActiveLink } from '@/components/ui/active-link'
 import { BOTTOM_NAVIGATION } from '@/constants/menu'
+import { NavLink } from '../ui/nav-link'
 
 export const BottomNavigation = () => {
   return (
-    <div className="sticky inset-x-0 bottom-0 z-50 flex items-center justify-between border-t bg-background px-4 py-3 shadow sm:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-50 flex items-center justify-between border-t bg-background p-4 shadow sm:hidden">
       {BOTTOM_NAVIGATION.map(({ label, href, icon }) => (
         <div className="flex flex-1 justify-center" key={href}>
-          <ActiveLink
+          <NavLink
             href={href}
-            className="text-neutral-400 aria-[current=page]:text-neutral-900 dark:aria-[current=page]:text-white"
+            className="text-muted-foreground [&.active]:text-foreground"
           >
             {React.createElement(icon, {
-              size: 20,
+              className: 'size-5',
             })}
 
             <span className="sr-only">{label}</span>
-          </ActiveLink>
+          </NavLink>
         </div>
       ))}
     </div>

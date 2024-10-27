@@ -1,4 +1,5 @@
 import type { SongType } from '@/types/song'
+import { useSong } from './songs.store'
 import { SongsTypeMenu } from './songs.type-menu'
 
 interface SongsContextMenuProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -11,8 +12,15 @@ interface SongsContextMenuProps extends React.HTMLAttributes<HTMLDivElement> {
 const SongsContextMenu = (props: SongsContextMenuProps) => {
   const { data, children } = props
 
+  const { isContextOpen, onChangeContext } = useSong()
+
   return (
-    <SongsTypeMenu data={data} type="context-menu">
+    <SongsTypeMenu
+      type="context-menu"
+      data={data}
+      open={isContextOpen}
+      onOpenChange={onChangeContext}
+    >
       {children}
     </SongsTypeMenu>
   )

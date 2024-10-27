@@ -1,5 +1,7 @@
 'use client'
 
+import type * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
+
 import {
   ContextMenu as CM,
   ContextMenuContent as CMC,
@@ -16,8 +18,11 @@ import { useAddQueue } from '@/hooks/use-add-queue'
 import { useLike } from '@/hooks/use-like'
 import type { SongType } from '@/types/song'
 import { ListPlus, ListStart, ListX } from 'lucide-react'
+import type React from 'react'
 
-interface SongsTypeMenuProps extends React.HTMLAttributes<HTMLDivElement> {
+interface SongsTypeMenuProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    Pick<DropdownMenuPrimitive.DropdownMenuProps, 'open' | 'onOpenChange'> {
   /**
    * Song data
    */
@@ -29,7 +34,7 @@ interface SongsTypeMenuProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const SongsTypeMenu = (props: SongsTypeMenuProps) => {
-  const { data, type, children } = props
+  const { data, type, children, open, onOpenChange } = props
 
   const { handleLike, label: labelLike, LikeIcon } = useLike(data)
 
@@ -42,10 +47,10 @@ export const SongsTypeMenu = (props: SongsTypeMenuProps) => {
   const ComponentItem = type === 'dropdown' ? DI : CMI
 
   return (
-    <Component modal={false}>
+    <Component modal={false} open={open} onOpenChange={onOpenChange}>
       <ComponentTrigger asChild>{children}</ComponentTrigger>
 
-      <ComponentContent className="space-y-2">
+      <ComponentContent className="relative space-y-2">
         <ComponentItem className="gap-2" onClick={handleLike}>
           <LikeIcon />
 

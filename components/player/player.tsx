@@ -1,30 +1,25 @@
 'use client'
-
 import { useMediaKeyPress } from '@/hooks/use-media-keypress'
 import { cn } from '@/lib/utils'
-
-import { useBreakpoints } from '@/hooks/use-breakpoints'
-import { useMusicState, usePlayerActions } from '@/store/app.store'
+import { useMusicState, usePlayerState } from '@/store/app.store'
+import * as Portal from '@radix-ui/react-portal'
 import React from 'react'
 import { PlayerActions } from './player.actions'
 import { PlayerSongInfo } from './player.info'
-import { PlayerPlaylist } from './player.playlist'
 import { PlayerProgress } from './player.progress'
 import { PlayerVolume } from './player.volume'
 import { ReactPlayer } from './react-player'
+
+const PlayerPlaylist = React.lazy(() => import('./player.playlist'))
 
 interface PlayerProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const Player = (props: PlayerProps) => {
   const { className, ...rest } = props
 
-  const $ref = React.useRef<HTMLDivElement>(null)
-
-  const { togglePlaylist } = usePlayerActions()
-
-  const { isMaxSm } = useBreakpoints()
-
   const { playlist } = useMusicState()
+
+  const { isPlaylistOpen } = usePlayerState()
 
   useMediaKeyPress()
 
@@ -33,33 +28,28 @@ const Player = (props: PlayerProps) => {
   }
 
   return (
-    <div className="sticky inset-x-0 bottom-[45px] z-50 sm:bottom-0">
+    <Portal.Root
+      className={cn(
+        'sticky inset-x-0 bottom-[53px] z-50 sm:bottom-0',
+        // tricky to make the player visible when the playlist is open
+        { fixed: isPlaylistOpen },
+        className,
+      )}
+    >
       <div className={cn('flex border-t-2 bg-background', className)} {...rest}>
         <div className="container w-full relative">
           <PlayerProgress />
 
-          <div
-            ref={$ref}
-            className="flex flex-1 items-center max-sm:justify-between py-2 md:py-3"
-            {...(isMaxSm && {
-              onClick: (e) => {
-                if (e.target !== $ref.current) {
-                  return
-                }
-                e.stopPropagation()
-                togglePlaylist()
-              },
-            })}
-          >
-            <div className="flex items-center gap-4 lg:w-[20%]">
+          <div className="flex flex-1 items-center justify-between py-2 md:py-3 sm:gap-5">
+            <div className="flex items-center gap-4 basis-1/2">
               <PlayerSongInfo />
             </div>
 
-            <div className="flex items-center justify-end gap-2 sm:justify-center">
+            <div className="flex sm:flex-1 items-center justify-end gap-2 sm:justify-center basis-1/2">
               <PlayerActions />
             </div>
 
-            <div className="hidden flex-1 items-center sm:flex justify-end gap-4">
+            <div className="hidden items-center sm:flex justify-end gap-4 basis-1/2">
               <PlayerPlaylist className="shrink-0" />
 
               <div className="flex gap-4">
@@ -71,7 +61,7 @@ const Player = (props: PlayerProps) => {
       </div>
 
       <ReactPlayer />
-    </div>
+    </Portal.Root>
   )
 }
 

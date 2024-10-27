@@ -16,19 +16,25 @@ export const PlayerSongInfo = () => {
         <BlurImage
           width={40}
           height={40}
-          className="aspect-square scale-150"
+          className="size-10 aspect-square scale-125 object-cover select-none"
           src={`https://img.youtube.com/vi/${currentSong?.youtubeId}/0.jpg`}
           alt={`${currentSong?.name} album cover`}
         />
       </div>
 
-      <div className="flex max-w-[100px] flex-col sm:max-w-[250px] md:max-w-[170px] lg:max-w-full">
-        <div className="truncate text-sm font-medium">{currentSong?.name}</div>
+      <div>
+        <div className="line-clamp-1 text-sm font-medium">
+          {currentSong?.name}
+        </div>
 
-        <div className="truncate text-xs">{currentSong?.singer}</div>
+        <div className="line-clamp-1 text-xs text-muted-foreground">
+          {currentSong?.singer}
+        </div>
       </div>
 
-      {currentSong && <LikeButton data={currentSong} />}
+      {currentSong && (
+        <LikeButton className="max-sm:hidden" data={currentSong} />
+      )}
     </>
   )
 }
