@@ -9,7 +9,6 @@ export const BottomNavigation = () => {
       className="fixed inset-x-0 z-50 flex items-center justify-between border-t bg-background p-4 shadow sm:hidden"
       style={{
         bottom: 'env(safe-area-inset-bottom)',
-        paddingBottom: 'env(safe-area-inset-bottom)',
       }}
     >
       {BOTTOM_NAVIGATION.map(({ label, href, icon }) => (
