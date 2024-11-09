@@ -1,62 +1,69 @@
-import { Josefin_Sans as FontSans } from 'next/font/google'
-
 import { BottomNavigation } from '@/components/layout/bottom-navigation'
-import { PlayerBar } from '@/components/player/player'
-import { cn } from '@/utils/cn'
 
 import '@/styles/global.css'
 
 import type { Metadata } from 'next'
 
-import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
-import { TailwindIndicator } from '@/components/tailwind-indicator'
-import { RootProviders } from './providers'
+import { SEO } from '@/constants/seo'
+import { fontSans } from '@/lib/font'
+import { cn } from '@/lib/utils'
+import dynamic from 'next/dynamic'
+import type React from 'react'
+import { Providers } from './providers'
 
-const fontSans = FontSans({
-  subsets: ['latin'],
-  variable: '--font-sans',
-})
-
-type RootLayoutProps = {
-  children: React.ReactNode
-}
+const Player = dynamic(() => import('@/components/player'))
+const GridPattern = dynamic(
+  () => import('@/components/backgrounds/grid-pattern'),
+)
 
 export const metadata: Metadata = {
-  title: { default: 'Eletrohits', template: '%s | Eletrohits' },
-  description: 'The best of electro music.',
-  icons: '/favicon.ico',
+  metadataBase: new URL(SEO.url),
+  title: { default: SEO.title, template: `%s | ${SEO.title}` },
+  applicationName: SEO.title,
+  keywords: SEO.keywords,
+  openGraph: {
+    title: SEO.title,
+    siteName: SEO.title,
+    type: 'website',
+    url: SEO.url,
+    images: [
+      {
+        url: '/img/logo.jpg',
+        width: 800,
+        height: 600,
+        alt: 'Eletrohits cover',
+      },
+    ],
+  },
+  twitter: {
+    creator: SEO.twitter,
+    card: 'summary_large_image',
+  },
 }
 
-const RootLayout = async ({ children }: RootLayoutProps) => {
+const RootLayout = async ({ children }: React.PropsWithChildren) => {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </head>
-
-      <body
-        className={cn(
-          'flex min-h-screen flex-col overflow-y-scroll bg-blue-50 font-sans text-neutral-900 antialiased dark:bg-neutral-900 dark:text-neutral-50',
-          fontSans.variable,
-        )}
-      >
-        <RootProviders>
+      <body className={cn(fontSans.variable)}>
+        <Providers>
           <Header />
 
-          <main className="container flex max-w-6xl flex-1 flex-col py-10">
-            {children}
-          </main>
+          <GridPattern
+            className={
+              // "[mask-image:linear-gradient(to_top,transparent,black_75%)]"
+              '[mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]'
+            }
+          />
 
-          <Footer />
+          <main>{children}</main>
 
-          <PlayerBar />
+          <Player />
 
           <BottomNavigation />
 
-          <TailwindIndicator />
-        </RootProviders>
+          {/* <MediaQuery /> */}
+        </Providers>
       </body>
     </html>
   )

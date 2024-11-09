@@ -1,4 +1,4 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next'
 
 const robots = (): MetadataRoute.Robots => {
   return {
@@ -6,8 +6,8 @@ const robots = (): MetadataRoute.Robots => {
       userAgent: '*',
       allow: '/',
     },
-    host: 'https://eletrohits.viniciusvicentini.com',
-    sitemap: 'https://eletrohits.viniciusvicentini.com/sitemap.xml',
+    host: 'https://eletrohits.vini.one',
+    sitemap: 'https://eletrohits.vini.one/sitemap.xml',
   }
 }
 

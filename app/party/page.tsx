@@ -1,37 +1,31 @@
-'use client'
+import { cn } from '@/lib/utils'
+import type { Metadata } from 'next'
+import dynamic from 'next/dynamic'
+import { RemoveScroll } from 'react-remove-scroll'
+import { PartyBackground } from './_components/party-background'
 
-import * as React from 'react'
-import Image from 'next/image'
+const LottiePlayer = dynamic(() => import('@/components/ui/lottie'))
+const Confetti = dynamic(() => import('@/components/ui/confetti'))
 
-const Party = () => {
-  const [color, setColor] = React.useState('#000000')
+export const metadata: Metadata = {
+  title: 'Party',
+}
 
-  const randomizeBackgroundStyle = () => {
-    const randomColor = Math.floor(Math.random() * 16777215).toString(16)
-
-    setColor(`#${randomColor}`)
-  }
-
-  // change color each 1 second
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      randomizeBackgroundStyle()
-    }, 300)
-
-    return () => clearInterval(interval)
-  }, [])
-
+const PartyPage = () => {
   return (
-    <div
-      className="absolute inset-0 flex flex-1 items-center justify-center"
-      style={{ backgroundColor: color }}
-      onClick={randomizeBackgroundStyle}
+    <PartyBackground
+      className={cn(
+        'flex items-center flex-1 justify-center',
+        RemoveScroll.classNames.fullWidth,
+      )}
     >
-      <div className="relative aspect-video w-[250px]">
-        <Image src="/img/slowpoke.gif" alt="this slowpoke moves" fill />
+      <div className="relative aspect-video w-[450px]">
+        <LottiePlayer path="/lottie/parrot.lottie" />
       </div>
-    </div>
+
+      <Confetti />
+    </PartyBackground>
   )
 }
 
-export default Party
+export default PartyPage

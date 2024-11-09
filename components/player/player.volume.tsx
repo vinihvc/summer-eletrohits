@@ -1,12 +1,12 @@
 'use client'
 
-import { useStore } from '@/store'
-
-import { VolumeButton } from '@/components/actions/volume'
 import { Slider } from '@/components/ui/slider'
+import { usePlayerActions, usePlayerState } from '@/store/app.store'
+import { VolumeButton } from './actions/volume'
 
-export const PlayerVolume = ({ ...props }) => {
-  const { volume, changeVolume } = useStore()
+export const PlayerVolume = () => {
+  const { volume, isMuted } = usePlayerState()
+  const { changeVolume } = usePlayerActions()
 
   const handleOnProgress = (value: number[]) => {
     const [progress] = value
@@ -15,14 +15,14 @@ export const PlayerVolume = ({ ...props }) => {
   }
 
   return (
-    <div className="flex w-full space-x-4" {...props}>
+    <>
       <VolumeButton />
 
       <Slider
         className="w-[100px]"
-        value={[volume]}
+        value={isMuted ? [0] : [volume]}
         onValueChange={handleOnProgress}
       />
-    </div>
+    </>
   )
 }

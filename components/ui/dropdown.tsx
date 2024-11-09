@@ -1,172 +1,176 @@
 'use client'
 
+import * as RPrimitive from '@radix-ui/react-dropdown-menu'
+
 import * as React from 'react'
-import * as RDropdown from '@radix-ui/react-dropdown-menu'
-import { Check, ChevronRight, Circle } from 'lucide-react'
 
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/utils'
+import { Check, ChevronRight, Dot } from 'lucide-react'
 
-const Dropdown = RDropdown.Root
+const Dropdown = RPrimitive.Root
 
-const DropdownTrigger = RDropdown.Trigger
+const DropdownTrigger = RPrimitive.Trigger
 
-const DropdownGroup = RDropdown.Group
+const DropdownGroup = RPrimitive.Group
 
-const DropdownPortal = RDropdown.Portal
+const DropdownPortal = RPrimitive.Portal
 
-const DropdownSub = RDropdown.Sub
+const DropdownSub = RPrimitive.Sub
 
-const DropdownRadioGroup = RDropdown.RadioGroup
+const DropdownRadioGroup = RPrimitive.RadioGroup
 
 const DropdownSubTrigger = React.forwardRef<
-  React.ElementRef<typeof RDropdown.SubTrigger>,
-  React.ComponentPropsWithoutRef<typeof RDropdown.SubTrigger> & {
+  React.ComponentRef<typeof RPrimitive.SubTrigger>,
+  React.ComponentPropsWithoutRef<typeof RPrimitive.SubTrigger> & {
     inset?: boolean
   }
 >(({ className, inset, children, ...props }, ref) => (
-  <RDropdown.SubTrigger
+  <RPrimitive.SubTrigger
     ref={ref}
     className={cn(
-      'flex cursor-default select-none items-center rounded px-2 py-1.5 text-sm font-medium outline-none focus:bg-neutral-100 data-[state=open]:bg-neutral-100 dark:focus:bg-neutral-700 dark:data-[state=open]:bg-neutral-700',
+      'flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent',
       inset && 'pl-8',
       className,
     )}
     {...props}
   >
     {children}
-    <ChevronRight className="ml-auto h-4 w-4" />
-  </RDropdown.SubTrigger>
+    <ChevronRight className="ml-auto size-4" />
+  </RPrimitive.SubTrigger>
 ))
-DropdownSubTrigger.displayName = RDropdown.SubTrigger.displayName
+DropdownSubTrigger.displayName = RPrimitive.SubTrigger.displayName
 
 const DropdownSubContent = React.forwardRef<
-  React.ElementRef<typeof RDropdown.SubContent>,
-  React.ComponentPropsWithoutRef<typeof RDropdown.SubContent>
+  React.ComponentRef<typeof RPrimitive.SubContent>,
+  React.ComponentPropsWithoutRef<typeof RPrimitive.SubContent>
 >(({ className, ...props }, ref) => (
-  <RDropdown.SubContent
+  <RPrimitive.SubContent
     ref={ref}
     className={cn(
-      'animate-in slide-in-from-left-1 z-50 min-w-[8rem] overflow-hidden rounded border border-neutral-100 bg-white p-1 text-neutral-700 shadow-md dark:border-neutral-800 dark:bg-neutral-800 dark:text-neutral-400',
+      'z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
       className,
     )}
     {...props}
   />
 ))
-DropdownSubContent.displayName = RDropdown.SubContent.displayName
+DropdownSubContent.displayName = RPrimitive.SubContent.displayName
 
 const DropdownContent = React.forwardRef<
-  React.ElementRef<typeof RDropdown.Content>,
-  React.ComponentPropsWithoutRef<typeof RDropdown.Content>
+  React.ComponentRef<typeof RPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof RPrimitive.Content>
 >(({ className, sideOffset = 4, ...props }, ref) => (
-  <RDropdown.Portal>
-    <RDropdown.Content
+  <RPrimitive.Portal>
+    <RPrimitive.Content
       ref={ref}
       sideOffset={sideOffset}
       className={cn(
-        'animate-in data-[side=right]:slide-in-from-left-2 data-[side=left]:slide-in-from-right-2 data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2 z-50 min-w-[8rem] overflow-hidden rounded border border-neutral-100 bg-white p-1 text-neutral-700 shadow-md dark:border-neutral-800 dark:bg-neutral-800 dark:text-neutral-400',
+        'z-50 min-w-[8rem] overflow-hidden rounded-lg border bg-popover/80 backdrop-blur-sm p-1 text-popover-foreground shadow-md',
+        'data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95',
+        'data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95',
+        'data-[side=left]:slide-in-from-right-2',
+        'data-[side=right]:slide-in-from-left-2',
+        'data-[side=top]:slide-in-from-bottom-2',
+        'data-[side=bottom]:slide-in-from-top-2',
         className,
       )}
       {...props}
     />
-  </RDropdown.Portal>
+  </RPrimitive.Portal>
 ))
-DropdownContent.displayName = RDropdown.Content.displayName
+DropdownContent.displayName = RPrimitive.Content.displayName
 
 const DropdownItem = React.forwardRef<
-  React.ElementRef<typeof RDropdown.Item>,
-  React.ComponentPropsWithoutRef<typeof RDropdown.Item> & {
+  React.ComponentRef<typeof RPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof RPrimitive.Item> & {
     inset?: boolean
   }
 >(({ className, inset, ...props }, ref) => (
-  <RDropdown.Item
+  <RPrimitive.Item
     ref={ref}
     className={cn(
-      'relative flex cursor-default select-none items-center rounded px-2 py-3 text-sm font-medium outline-none focus:bg-neutral-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-neutral-700',
+      'relative flex cursor-default select-none items-center rounded-sm p-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
       inset && 'pl-8',
       className,
     )}
     {...props}
   />
 ))
-DropdownItem.displayName = RDropdown.Item.displayName
+DropdownItem.displayName = RPrimitive.Item.displayName
 
 const DropdownCheckboxItem = React.forwardRef<
-  React.ElementRef<typeof RDropdown.CheckboxItem>,
-  React.ComponentPropsWithoutRef<typeof RDropdown.CheckboxItem>
+  React.ComponentRef<typeof RPrimitive.CheckboxItem>,
+  React.ComponentPropsWithoutRef<typeof RPrimitive.CheckboxItem>
 >(({ className, children, checked, ...props }, ref) => (
-  <RDropdown.CheckboxItem
+  <RPrimitive.CheckboxItem
     ref={ref}
     className={cn(
-      'relative flex cursor-default select-none items-center rounded py-1.5 pl-8 pr-2 text-sm font-medium outline-none focus:bg-neutral-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-neutral-700',
+      'relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
       className,
     )}
     checked={checked}
     {...props}
   >
     <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
-      <RDropdown.ItemIndicator>
-        <Check className="h-4 w-4" />
-      </RDropdown.ItemIndicator>
+      <RPrimitive.ItemIndicator>
+        <Check className="size-4" />
+      </RPrimitive.ItemIndicator>
     </span>
     {children}
-  </RDropdown.CheckboxItem>
+  </RPrimitive.CheckboxItem>
 ))
-DropdownCheckboxItem.displayName = RDropdown.CheckboxItem.displayName
+DropdownCheckboxItem.displayName = RPrimitive.CheckboxItem.displayName
 
 const DropdownRadioItem = React.forwardRef<
-  React.ElementRef<typeof RDropdown.RadioItem>,
-  React.ComponentPropsWithoutRef<typeof RDropdown.RadioItem>
+  React.ComponentRef<typeof RPrimitive.RadioItem>,
+  React.ComponentPropsWithoutRef<typeof RPrimitive.RadioItem>
 >(({ className, children, ...props }, ref) => (
-  <RDropdown.RadioItem
+  <RPrimitive.RadioItem
     ref={ref}
     className={cn(
-      'relative flex cursor-default select-none items-center rounded py-1.5 pl-8 pr-2 text-sm font-medium outline-none focus:bg-neutral-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-neutral-700',
+      'relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
       className,
     )}
     {...props}
   >
     <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
-      <RDropdown.ItemIndicator>
-        <Circle className="h-2 w-2 fill-current" />
-      </RDropdown.ItemIndicator>
+      <RPrimitive.ItemIndicator>
+        <Dot className="size-4 fill-current" />
+      </RPrimitive.ItemIndicator>
     </span>
     {children}
-  </RDropdown.RadioItem>
+  </RPrimitive.RadioItem>
 ))
-DropdownRadioItem.displayName = RDropdown.RadioItem.displayName
+DropdownRadioItem.displayName = RPrimitive.RadioItem.displayName
 
 const DropdownLabel = React.forwardRef<
-  React.ElementRef<typeof RDropdown.Label>,
-  React.ComponentPropsWithoutRef<typeof RDropdown.Label> & {
+  React.ComponentRef<typeof RPrimitive.Label>,
+  React.ComponentPropsWithoutRef<typeof RPrimitive.Label> & {
     inset?: boolean
   }
 >(({ className, inset, ...props }, ref) => (
-  <RDropdown.Label
+  <RPrimitive.Label
     ref={ref}
     className={cn(
-      'px-2 py-1.5 text-sm font-semibold text-neutral-900 dark:text-neutral-300',
+      'px-2 py-1.5 text-sm font-semibold',
       inset && 'pl-8',
       className,
     )}
     {...props}
   />
 ))
-DropdownLabel.displayName = RDropdown.Label.displayName
+DropdownLabel.displayName = RPrimitive.Label.displayName
 
 const DropdownSeparator = React.forwardRef<
-  React.ElementRef<typeof RDropdown.Separator>,
-  React.ComponentPropsWithoutRef<typeof RDropdown.Separator>
+  React.ComponentRef<typeof RPrimitive.Separator>,
+  React.ComponentPropsWithoutRef<typeof RPrimitive.Separator>
 >(({ className, ...props }, ref) => (
-  <RDropdown.Separator
+  <RPrimitive.Separator
     ref={ref}
-    className={cn(
-      '-mx-1 my-1 h-px bg-neutral-100 dark:bg-neutral-700',
-      className,
-    )}
+    className={cn('-mx-1 my-1 h-px bg-muted', className)}
     {...props}
   />
 ))
-DropdownSeparator.displayName = RDropdown.Separator.displayName
+DropdownSeparator.displayName = RPrimitive.Separator.displayName
 
 const DropdownShortcut = ({
   className,
@@ -174,10 +178,7 @@ const DropdownShortcut = ({
 }: React.HTMLAttributes<HTMLSpanElement>) => {
   return (
     <span
-      className={cn(
-        'ml-auto text-xs tracking-widest text-neutral-500',
-        className,
-      )}
+      className={cn('ml-auto text-xs tracking-widest opacity-60', className)}
       {...props}
     />
   )

@@ -1,46 +1,64 @@
 'use client'
-
-import { useStore } from '@/store'
-
-import { useMediaKeyPress } from '@/hooks/media-keypress'
-import { Player } from '@/components/ui/player'
+import { useMediaKeyPress } from '@/hooks/use-media-keypress'
+import { cn } from '@/lib/utils'
+import { useMusicState } from '@/store/app.store'
+import * as Portal from '@radix-ui/react-portal'
+import React from 'react'
 import { PlayerActions } from './player.actions'
 import { PlayerSongInfo } from './player.info'
-import { PlayerPlaylist } from './player.playlist'
 import { PlayerProgress } from './player.progress'
 import { PlayerVolume } from './player.volume'
+import { ReactPlayer } from './react-player'
 
-export const PlayerBar = ({ ...props }) => {
-  const { currentSong } = useStore()
+const PlayerPlaylist = React.lazy(() => import('./player.playlist'))
+
+interface PlayerProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+const Player = (props: PlayerProps) => {
+  const { className, ...rest } = props
+
+  const { playlist } = useMusicState()
 
   useMediaKeyPress()
 
-  if (!currentSong()) return null
+  if (playlist.length === 0) {
+    return null
+  }
 
   return (
-    <div className="sticky inset-x-0 bottom-[45px] z-50 sm:bottom-0">
-      <div
-        className="flex border-t-4 border-t-neutral-300 bg-white dark:border-t-neutral-800 dark:bg-black"
-        {...props}
-      >
-        <div className="container relative">
+    <Portal.Root
+      className={cn(
+        'fixed inset-x-0 bottom-[53px] z-50 sm:bottom-0',
+        className,
+      )}
+    >
+      <div className={cn('flex border-t-2 bg-background', className)} {...rest}>
+        <div className="container w-full relative">
           <PlayerProgress />
 
-          <div className="flex h-14 flex-1 items-center md:h-20">
-            <PlayerSongInfo className="lg:w-[20%]" />
+          <div className="flex flex-1 items-center justify-between py-2 md:py-3 sm:gap-5">
+            <div className="flex items-center gap-4 basis-1/2">
+              <PlayerSongInfo />
+            </div>
 
-            <PlayerActions flex={1} />
+            <div className="flex sm:flex-1 items-center justify-end gap-2 sm:justify-center basis-1/2">
+              <PlayerActions />
+            </div>
 
-            <div className="hidden w-1/5 flex-1 items-center sm:flex">
-              <PlayerPlaylist />
+            <div className="hidden items-center sm:flex justify-end gap-4 basis-1/2">
+              <PlayerPlaylist className="shrink-0" />
 
-              <PlayerVolume />
+              <div className="flex gap-4">
+                <PlayerVolume />
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <Player isHidden />
-    </div>
+      <ReactPlayer />
+    </Portal.Root>
   )
 }
+
+export default Player

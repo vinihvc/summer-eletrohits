@@ -1,43 +1,40 @@
 'use client'
 
-import { HTMLAttributes } from 'react'
-import { useStore } from '@/store'
+import { LikeButton } from '@/components/player/actions/like'
 
-import { LikeButton } from '@/components/actions/like'
-import { Image } from '@/components/ui/image'
-import { cn } from '@/utils/cn'
+import { useMusicState } from '@/store/app.store'
+import { BlurImage } from '../ui/blur-image'
 
-type PlayerSongInfoProps = HTMLAttributes<HTMLDivElement>
+export const PlayerSongInfo = () => {
+  const { playlist, currentIndex } = useMusicState()
 
-export const PlayerSongInfo = (props: PlayerSongInfoProps) => {
-  const { className, ...rest } = props
-
-  const { currentSong } = useStore()
+  const currentSong = playlist?.[currentIndex]
 
   return (
-    <div
-      className={cn('flex flex-1 items-center space-x-4', className)}
-      {...rest}
-    >
-      <div className="relative h-10 w-10 overflow-hidden rounded-full">
-        <Image
+    <>
+      <div className="relative size-10 overflow-hidden rounded-full">
+        <BlurImage
           width={40}
           height={40}
-          className="aspect-square scale-150"
-          src={`https://img.youtube.com/vi/${currentSong()?.youtubeId}/0.jpg`}
-          alt={`${currentSong()?.name} album cover`}
+          className="size-10 aspect-square scale-125 object-cover select-none"
+          src={`https://img.youtube.com/vi/${currentSong?.youtubeId}/0.jpg`}
+          alt={`${currentSong?.name} album cover`}
         />
       </div>
 
-      <div className="flex max-w-[100px] flex-col sm:max-w-[250px] md:max-w-[170px] lg:max-w-full">
-        <div className="truncate text-sm font-medium">
-          {currentSong()?.name}
+      <div>
+        <div className="line-clamp-1 text-sm font-medium">
+          {currentSong?.name}
         </div>
 
-        <div className="truncate text-xs">{currentSong()?.singer}</div>
+        <div className="line-clamp-1 text-xs text-muted-foreground">
+          {currentSong?.singer}
+        </div>
       </div>
 
-      <LikeButton song={currentSong()} />
-    </div>
+      {currentSong && (
+        <LikeButton className="max-sm:hidden" data={currentSong} />
+      )}
+    </>
   )
 }

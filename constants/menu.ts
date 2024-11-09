@@ -1,4 +1,4 @@
-import { Home, ListVideo, Music } from 'lucide-react'
+import { Disc3, Home } from 'lucide-react'
 
 export const BOTTOM_NAVIGATION = [
   {
@@ -7,13 +7,8 @@ export const BOTTOM_NAVIGATION = [
     icon: Home,
   },
   {
-    label: 'Library',
-    href: '/library',
-    icon: Music,
-  },
-  {
-    label: 'Playlist',
-    href: '/queue',
-    icon: ListVideo,
+    label: 'Likes',
+    href: '/likes',
+    icon: Disc3,
   },
 ]

@@ -1,24 +1,13 @@
 'use client'
 
-import { useEffect } from 'react'
-import { useStore } from '@/store'
 import { ThemeProvider } from 'next-themes'
 import { GoogleAnalytics } from 'nextjs-google-analytics'
+import type React from 'react'
 
-type RootProvidersProps = {
-  children: React.ReactNode
-}
-
-export const RootProviders = ({ children }: RootProvidersProps) => {
-  const { initiateLikes } = useStore()
-
-  useEffect(() => {
-    initiateLikes()
-  }, [initiateLikes])
-
+export const Providers = ({ children }: React.PropsWithChildren) => {
   return (
     <>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <ThemeProvider attribute="class" defaultTheme="system">
         {children}
       </ThemeProvider>
 
